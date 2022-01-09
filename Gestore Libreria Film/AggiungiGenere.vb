@@ -20,7 +20,7 @@
             ListGeneriEsistenti.ForeColor = Color.White
         End If
 
-        'Popolo ArchivioNomi
+        'Popolo ArchivioGeneri e mostro elenco
         ArchivioGeneri = New List(Of String)
         TextGenere.Text = ""
 
@@ -31,7 +31,6 @@
             End If
         Next
 
-        ' Mostro elenco
         TextGenere.Focus()
     End Sub
 

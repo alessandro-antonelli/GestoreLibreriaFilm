@@ -82,7 +82,7 @@ Partial Class ModificaInfo
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.78161!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.21839!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 4, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.Label1, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel4, 4, 5)
@@ -127,9 +127,9 @@ Partial Class ModificaInfo
         Me.Panel5.Controls.Add(Me.Button21)
         Me.Panel5.Controls.Add(Me.Button22)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel5.Location = New System.Drawing.Point(549, 329)
+        Me.Panel5.Location = New System.Drawing.Point(547, 329)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(28, 44)
+        Me.Panel5.Size = New System.Drawing.Size(30, 44)
         Me.Panel5.TabIndex = 19
         '
         'Button21
@@ -138,7 +138,7 @@ Partial Class ModificaInfo
         Me.Button21.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button21.Location = New System.Drawing.Point(0, 22)
         Me.Button21.Name = "Button21"
-        Me.Button21.Size = New System.Drawing.Size(28, 22)
+        Me.Button21.Size = New System.Drawing.Size(30, 22)
         Me.Button21.TabIndex = 28
         Me.Button21.Text = "-"
         Me.Button21.UseVisualStyleBackColor = True
@@ -149,7 +149,7 @@ Partial Class ModificaInfo
         Me.Button22.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button22.Location = New System.Drawing.Point(0, 0)
         Me.Button22.Name = "Button22"
-        Me.Button22.Size = New System.Drawing.Size(28, 22)
+        Me.Button22.Size = New System.Drawing.Size(30, 22)
         Me.Button22.TabIndex = 29
         Me.Button22.Text = "+"
         Me.Button22.UseVisualStyleBackColor = True
@@ -170,9 +170,9 @@ Partial Class ModificaInfo
         Me.Panel4.Controls.Add(Me.Button19)
         Me.Panel4.Controls.Add(Me.Button20)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel4.Location = New System.Drawing.Point(549, 279)
+        Me.Panel4.Location = New System.Drawing.Point(547, 279)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(28, 44)
+        Me.Panel4.Size = New System.Drawing.Size(30, 44)
         Me.Panel4.TabIndex = 18
         '
         'Button19
@@ -181,7 +181,7 @@ Partial Class ModificaInfo
         Me.Button19.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button19.Location = New System.Drawing.Point(0, 22)
         Me.Button19.Name = "Button19"
-        Me.Button19.Size = New System.Drawing.Size(28, 22)
+        Me.Button19.Size = New System.Drawing.Size(30, 22)
         Me.Button19.TabIndex = 26
         Me.Button19.Text = "-"
         Me.Button19.UseVisualStyleBackColor = True
@@ -192,7 +192,7 @@ Partial Class ModificaInfo
         Me.Button20.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button20.Location = New System.Drawing.Point(0, 0)
         Me.Button20.Name = "Button20"
-        Me.Button20.Size = New System.Drawing.Size(28, 22)
+        Me.Button20.Size = New System.Drawing.Size(30, 22)
         Me.Button20.TabIndex = 27
         Me.Button20.Text = "+"
         Me.Button20.UseVisualStyleBackColor = True
@@ -204,7 +204,7 @@ Partial Class ModificaInfo
         Me.TextTitoloITA.Location = New System.Drawing.Point(73, 3)
         Me.TextTitoloITA.Multiline = True
         Me.TextTitoloITA.Name = "TextTitoloITA"
-        Me.TextTitoloITA.Size = New System.Drawing.Size(151, 81)
+        Me.TextTitoloITA.Size = New System.Drawing.Size(150, 81)
         Me.TextTitoloITA.TabIndex = 1
         '
         'Panel3
@@ -212,10 +212,10 @@ Partial Class ModificaInfo
         Me.Panel3.Controls.Add(Me.Button17)
         Me.Panel3.Controls.Add(Me.Button18)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(549, 182)
+        Me.Panel3.Location = New System.Drawing.Point(547, 182)
         Me.Panel3.Name = "Panel3"
         Me.TableLayoutPanel1.SetRowSpan(Me.Panel3, 3)
-        Me.Panel3.Size = New System.Drawing.Size(28, 91)
+        Me.Panel3.Size = New System.Drawing.Size(30, 91)
         Me.Panel3.TabIndex = 17
         '
         'Button17
@@ -224,7 +224,7 @@ Partial Class ModificaInfo
         Me.Button17.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button17.Location = New System.Drawing.Point(0, 40)
         Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(28, 40)
+        Me.Button17.Size = New System.Drawing.Size(30, 40)
         Me.Button17.TabIndex = 26
         Me.Button17.Text = "-"
         Me.Button17.UseVisualStyleBackColor = True
@@ -235,7 +235,7 @@ Partial Class ModificaInfo
         Me.Button18.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button18.Location = New System.Drawing.Point(0, 0)
         Me.Button18.Name = "Button18"
-        Me.Button18.Size = New System.Drawing.Size(28, 40)
+        Me.Button18.Size = New System.Drawing.Size(30, 40)
         Me.Button18.TabIndex = 25
         Me.Button18.Text = "+"
         Me.Button18.UseVisualStyleBackColor = True
@@ -246,10 +246,10 @@ Partial Class ModificaInfo
         Me.ListGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListGeneri.FormattingEnabled = True
         Me.ListGeneri.ItemHeight = 25
-        Me.ListGeneri.Location = New System.Drawing.Point(280, 182)
+        Me.ListGeneri.Location = New System.Drawing.Point(279, 182)
         Me.ListGeneri.Name = "ListGeneri"
         Me.TableLayoutPanel1.SetRowSpan(Me.ListGeneri, 3)
-        Me.ListGeneri.Size = New System.Drawing.Size(263, 91)
+        Me.ListGeneri.Size = New System.Drawing.Size(262, 91)
         Me.ListGeneri.TabIndex = 32
         '
         'Panel2
@@ -257,9 +257,9 @@ Partial Class ModificaInfo
         Me.Panel2.Controls.Add(Me.Button15)
         Me.Panel2.Controls.Add(Me.Button16)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(549, 90)
+        Me.Panel2.Location = New System.Drawing.Point(547, 90)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(28, 86)
+        Me.Panel2.Size = New System.Drawing.Size(30, 86)
         Me.Panel2.TabIndex = 16
         '
         'Button15
@@ -268,7 +268,7 @@ Partial Class ModificaInfo
         Me.Button15.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button15.Location = New System.Drawing.Point(0, 40)
         Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(28, 40)
+        Me.Button15.Size = New System.Drawing.Size(30, 40)
         Me.Button15.TabIndex = 22
         Me.Button15.Text = "-"
         Me.Button15.UseVisualStyleBackColor = True
@@ -279,7 +279,7 @@ Partial Class ModificaInfo
         Me.Button16.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button16.Location = New System.Drawing.Point(0, 0)
         Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(28, 40)
+        Me.Button16.Size = New System.Drawing.Size(30, 40)
         Me.Button16.TabIndex = 23
         Me.Button16.Text = "+"
         Me.Button16.UseVisualStyleBackColor = True
@@ -300,9 +300,9 @@ Partial Class ModificaInfo
         Me.Panel1.Controls.Add(Me.Button13)
         Me.Panel1.Controls.Add(Me.Button14)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(549, 3)
+        Me.Panel1.Location = New System.Drawing.Point(547, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(28, 81)
+        Me.Panel1.Size = New System.Drawing.Size(30, 81)
         Me.Panel1.TabIndex = 15
         '
         'Button13
@@ -311,7 +311,7 @@ Partial Class ModificaInfo
         Me.Button13.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button13.Location = New System.Drawing.Point(0, 40)
         Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(28, 40)
+        Me.Button13.Size = New System.Drawing.Size(30, 40)
         Me.Button13.TabIndex = 22
         Me.Button13.Text = "-"
         Me.Button13.UseVisualStyleBackColor = True
@@ -322,7 +322,7 @@ Partial Class ModificaInfo
         Me.Button14.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button14.Location = New System.Drawing.Point(0, 0)
         Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(28, 40)
+        Me.Button14.Size = New System.Drawing.Size(30, 40)
         Me.Button14.TabIndex = 21
         Me.Button14.Text = "+"
         Me.Button14.UseVisualStyleBackColor = True
@@ -333,9 +333,9 @@ Partial Class ModificaInfo
         Me.ListAttori.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListAttori.FormattingEnabled = True
         Me.ListAttori.ItemHeight = 25
-        Me.ListAttori.Location = New System.Drawing.Point(280, 90)
+        Me.ListAttori.Location = New System.Drawing.Point(279, 90)
         Me.ListAttori.Name = "ListAttori"
-        Me.ListAttori.Size = New System.Drawing.Size(263, 86)
+        Me.ListAttori.Size = New System.Drawing.Size(262, 86)
         Me.ListAttori.TabIndex = 31
         '
         'TextTitoloORIG
@@ -345,14 +345,14 @@ Partial Class ModificaInfo
         Me.TextTitoloORIG.Location = New System.Drawing.Point(73, 90)
         Me.TextTitoloORIG.Multiline = True
         Me.TextTitoloORIG.Name = "TextTitoloORIG"
-        Me.TextTitoloORIG.Size = New System.Drawing.Size(151, 86)
+        Me.TextTitoloORIG.Size = New System.Drawing.Size(150, 86)
         Me.TextTitoloORIG.TabIndex = 3
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label11.Location = New System.Drawing.Point(230, 179)
+        Me.Label11.Location = New System.Drawing.Point(229, 179)
         Me.Label11.Name = "Label11"
         Me.TableLayoutPanel1.SetRowSpan(Me.Label11, 3)
         Me.Label11.Size = New System.Drawing.Size(44, 97)
@@ -368,7 +368,7 @@ Partial Class ModificaInfo
         Me.UpDownAnno.Maximum = New Decimal(New Integer() {2022, 0, 0, 0})
         Me.UpDownAnno.Minimum = New Decimal(New Integer() {1850, 0, 0, 0})
         Me.UpDownAnno.Name = "UpDownAnno"
-        Me.UpDownAnno.Size = New System.Drawing.Size(151, 30)
+        Me.UpDownAnno.Size = New System.Drawing.Size(150, 30)
         Me.UpDownAnno.TabIndex = 5
         Me.UpDownAnno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.UpDownAnno.Value = New Decimal(New Integer() {2022, 0, 0, 0})
@@ -393,14 +393,14 @@ Partial Class ModificaInfo
         Me.TextNote.Multiline = True
         Me.TextNote.Name = "TextNote"
         Me.TableLayoutPanel1.SetRowSpan(Me.TextNote, 2)
-        Me.TextNote.Size = New System.Drawing.Size(151, 94)
+        Me.TextNote.Size = New System.Drawing.Size(150, 94)
         Me.TextNote.TabIndex = 6
         '
         'Label13
         '
         Me.Label13.AutoSize = True
         Me.Label13.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label13.Location = New System.Drawing.Point(230, 87)
+        Me.Label13.Location = New System.Drawing.Point(229, 87)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(44, 92)
         Me.Label13.TabIndex = 12
@@ -423,7 +423,7 @@ Partial Class ModificaInfo
         '
         Me.Label15.AutoSize = True
         Me.Label15.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label15.Location = New System.Drawing.Point(230, 0)
+        Me.Label15.Location = New System.Drawing.Point(229, 0)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(44, 87)
         Me.Label15.TabIndex = 10
@@ -437,7 +437,7 @@ Partial Class ModificaInfo
         Me.TextNazione.FormattingEnabled = True
         Me.TextNazione.Location = New System.Drawing.Point(73, 241)
         Me.TextNazione.Name = "TextNazione"
-        Me.TextNazione.Size = New System.Drawing.Size(151, 33)
+        Me.TextNazione.Size = New System.Drawing.Size(150, 33)
         Me.TextNazione.TabIndex = 9
         '
         'Label5
@@ -455,7 +455,7 @@ Partial Class ModificaInfo
         '
         Me.CheckAnnoVuoto.AutoSize = True
         Me.CheckAnnoVuoto.Dock = System.Windows.Forms.DockStyle.Right
-        Me.CheckAnnoVuoto.Location = New System.Drawing.Point(114, 215)
+        Me.CheckAnnoVuoto.Location = New System.Drawing.Point(113, 215)
         Me.CheckAnnoVuoto.Name = "CheckAnnoVuoto"
         Me.CheckAnnoVuoto.Size = New System.Drawing.Size(110, 20)
         Me.CheckAnnoVuoto.TabIndex = 11
@@ -468,9 +468,9 @@ Partial Class ModificaInfo
         Me.ListRegisti.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListRegisti.FormattingEnabled = True
         Me.ListRegisti.ItemHeight = 25
-        Me.ListRegisti.Location = New System.Drawing.Point(280, 3)
+        Me.ListRegisti.Location = New System.Drawing.Point(279, 3)
         Me.ListRegisti.Name = "ListRegisti"
-        Me.ListRegisti.Size = New System.Drawing.Size(263, 81)
+        Me.ListRegisti.Size = New System.Drawing.Size(262, 81)
         Me.ListRegisti.TabIndex = 30
         '
         'ListMusicisti
@@ -479,16 +479,16 @@ Partial Class ModificaInfo
         Me.ListMusicisti.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListMusicisti.FormattingEnabled = True
         Me.ListMusicisti.ItemHeight = 25
-        Me.ListMusicisti.Location = New System.Drawing.Point(280, 329)
+        Me.ListMusicisti.Location = New System.Drawing.Point(279, 329)
         Me.ListMusicisti.Name = "ListMusicisti"
-        Me.ListMusicisti.Size = New System.Drawing.Size(263, 44)
+        Me.ListMusicisti.Size = New System.Drawing.Size(262, 44)
         Me.ListMusicisti.TabIndex = 34
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label7.Location = New System.Drawing.Point(230, 326)
+        Me.Label7.Location = New System.Drawing.Point(229, 326)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(44, 50)
         Me.Label7.TabIndex = 19
@@ -499,7 +499,7 @@ Partial Class ModificaInfo
         '
         Me.Label9.AutoSize = True
         Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label9.Location = New System.Drawing.Point(230, 276)
+        Me.Label9.Location = New System.Drawing.Point(229, 276)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(44, 50)
         Me.Label9.TabIndex = 17
@@ -512,9 +512,9 @@ Partial Class ModificaInfo
         Me.ListAutori.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListAutori.FormattingEnabled = True
         Me.ListAutori.ItemHeight = 25
-        Me.ListAutori.Location = New System.Drawing.Point(280, 279)
+        Me.ListAutori.Location = New System.Drawing.Point(279, 279)
         Me.ListAutori.Name = "ListAutori"
-        Me.ListAutori.Size = New System.Drawing.Size(263, 44)
+        Me.ListAutori.Size = New System.Drawing.Size(262, 44)
         Me.ListAutori.TabIndex = 33
         '
         'ButtSalva

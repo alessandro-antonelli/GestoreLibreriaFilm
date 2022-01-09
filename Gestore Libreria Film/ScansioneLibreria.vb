@@ -111,6 +111,7 @@ Public Class ScansioneLibreria
             Dim json As JObject = JObject.Parse(Reader.ReadToEnd)
 
             Dim DurataSecondi As Double = json.SelectToken("format").SelectToken("duration").Value(Of Double)()
+            Film.DurataSecondi = DurataSecondi
             Film.DurataMinuti = Math.Round(DurataSecondi / 60)
 
             Dim BitrateComplessivo As Integer = json.SelectToken("format").SelectToken("bit_rate").Value(Of Integer)() 'BIT (non byte) al secondo

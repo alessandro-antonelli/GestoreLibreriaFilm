@@ -54,26 +54,31 @@
         If (Not IsNothing(Film.Nazione)) Then TextNazione.Text = Film.Nazione
         If (Not IsNothing(Film.Note)) Then TextNote.Text = Film.Note
 
+        ListRegisti.Items.Clear()
         If (Not IsNothing(Film.Registi)) Then
             For Each regista In Film.Registi
                 ListRegisti.Items.Add(regista)
             Next
         End If
+        ListAttori.Items.Clear()
         If (Not IsNothing(Film.Attori)) Then
             For Each attore In Film.Attori
                 ListAttori.Items.Add(attore)
             Next
         End If
+        ListGeneri.Items.Clear()
         If (Not IsNothing(Film.Generi)) Then
             For Each genere In Film.Generi
                 ListGeneri.Items.Add(genere)
             Next
         End If
+        ListAutori.Items.Clear()
         If (Not IsNothing(Film.Autori)) Then
             For Each autore In Film.Autori
                 ListAutori.Items.Add(autore)
             Next
         End If
+        ListMusicisti.Items.Clear()
         If (Not IsNothing(Film.Musicisti)) Then
             For Each musicista In Film.Musicisti
                 ListMusicisti.Items.Add(musicista)
@@ -281,7 +286,7 @@
             Dim NuovoNomeFile As String = GeneraNome()
             Dim NuovoPercorsoFile As String = My.Settings.LibreriaPercorso + "\" + NuovoNomeFile
 
-            If (MessageBox.Show("Il file:" + Chr(10) + Chr(10) + Film.NomeFile + Chr(10) + Chr(10) + "sarà rinominato in:" + Chr(10) + Chr(10) + NuovoNomeFile, "Confermi rinomina?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) <> Windows.Forms.DialogResult.Yes) Then
+            If (MessageBox.Show("Il file:" + Chr(10) + Chr(10) + Film.NomeFile + Chr(10) + Chr(10) + "sarà rinominato in:" + Chr(10) + Chr(10) + NuovoNomeFile, "Confermi rinomina?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) <> Windows.Forms.DialogResult.Yes) Then
                 Exit Sub
             End If
 

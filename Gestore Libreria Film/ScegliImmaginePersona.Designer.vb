@@ -46,6 +46,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox2
         '
+        Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox2.Location = New System.Drawing.Point(118, 52)
         Me.PictureBox2.Name = "PictureBox2"
@@ -56,6 +57,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox1.Location = New System.Drawing.Point(12, 52)
         Me.PictureBox1.Name = "PictureBox1"
@@ -86,6 +88,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox3
         '
+        Me.PictureBox3.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox3.Location = New System.Drawing.Point(224, 52)
         Me.PictureBox3.Name = "PictureBox3"
@@ -96,6 +99,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox4
         '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox4.Location = New System.Drawing.Point(12, 158)
         Me.PictureBox4.Name = "PictureBox4"
@@ -106,6 +110,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox5
         '
+        Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox5.Location = New System.Drawing.Point(118, 158)
         Me.PictureBox5.Name = "PictureBox5"
@@ -116,6 +121,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox6
         '
+        Me.PictureBox6.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox6.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox6.Location = New System.Drawing.Point(224, 158)
         Me.PictureBox6.Name = "PictureBox6"
@@ -126,6 +132,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox7
         '
+        Me.PictureBox7.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox7.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox7.Location = New System.Drawing.Point(12, 264)
         Me.PictureBox7.Name = "PictureBox7"
@@ -136,6 +143,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox8
         '
+        Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox8.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox8.Location = New System.Drawing.Point(118, 264)
         Me.PictureBox8.Name = "PictureBox8"
@@ -146,6 +154,7 @@ Partial Class ScegliImmaginePersona
         '
         'PictureBox9
         '
+        Me.PictureBox9.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox9.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox9.Location = New System.Drawing.Point(224, 264)
         Me.PictureBox9.Name = "PictureBox9"

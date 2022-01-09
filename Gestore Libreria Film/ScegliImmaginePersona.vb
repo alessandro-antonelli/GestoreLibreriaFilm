@@ -1,5 +1,5 @@
 ﻿Public Class ScegliImmaginePersona
-    Dim BaseFileTemp As String = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_ScegliPersona_"
+    Dim PathImgTemporanee() As String
     Dim PathFileDefinitivo As String
 
     Sub PreparaFinestra(QueryIniziale As String, PathImgDefinitiva As String)
@@ -12,19 +12,19 @@
             TextBox1.BackColor = Color.FromArgb(32, 32, 32)
             Button1.BackColor = Color.FromArgb(32, 32, 32)
         End If
-        PictureBox1.Image = My.Resources.ThrobberIngranaggio
-        PictureBox2.Image = My.Resources.ThrobberIngranaggio
-        PictureBox3.Image = My.Resources.ThrobberIngranaggio
-        PictureBox4.Image = My.Resources.ThrobberIngranaggio
+        PictureBox1.Image = Nothing
+        PictureBox2.Image = Nothing
+        PictureBox3.Image = Nothing
+        PictureBox4.Image = Nothing
         PictureBox5.Image = My.Resources.ThrobberIngranaggio
-        PictureBox6.Image = My.Resources.ThrobberIngranaggio
-        PictureBox7.Image = My.Resources.ThrobberIngranaggio
-        PictureBox8.Image = My.Resources.ThrobberIngranaggio
-        PictureBox9.Image = My.Resources.ThrobberIngranaggio
+        PictureBox6.Image = Nothing
+        PictureBox7.Image = Nothing
+        PictureBox8.Image = Nothing
+        PictureBox9.Image = Nothing
     End Sub
 
     Private Sub ScegliImmaginePersona_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
-        ScaricaMiniature(TextBox1.Text)
+        If (TextBox1.Text.Length > 0) Then ScaricaMiniature(TextBox1.Text)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -33,13 +33,10 @@
 
     Sub ScaricaMiniature(query As String)
         Me.UseWaitCursor = True
+        PathImgTemporanee = MainModule.SalvaImmaginiGoogle(query, 9)
         For i As UShort = 1 To 9
-            If (My.Computer.FileSystem.FileExists(BaseFileTemp + i.ToString + ".jpg")) Then
-                My.Computer.FileSystem.DeleteFile(BaseFileTemp + i.ToString + ".jpg", FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
-            End If
-
-            If (MainModule.SalvaImmagineGoogle(query, i, BaseFileTemp + i.ToString + ".jpg") = True) Then
-                ImpostaImmagineBox(i, BaseFileTemp + i.ToString + ".jpg")
+            If (Not IsNothing(PathImgTemporanee) AndAlso PathImgTemporanee.Length >= i) Then
+                ImpostaImmagineBox(i, PathImgTemporanee(i - 1))
             Else
                 ImpostaImmagineBox(i, Nothing)
             End If
@@ -48,15 +45,17 @@
     End Sub
 
     Sub SalvaImmagine(indice As UShort)
-        Dim PathTemporaneoScelto As String = BaseFileTemp + indice.ToString + ".jpg"
+        Dim PathTemporaneoScelto As String = PathImgTemporanee(indice - 1)
         If (My.Computer.FileSystem.FileExists(PathTemporaneoScelto)) Then
             If (My.Computer.FileSystem.FileExists(PathFileDefinitivo)) Then
                 My.Computer.FileSystem.DeleteFile(PathFileDefinitivo, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
             End If
             My.Computer.FileSystem.MoveFile(PathTemporaneoScelto, PathFileDefinitivo)
+            MainForm.PicImgPersona.LoadAsync()
+            Me.DialogResult = Windows.Forms.DialogResult.OK
+        Else
+            Me.DialogResult = Windows.Forms.DialogResult.Abort
         End If
-        MainForm.PicImgPersona.LoadAsync()
-        Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
 

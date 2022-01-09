@@ -70,15 +70,23 @@
         Dim Inserimento As String = TextNome.Text.ToLower + " " + TextCognome.Text.ToLower
         Dim tokens As String() = Inserimento.Split(" ")
         For Each nominativo As String In ArchivioNomi
-            Dim CorrispondenzaTrovata As Boolean = True
+            Dim CorrispondenzaCompletaTrovata As Boolean = True
+            Dim CorrispondenzaInizialeTrovata As Boolean = True
             For Each token As String In tokens
                 If (token.Length = 0 Or token.Equals(" ")) Then Continue For
-                If (Not nominativo.ToLower.Contains(token) AndAlso Not (nominativo.ToLower.Contains(token.Chars(0) + "."))) Then
-                    CorrispondenzaTrovata = False
-                    Exit For
+                If (Not nominativo.ToLower.Contains(token)) Then
+                    CorrispondenzaCompletaTrovata = False
+                    If (Not (nominativo.ToLower.Contains(token.Chars(0) + "."))) Then
+                        CorrispondenzaInizialeTrovata = False
+                        Exit For
+                    End If
                 End If
             Next
-            If (CorrispondenzaTrovata) Then ListNomiEsistenti.Items.Add(nominativo)
+            If (CorrispondenzaCompletaTrovata) Then
+                ListNomiEsistenti.Items.Insert(0, nominativo) 'inserisci in cima
+            ElseIf (CorrispondenzaInizialeTrovata) Then
+                ListNomiEsistenti.Items.Add(nominativo) 'inserisci in fondo
+            End If
         Next
     End Sub
 

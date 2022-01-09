@@ -193,12 +193,12 @@
             Return Nothing
         End If
         Dim PathDatiPersone As String = PercorsoDatiPersone()
-        Return PathDatiPersone + "\" + CognomePersona + If(InizialeNomePersona <> "", "_" + InizialeNomePersona, "") + ".jpg"
+        Return PathDatiPersone + "\" + CognomePersona + If(InizialeNomePersona <> Chr(0), "_" + InizialeNomePersona, "") + ".jpg"
     End Function
 
-    Function SalvaImmagineGoogle(Query As String, NumRisultatoDesiderato As UShort, PathSalvataggioImg As String) As Boolean 'esito
-        If (NumRisultatoDesiderato < 1) Then Return False
-        If (Not My.Computer.Network.IsAvailable) Then Return False
+    'restituisce la lista dei path delle immagini JPG salvate
+    Function SalvaImmaginiGoogle(Query As String, QuantitaRisultatiDesiderati As UShort) As String()
+        If (Not My.Computer.Network.IsAvailable OrElse IsNothing(Query) OrElse Query.Length <= 0) Then Return Nothing
 
         Dim url As String = "https://www.google.com/search?q=" + Query + "&tbm=isch"
         Dim PathHTM = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_RicercaGoogle.htm"
@@ -210,44 +210,58 @@
             Dim LettoreHTML As New IO.StreamReader(PathHTM, System.Text.Encoding.UTF8)
             Dim StringaHTML As String = LettoreHTML.ReadToEnd
             LettoreHTML.Close()
-            Dim NumRisultatoRaggiunto = 1
-            Dim URLImg As String = ""
 
-            While True
-                Dim IndInizioTag As Integer = StringaHTML.IndexOf("<img class=")
-                If (IndInizioTag = -1) Then Return False
-                StringaHTML = StringaHTML.Substring(IndInizioTag, StringaHTML.Length - IndInizioTag)
+            Dim PathImmagini(QuantitaRisultatiDesiderati) As String
+            For i As UShort = 1 To QuantitaRisultatiDesiderati
+                PathImmagini(i - 1) = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_RicercaGoogle_ris" + i.ToString + ".jpg"
+                Dim URLImg As String = GetURLImmagine(i, StringaHTML)
+                If (URLImg.Length <= 0) Then Return Nothing
 
-                Dim IndInizioURLImg As Integer = StringaHTML.IndexOf("src=""")
-                If (IndInizioURLImg = -1) Then Continue While
-                IndInizioURLImg += 5
-                StringaHTML = StringaHTML.Substring(IndInizioURLImg, StringaHTML.Length - IndInizioURLImg)
-
-                Dim IndFineURL As Integer = StringaHTML.IndexOf("""")
-                If (IndFineURL = -1) Then Continue While
-                URLImg = StringaHTML.Substring(0, IndFineURL)
-
-                If (URLImg.StartsWith("https")) Then
-                    'abbiamo trovato il tag <img> di un risultato della query
-                    If (NumRisultatoRaggiunto = NumRisultatoDesiderato) Then
-                        Exit While
-                    Else
-                        NumRisultatoRaggiunto += 1
-                        Continue While
-                    End If
-                Else
-                    'abbiamo trovato il tag <img> del logo google o simili
-                    Continue While
-                End If
-            End While
-
-            If (My.Computer.FileSystem.FileExists(PathSalvataggioImg)) Then My.Computer.FileSystem.DeleteFile(PathSalvataggioImg, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
-            My.Computer.Network.DownloadFile(URLImg, PathSalvataggioImg)
-            Return True
+                If (My.Computer.FileSystem.FileExists(PathImmagini(i - 1))) Then My.Computer.FileSystem.DeleteFile(PathImmagini(i - 1), FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+                My.Computer.Network.DownloadFile(URLImg, PathImmagini(i - 1))
+            Next
+            Return PathImmagini
 
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
-            Return False
+            Return Nothing
         End Try
+    End Function
+
+    Private Function GetURLImmagine(NumRisultatoDesiderato As UShort, SorgenteHTML As String) As String
+        If (NumRisultatoDesiderato < 1 OrElse IsNothing(SorgenteHTML) OrElse SorgenteHTML.Length <= 0) Then Return Nothing
+
+        Dim NumRisultatoRaggiunto = 1
+        Dim URLImg As String = ""
+
+        While True
+            Dim IndInizioTag As Integer = SorgenteHTML.IndexOf("<img class=")
+            If (IndInizioTag = -1) Then Return False
+            SorgenteHTML = SorgenteHTML.Substring(IndInizioTag, SorgenteHTML.Length - IndInizioTag)
+
+            Dim IndInizioURLImg As Integer = SorgenteHTML.IndexOf("src=""")
+            If (IndInizioURLImg = -1) Then Continue While
+            IndInizioURLImg += 5
+            SorgenteHTML = SorgenteHTML.Substring(IndInizioURLImg, SorgenteHTML.Length - IndInizioURLImg)
+
+            Dim IndFineURL As Integer = SorgenteHTML.IndexOf("""")
+            If (IndFineURL = -1) Then Continue While
+            URLImg = SorgenteHTML.Substring(0, IndFineURL)
+
+            If (URLImg.StartsWith("https")) Then
+                'abbiamo trovato il tag <img> di un risultato della query
+                If (NumRisultatoRaggiunto = NumRisultatoDesiderato) Then
+                    Exit While
+                Else
+                    NumRisultatoRaggiunto += 1
+                    Continue While
+                End If
+            Else
+                'abbiamo trovato il tag <img> del logo google o simili
+                Continue While
+            End If
+        End While
+
+        Return URLImg
     End Function
 End Module

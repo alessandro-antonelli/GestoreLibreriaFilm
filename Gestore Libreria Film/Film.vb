@@ -7,6 +7,7 @@
     Public Estensione As String
     Public Contenitore As String
     Public BitrateComplessivoKBpS As UShort
+    Public DurataSecondi As UInteger
     Public DurataMinuti As UShort
 
     Public Risoluzione As Size

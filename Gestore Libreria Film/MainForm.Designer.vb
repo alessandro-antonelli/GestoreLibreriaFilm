@@ -275,7 +275,7 @@ Partial Class MainForm
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.PicImgPersona = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ButImgPersona = New System.Windows.Forms.Button()
         Me.LabNomePersona = New System.Windows.Forms.Label()
         Me.FileSystemWatcher = New System.IO.FileSystemWatcher()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
@@ -445,6 +445,7 @@ Partial Class MainForm
         'TilesToolStripMenuItem
         '
         Me.TilesToolStripMenuItem.CheckOnClick = True
+        Me.TilesToolStripMenuItem.Enabled = False
         Me.TilesToolStripMenuItem.Name = "TilesToolStripMenuItem"
         Me.TilesToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
         Me.TilesToolStripMenuItem.Text = "Tiles"
@@ -1051,7 +1052,6 @@ Partial Class MainForm
         Me.ElencoFilm.TabIndex = 0
         Me.ElencoFilm.TileSize = New System.Drawing.Size(125, 50)
         Me.ElencoFilm.UseCompatibleStateImageBehavior = False
-        Me.ElencoFilm.View = System.Windows.Forms.View.Details
         Me.ElencoFilm.VirtualMode = True
         '
         'ColTitolo
@@ -2812,7 +2812,7 @@ Partial Class MainForm
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label12)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label13)
         Me.SplitContainer1.Panel2.Controls.Add(Me.PicImgPersona)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Button1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.ButImgPersona)
         Me.SplitContainer1.Panel2.Controls.Add(Me.LabNomePersona)
         Me.SplitContainer1.Size = New System.Drawing.Size(147, 684)
         Me.SplitContainer1.SplitterDistance = 447
@@ -2852,15 +2852,15 @@ Partial Class MainForm
         Me.PicImgPersona.TabIndex = 5
         Me.PicImgPersona.TabStop = False
         '
-        'Button1
+        'ButImgPersona
         '
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button1.Location = New System.Drawing.Point(0, 207)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(147, 26)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Cambia immagine"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ButImgPersona.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ButImgPersona.Location = New System.Drawing.Point(0, 207)
+        Me.ButImgPersona.Name = "ButImgPersona"
+        Me.ButImgPersona.Size = New System.Drawing.Size(147, 26)
+        Me.ButImgPersona.TabIndex = 4
+        Me.ButImgPersona.Text = "Cambia immagine"
+        Me.ButImgPersona.UseVisualStyleBackColor = True
         '
         'LabNomePersona
         '
@@ -3197,7 +3197,7 @@ Partial Class MainForm
     Friend WithEvents LabNomePersona As System.Windows.Forms.Label
     Friend WithEvents LabValoreCategoriaScelta As System.Windows.Forms.Label
     Friend WithEvents LabCategoriaScelta As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents ButImgPersona As System.Windows.Forms.Button
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents PicImgPersona As System.Windows.Forms.PictureBox

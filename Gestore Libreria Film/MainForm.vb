@@ -177,6 +177,7 @@ Public Class MainForm
                     PannelloFiltri.Visible = False
                     ElencoFilm.VirtualListSize = 0
                     VisualizzazioneContenutoSchermataDestra(False)
+                    VisualizzazioneSchedaPersona(False)
                 End If
             End If
         ElseIf (selezionato.Level = 1) Then
@@ -330,7 +331,7 @@ Public Class MainForm
     End Sub
 
     Sub VisualizzazioneSchedaPersona(VisualizzareScheda As Boolean, Optional ListaCategoria As ListaEtichettata = Nothing)
-        If (VisualizzareScheda) Then
+        If (VisualizzareScheda AndAlso Not ListaCategoria.GetEtichetta.StartsWith("[")) Then
             SplitContainer1.Panel2Collapsed = False
 
             Dim NomeCognome As String() = MainModule.SeparaNomeCognome(ListaCategoria.GetEtichetta)
@@ -351,12 +352,14 @@ Public Class MainForm
             End If
 
             'Cerco e imposto immagine
-            Dim PathImmagine As String = MainModule.PercorsoImmaginePersona(NomeCognome(1), If(NomeCognome(0) <> "", NomeCognome(0).Chars(0), ""))
+            Dim PathImmagine As String = MainModule.PercorsoImmaginePersona(NomeCognome(1), If(NomeCognome(0).Length > 0, NomeCognome(0).Chars(0), Chr(0)))
             If (My.Computer.FileSystem.FileExists(PathImmagine)) Then
                 PicImgPersona.ImageLocation = PathImmagine
             Else
                 Me.UseWaitCursor = True
-                If (MainModule.SalvaImmagineGoogle(ListaCategoria.GetEtichetta, 1, PathImmagine) = True) Then
+                Dim PathTemporaneo() As String = MainModule.SalvaImmaginiGoogle(ListaCategoria.GetEtichetta, 1)
+                If (Not IsNothing(PathTemporaneo) And PathTemporaneo.Length >= 1) Then
+                    My.Computer.FileSystem.MoveFile(PathTemporaneo(0), PathImmagine, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
                     PicImgPersona.ImageLocation = PathImmagine
                 Else
                     PicImgPersona.ImageLocation = ""
@@ -822,7 +825,7 @@ Public Class MainForm
     End Sub
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        ScegliLibreria.Show()
+        ScegliLibreria.ShowDialog()
     End Sub
 
     Sub SvuotaElencoFilm()
@@ -1658,6 +1661,7 @@ Public Class MainForm
             BottMostraFiltri.BackColor = NeroBottone
             BottCerca.BackColor = NeroBottone
             BottCancellaFiltri.BackColor = NeroBottone
+            ButImgPersona.BackColor = NeroBottone
 
             ToolStripButton7.Text = "Giorno"
             ToolStripButton7.Image = My.Resources.sole
@@ -1688,15 +1692,17 @@ Public Class MainForm
             FiltroGeneri.BackColor = Color.White
             FiltroGeneri.ForeColor = Color.Black
 
+            RTFAudio.BackColor = GrigioPannello
+            RTFAudio.Rtf = RTFAudio.Rtf.Replace(ColoriTestoRTFNotte, ColoriTestoRTFGiorno)
+            RTFSottotitoli.BackColor = GrigioPannello
+            RTFSottotitoli.ForeColor = Color.Black
+
             BottCancellaFiltri.BackColor = GrigioPannello
             BottFiltra.BackColor = GrigioPannello
             BottMostraFiltri.BackColor = GrigioPannello
             BottCerca.BackColor = GrigioPannello
             BottCancellaFiltri.BackColor = GrigioPannello
-            RTFAudio.BackColor = GrigioPannello
-            RTFAudio.Rtf = RTFAudio.Rtf.Replace(ColoriTestoRTFNotte, ColoriTestoRTFGiorno)
-            RTFSottotitoli.BackColor = GrigioPannello
-            RTFSottotitoli.ForeColor = Color.Black
+            ButImgPersona.BackColor = GrigioPannello
 
             SplitImmagineDettagli.BackColor = GrigioPannello
             RiquadroDestraPanel.BackColor = GrigioPannello
@@ -2201,14 +2207,14 @@ Public Class MainForm
         Process.Start("https://www.imdb.com/search/name-text/?bio=" + LabNomePersona.Text)
     End Sub
 
-    Private Sub PicImgPersona_Click(sender As Object, e As EventArgs)
+    Private Sub PicImgPersona_Click(sender As Object, e As EventArgs) Handles PicImgPersona.Click
         Dim PathImg As String = MainModule.PercorsoImmaginePersona(MainModule.SeparaNomeCognome(LabNomePersona.Text)(1), MainModule.SeparaNomeCognome(LabNomePersona.Text)(0).Chars(0))
         If (My.Computer.FileSystem.FileExists(PathImg)) Then
             Process.Start(PathImg)
         End If
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButImgPersona.Click
         Dim PathImmagine As String = MainModule.PercorsoImmaginePersona(MainModule.SeparaNomeCognome(LabNomePersona.Text)(1), If(MainModule.SeparaNomeCognome(LabNomePersona.Text)(0) <> "", MainModule.SeparaNomeCognome(LabNomePersona.Text)(0).Chars(0), ""))
         ScegliImmaginePersona.PreparaFinestra(LabNomePersona.Text, PathImmagine)
         ScegliImmaginePersona.ShowDialog()

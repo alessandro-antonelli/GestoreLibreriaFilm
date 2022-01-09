@@ -8,15 +8,26 @@ Public Class ScegliSchermata
     Sub InizializzaFinestra(Film As Film, IndiceIcona As UShort)
         Me.Film = Film
         Me.IndiceIcona = IndiceIcona
-        Me.LinkLabel1.Text = Film.TitoloITA + If(Not IsNothing(Film.Anno), " [" + Film.Anno.ToString + "]", "")
+        Me.LinkLabel1.Text = Film.TitoloITA + If(Not IsNothing(Film.Anno) AndAlso Film.Anno > 0, " [" + Film.Anno.ToString + "]", "")
 
-        PictureBox1.Image = Nothing
-        Dim PathSchermataEsistente As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
-        If (My.Computer.FileSystem.FileExists(PathSchermataEsistente)) Then
-            PictureBox1.ImageLocation = PathSchermataEsistente
+        Ore.Value = 0
+        Minuti.Value = 0
+
+        If (Not IsNothing(Film.DurataSecondi) AndAlso Film.DurataSecondi <> 0) Then
+            Secondi.Value = If(Film.DurataSecondi <= 10, 0, 10)
+
+            Ore.Maximum = Math.Floor(Film.DurataSecondi / 3600)
+            Minuti.Maximum = If(Film.DurataMinuti < 59, Math.Floor(Film.DurataSecondi / 60), 59)
+            Secondi.Maximum = If(Film.DurataSecondi < 59, Film.DurataSecondi, 59)
         Else
-            PictureBox1.ImageLocation = ""
+            Secondi.Value = 10
+
+            Ore.Maximum = 12
+            Minuti.Maximum = 59
+            Secondi.Maximum = 59
         End If
+
+        ResettaImmagineVisualizzata()
 
         PercorsoSchermataAnteprima = MainModule.PercorsoFileAccessorio(Film.NomeFile, "_screen_prova.jpg")
         EliminaSchermataAnteprima()
@@ -36,6 +47,16 @@ Public Class ScegliSchermata
         End If
     End Sub
 
+    Sub ResettaImmagineVisualizzata()
+        PictureBox1.Image = Nothing
+        Dim PathSchermataEsistente As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
+        If (My.Computer.FileSystem.FileExists(PathSchermataEsistente)) Then
+            PictureBox1.ImageLocation = PathSchermataEsistente
+        Else
+            PictureBox1.ImageLocation = ""
+        End If
+    End Sub
+
     Sub EliminaSchermataAnteprima()
         If (My.Computer.FileSystem.FileExists(PercorsoSchermataAnteprima)) Then My.Computer.FileSystem.DeleteFile(PercorsoSchermataAnteprima, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
     End Sub
@@ -45,6 +66,7 @@ Public Class ScegliSchermata
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        ControllaDurataNonSuperata()
         Button2.Enabled = False
         Me.UseWaitCursor = True
         'System.Windows.Shell.TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Indeterminate
@@ -70,7 +92,8 @@ Public Class ScegliSchermata
             Button1.Enabled = True
         Else
             Button1.Enabled = False
-            MessageBox.Show("Prova a scegliere un istante diverso.", "Cattura della schermata non riuscita!", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            ResettaImmagineVisualizzata()
+            MessageBox.Show("Prova a scegliere un istante diverso...", "Cattura della schermata non riuscita!", MessageBoxButtons.OK, MessageBoxIcon.Stop)
         End If
     End Sub
 
@@ -116,6 +139,23 @@ Public Class ScegliSchermata
         Me.Close()
     End Sub
 
+    Sub ControllaDurataNonSuperata() Handles Ore.ValueChanged, Minuti.ValueChanged, Secondi.ValueChanged
+        If (Not IsNothing(Film) AndAlso Not IsNothing(Film.DurataSecondi) AndAlso Film.DurataSecondi <> 0) Then
+            Dim DurataSecondiSelezionata As UInteger = Ore.Value * 3600 + Minuti.Value * 60 + Secondi.Value
+            If (DurataSecondiSelezionata > (Film.DurataSecondi - 1)) Then
+                'Ripristino il massimo valore lecito (la durata del film)
+
+                'Imposto temporaneamente Ore.Value a 0, per poi ripristinarlo al valore precedente (Ore.Maximum):
+                'serve ad evitare che la modifica di Minuti.Value triggeri una nuova esecuzione di ControllaDurataNonSuperata()
+                'che riterrebbe la modifica dei minuti come un altro sforo della durata, intralciando l'esecuzione
+                Ore.Value = 0
+                Minuti.Value = Math.Floor(Film.DurataSecondi / 60) Mod 60
+                Secondi.Value = (Film.DurataSecondi Mod 60) - 1
+                Ore.Value = Ore.Maximum
+            End If
+        End If
+    End Sub
+
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         If (Secondi.Value >= 15) Then
             Secondi.Value -= 15
@@ -147,6 +187,7 @@ Public Class ScegliSchermata
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         If (Secondi.Value <= 56) Then
             Secondi.Value += 3
+            ControllaDurataNonSuperata()
         ElseIf (Minuti.Value < 59 Or Ore.Value < Ore.Maximum) Then
             Secondi.Value = Secondi.Value + 3 - 60
             If (Minuti.Value < 59) Then
@@ -155,12 +196,14 @@ Public Class ScegliSchermata
                 Minuti.Value = 0
                 Ore.Value += 1
             End If
+            ControllaDurataNonSuperata()
         End If
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         If (Secondi.Value <= 44) Then
             Secondi.Value += 15
+            ControllaDurataNonSuperata()
         ElseIf (Minuti.Value < 59 Or Ore.Value < Ore.Maximum) Then
             Secondi.Value = Secondi.Value + 15 - 60
             If (Minuti.Value < 59) Then
@@ -169,6 +212,7 @@ Public Class ScegliSchermata
                 Minuti.Value = 0
                 Ore.Value += 1
             End If
+            ControllaDurataNonSuperata()
         End If
     End Sub
 
