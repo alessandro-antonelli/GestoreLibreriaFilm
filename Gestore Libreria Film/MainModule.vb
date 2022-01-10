@@ -1,4 +1,6 @@
-﻿Module MainModule
+﻿Imports Newtonsoft.Json.Linq
+
+Module MainModule
     Public ModalitaNotte As Boolean
 
     Sub Main(args As String())
@@ -166,8 +168,16 @@
         Return PercorsoFileAccessorio(NomeFileFilm, "_screen.jpg")
     End Function
 
-    Function PercorsoInfoFilm(NomeFileFilm As String) As String
+    Function PercorsoInfoFile(NomeFileFilm As String) As String
         Return PercorsoFileAccessorio(NomeFileFilm, "_info.json")
+    End Function
+
+    Function PercorsoInfoIMDB(NomeFileFilm As String) As String
+        Return PercorsoFileAccessorio(NomeFileFilm, "_IMDB.json")
+    End Function
+
+    Function PercorsoTramaLunga(NomeFileFilm As String) As String
+        Return PercorsoFileAccessorio(NomeFileFilm, "_plotlong.txt")
     End Function
 
     Function PercorsoFileAccessorio(NomeFileFilm As String, Suffisso As String)
@@ -264,4 +274,133 @@
 
         Return URLImg
     End Function
+
+    Function GetChiaveOMDB() As String
+        Dim FilePath As String = Application.StartupPath + "\OMDBkey.txt"
+        If (Not My.Computer.FileSystem.FileExists(FilePath)) Then
+            Return Nothing
+        Else
+            Dim APIkey As String
+            Dim LettoreChiave As New IO.StreamReader(FilePath)
+            APIkey = LettoreChiave.ReadToEnd
+            LettoreChiave.Close()
+            Return APIkey
+        End If
+    End Function
+
+    Sub ScaricaDatiIMDB(Film As Film)
+        If (IsNothing(Film) OrElse Not My.Computer.Network.IsAvailable) Then Return
+        Dim APIkey As String = MainModule.GetChiaveOMDB()
+        If (IsNothing(APIkey)) Then Return
+
+        Dim PathRisposta As String = PercorsoInfoIMDB(Film.NomeFile)
+        Dim Riuscito As Boolean = False
+        Dim TitoloRicerca As String
+
+        If (Not IsNothing(Film.TitoloORIG)) Then
+            TitoloRicerca = Film.TitoloORIG
+            Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+        End If
+
+        If (Not Riuscito) Then
+            TitoloRicerca = Film.TitoloITA
+            Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+        End If
+
+        If (Not Riuscito) Then
+            TitoloRicerca = Film.TitoloITA
+            Dim UltimoSpazio As Short = TitoloRicerca.LastIndexOf(" ")
+
+            While (Not Riuscito And UltimoSpazio <> -1)
+                TitoloRicerca = TitoloRicerca.Substring(0, UltimoSpazio)
+                Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+                UltimoSpazio = TitoloRicerca.LastIndexOf(" ")
+            End While
+        End If
+        While (Not Riuscito)
+            TitoloRicerca = InputBox("Non è stato possibile trovare automaticamente il film su IMDB. Inserire il nome con cui effettuare la ricerca:" + Chr(10) + Chr(10) + "Titolo film: " + Film.TitoloITA + If(Not IsNothing(Film.TitoloORIG), " (" + Film.TitoloORIG + ")", ""), "Insersci titolo manualmente", Film.TitoloITA)
+            If (IsNothing(TitoloRicerca) OrElse TitoloRicerca.Length = 0) Then
+                Exit Sub
+            Else
+                Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+            End If
+        End While
+
+        If (Riuscito) Then
+            Dim PathTempTramaLunga As String = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_OMDB_tramalunga.json"
+            Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, True, PathTempTramaLunga, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+            If (Riuscito) Then
+                Dim ReaderRisposta As New System.IO.StreamReader(PathTempTramaLunga)
+                Dim json As JObject = JObject.Parse(ReaderRisposta.ReadToEnd)
+                Dim StrTramaLunga As String = json.SelectToken("Plot").Value(Of String)()
+                ReaderRisposta.Close()
+
+                If (Not StrTramaLunga.ToUpper.Equals("N/A")) Then
+                    Dim WriterTramaLunga As New System.IO.StreamWriter(PercorsoTramaLunga(Film.NomeFile), False, System.Text.Encoding.Unicode)
+                    WriterTramaLunga.Write(StrTramaLunga)
+                    WriterTramaLunga.Close()
+                End If
+                My.Computer.FileSystem.DeleteFile(PathTempTramaLunga, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+            End If
+        End If
+    End Sub
+
+    Function ScaricaSchedaOMDB(APIkey As String, Titolo As String, Anno As UShort, TramaLunga As Boolean,
+                               PathRisposta As String, Regista As String) As Boolean 'il valore di ritorno indica l'esito
+
+        Dim URL As String = "http://www.omdbapi.com/?apikey=" + APIkey
+        URL += "&t=" + Titolo
+        URL += "&type=movie"
+        If (Anno <> 0) Then URL += "&y=" + Anno.ToString
+        URL += "&r=json"
+        URL += If(TramaLunga, "&plot=full", "&plot=short")
+
+        EseguiRichiestaOMDB(URL, PathRisposta)
+        If (Not My.Computer.FileSystem.FileExists(PathRisposta)) Then Return False
+
+        Dim ReaderRisposta As New System.IO.StreamReader(PathRisposta)
+        Try
+            Dim json As JObject = JObject.Parse(ReaderRisposta.ReadToEnd)
+            Dim esito As Boolean = json.SelectToken("Response").Value(Of Boolean)()
+            If (esito = False) Then
+                'Dim errore As String = json.SelectToken("Error").Value(Of String)()
+                ReaderRisposta.Close()
+                'MessageBox.Show(errore)
+                My.Computer.FileSystem.DeleteFile(PathRisposta, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+                Return False
+            Else
+                If (IsNothing(Regista)) Then
+                    ReaderRisposta.Close()
+                    Return True
+                Else
+                    Dim RegistaRicevuto As String = json.SelectToken("Director").Value(Of String)()
+                    Dim NomiRegista As String() = Regista.Split(" ")
+                    Dim Confrontando As String = If(NomiRegista.Length < 3, NomiRegista(0), NomiRegista(2))
+                    If (RegistaRicevuto.Equals(Regista) Or RegistaRicevuto.Contains(Confrontando) Or Regista.Contains(RegistaRicevuto.Split(" ")(0))) Then
+                        ReaderRisposta.Close()
+                        Return True
+                    Else
+                        ReaderRisposta.Close()
+                        Return False
+                    End If
+                End If
+            End If
+
+        Catch e As Exception
+            ReaderRisposta.Close()
+            MessageBox.Show(e.ToString)
+            Return False
+        End Try
+
+    End Function
+
+    Sub EseguiRichiestaOMDB(URLdomanda, PathRisposta)
+        If (My.Computer.FileSystem.FileExists(PathRisposta)) Then My.Computer.FileSystem.DeleteFile(PathRisposta, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+
+        Try
+            My.Computer.Network.DownloadFile(URLdomanda, PathRisposta)
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+    End Sub
 End Module

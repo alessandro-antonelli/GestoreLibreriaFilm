@@ -1,5 +1,6 @@
 ﻿Imports System.Net.WebRequestMethods.Http
 Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Public Class MainForm
     Public CacheIcone() As ListViewItem
@@ -1401,26 +1402,192 @@ Public Class MainForm
                 PanelMusicisti.Visible = True
             End If
 
-            ' Valutazioni
-            PanelValutazioni.Visible = False
 
-            ' Trama
-            If (Not IsNothing(film.TramaLunga)) Then
-                TextTrama.Text = film.TramaLunga
-                PannelloTrama.Visible = True
-            ElseIf (Not IsNothing(film.TramaBreve)) Then
-                TextTrama.Text = film.TramaBreve
-                PannelloTrama.Visible = True
+
+            'JSON IMDB
+            Dim PathInfoIMDB As String = MainModule.PercorsoInfoIMDB(film.NomeFile)
+            Dim AbbiamoDatiIMDB As Boolean = My.Computer.FileSystem.FileExists(PathInfoIMDB)
+            Dim AbbiamoTramaBreve As Boolean
+            If (Not AbbiamoDatiIMDB) Then
+                PanelValutazioni.Visible = False
+                AbbiamoTramaBreve = False
             Else
+                Dim ReaderIMDB As New System.IO.StreamReader(PathInfoIMDB)
+                'Try
+                Dim json As JObject = JObject.Parse(ReaderIMDB.ReadToEnd)
+                ' Valutazioni
+                PanelValutazioni.Visible = True
+
+                'Trama breve
+                Dim TramaBreve As String = json.SelectToken("Plot").Value(Of String)()
+                AbbiamoTramaBreve = Not TramaBreve.ToUpper.Equals("N/A")
+                If (AbbiamoTramaBreve) Then
+                    TextTramaBreve.Text = TramaBreve
+                Else
+                    TextTramaBreve.Clear()
+                End If
+
+                Dim StrIncassi As String = json.SelectToken("BoxOffice").Value(Of String)()
+                If (StrIncassi.ToUpper.Equals("N/A")) Then
+                    PanIncassi.Visible = False
+                Else
+                    StrIncassi = StrIncassi.Replace("$", "")
+                    While (StrIncassi.Contains(","))
+                        StrIncassi = StrIncassi.Replace(",", "")
+                    End While
+                    Dim Incassi As UInteger = UInteger.Parse(StrIncassi)
+                    VisualizzaValutazione(Incassi, 2800000000, LabIncassi, LabMoltiplicatoreIncassi, PanIncassi, True, {Color.Green.R, Color.Green.G, Color.Green.B})
+                End If
+
+                Dim StrVotoIMDB As String = json.SelectToken("imdbRating").Value(Of String)()
+                StrVotoIMDB = StrVotoIMDB.Trim
+                If (StrVotoIMDB.Length <> 3 OrElse StrVotoIMDB.Chars(1) <> Chr(46)) Then 'Chr(46) = punto (.)
+                    PanVotoIMDB.Visible = False
+                Else
+                    Dim VotoIMDB As Double = Short.Parse(StrVotoIMDB.Chars(0)) + (Integer.Parse(StrVotoIMDB.Chars(2)) / 10)
+                    VisualizzaValutazione(VotoIMDB, 10, LabVotoIMDB, Nothing, PanVotoIMDB)
+                End If
+
+                Dim StrNumVotiIMDB As String = json.SelectToken("imdbVotes").Value(Of String)()
+                If (StrNumVotiIMDB.ToUpper.Equals("N/A")) Then
+                    PanNumVotiIMDB.Visible = False
+                Else
+                    While (StrNumVotiIMDB.Contains(","))
+                        StrNumVotiIMDB = StrNumVotiIMDB.Replace(",", "")
+                    End While
+                    Dim NumVotiIMDB As UInteger = UInteger.Parse(StrNumVotiIMDB)
+                    VisualizzaValutazione(NumVotiIMDB, 2500000, LabNumVotiIMDB, LabMoltiplicatoreNumVotiIMDB, PanNumVotiIMDB, True, {Color.SkyBlue.R, Color.SkyBlue.G, Color.SkyBlue.B})
+                End If
+
+                Dim StrMetascore As String = json.SelectToken("Metascore").Value(Of String)()
+                If (StrMetascore.ToUpper.Equals("N/A")) Then
+                    PanMetacritic.Visible = False
+                Else
+                    VisualizzaValutazione(UShort.Parse(StrMetascore), 100, LabMetacritic, Nothing, PanMetacritic)
+                End If
+
+                Dim TrovatoRottenTomatoes As Boolean = False
+                Dim ArrayValutazioni As JArray = json.SelectToken("Ratings")
+                For i As UShort = 0 To ArrayValutazioni.Count - 1
+                    Dim Valutazione As JObject = ArrayValutazioni.Item(i)
+                    Dim fonte As String = Valutazione.SelectToken("Source").Value(Of String)()
+                    Dim StrVoto As String = Valutazione.SelectToken("Value").Value(Of String)()
+
+                    If (fonte.Equals("Rotten Tomatoes")) Then
+                        TrovatoRottenTomatoes = True
+                        StrVoto = StrVoto.Replace("%", "")
+                        VisualizzaValutazione(UShort.Parse(StrVoto), 100, LabRotten, Nothing, PanRotten)
+                        Exit For
+                    End If
+                Next
+                If (Not TrovatoRottenTomatoes) Then PanRotten.Visible = False
+
+                ' Premi
+                Dim StrPremi As String = json.SelectToken("Awards").Value(Of String)()
+                If (IsNothing(StrPremi) OrElse StrPremi.Length = 0 OrElse StrPremi.ToUpper.Equals("N/A")) Then
+                    PanOscar.Visible = False
+                    PanAltriPremi.Visible = False
+                Else
+                    Dim OscarVinti As UShort = 0, OscarNominati As UShort = 0, AltriPremiVinti As UShort = 0, AltriPremiNominati As UShort = 0
+                    StrPremi = StrPremi.ToLower
+                    Dim StringheDaAnalizzare = New List(Of String)
+                    If (StrPremi.Contains(".")) Then
+                        StringheDaAnalizzare.Add(StrPremi.Split(".").GetValue(0).ToString.Trim)
+
+                        Dim StrAltriPremi As String = StrPremi.Split(".").GetValue(1).ToString.Trim
+                        If (StrAltriPremi.Contains("&")) Then
+                            StringheDaAnalizzare.Add(StrAltriPremi.Split("&").GetValue(0).ToString.Trim)
+                            StringheDaAnalizzare.Add(StrAltriPremi.Split("&").GetValue(1).ToString.Trim)
+                        Else
+                            StringheDaAnalizzare.Add(StrAltriPremi.Trim)
+                        End If
+                    Else
+                        StringheDaAnalizzare.Add(StrPremi)
+                    End If
+
+                    For Each stringa In StringheDaAnalizzare
+                        If (stringa.StartsWith("won")) Then
+                            Dim StrOscarVinti = stringa.Substring(4, stringa.LastIndexOf(" ") - 4)
+                            OscarVinti = UShort.Parse(StrOscarVinti)
+                        ElseIf (stringa.StartsWith("nominated for")) Then
+                            Dim StrOscarNominati = stringa.Substring(14, stringa.LastIndexOf(" ") - 14)
+                            OscarNominati = UShort.Parse(StrOscarNominati)
+                        ElseIf (stringa.EndsWith("wins")) Then
+                            Dim StrAltriPremiVinti = stringa.Substring(0, stringa.IndexOf(" "))
+                            AltriPremiVinti = UShort.Parse(StrAltriPremiVinti)
+                        ElseIf (stringa.EndsWith("nominations total")) Then
+                            Dim StrAltriPremiNominati = stringa.Substring(0, stringa.IndexOf(" "))
+                            AltriPremiNominati = UShort.Parse(StrAltriPremiNominati)
+                        End If
+                    Next
+
+
+                    If (OscarVinti = 0 And OscarNominati = 0) Then
+                        PanOscar.Visible = False
+                    Else
+                        PanOscar.Visible = True
+                        LabOscarVinti.Text = OscarVinti.ToString
+                        LabOscarNominati.Text = OscarNominati.ToString
+                    End If
+
+                    If (AltriPremiVinti = 0 And AltriPremiNominati = 0) Then
+                        PanAltriPremi.Visible = False
+                    Else
+                        PanAltriPremi.Visible = True
+                        LabPremiVinti.Text = (AltriPremiVinti - OscarVinti).ToString
+                        LabPremiNominati.Text = (AltriPremiNominati - OscarNominati).ToString
+                    End If
+                End If
+
+                'Catch ex As Exception
+                '
+                'End Try
+                ReaderIMDB.Close()
+            End If
+
+            ' ========= TRAMA ========
+
+            'If (Not IsNothing(film.TramaLunga)) Then
+            '    TextTramaBreve.Text = film.TramaLunga
+            '    PannelloTrama.Visible = True
+            'ElseIf (Not IsNothing(film.TramaBreve)) Then
+            '    TextTramaBreve.Text = film.TramaBreve
+            '    PannelloTrama.Visible = True
+            'Else
+            '    PannelloTrama.Visible = False
+            'End If
+            Dim PathTramaLunga As String = MainModule.PercorsoTramaLunga(film.NomeFile)
+            Dim AbbiamoTramaLunga As Boolean = My.Computer.FileSystem.FileExists(PathTramaLunga)
+
+            If (Not AbbiamoTramaBreve And Not AbbiamoTramaLunga) Then
                 PannelloTrama.Visible = False
+            Else
+                PannelloTrama.Visible = True
+
+                'Imposto visualizzazione opportuna
+                If (AbbiamoTramaBreve And Not AbbiamoTramaLunga) Then
+                    VisualizzaTrama(True)
+                    ButtonToggleTrama.Enabled = False
+                ElseIf (Not AbbiamoTramaBreve And AbbiamoTramaLunga) Then
+                    VisualizzaTrama(False)
+                    ButtonToggleTrama.Enabled = False
+                ElseIf (AbbiamoTramaBreve And AbbiamoTramaLunga) Then
+                    VisualizzaTrama(True) 'se abbiamo entrambe, di default mostro quella breve
+                    ButtonToggleTrama.Enabled = True
+                End If
+
+                'Leggo il contenuto dai file
+                If (AbbiamoTramaLunga) Then
+                    Dim LettoreFile As New IO.StreamReader(PathTramaLunga)
+                    TextTramaLunga.Text = LettoreFile.ReadToEnd
+                    LettoreFile.Close()
+                Else
+                    TextTramaLunga.Clear()
+                End If
             End If
 
             ' Schermata
-            Dim PercorsoSchermata As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + film.NomeFile + "_screen.jpg"
-            If (PercorsoSchermata.Length > 255) Then
-                Dim CharInEccesso As UShort = PercorsoSchermata.Length - 255
-                PercorsoSchermata = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + film.NomeFile.Substring(0, film.NomeFile.Length - CharInEccesso) + "_screen.jpg"
-            End If
+            Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(film.NomeFile)
             If (My.Computer.FileSystem.FileExists(PercorsoSchermata)) Then
                 PicSchermata.ImageLocation = PercorsoSchermata
                 PicSchermata.Visible = True
@@ -1430,6 +1597,53 @@ Public Class MainForm
 
             VisualizzazioneContenutoSchermataDestra(True)
         End If
+    End Sub
+
+    Sub VisualizzaValutazione(Voto As Double, ValutazioneMax As UInteger, ByRef LabVoto As Windows.Forms.Label, ByRef LabMoltiplicatore As Windows.Forms.Label, ByRef Pannello As Windows.Forms.Panel, Optional ScalaEsponenziale As Boolean = False, Optional Colore() As Byte = Nothing)
+        If (Voto < 10) Then
+            LabVoto.Text = Math.Round(Voto, 1).ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = ""
+        ElseIf (Voto < 1000) Then
+            LabVoto.Text = Voto.ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = ""
+        ElseIf (Voto < 10000) Then
+            LabVoto.Text = Math.Round(Voto / 1000, 1).ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = "mila"
+        ElseIf (Voto < 1000000) Then
+            LabVoto.Text = Math.Floor(Voto / 1000).ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = "mila"
+        ElseIf (Voto < 10000000) Then
+            LabVoto.Text = Math.Round(Voto / 1000000, 1).ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = "mln"
+        ElseIf (Voto < 1000000000) Then
+            LabVoto.Text = Math.Floor(Voto / 1000000).ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = "mln"
+        ElseIf (Voto < 10000000000) Then
+            LabVoto.Text = Math.Round(Voto / 1000000000, 1).ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = "mld"
+        Else
+            LabVoto.Text = Math.Floor(Voto / 1000000000).ToString
+            If (Not IsNothing(LabMoltiplicatore)) Then LabMoltiplicatore.Text = "mld"
+        End If
+
+        If (Voto > ValutazioneMax) Then Voto = ValutazioneMax
+        Dim Percentuale As Double
+        If (ScalaEsponenziale) Then
+            'Percentuale = Math.Log(1 + Voto / ValutazioneMax) / Math.Log(2)
+            'Percentuale = Math.Exp(Voto / ValutazioneMax) / Math.Exp(2)
+            Percentuale = Math.Pow(2.5, Voto / ValutazioneMax) / Math.Pow(2.5, 2)
+            'Percentuale = Math.Pow(5, Voto - ValutazioneMax)
+            'If (Percentuale > 1) Then Percentuale = 1
+        Else
+            Percentuale = Voto / ValutazioneMax
+        End If
+        If (IsNothing(Colore)) Then
+            Pannello.BackColor = GradazioneNeroRossoGialloVerde(Percentuale)
+        Else
+            Pannello.BackColor = Color.FromArgb(255, Math.Round(Percentuale * Colore(0)), Math.Round(Percentuale * Colore(1)), Math.Round(Percentuale * Colore(2)))
+        End If
+        Pannello.ForeColor = If(Percentuale <= 0.5, Color.White, Color.Black)
+        Pannello.Visible = True
     End Sub
 
     Function DaListaAStringa(Lista As List(Of String), Optional SoloCognomi As Boolean = False) As String
@@ -1637,6 +1851,10 @@ Public Class MainForm
             FiltroNazioni.ForeColor = Color.White
             FiltroGeneri.BackColor = NeroLeggermentePiuChiaro
             FiltroGeneri.ForeColor = Color.White
+            TextTramaBreve.BackColor = NeroLeggermentePiuChiaro
+            TextTramaBreve.ForeColor = Color.White
+            TextTramaLunga.BackColor = NeroLeggermentePiuChiaro
+            TextTramaLunga.ForeColor = Color.White
 
             RTFAudio.BackColor = NeroLeggermentePiuChiaro
             RTFSottotitoli.BackColor = NeroLeggermentePiuChiaro
@@ -1662,6 +1880,7 @@ Public Class MainForm
             BottCerca.BackColor = NeroBottone
             BottCancellaFiltri.BackColor = NeroBottone
             ButImgPersona.BackColor = NeroBottone
+            ButtonToggleTrama.BackColor = NeroBottone
 
             ToolStripButton7.Text = "Giorno"
             ToolStripButton7.Image = My.Resources.sole
@@ -1691,6 +1910,10 @@ Public Class MainForm
             FiltroNazioni.ForeColor = Color.Black
             FiltroGeneri.BackColor = Color.White
             FiltroGeneri.ForeColor = Color.Black
+            TextTramaBreve.BackColor = Color.White
+            TextTramaBreve.ForeColor = Color.Black
+            TextTramaLunga.BackColor = Color.White
+            TextTramaLunga.ForeColor = Color.Black
 
             RTFAudio.BackColor = GrigioPannello
             RTFAudio.Rtf = RTFAudio.Rtf.Replace(ColoriTestoRTFNotte, ColoriTestoRTFGiorno)
@@ -1703,6 +1926,7 @@ Public Class MainForm
             BottCerca.BackColor = GrigioPannello
             BottCancellaFiltri.BackColor = GrigioPannello
             ButImgPersona.BackColor = GrigioPannello
+            ButtonToggleTrama.BackColor = GrigioPannello
 
             SplitImmagineDettagli.BackColor = GrigioPannello
             RiquadroDestraPanel.BackColor = GrigioPannello
@@ -2218,15 +2442,31 @@ Public Class MainForm
         Dim PathImmagine As String = MainModule.PercorsoImmaginePersona(MainModule.SeparaNomeCognome(LabNomePersona.Text)(1), If(MainModule.SeparaNomeCognome(LabNomePersona.Text)(0) <> "", MainModule.SeparaNomeCognome(LabNomePersona.Text)(0).Chars(0), ""))
         ScegliImmaginePersona.PreparaFinestra(LabNomePersona.Text, PathImmagine)
         ScegliImmaginePersona.ShowDialog()
-        'Dim indice As String = ""
-        'While (Not IsNumeric(indice) OrElse indice < 1)
-        '    indice = InputBox("Inserisci il numero di risultato della query da acquisire:", "Indice risultato", 2)
-        'End While
+    End Sub
 
-        'Me.UseWaitCursor = True
-        'If (MainModule.SalvaImmagineGoogle(LabNomePersona.Text, UShort.Parse(indice), PathImmagine) = True) Then
-        '    PicImgPersona.LoadAsync()
-        'End If
-        'Me.UseWaitCursor = False
+    Private Sub DownloadButton_Click(sender As Object, e As EventArgs) Handles DownloadButton.Click
+        If (ElencoFilm.SelectedIndices.Count <= 0 OrElse Not My.Computer.Network.IsAvailable) Then Exit Sub
+        Dim Film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
+        MainModule.ScaricaDatiIMDB(Film)
+    End Sub
+
+    Private Sub ButtonToggleTrama_Click(sender As Object, e As EventArgs) Handles ButtonToggleTrama.Click
+        If (TextTramaBreve.Visible) Then
+            VisualizzaTrama(False)
+        Else
+            VisualizzaTrama(True)
+        End If
+    End Sub
+
+    Sub VisualizzaTrama(Breve As Boolean)
+        If (Breve) Then
+            TextTramaBreve.Visible = True
+            TextTramaLunga.Visible = False
+            ButtonToggleTrama.Text = "Espandi"
+        Else
+            TextTramaBreve.Visible = False
+            TextTramaLunga.Visible = True
+            ButtonToggleTrama.Text = "Riassumi"
+        End If
     End Sub
 End Class

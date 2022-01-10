@@ -75,13 +75,13 @@ Public Class ScansioneLibreria
                     'Dim HashMD5 As String = md5(PercorsoFile)
                     'Film.HashMD5 = HashMD5
 
-                    Dim PercorsoInfo As String = MainModule.PercorsoInfoFilm(NomeFile)
-                    If (My.Computer.FileSystem.FileExists(PercorsoInfo)) Then
-                        Film = ParsingJSONInfo(Film, PercorsoInfo)
-                        ListaFileAccessori.Remove(PercorsoInfo)
+                    Dim PercorsoInfoFile As String = MainModule.PercorsoInfoFile(NomeFile)
+                    If (My.Computer.FileSystem.FileExists(PercorsoInfoFile)) Then
+                        Film = ParsingJSONInfo(Film, PercorsoInfoFile)
+                        ListaFileAccessori.Remove(PercorsoInfoFile)
                     Else
-                        RegistraInfo(PercorsoFile, PercorsoInfo)
-                        If (My.Computer.FileSystem.FileExists(PercorsoInfo)) Then Film = ParsingJSONInfo(Film, PercorsoInfo)
+                        RegistraInfo(PercorsoFile, PercorsoInfoFile)
+                        If (My.Computer.FileSystem.FileExists(PercorsoInfoFile)) Then Film = ParsingJSONInfo(Film, PercorsoInfoFile)
                     End If
 
                     Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(NomeFile)
@@ -89,6 +89,18 @@ Public Class ScansioneLibreria
                         ListaFileAccessori.Remove(PercorsoSchermata)
                     Else
                         CatturaSchermata(PercorsoFile, PercorsoSchermata)
+                    End If
+
+                    Dim PercorsoTramaLunga As String = MainModule.PercorsoTramaLunga(NomeFile)
+                    If (My.Computer.FileSystem.FileExists(PercorsoTramaLunga)) Then
+                        ListaFileAccessori.Remove(PercorsoTramaLunga)
+                    End If
+
+                    Dim PercorsoInfoIMDB As String = MainModule.PercorsoInfoIMDB(NomeFile)
+                    If (My.Computer.FileSystem.FileExists(PercorsoInfoIMDB)) Then
+                        ListaFileAccessori.Remove(PercorsoInfoIMDB)
+                    Else
+                        'MainModule.ScaricaDatiIMDB(Film)
                     End If
 
                     i += 1

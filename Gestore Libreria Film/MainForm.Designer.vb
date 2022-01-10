@@ -24,12 +24,12 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
-        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
-        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
+        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
+        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
+        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
+        Dim ListViewItem13 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
+        Dim ListViewItem14 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
+        Dim ListViewItem15 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
         Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tutti i film", 1, 1)
         Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Registi", 2, 2)
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Attori", 3, 3)
@@ -217,14 +217,9 @@ Partial Class MainForm
         Me.IntestazioneFile = New System.Windows.Forms.Label()
         Me.PanelValutazioni = New System.Windows.Forms.Panel()
         Me.IntestazioneValutazioni = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
-        Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.PannelloTrama = New System.Windows.Forms.Panel()
-        Me.TextTrama = New System.Windows.Forms.TextBox()
+        Me.TextTramaBreve = New System.Windows.Forms.TextBox()
         Me.IntestazioneTrama = New System.Windows.Forms.Label()
         Me.ListaAttori = New System.Windows.Forms.ListView()
         Me.IntestazioneAttori = New System.Windows.Forms.Label()
@@ -279,6 +274,42 @@ Partial Class MainForm
         Me.LabNomePersona = New System.Windows.Forms.Label()
         Me.FileSystemWatcher = New System.IO.FileSystemWatcher()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ButtonToggleTrama = New System.Windows.Forms.Button()
+        Me.TextTramaLunga = New System.Windows.Forms.TextBox()
+        Me.PanMetacritic = New System.Windows.Forms.Panel()
+        Me.LabMetacritic = New System.Windows.Forms.Label()
+        Me.PanVotoIMDB = New System.Windows.Forms.Panel()
+        Me.LabVotoIMDB = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.PanValutazioniPubblico = New System.Windows.Forms.Panel()
+        Me.PanValutazioniCritica = New System.Windows.Forms.Panel()
+        Me.PanNumVotiIMDB = New System.Windows.Forms.Panel()
+        Me.LabNumVotiIMDB = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.PanIncassi = New System.Windows.Forms.Panel()
+        Me.LabIncassi = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.PanRotten = New System.Windows.Forms.Panel()
+        Me.LabRotten = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.LabMoltiplicatoreNumVotiIMDB = New System.Windows.Forms.Label()
+        Me.LabMoltiplicatoreIncassi = New System.Windows.Forms.Label()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.PanOscar = New System.Windows.Forms.Panel()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.LabOscarVinti = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.LabOscarNominati = New System.Windows.Forms.Label()
+        Me.PanAltriPremi = New System.Windows.Forms.Panel()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.LabPremiNominati = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.LabPremiVinti = New System.Windows.Forms.Label()
+        Me.Label47 = New System.Windows.Forms.Label()
         Me.BarraStrumentiPrincipale.SuspendLayout()
         Me.SplitContainerC_DX.Panel1.SuspendLayout()
         Me.SplitContainerC_DX.Panel2.SuspendLayout()
@@ -352,6 +383,15 @@ Partial Class MainForm
         Me.SplitContainer1.SuspendLayout()
         CType(Me.PicImgPersona, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FileSystemWatcher, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanMetacritic.SuspendLayout()
+        Me.PanVotoIMDB.SuspendLayout()
+        Me.PanValutazioniPubblico.SuspendLayout()
+        Me.PanValutazioniCritica.SuspendLayout()
+        Me.PanNumVotiIMDB.SuspendLayout()
+        Me.PanIncassi.SuspendLayout()
+        Me.PanRotten.SuspendLayout()
+        Me.PanOscar.SuspendLayout()
+        Me.PanAltriPremi.SuspendLayout()
         Me.SuspendLayout()
         '
         'BarraStrumentiPrincipale
@@ -1377,7 +1417,7 @@ Partial Class MainForm
         Me.PanelFile.Controls.Add(Me.PannelloContenitore)
         Me.PanelFile.Controls.Add(Me.IntestazioneFile)
         Me.PanelFile.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelFile.Location = New System.Drawing.Point(0, 609)
+        Me.PanelFile.Location = New System.Drawing.Point(0, 905)
         Me.PanelFile.MinimumSize = New System.Drawing.Size(0, 64)
         Me.PanelFile.Name = "PanelFile"
         Me.PanelFile.Size = New System.Drawing.Size(275, 364)
@@ -1992,17 +2032,13 @@ Partial Class MainForm
         'PanelValutazioni
         '
         Me.PanelValutazioni.AutoSize = True
+        Me.PanelValutazioni.Controls.Add(Me.PanValutazioniCritica)
+        Me.PanelValutazioni.Controls.Add(Me.PanValutazioniPubblico)
         Me.PanelValutazioni.Controls.Add(Me.IntestazioneValutazioni)
-        Me.PanelValutazioni.Controls.Add(Me.Label17)
-        Me.PanelValutazioni.Controls.Add(Me.Label16)
-        Me.PanelValutazioni.Controls.Add(Me.ProgressBar3)
-        Me.PanelValutazioni.Controls.Add(Me.ProgressBar2)
-        Me.PanelValutazioni.Controls.Add(Me.ProgressBar1)
-        Me.PanelValutazioni.Controls.Add(Me.Label15)
         Me.PanelValutazioni.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelValutazioni.Location = New System.Drawing.Point(0, 488)
+        Me.PanelValutazioni.Location = New System.Drawing.Point(0, 671)
         Me.PanelValutazioni.Name = "PanelValutazioni"
-        Me.PanelValutazioni.Size = New System.Drawing.Size(275, 121)
+        Me.PanelValutazioni.Size = New System.Drawing.Size(275, 234)
         Me.PanelValutazioni.TabIndex = 81
         '
         'IntestazioneValutazioni
@@ -2018,89 +2054,45 @@ Partial Class MainForm
         Me.IntestazioneValutazioni.Text = "Valutazioni"
         Me.IntestazioneValutazioni.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label17
-        '
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(3, 95)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(81, 23)
-        Me.Label17.TabIndex = 5
-        Me.Label17.Text = "Num. voti"
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label16
-        '
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(3, 66)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(81, 23)
-        Me.Label16.TabIndex = 4
-        Me.Label16.Text = "Utenti IMDB"
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'ProgressBar3
-        '
-        Me.ProgressBar3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ProgressBar3.Location = New System.Drawing.Point(85, 95)
-        Me.ProgressBar3.Name = "ProgressBar3"
-        Me.ProgressBar3.Size = New System.Drawing.Size(187, 23)
-        Me.ProgressBar3.TabIndex = 3
-        '
-        'ProgressBar2
-        '
-        Me.ProgressBar2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ProgressBar2.Location = New System.Drawing.Point(85, 66)
-        Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(187, 23)
-        Me.ProgressBar2.TabIndex = 2
-        '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ProgressBar1.Location = New System.Drawing.Point(85, 35)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(187, 23)
-        Me.ProgressBar1.TabIndex = 1
-        '
         'Label15
         '
+        Me.Label15.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(3, 35)
+        Me.Label15.Location = New System.Drawing.Point(0, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(81, 23)
+        Me.Label15.Size = New System.Drawing.Size(73, 23)
         Me.Label15.TabIndex = 0
         Me.Label15.Text = "Metacritic"
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'PannelloTrama
         '
         Me.PannelloTrama.AutoSize = True
         Me.PannelloTrama.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PannelloTrama.Controls.Add(Me.TextTrama)
+        Me.PannelloTrama.Controls.Add(Me.TextTramaLunga)
+        Me.PannelloTrama.Controls.Add(Me.ButtonToggleTrama)
+        Me.PannelloTrama.Controls.Add(Me.TextTramaBreve)
         Me.PannelloTrama.Controls.Add(Me.IntestazioneTrama)
         Me.PannelloTrama.Dock = System.Windows.Forms.DockStyle.Top
         Me.PannelloTrama.Location = New System.Drawing.Point(0, 434)
         Me.PannelloTrama.Name = "PannelloTrama"
-        Me.PannelloTrama.Size = New System.Drawing.Size(275, 54)
+        Me.PannelloTrama.Size = New System.Drawing.Size(275, 237)
         Me.PannelloTrama.TabIndex = 80
         '
-        'TextTrama
+        'TextTramaBreve
         '
-        Me.TextTrama.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextTrama.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextTrama.Location = New System.Drawing.Point(0, 32)
-        Me.TextTrama.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
-        Me.TextTrama.MinimumSize = New System.Drawing.Size(0, 22)
-        Me.TextTrama.Multiline = True
-        Me.TextTrama.Name = "TextTrama"
-        Me.TextTrama.ReadOnly = True
-        Me.TextTrama.Size = New System.Drawing.Size(296, 76)
-        Me.TextTrama.TabIndex = 40
+        Me.TextTramaBreve.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextTramaBreve.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TextTramaBreve.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextTramaBreve.Location = New System.Drawing.Point(0, 32)
+        Me.TextTramaBreve.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
+        Me.TextTramaBreve.MinimumSize = New System.Drawing.Size(0, 22)
+        Me.TextTramaBreve.Multiline = True
+        Me.TextTramaBreve.Name = "TextTramaBreve"
+        Me.TextTramaBreve.ReadOnly = True
+        Me.TextTramaBreve.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextTramaBreve.Size = New System.Drawing.Size(275, 85)
+        Me.TextTramaBreve.TabIndex = 40
         '
         'IntestazioneTrama
         '
@@ -2126,8 +2118,8 @@ Partial Class MainForm
         Me.ListaAttori.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaAttori.FullRowSelect = True
         Me.ListaAttori.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem1.StateImageIndex = 0
-        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3})
+        ListViewItem4.StateImageIndex = 0
+        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
         Me.ListaAttori.Location = New System.Drawing.Point(0, 399)
         Me.ListaAttori.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaAttori.MultiSelect = False
@@ -2163,8 +2155,8 @@ Partial Class MainForm
         Me.ListaGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaGeneri.FullRowSelect = True
         Me.ListaGeneri.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem6.StateImageIndex = 0
-        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
+        ListViewItem15.StateImageIndex = 0
+        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem13, ListViewItem14, ListViewItem15})
         Me.ListaGeneri.Location = New System.Drawing.Point(0, 304)
         Me.ListaGeneri.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaGeneri.MultiSelect = False
@@ -2881,6 +2873,427 @@ Partial Class MainForm
             Or System.IO.NotifyFilters.LastWrite), System.IO.NotifyFilters)
         Me.FileSystemWatcher.SynchronizingObject = Me
         '
+        'ButtonToggleTrama
+        '
+        Me.ButtonToggleTrama.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonToggleTrama.Location = New System.Drawing.Point(184, 4)
+        Me.ButtonToggleTrama.Name = "ButtonToggleTrama"
+        Me.ButtonToggleTrama.Size = New System.Drawing.Size(88, 25)
+        Me.ButtonToggleTrama.TabIndex = 41
+        Me.ButtonToggleTrama.Text = "Espandi"
+        Me.ButtonToggleTrama.UseVisualStyleBackColor = True
+        '
+        'TextTramaLunga
+        '
+        Me.TextTramaLunga.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextTramaLunga.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TextTramaLunga.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextTramaLunga.Location = New System.Drawing.Point(0, 117)
+        Me.TextTramaLunga.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
+        Me.TextTramaLunga.MinimumSize = New System.Drawing.Size(0, 22)
+        Me.TextTramaLunga.Multiline = True
+        Me.TextTramaLunga.Name = "TextTramaLunga"
+        Me.TextTramaLunga.ReadOnly = True
+        Me.TextTramaLunga.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextTramaLunga.Size = New System.Drawing.Size(275, 120)
+        Me.TextTramaLunga.TabIndex = 42
+        Me.TextTramaLunga.Visible = False
+        '
+        'PanMetacritic
+        '
+        Me.PanMetacritic.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanMetacritic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanMetacritic.Controls.Add(Me.Label16)
+        Me.PanMetacritic.Controls.Add(Me.LabMetacritic)
+        Me.PanMetacritic.Controls.Add(Me.Label15)
+        Me.PanMetacritic.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanMetacritic.Location = New System.Drawing.Point(0, 0)
+        Me.PanMetacritic.MinimumSize = New System.Drawing.Size(0, 95)
+        Me.PanMetacritic.Name = "PanMetacritic"
+        Me.PanMetacritic.Size = New System.Drawing.Size(75, 95)
+        Me.PanMetacritic.TabIndex = 40
+        '
+        'LabMetacritic
+        '
+        Me.LabMetacritic.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabMetacritic.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabMetacritic.Location = New System.Drawing.Point(0, 23)
+        Me.LabMetacritic.Name = "LabMetacritic"
+        Me.LabMetacritic.Size = New System.Drawing.Size(73, 45)
+        Me.LabMetacritic.TabIndex = 1
+        Me.LabMetacritic.Text = "00"
+        Me.LabMetacritic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PanVotoIMDB
+        '
+        Me.PanVotoIMDB.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanVotoIMDB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanVotoIMDB.Controls.Add(Me.Label17)
+        Me.PanVotoIMDB.Controls.Add(Me.LabVotoIMDB)
+        Me.PanVotoIMDB.Controls.Add(Me.Label36)
+        Me.PanVotoIMDB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanVotoIMDB.Location = New System.Drawing.Point(0, 0)
+        Me.PanVotoIMDB.Name = "PanVotoIMDB"
+        Me.PanVotoIMDB.Size = New System.Drawing.Size(75, 107)
+        Me.PanVotoIMDB.TabIndex = 43
+        '
+        'LabVotoIMDB
+        '
+        Me.LabVotoIMDB.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabVotoIMDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabVotoIMDB.Location = New System.Drawing.Point(0, 23)
+        Me.LabVotoIMDB.Name = "LabVotoIMDB"
+        Me.LabVotoIMDB.Size = New System.Drawing.Size(73, 45)
+        Me.LabVotoIMDB.TabIndex = 1
+        Me.LabVotoIMDB.Text = "0.0"
+        Me.LabVotoIMDB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label36
+        '
+        Me.Label36.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label36.Location = New System.Drawing.Point(0, 0)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(73, 23)
+        Me.Label36.TabIndex = 0
+        Me.Label36.Text = "IMDB"
+        Me.Label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PanValutazioniPubblico
+        '
+        Me.PanValutazioniPubblico.AutoSize = True
+        Me.PanValutazioniPubblico.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanValutazioniPubblico.Controls.Add(Me.PanIncassi)
+        Me.PanValutazioniPubblico.Controls.Add(Me.PanNumVotiIMDB)
+        Me.PanValutazioniPubblico.Controls.Add(Me.PanVotoIMDB)
+        Me.PanValutazioniPubblico.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanValutazioniPubblico.Location = New System.Drawing.Point(0, 32)
+        Me.PanValutazioniPubblico.MinimumSize = New System.Drawing.Size(0, 107)
+        Me.PanValutazioniPubblico.Name = "PanValutazioniPubblico"
+        Me.PanValutazioniPubblico.Size = New System.Drawing.Size(275, 107)
+        Me.PanValutazioniPubblico.TabIndex = 44
+        '
+        'PanValutazioniCritica
+        '
+        Me.PanValutazioniCritica.AutoSize = True
+        Me.PanValutazioniCritica.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanValutazioniCritica.Controls.Add(Me.PanAltriPremi)
+        Me.PanValutazioniCritica.Controls.Add(Me.PanOscar)
+        Me.PanValutazioniCritica.Controls.Add(Me.PanRotten)
+        Me.PanValutazioniCritica.Controls.Add(Me.PanMetacritic)
+        Me.PanValutazioniCritica.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanValutazioniCritica.Location = New System.Drawing.Point(0, 139)
+        Me.PanValutazioniCritica.MinimumSize = New System.Drawing.Size(0, 95)
+        Me.PanValutazioniCritica.Name = "PanValutazioniCritica"
+        Me.PanValutazioniCritica.Size = New System.Drawing.Size(275, 95)
+        Me.PanValutazioniCritica.TabIndex = 45
+        '
+        'PanNumVotiIMDB
+        '
+        Me.PanNumVotiIMDB.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanNumVotiIMDB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanNumVotiIMDB.Controls.Add(Me.LabMoltiplicatoreNumVotiIMDB)
+        Me.PanNumVotiIMDB.Controls.Add(Me.LabNumVotiIMDB)
+        Me.PanNumVotiIMDB.Controls.Add(Me.Label34)
+        Me.PanNumVotiIMDB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanNumVotiIMDB.Location = New System.Drawing.Point(75, 0)
+        Me.PanNumVotiIMDB.Name = "PanNumVotiIMDB"
+        Me.PanNumVotiIMDB.Size = New System.Drawing.Size(85, 107)
+        Me.PanNumVotiIMDB.TabIndex = 44
+        '
+        'LabNumVotiIMDB
+        '
+        Me.LabNumVotiIMDB.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabNumVotiIMDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabNumVotiIMDB.Location = New System.Drawing.Point(0, 23)
+        Me.LabNumVotiIMDB.Name = "LabNumVotiIMDB"
+        Me.LabNumVotiIMDB.Size = New System.Drawing.Size(83, 45)
+        Me.LabNumVotiIMDB.TabIndex = 1
+        Me.LabNumVotiIMDB.Text = "000"
+        Me.LabNumVotiIMDB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label34
+        '
+        Me.Label34.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(0, 0)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(83, 23)
+        Me.Label34.TabIndex = 0
+        Me.Label34.Text = "#voti IMDB"
+        Me.Label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PanIncassi
+        '
+        Me.PanIncassi.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanIncassi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanIncassi.Controls.Add(Me.Label39)
+        Me.PanIncassi.Controls.Add(Me.LabMoltiplicatoreIncassi)
+        Me.PanIncassi.Controls.Add(Me.LabIncassi)
+        Me.PanIncassi.Controls.Add(Me.Label35)
+        Me.PanIncassi.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanIncassi.Location = New System.Drawing.Point(160, 0)
+        Me.PanIncassi.Name = "PanIncassi"
+        Me.PanIncassi.Size = New System.Drawing.Size(85, 107)
+        Me.PanIncassi.TabIndex = 45
+        '
+        'LabIncassi
+        '
+        Me.LabIncassi.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabIncassi.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabIncassi.Location = New System.Drawing.Point(0, 23)
+        Me.LabIncassi.Name = "LabIncassi"
+        Me.LabIncassi.Size = New System.Drawing.Size(83, 45)
+        Me.LabIncassi.TabIndex = 1
+        Me.LabIncassi.Text = "000"
+        Me.LabIncassi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label35
+        '
+        Me.Label35.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.Location = New System.Drawing.Point(0, 0)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(83, 23)
+        Me.Label35.TabIndex = 0
+        Me.Label35.Text = "Incassi"
+        Me.Label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PanRotten
+        '
+        Me.PanRotten.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PanRotten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanRotten.Controls.Add(Me.Label32)
+        Me.PanRotten.Controls.Add(Me.LabRotten)
+        Me.PanRotten.Controls.Add(Me.Label38)
+        Me.PanRotten.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanRotten.Location = New System.Drawing.Point(75, 0)
+        Me.PanRotten.MinimumSize = New System.Drawing.Size(0, 95)
+        Me.PanRotten.Name = "PanRotten"
+        Me.PanRotten.Size = New System.Drawing.Size(85, 95)
+        Me.PanRotten.TabIndex = 44
+        '
+        'LabRotten
+        '
+        Me.LabRotten.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabRotten.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabRotten.Location = New System.Drawing.Point(0, 38)
+        Me.LabRotten.Name = "LabRotten"
+        Me.LabRotten.Size = New System.Drawing.Size(83, 40)
+        Me.LabRotten.TabIndex = 1
+        Me.LabRotten.Text = "001"
+        Me.LabRotten.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label16
+        '
+        Me.Label16.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label16.Location = New System.Drawing.Point(0, 68)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(73, 17)
+        Me.Label16.TabIndex = 2
+        Me.Label16.Text = "/ 100"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label17
+        '
+        Me.Label17.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label17.Location = New System.Drawing.Point(0, 68)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(73, 17)
+        Me.Label17.TabIndex = 3
+        Me.Label17.Text = "/ 10"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label32
+        '
+        Me.Label32.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label32.Location = New System.Drawing.Point(0, 78)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(83, 17)
+        Me.Label32.TabIndex = 3
+        Me.Label32.Text = "%"
+        Me.Label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label38
+        '
+        Me.Label38.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label38.Location = New System.Drawing.Point(0, 0)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(83, 38)
+        Me.Label38.TabIndex = 0
+        Me.Label38.Text = "Rotten Tomatoes"
+        Me.Label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabMoltiplicatoreNumVotiIMDB
+        '
+        Me.LabMoltiplicatoreNumVotiIMDB.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabMoltiplicatoreNumVotiIMDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabMoltiplicatoreNumVotiIMDB.Location = New System.Drawing.Point(0, 68)
+        Me.LabMoltiplicatoreNumVotiIMDB.Name = "LabMoltiplicatoreNumVotiIMDB"
+        Me.LabMoltiplicatoreNumVotiIMDB.Size = New System.Drawing.Size(83, 35)
+        Me.LabMoltiplicatoreNumVotiIMDB.TabIndex = 4
+        Me.LabMoltiplicatoreNumVotiIMDB.Text = "kk"
+        Me.LabMoltiplicatoreNumVotiIMDB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabMoltiplicatoreIncassi
+        '
+        Me.LabMoltiplicatoreIncassi.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabMoltiplicatoreIncassi.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabMoltiplicatoreIncassi.Location = New System.Drawing.Point(0, 68)
+        Me.LabMoltiplicatoreIncassi.Name = "LabMoltiplicatoreIncassi"
+        Me.LabMoltiplicatoreIncassi.Size = New System.Drawing.Size(63, 37)
+        Me.LabMoltiplicatoreIncassi.TabIndex = 5
+        Me.LabMoltiplicatoreIncassi.Text = "mmm"
+        Me.LabMoltiplicatoreIncassi.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label39
+        '
+        Me.Label39.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label39.Location = New System.Drawing.Point(63, 68)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(20, 37)
+        Me.Label39.TabIndex = 6
+        Me.Label39.Text = "$"
+        Me.Label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PanOscar
+        '
+        Me.PanOscar.BackColor = System.Drawing.Color.Gold
+        Me.PanOscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanOscar.Controls.Add(Me.Label41)
+        Me.PanOscar.Controls.Add(Me.LabOscarNominati)
+        Me.PanOscar.Controls.Add(Me.Label33)
+        Me.PanOscar.Controls.Add(Me.LabOscarVinti)
+        Me.PanOscar.Controls.Add(Me.Label40)
+        Me.PanOscar.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanOscar.Location = New System.Drawing.Point(160, 0)
+        Me.PanOscar.MinimumSize = New System.Drawing.Size(0, 95)
+        Me.PanOscar.Name = "PanOscar"
+        Me.PanOscar.Size = New System.Drawing.Size(85, 95)
+        Me.PanOscar.TabIndex = 45
+        '
+        'Label33
+        '
+        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.Location = New System.Drawing.Point(35, 17)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(45, 45)
+        Me.Label33.TabIndex = 2
+        Me.Label33.Text = "Vinti"
+        Me.Label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabOscarVinti
+        '
+        Me.LabOscarVinti.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabOscarVinti.Location = New System.Drawing.Point(0, 17)
+        Me.LabOscarVinti.Margin = New System.Windows.Forms.Padding(0)
+        Me.LabOscarVinti.Name = "LabOscarVinti"
+        Me.LabOscarVinti.Size = New System.Drawing.Size(45, 45)
+        Me.LabOscarVinti.TabIndex = 1
+        Me.LabOscarVinti.Text = "8"
+        Me.LabOscarVinti.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label40
+        '
+        Me.Label40.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label40.Location = New System.Drawing.Point(0, 0)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(83, 23)
+        Me.Label40.TabIndex = 0
+        Me.Label40.Text = "Oscar"
+        Me.Label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label41
+        '
+        Me.Label41.Location = New System.Drawing.Point(35, 55)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(48, 40)
+        Me.Label41.TabIndex = 4
+        Me.Label41.Text = "Nomin" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "azioni"
+        Me.Label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabOscarNominati
+        '
+        Me.LabOscarNominati.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabOscarNominati.Location = New System.Drawing.Point(0, 55)
+        Me.LabOscarNominati.Margin = New System.Windows.Forms.Padding(0)
+        Me.LabOscarNominati.Name = "LabOscarNominati"
+        Me.LabOscarNominati.Size = New System.Drawing.Size(42, 39)
+        Me.LabOscarNominati.TabIndex = 3
+        Me.LabOscarNominati.Text = "18"
+        Me.LabOscarNominati.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'PanAltriPremi
+        '
+        Me.PanAltriPremi.BackColor = System.Drawing.Color.Silver
+        Me.PanAltriPremi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanAltriPremi.Controls.Add(Me.Label43)
+        Me.PanAltriPremi.Controls.Add(Me.LabPremiNominati)
+        Me.PanAltriPremi.Controls.Add(Me.Label45)
+        Me.PanAltriPremi.Controls.Add(Me.LabPremiVinti)
+        Me.PanAltriPremi.Controls.Add(Me.Label47)
+        Me.PanAltriPremi.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanAltriPremi.Location = New System.Drawing.Point(245, 0)
+        Me.PanAltriPremi.MinimumSize = New System.Drawing.Size(0, 95)
+        Me.PanAltriPremi.Name = "PanAltriPremi"
+        Me.PanAltriPremi.Size = New System.Drawing.Size(85, 95)
+        Me.PanAltriPremi.TabIndex = 46
+        '
+        'Label43
+        '
+        Me.Label43.Location = New System.Drawing.Point(35, 55)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(48, 40)
+        Me.Label43.TabIndex = 4
+        Me.Label43.Text = "Nomin" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "azioni"
+        Me.Label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabPremiNominati
+        '
+        Me.LabPremiNominati.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabPremiNominati.Location = New System.Drawing.Point(0, 55)
+        Me.LabPremiNominati.Margin = New System.Windows.Forms.Padding(0)
+        Me.LabPremiNominati.Name = "LabPremiNominati"
+        Me.LabPremiNominati.Size = New System.Drawing.Size(42, 39)
+        Me.LabPremiNominati.TabIndex = 3
+        Me.LabPremiNominati.Text = "18"
+        Me.LabPremiNominati.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label45
+        '
+        Me.Label45.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label45.Location = New System.Drawing.Point(35, 17)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(45, 45)
+        Me.Label45.TabIndex = 2
+        Me.Label45.Text = "Vinti"
+        Me.Label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabPremiVinti
+        '
+        Me.LabPremiVinti.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabPremiVinti.Location = New System.Drawing.Point(0, 17)
+        Me.LabPremiVinti.Margin = New System.Windows.Forms.Padding(0)
+        Me.LabPremiVinti.Name = "LabPremiVinti"
+        Me.LabPremiVinti.Size = New System.Drawing.Size(45, 45)
+        Me.LabPremiVinti.TabIndex = 1
+        Me.LabPremiVinti.Text = "8"
+        Me.LabPremiVinti.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label47
+        '
+        Me.Label47.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label47.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.Location = New System.Drawing.Point(0, 0)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(83, 23)
+        Me.Label47.TabIndex = 0
+        Me.Label47.Text = "Altri premi"
+        Me.Label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2959,6 +3372,7 @@ Partial Class MainForm
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
         Me.PanelValutazioni.ResumeLayout(False)
+        Me.PanelValutazioni.PerformLayout()
         Me.PannelloTrama.ResumeLayout(False)
         Me.PannelloTrama.PerformLayout()
         Me.Panel3.ResumeLayout(False)
@@ -2996,6 +3410,15 @@ Partial Class MainForm
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.PicImgPersona, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FileSystemWatcher, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanMetacritic.ResumeLayout(False)
+        Me.PanVotoIMDB.ResumeLayout(False)
+        Me.PanValutazioniPubblico.ResumeLayout(False)
+        Me.PanValutazioniCritica.ResumeLayout(False)
+        Me.PanNumVotiIMDB.ResumeLayout(False)
+        Me.PanIncassi.ResumeLayout(False)
+        Me.PanRotten.ResumeLayout(False)
+        Me.PanOscar.ResumeLayout(False)
+        Me.PanAltriPremi.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3145,14 +3568,9 @@ Partial Class MainForm
     Friend WithEvents IntestazioneFile As System.Windows.Forms.Label
     Friend WithEvents PanelValutazioni As System.Windows.Forms.Panel
     Friend WithEvents IntestazioneValutazioni As System.Windows.Forms.Label
-    Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents ProgressBar3 As System.Windows.Forms.ProgressBar
-    Friend WithEvents ProgressBar2 As System.Windows.Forms.ProgressBar
-    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents PannelloTrama As System.Windows.Forms.Panel
-    Friend WithEvents TextTrama As System.Windows.Forms.TextBox
+    Friend WithEvents TextTramaBreve As System.Windows.Forms.TextBox
     Friend WithEvents IntestazioneTrama As System.Windows.Forms.Label
     Friend WithEvents ListaAttori As System.Windows.Forms.ListView
     Friend WithEvents IntestazioneAttori As System.Windows.Forms.Label
@@ -3201,5 +3619,41 @@ Partial Class MainForm
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents PicImgPersona As System.Windows.Forms.PictureBox
+    Friend WithEvents TextTramaLunga As System.Windows.Forms.TextBox
+    Friend WithEvents ButtonToggleTrama As System.Windows.Forms.Button
+    Friend WithEvents PanValutazioniCritica As System.Windows.Forms.Panel
+    Friend WithEvents PanRotten As System.Windows.Forms.Panel
+    Friend WithEvents Label32 As System.Windows.Forms.Label
+    Friend WithEvents LabRotten As System.Windows.Forms.Label
+    Friend WithEvents Label38 As System.Windows.Forms.Label
+    Friend WithEvents PanMetacritic As System.Windows.Forms.Panel
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents LabMetacritic As System.Windows.Forms.Label
+    Friend WithEvents PanValutazioniPubblico As System.Windows.Forms.Panel
+    Friend WithEvents PanIncassi As System.Windows.Forms.Panel
+    Friend WithEvents Label39 As System.Windows.Forms.Label
+    Friend WithEvents LabMoltiplicatoreIncassi As System.Windows.Forms.Label
+    Friend WithEvents LabIncassi As System.Windows.Forms.Label
+    Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents PanNumVotiIMDB As System.Windows.Forms.Panel
+    Friend WithEvents LabMoltiplicatoreNumVotiIMDB As System.Windows.Forms.Label
+    Friend WithEvents LabNumVotiIMDB As System.Windows.Forms.Label
+    Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents PanVotoIMDB As System.Windows.Forms.Panel
+    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents LabVotoIMDB As System.Windows.Forms.Label
+    Friend WithEvents Label36 As System.Windows.Forms.Label
+    Friend WithEvents PanAltriPremi As System.Windows.Forms.Panel
+    Friend WithEvents Label43 As System.Windows.Forms.Label
+    Friend WithEvents LabPremiNominati As System.Windows.Forms.Label
+    Friend WithEvents Label45 As System.Windows.Forms.Label
+    Friend WithEvents LabPremiVinti As System.Windows.Forms.Label
+    Friend WithEvents Label47 As System.Windows.Forms.Label
+    Friend WithEvents PanOscar As System.Windows.Forms.Panel
+    Friend WithEvents Label41 As System.Windows.Forms.Label
+    Friend WithEvents LabOscarNominati As System.Windows.Forms.Label
+    Friend WithEvents Label33 As System.Windows.Forms.Label
+    Friend WithEvents LabOscarVinti As System.Windows.Forms.Label
+    Friend WithEvents Label40 As System.Windows.Forms.Label
 
 End Class
