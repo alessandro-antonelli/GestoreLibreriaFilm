@@ -54,171 +54,183 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property LibreriaPercorso() As String
             Get
-                Return CType(Me("LibreriaPercorso"), String)
+                Return CType(Me("LibreriaPercorso"),String)
             End Get
-            Set(value As String)
+            Set
                 Me("LibreriaPercorso") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("LargeIcon")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("LargeIcon")>  _
         Public Property VistaIcone() As Global.System.Windows.Forms.View
             Get
-                Return CType(Me("VistaIcone"), Global.System.Windows.Forms.View)
+                Return CType(Me("VistaIcone"),Global.System.Windows.Forms.View)
             End Get
-            Set(value As Global.System.Windows.Forms.View)
+            Set
                 Me("VistaIcone") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("200, 100")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200, 100")>  _
         Public Property FinestraPosizione() As Global.System.Drawing.Point
             Get
-                Return CType(Me("FinestraPosizione"), Global.System.Drawing.Point)
+                Return CType(Me("FinestraPosizione"),Global.System.Drawing.Point)
             End Get
-            Set(value As Global.System.Drawing.Point)
+            Set
                 Me("FinestraPosizione") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property FinestraMassimizzata() As Boolean
             Get
-                Return CType(Me("FinestraMassimizzata"), Boolean)
+                Return CType(Me("FinestraMassimizzata"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("FinestraMassimizzata") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("800, 600")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("800, 600")>  _
         Public Property FinestraDimensione() As Global.System.Drawing.Size
             Get
-                Return CType(Me("FinestraDimensione"), Global.System.Drawing.Size)
+                Return CType(Me("FinestraDimensione"),Global.System.Drawing.Size)
             End Get
-            Set(value As Global.System.Drawing.Size)
+            Set
                 Me("FinestraDimensione") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property PannelloSxChiuso() As Boolean
             Get
-                Return CType(Me("PannelloSxChiuso"), Boolean)
+                Return CType(Me("PannelloSxChiuso"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("PannelloSxChiuso") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property PannelloDxChiuso() As Boolean
             Get
-                Return CType(Me("PannelloDxChiuso"), Boolean)
+                Return CType(Me("PannelloDxChiuso"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("PannelloDxChiuso") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("150")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("150")>  _
         Public Property PannelloSxDimensione() As UShort
             Get
-                Return CType(Me("PannelloSxDimensione"), UShort)
+                Return CType(Me("PannelloSxDimensione"),UShort)
             End Get
-            Set(value As UShort)
+            Set
                 Me("PannelloSxDimensione") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("300")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("300")>  _
         Public Property PannelloDxDimensione() As UShort
             Get
-                Return CType(Me("PannelloDxDimensione"), UShort)
+                Return CType(Me("PannelloDxDimensione"),UShort)
             End Get
-            Set(value As UShort)
+            Set
                 Me("PannelloDxDimensione") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property PannelloSchermataChiuso() As Boolean
             Get
-                Return CType(Me("PannelloSchermataChiuso"), Boolean)
+                Return CType(Me("PannelloSchermataChiuso"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("PannelloSchermataChiuso") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("150")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("150")>  _
         Public Property PannelloSchermataDimensione() As UShort
             Get
-                Return CType(Me("PannelloSchermataDimensione"), UShort)
+                Return CType(Me("PannelloSchermataDimensione"),UShort)
             End Get
-            Set(value As UShort)
+            Set
                 Me("PannelloSchermataDimensione") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property OrdinamentoIcone() As String
             Get
-                Return CType(Me("OrdinamentoIcone"), String)
+                Return CType(Me("OrdinamentoIcone"),String)
             End Get
-            Set(value As String)
+            Set
                 Me("OrdinamentoIcone") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property CategoriaPredefinita() As String
             Get
-                Return CType(Me("CategoriaPredefinita"), String)
+                Return CType(Me("CategoriaPredefinita"),String)
             End Get
-            Set(value As String)
+            Set
                 Me("CategoriaPredefinita") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property LibreriaIncludiSottocartelle() As Boolean
             Get
-                Return CType(Me("LibreriaIncludiSottocartelle"), Boolean)
+                Return CType(Me("LibreriaIncludiSottocartelle"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("LibreriaIncludiSottocartelle") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PreferisciIconePoster() As Boolean
+            Get
+                Return CType(Me("PreferisciIconePoster"),Boolean)
+            End Get
+            Set
+                Me("PreferisciIconePoster") = value
             End Set
         End Property
     End Class

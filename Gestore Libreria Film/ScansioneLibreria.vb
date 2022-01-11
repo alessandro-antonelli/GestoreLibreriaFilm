@@ -5,21 +5,26 @@ Imports Newtonsoft.Json.Linq
 
 Public Class ScansioneLibreria
     Public PercorsiFile As System.Collections.ObjectModel.ReadOnlyCollection(Of String)
+    Dim ListaFilmSenzaIdIMDB As New List(Of Film)
 
-    Private Sub ScansioneLibreria_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+    Private Sub ScansioneLibreria_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If (MainModule.ModalitaNotte = True) Then
             Me.BackColor = Color.Black
             Me.ForeColor = Color.White
-            Button1.BackColor = Color.FromArgb(255, 32, 32, 32)
+            ButtInterrompi.BackColor = Color.FromArgb(255, 32, 32, 32)
         End If
 
-        Label1.Text = "0%"
-        Label2.Text = "0"
-        Label4.Text = "su " + PercorsiFile.Count.ToString
-        ProgressBar1.Value = 0
-        ProgressBar1.Maximum = PercorsiFile.Count
-        Label3.Text = My.Computer.FileSystem.GetFileInfo(PercorsiFile.Item(0)).Name
+        ListaFilmSenzaIdIMDB.Clear()
+        LabPercentuale.Text = "0%"
+        LabNumFileElaborati.Text = "0"
+        LabNumFileTotali.Text = "su " + PercorsiFile.Count.ToString
+        ProgressBar.Value = 0
+        ProgressBar.Maximum = PercorsiFile.Count
+        LabAttività.Text = "Lettura nome e attributi"
+        LabNomeFile.Text = My.Computer.FileSystem.GetFileInfo(PercorsiFile.Item(0)).Name
+    End Sub
 
+    Private Sub ScansioneLibreria_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         BackgroundWorker.RunWorkerAsync()
     End Sub
 
@@ -28,25 +33,76 @@ Public Class ScansioneLibreria
     End Sub
 
     Private Sub BackgroundWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker.ProgressChanged
-        Dim Film As Film = e.UserState
+        LabNumFileElaborati.Text = e.ProgressPercentage.ToString
+        ProgressBar.Value = e.ProgressPercentage
+        LabPercentuale.Text = Math.Floor(ProgressBar.Value / ProgressBar.Maximum * 100).ToString + "%"
 
-        Label2.Text = e.ProgressPercentage.ToString
-        ProgressBar1.Value = e.ProgressPercentage
-        Label1.Text = Math.Floor(ProgressBar1.Value / ProgressBar1.Maximum * 100).ToString + "%"
-        If (e.ProgressPercentage < PercorsiFile.Count) Then
-            Label3.Text = My.Computer.FileSystem.GetFileInfo(PercorsiFile.Item(e.ProgressPercentage)).Name
+        Dim Argomenti As Object() = e.UserState
+        'Campi di UserState:
+        'String - descrizione attività in corso
+        'String - nome del file attualmente in elaborazione
+        'Film - elaborato da aggiungere alla libreria
+        'Booleano - indica se l'IdIMDB manca (ed è da chiedere all'utente)
+
+        If (IsNothing(Argomenti) OrElse Argomenti.Length < 2) Then
+            LabAttività.Text = ""
+            If (e.ProgressPercentage < PercorsiFile.Count) Then
+                LabNomeFile.Text = My.Computer.FileSystem.GetFileInfo(PercorsiFile.Item(e.ProgressPercentage)).Name
+            Else
+                LabNomeFile.Text = ""
+            End If
+        Else
+            If (Argomenti.Length >= 2) Then
+                If (Not IsNothing(Argomenti(0))) Then LabAttività.Text = Argomenti(0).ToString
+                If (Not IsNothing(Argomenti(1))) Then LabNomeFile.Text = Argomenti(1).ToString
+            End If
+            If (Argomenti.Length >= 4) Then
+                Dim Film As Film = Argomenti(2)
+                Dim IdIMDBmancante As Boolean = Argomenti(3)
+
+                If (Not IsNothing(Film)) Then
+                    MainForm.AggiungiFilm(Film)
+                    If (IdIMDBmancante) Then
+                        ListaFilmSenzaIdIMDB.Add(Film)
+                    End If
+                End If
+            End If
         End If
-
-        If (Not IsNothing(Film)) Then MainForm.AggiungiFilm(Film)
     End Sub
 
     Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker.RunWorkerCompleted
+        If (ListaFilmSenzaIdIMDB.Count > 0 And Not BackgroundWorker.CancellationPending) Then
+            LabAttività.Text = "Inserimento manuale dei codici IMDB non trovati automaticamente"
+            LabPercentuale.Text = "0%"
+            LabNumFileElaborati.Text = "0"
+            LabNumFileTotali.Text = "su " + ListaFilmSenzaIdIMDB.Count.ToString
+            ProgressBar.Value = 0
+            ProgressBar.Maximum = ListaFilmSenzaIdIMDB.Count
+
+            For Each Film In ListaFilmSenzaIdIMDB
+                LabNomeFile.Text = Film.NomeFile
+                IndividuaIMDB.CaricaInfoFilm(Film)
+                If (IndividuaIMDB.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+                    If (Not IsNothing(IndividuaIMDB.IdIMDB)) Then
+                        MainModule.ScaricaDatiIMDB(IndividuaIMDB.IdIMDB, Film.NomeFile)
+                    End If
+                End If
+
+                ProgressBar.Value += 1
+                LabNumFileElaborati.Text = ProgressBar.Value.ToString
+                LabPercentuale.Text = Math.Floor(ProgressBar.Value / ProgressBar.Maximum * 100).ToString + "%"
+            Next
+        End If
+
+        LabAttività.Text = "Scansione completa"
+        LabNomeFile.Text = ""
         MainForm.AggiornaAlberoCategorie()
         Me.Close()
     End Sub
 
     Private Sub EseguiScansione(PercorsiFile As System.Collections.ObjectModel.ReadOnlyCollection(Of String))
         If (IsNothing(PercorsiFile) Or PercorsiFile.Count <= 0 Or Not My.Computer.FileSystem.DirectoryExists(My.Settings.LibreriaPercorso)) Then Return
+        BackgroundWorker.ReportProgress(0, {"Inizializzazione...", ""})
 
         Dim CartellaDatiLibreria As String = MainModule.PercorsoDatiLibreria()
 
@@ -63,6 +119,7 @@ Public Class ScansioneLibreria
             If (BackgroundWorker.CancellationPending = True) Then Exit For
 
             Dim NomeFile As String = My.Computer.FileSystem.GetFileInfo(PercorsoFile).Name
+            BackgroundWorker.ReportProgress(i, {"Lettura nome e attributi", NomeFile})
 
             Select Case My.Computer.FileSystem.GetFileInfo(PercorsoFile).Extension.ToLower
                 Case ".db", ".ini", ".nfo", ".txt", ".jpg", ".jpeg", ".png", ".bmp", ".rar", ".zip", ".doc", ".docx", ".sub", ".idx", ".srt", ".mp3", ".ac3", ".ogg", ".flac", ".cue", ".lnk"
@@ -71,16 +128,20 @@ Public Class ScansioneLibreria
                     i += 1
                     BackgroundWorker.ReportProgress(i)
                 Case Else
+                    Dim IdIMDBmancante As Boolean = False
                     Film = ParsingNomeFile(NomeFile, PercorsoFile)
                     'Dim HashMD5 As String = md5(PercorsoFile)
                     'Film.HashMD5 = HashMD5
 
                     Dim PercorsoInfoFile As String = MainModule.PercorsoInfoFile(NomeFile)
                     If (My.Computer.FileSystem.FileExists(PercorsoInfoFile)) Then
+                        BackgroundWorker.ReportProgress(i, {"Lettura report sulla codifica", NomeFile})
                         Film = ParsingJSONInfo(Film, PercorsoInfoFile)
                         ListaFileAccessori.Remove(PercorsoInfoFile)
                     Else
+                        BackgroundWorker.ReportProgress(i, {"Generazione report sulla codifica", NomeFile})
                         RegistraInfo(PercorsoFile, PercorsoInfoFile)
+                        BackgroundWorker.ReportProgress(i, {"Lettura report sulla codifica", NomeFile})
                         If (My.Computer.FileSystem.FileExists(PercorsoInfoFile)) Then Film = ParsingJSONInfo(Film, PercorsoInfoFile)
                     End If
 
@@ -88,6 +149,7 @@ Public Class ScansioneLibreria
                     If (My.Computer.FileSystem.FileExists(PercorsoSchermata)) Then
                         ListaFileAccessori.Remove(PercorsoSchermata)
                     Else
+                        BackgroundWorker.ReportProgress(i, {"Acquisizione schermata", NomeFile})
                         CatturaSchermata(PercorsoFile, PercorsoSchermata)
                     End If
 
@@ -99,21 +161,40 @@ Public Class ScansioneLibreria
                     Dim PercorsoPoster As String = MainModule.PercorsoPosterFilm(NomeFile)
                     If (My.Computer.FileSystem.FileExists(PercorsoPoster)) Then
                         ListaFileAccessori.Remove(PercorsoPoster)
-                    Else
-                        'Lo scaricheremo al prossimo If
                     End If
 
-                    Dim PercorsoInfoIMDB As String = MainModule.PercorsoInfoIMDB(NomeFile)
-                    If (My.Computer.FileSystem.FileExists(PercorsoInfoIMDB)) Then
-                        ListaFileAccessori.Remove(PercorsoInfoIMDB)
+                    Dim PercorsoFlagNoIMDB As String = MainModule.PercorsoFlagNienteIMDB(NomeFile)
+                    If (My.Computer.FileSystem.FileExists(PercorsoFlagNoIMDB)) Then
+                        ListaFileAccessori.Remove(PercorsoFlagNoIMDB)
                     Else
-                        MainModule.ScaricaDatiIMDB(Film)
+                        Dim PercorsoInfoIMDB As String = MainModule.PercorsoInfoIMDB(NomeFile)
+                        If (My.Computer.FileSystem.FileExists(PercorsoInfoIMDB)) Then
+                            ListaFileAccessori.Remove(PercorsoInfoIMDB)
+                        Else
+                            If (My.Computer.Network.IsAvailable) Then
+                                BackgroundWorker.ReportProgress(i, {"Individuazione codice IMDB", NomeFile})
+                                Dim IdIMDB As String = TrovaIDimdbAutomatico(Film)
+                                If (Not IsNothing(IdIMDB)) Then
+                                    BackgroundWorker.ReportProgress(i, {"Download informazioni da IMDB", NomeFile})
+                                    MainModule.ScaricaDatiIMDB(IdIMDB, Film.NomeFile)
+                                Else
+                                    IdIMDBmancante = True
+                                End If
+                            End If
+                        End If
                     End If
 
                     i += 1
-                    BackgroundWorker.ReportProgress(i, Film)
+                    BackgroundWorker.ReportProgress(i, {Nothing, Nothing, Film, IdIMDBmancante})
+                    'Campi di UserState:
+                    'String - descrizione attività in corso
+                    'String - nome del file attualmente in elaborazione
+                    'Film - elaborato da aggiungere alla libreria
+                    'Booleano - indica se l'IdIMDB manca (ed è da chiedere all'utente)
             End Select
         Next
+
+        BackgroundWorker.ReportProgress(i, {"Finalizzazione...", ""})
 
         ' Rimuovo dalla CartellaDatiLibreria i file che non corrispondono ad alcun film della libreria
         ' (schermate e info relative a film cancellati/rinominati manualmente)
@@ -523,8 +604,8 @@ Public Class ScansioneLibreria
         Return Film
     End Function
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtInterrompi.Click
         BackgroundWorker.CancelAsync()
-        Button1.Enabled = False
+        ButtInterrompi.Enabled = False
     End Sub
 End Class

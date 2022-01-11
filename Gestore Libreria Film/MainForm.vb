@@ -519,12 +519,8 @@ Public Class MainForm
     End Sub
 
     Sub AggiornaIconeDaLista()
-        CacheIcone = Nothing 'Invalido la cache
-        ElencoFilm.VirtualListSize = ListaIndiciFilmFiltrati.Count 'ElencoFilm.Items.Clear()
-        SchermateFilmGrandi.Images.Clear()
-        SchermateFilmPiccole.Images.Clear()
-        PosterFilmGrandi.Images.Clear()
-        PosterFilmPiccoli.Images.Clear()
+        ElencoFilm.VirtualListSize = ListaIndiciFilmFiltrati.Count
+        ForzaAggiornamentoIcone()
 
         VisualizzazioneContenutoSchermataDestra(False)
 
@@ -807,22 +803,36 @@ Public Class MainForm
         elemento.SubItems.Add(If(IsNothing(Film.Musicisti), "", DaListaAStringa(Film.Musicisti, True)))
         elemento.SubItems.Item(elemento.SubItems.Count - 1).Name = "ColMusicisti"
 
-        If (SchermataToolStripMenuItem.Checked) Then
-            Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
-            If (My.Computer.FileSystem.FileExists(PercorsoSchermata)) Then
-                Dim Schermata As Image = Image.FromFile(PercorsoSchermata)
-                SchermateFilmPiccole.Images.Add(Schermata)
-                SchermateFilmGrandi.Images.Add(Schermata)
-                elemento.ImageIndex = SchermateFilmPiccole.Images.Count - 1
-            End If
-        ElseIf (PosterToolStripMenuItem.Checked) Then
-            Dim PercorsoPoster As String = MainModule.PercorsoPosterFilm(Film.NomeFile)
-            If (My.Computer.FileSystem.FileExists(PercorsoPoster)) Then
-                Dim Poster As Image = Image.FromFile(PercorsoPoster)
-                PosterFilmPiccoli.Images.Add(Poster)
-                PosterFilmGrandi.Images.Add(Poster)
-                elemento.ImageIndex = PosterFilmPiccoli.Images.Count - 1
-            End If
+        ' Risoluzione
+        'TODO
+        'elemento.BackColor = 
+
+        ' Icona
+        Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
+        Dim AbbiamoSchermata As Boolean = My.Computer.FileSystem.FileExists(PercorsoSchermata)
+        Dim PercorsoPoster As String = MainModule.PercorsoPosterFilm(Film.NomeFile)
+        Dim AbbiamoPoster As Boolean = My.Computer.FileSystem.FileExists(PercorsoPoster)
+
+        If (My.Settings.PreferisciIconePoster = True And AbbiamoPoster) Then
+            Dim Poster As Image = Image.FromFile(PercorsoPoster)
+            PosterFilmPiccoli.Images.Add(Poster)
+            PosterFilmGrandi.Images.Add(Poster)
+            elemento.ImageIndex = PosterFilmPiccoli.Images.Count - 1
+        ElseIf (My.Settings.PreferisciIconePoster = True And Not AbbiamoPoster And AbbiamoSchermata) Then
+            Dim Schermata As Image = Image.FromFile(PercorsoSchermata)
+            PosterFilmPiccoli.Images.Add(Schermata)
+            PosterFilmGrandi.Images.Add(Schermata)
+            elemento.ImageIndex = PosterFilmPiccoli.Images.Count - 1
+        ElseIf (My.Settings.PreferisciIconePoster = False And AbbiamoSchermata) Then
+            Dim Schermata As Image = Image.FromFile(PercorsoSchermata)
+            SchermateFilmPiccole.Images.Add(Schermata)
+            SchermateFilmGrandi.Images.Add(Schermata)
+            elemento.ImageIndex = SchermateFilmPiccole.Images.Count - 1
+        ElseIf (My.Settings.PreferisciIconePoster = False And Not AbbiamoSchermata And AbbiamoPoster) Then
+            Dim Poster As Image = Image.FromFile(PercorsoPoster)
+            SchermateFilmPiccole.Images.Add(Poster)
+            SchermateFilmGrandi.Images.Add(Poster)
+            elemento.ImageIndex = SchermateFilmPiccole.Images.Count - 1
         End If
 
         Return elemento
@@ -1439,6 +1449,7 @@ Public Class MainForm
                 AbbiamoTramaBreve = Not TramaBreve.ToUpper.Equals("N/A")
                 If (AbbiamoTramaBreve) Then
                     TextTramaBreve.Text = TramaBreve
+                    RegolaAltezzaTextboxTramaBreve()
                 Else
                     TextTramaBreve.Clear()
                 End If
@@ -1668,6 +1679,11 @@ Public Class MainForm
         End If
     End Sub
 
+    Sub RegolaAltezzaTextboxTramaBreve()
+        Dim NumRighe As UShort = Math.Ceiling(TextRenderer.MeasureText(TextTramaBreve.Text, TextTramaBreve.Font).Width / TextTramaBreve.Width)
+        TextTramaBreve.Height = NumRighe * TextRenderer.MeasureText(TextTramaBreve.Text, TextTramaBreve.Font).Height + 4
+    End Sub
+
     Sub VisualizzaValutazione(Voto As Double, ValutazioneMax As UInteger, ByRef LabVoto As Windows.Forms.Label, ByRef LabMoltiplicatore As Windows.Forms.Label, ByRef Pannello As Windows.Forms.Panel, Optional ScalaEsponenziale As Boolean = False, Optional Colore() As Byte = Nothing)
         If (Voto < 10) Then
             LabVoto.Text = Math.Round(Voto, 1).ToString
@@ -1832,56 +1848,38 @@ Public Class MainForm
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles IMDBToolStripMenuItem.Click
         Dim film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
+        Dim PathInfoIMDB As String = MainModule.PercorsoInfoIMDB(film.NomeFile)
+        If (My.Computer.FileSystem.FileExists(PathInfoIMDB)) Then
+            Dim ReaderInfoIMDB As New System.IO.StreamReader(PathInfoIMDB)
+            Dim json As JObject = JObject.Parse(ReaderInfoIMDB.ReadToEnd)
+            ReaderInfoIMDB.Close()
+            If (json.ContainsKey("imdbID")) Then
+                Dim imdbID As String = json.SelectToken("imdbID").Value(Of String)()
+                If (Not IsNothing(imdbID) AndAlso imdbID.Length > 0) Then
+                    Process.Start("https://www.imdb.com/title/" + imdbID + "/")
+                    Exit Sub
+                End If
+            End If
+        End If
+
+        'Se il file InfoIMDB non esiste, oppure non contiene l'ID
         Dim query As String = film.TitoloITA + " " + film.Anno.ToString
         query.Replace(" ", "+")
-        Process.Start("https://www.imdb.com/find?q=" + query + "&s=tt")
+        Process.Start("https://www.imdb.com/find?q=" + Uri.EscapeUriString(query) + "&s=tt")
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles GoogleToolStripMenuItem.Click
         Dim film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
         Dim query As String = film.Anno.ToString + " " + DaListaAStringa(film.Registi) + " " + film.TitoloITA
         query.Replace(" ", "+")
-        Process.Start("https://www.google.it/search?q=" + query)
+        Process.Start("https://www.google.it/search?q=" + Uri.EscapeUriString(query))
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles WikiITToolStripMenuItem.Click
         Dim film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
         Dim query As String = film.TitoloITA + " " + DaListaAStringa(film.Registi) + " " + film.Anno.ToString
-        Process.Start("https://it.wikipedia.org/w/index.php?search=" + query + "&ns0=1")
+        Process.Start("https://it.wikipedia.org/w/index.php?search=" + Uri.EscapeUriString(query) + "&ns0=1")
     End Sub
-
-    'Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-    '    Dim t As Task = New Task(AddressOf SendRequest)
-    '    t.Start()
-
-    '    Dim risposta As String
-    '    Dim obj As JSON_result
-    '    obj = JsonConvert.DeserializeObject(Of JSON_result)(risposta)
-    'End Sub
-
-    'Async Sub SendRequest()
-    '    Dim uri As New Uri("https://www.sito.com/file.php")
-    '    Dim books As List(Of Book) = New List(Of Book)
-    '    Using client As HttpClient = New HttpClient
-    '        Using response As HttpResponseMessage = Await client.GetAsync(uri)
-    '            Using content As HttpContent = response.Content
-    '                Dim result As String = Await content.ReadAsStringAsync()
-    '                If result IsNot Nothing Then
-    '                    Dim json As String = result.ToString()
-    '                    Dim list As List(Of Book) =
-    '                        JsonConvert.DeserializeObject(Of List(Of Book))(json)
-    '                    For Each item As Book In list
-    '                        books.Add(item)
-    '                    Next
-    '                End If
-    '            End Using
-    '        End Using
-    '    End Using
-
-    '    For Each book As Book In books
-    '        Console.WriteLine(book.title + " - " + book.author)
-    '    Next
-    'End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles RinominaButton.Click
         Dim film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
@@ -2031,6 +2029,7 @@ Public Class MainForm
         If (SplitContainerC_DX.Width - SplitContainerC_DX.SplitterDistance - 32 - 64 > 0) Then LabNote.MaximumSize = New Size(SplitContainerC_DX.Width - SplitContainerC_DX.SplitterDistance - 32 - 64, 0)
         RegolaAltezzaElenco(ListaGeneri)
         RegolaAltezzaElenco(ListaAttori)
+        RegolaAltezzaTextboxTramaBreve()
     End Sub
     Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainerSX_CDX.SplitterMoved
         If (Not SplitContainerSX_CDX.Panel1Collapsed) Then
@@ -2494,7 +2493,7 @@ Public Class MainForm
     End Sub
 
     Private Sub LabNomePersona_Click(sender As Object, e As EventArgs) Handles LabNomePersona.Click
-        Process.Start("https://www.imdb.com/search/name-text/?bio=" + LabNomePersona.Text)
+        Process.Start("https://www.imdb.com/search/name-text/?bio=" + Uri.EscapeUriString(LabNomePersona.Text))
     End Sub
 
     Private Sub PicImgPersona_Click(sender As Object, e As EventArgs) Handles PicImgPersona.Click
@@ -2513,11 +2512,23 @@ Public Class MainForm
     Private Sub DownloadButton_Click(sender As Object, e As EventArgs) Handles DownloadButton.Click
         If (ElencoFilm.SelectedIndices.Count <= 0 OrElse Not My.Computer.Network.IsAvailable) Then Exit Sub
         Dim Film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
-        MainModule.ScaricaDatiIMDB(Film)
-        'Aggiorno icone
-        AggiornaContenutoPannelloDestra()
-        CacheIcone = Nothing 'Invalido la cache
-        ElencoFilm.Invalidate()
+        Dim IdIMDB As String = TrovaIDimdbAutomatico(Film)
+
+        If (IsNothing(IdIMDB)) Then
+            IndividuaIMDB.CaricaInfoFilm(Film)
+            If (IndividuaIMDB.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+                IdIMDB = IndividuaIMDB.IdIMDB
+            Else
+                Exit Sub
+            End If
+        End If
+
+        If (Not IsNothing(IdIMDB)) Then
+            MainModule.ScaricaDatiIMDB(IdIMDB, Film.NomeFile)
+            'Aggiorno icone
+            AggiornaContenutoPannelloDestra()
+            ForzaAggiornamentoIcone()
+        End If
     End Sub
 
     Private Sub ButtonToggleTrama_Click(sender As Object, e As EventArgs) Handles ButtonToggleTrama.Click
@@ -2548,21 +2559,39 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub SchermataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SchermataToolStripMenuItem.Click
-        ElencoFilm.LargeImageList = SchermateFilmGrandi
-        ElencoFilm.SmallImageList = SchermateFilmPiccole
-        CacheIcone = Nothing 'Invalido la cache
-        ElencoFilm.Invalidate()
-        SchermataToolStripMenuItem.Checked = True
-        PosterToolStripMenuItem.Checked = False
+    Private Sub SchermataToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles SchermataToolStripMenuItem.CheckedChanged
+        If (SchermataToolStripMenuItem.Checked) Then
+            My.Settings.PreferisciIconePoster = False
+            My.Settings.Save()
+            ElencoFilm.LargeImageList = SchermateFilmGrandi
+            PosterFilmGrandi.Images.Clear()
+            ElencoFilm.SmallImageList = SchermateFilmPiccole
+            PosterFilmPiccoli.Images.Clear()
+            ForzaAggiornamentoIcone()
+            PosterToolStripMenuItem.Checked = False
+        End If
     End Sub
 
-    Private Sub PosterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PosterToolStripMenuItem.Click
-        ElencoFilm.LargeImageList = PosterFilmGrandi
-        ElencoFilm.SmallImageList = PosterFilmPiccoli
-        CacheIcone = Nothing 'Invalido la cache
+    Private Sub PosterToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles PosterToolStripMenuItem.CheckedChanged
+        If (PosterToolStripMenuItem.Checked) Then
+            My.Settings.PreferisciIconePoster = True
+            My.Settings.Save()
+            ElencoFilm.LargeImageList = PosterFilmGrandi
+            SchermateFilmGrandi.Images.Clear()
+            ElencoFilm.SmallImageList = PosterFilmPiccoli
+            SchermateFilmPiccole.Images.Clear()
+            ForzaAggiornamentoIcone()
+            SchermataToolStripMenuItem.Checked = False
+        End If
+    End Sub
+
+    Sub ForzaAggiornamentoIcone()
+        'Invalido la cache esistente
+        CacheIcone = Nothing
+        'Svuoto raccolta icone esistente
+        ElencoFilm.LargeImageList.Images.Clear()
+        ElencoFilm.SmallImageList.Images.Clear()
+        'Obbligo il ListView a rigenerare le icone
         ElencoFilm.Invalidate()
-        SchermataToolStripMenuItem.Checked = False
-        PosterToolStripMenuItem.Checked = True
     End Sub
 End Class

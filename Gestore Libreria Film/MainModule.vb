@@ -36,6 +36,12 @@ Module MainModule
         MainForm.FiltroAnnoMax.Value = My.Computer.Clock.LocalTime.Year + 1
 
         ' Ripristino preferenze visualizzatore film
+        If (My.Settings.PreferisciIconePoster = True) Then
+            MainForm.PosterToolStripMenuItem.Checked = True
+        Else
+            MainForm.SchermataToolStripMenuItem.Checked = True
+        End If
+
         MainForm.ElencoFilm.View = My.Settings.VistaIcone
         Select Case My.Settings.VistaIcone
             Case View.Details
@@ -184,6 +190,10 @@ Module MainModule
         Return PercorsoFileAccessorio(NomeFileFilm, "_plotlong.txt")
     End Function
 
+    Function PercorsoFlagNienteIMDB(NomeFileFilm As String) As String
+        Return PercorsoFileAccessorio(NomeFileFilm, "_NoIMDB")
+    End Function
+
     Function PercorsoFileAccessorio(NomeFileFilm As String, Suffisso As String)
         If (IsNothing(My.Settings.LibreriaPercorso) OrElse Not My.Computer.FileSystem.DirectoryExists(My.Settings.LibreriaPercorso)) Then
             Return Nothing
@@ -214,7 +224,7 @@ Module MainModule
     Function SalvaImmaginiGoogle(Query As String, QuantitaRisultatiDesiderati As UShort) As String()
         If (Not My.Computer.Network.IsAvailable OrElse IsNothing(Query) OrElse Query.Length <= 0) Then Return Nothing
 
-        Dim url As String = "https://www.google.com/search?q=" + Query + "&tbm=isch"
+        Dim url As String = "https://www.google.com/search?q=" + Uri.EscapeUriString(Query) + "&tbm=isch"
         Dim PathHTM = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_RicercaGoogle.htm"
         If (My.Computer.FileSystem.FileExists(PathHTM)) Then My.Computer.FileSystem.DeleteFile(PathHTM, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
 
@@ -279,6 +289,17 @@ Module MainModule
         Return URLImg
     End Function
 
+    Sub ScollegaSchedeIMDB(Film As Film)
+        Dim PathInfoIMDB As String = MainModule.PercorsoInfoIMDB(Film.NomeFile)
+        If (My.Computer.FileSystem.FileExists(PathInfoIMDB)) Then My.Computer.FileSystem.DeleteFile(PathInfoIMDB, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+        Dim PathPoster As String = MainModule.PercorsoPosterFilm(Film.NomeFile)
+        If (My.Computer.FileSystem.FileExists(PathPoster)) Then My.Computer.FileSystem.DeleteFile(PathPoster, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+
+        Dim PathFlag As String = MainModule.PercorsoFlagNienteIMDB(Film.NomeFile)
+        Dim Scrittore As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(PathFlag, True)
+        Scrittore.Close()
+    End Sub
+
     Function GetChiaveOMDB() As String
         Dim FilePath As String = Application.StartupPath + "\OMDBkey.txt"
         If (Not My.Computer.FileSystem.FileExists(FilePath)) Then
@@ -318,26 +339,21 @@ Module MainModule
         ElencoRisultatiFiltrato = ProcessaRispostaIMDB(PaginaRisultatiRicerca, 0)(1)
         If (ElencoRisultatiFiltrato.Count = 1) Then
             Return ElencoRisultatiFiltrato.Item(0)(2)
-        Else
+        ElseIf (Not IsNothing(Film.TitoloORIG)) Then
             'Cerco <TitoloORIG>
             PaginaRisultatiRicerca = RicercaIMDBperTitolo(Film.TitoloORIG)
             ElencoRisultatiFiltrato = ProcessaRispostaIMDB(PaginaRisultatiRicerca, 0)(1)
             If (ElencoRisultatiFiltrato.Count = 1) Then Return ElencoRisultatiFiltrato.Item(0)(2)
         End If
 
-        'Tutti i tentativi hanno dato risultati ambigui (più di un risultato di ricerca): bisogna chiedere intervento manuale all'utente
-        IndividuaIMDB.CaricaInfoFilm(Film)
-        Dim EsitoFinestra As DialogResult = IndividuaIMDB.ShowDialog()
-
-        If (EsitoFinestra = Windows.Forms.DialogResult.OK) Then
-            Return IndividuaIMDB.IdIMDB
-        Else
-            Return Nothing
-        End If
+        'Tutti i tentativi hanno non hanno dato risultati (0 risultati della query) o risultati non univoci (più di 1 risultato della query):
+        'bisogna chiedere intervento manuale all'utente
+        Return Nothing
     End Function
 
     Function RicercaIMDBperTitolo(Titolo As String) As String
-        Dim URL As String = "https://www.imdb.com/find?q=" + Titolo + "&s=tt"
+        If (IsNothing(Titolo) OrElse Titolo.Length = 0) Then Return ""
+        Dim URL As String = "https://www.imdb.com/find?q=" + Uri.EscapeUriString(Titolo) + "&s=tt"
         Dim PathRisposta As String = My.Computer.FileSystem.GetTempFileName
         If (My.Computer.FileSystem.FileExists(PathRisposta)) Then My.Computer.FileSystem.DeleteFile(PathRisposta, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
         My.Computer.Network.DownloadFile(URL, PathRisposta)
@@ -370,6 +386,10 @@ Module MainModule
 
     Function ProcessaRispostaIMDB(SorgenteRisposta As String, AnnoFiltraggio As UShort) As Object()
         Dim ListaRisultati As New List(Of String())
+
+        If (IsNothing(SorgenteRisposta) Or SorgenteRisposta.Length = 0) Then
+            Return {"<html><head></head><body><h1>Errore</h1>Ricevuta da IMDB risposta vuota!</body></html>", ListaRisultati}
+        End If
 
         Dim InizioElenco As Integer = SorgenteRisposta.IndexOf("<table class=""findList"">")
         Dim FineElenco As Integer = SorgenteRisposta.IndexOf("<div id=""sidebar"">")
@@ -468,15 +488,18 @@ Module MainModule
         Return {SorgenteFiltrato, ListaRisultati}
     End Function
 
-    Sub ScaricaDatiIMDB(Film As Film)
-        If (IsNothing(Film) OrElse Not My.Computer.Network.IsAvailable) Then Return
+    Sub ScaricaDatiIMDB(IdIMDB As String, NomeFileFilm As String)
+        If (IsNothing(IdIMDB) OrElse IdIMDB.Length = 0 OrElse IsNothing(NomeFileFilm) OrElse NomeFileFilm.Length = 0 OrElse Not My.Computer.Network.IsAvailable) Then Return
         Dim APIkey As String = GetChiaveOMDB()
         If (IsNothing(APIkey)) Then Return
 
-        Dim IdIMDB As String = TrovaIDimdbAutomatico(Film)
-
-        Dim PathRisposta As String = PercorsoInfoIMDB(Film.NomeFile)
+        Dim PathRisposta As String = PercorsoInfoIMDB(NomeFileFilm)
         ScaricaSchedaOMDB(APIkey, IdIMDB, False, PathRisposta)
+
+        Dim FlagNoIMDB As String = PercorsoFlagNienteIMDB(NomeFileFilm)
+        If (My.Computer.FileSystem.FileExists(FlagNoIMDB)) Then
+            My.Computer.FileSystem.DeleteFile(FlagNoIMDB, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+        End If
 
         Dim PathTempTramaLunga As String = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_OMDB_tramalunga.json"
         Dim Riuscito As Boolean = ScaricaSchedaOMDB(APIkey, IdIMDB, True, PathTempTramaLunga)
@@ -489,13 +512,13 @@ Module MainModule
             ReaderRisposta.Close()
 
             If (Not StrTramaLunga.ToUpper.Equals("N/A")) Then
-                Dim WriterTramaLunga As New System.IO.StreamWriter(PercorsoTramaLunga(Film.NomeFile), False, System.Text.Encoding.Unicode)
+                Dim WriterTramaLunga As New System.IO.StreamWriter(PercorsoTramaLunga(NomeFileFilm), False, System.Text.Encoding.Unicode)
                 WriterTramaLunga.Write(StrTramaLunga)
                 WriterTramaLunga.Close()
             End If
             If (Not IsNothing(URLPoster) AndAlso URLPoster.Length > 0 AndAlso Not URLPoster.Equals("N/A")) Then
-                Dim PathPoster As String = PercorsoPosterFilm(Film.NomeFile)
-                My.Computer.Network.DownloadFile(URLPoster, PathPoster)
+                Dim PathPoster As String = PercorsoPosterFilm(NomeFileFilm)
+                If (Not (My.Computer.FileSystem.FileExists(PathPoster))) Then My.Computer.Network.DownloadFile(URLPoster, PathPoster)
             End If
             My.Computer.FileSystem.DeleteFile(PathTempTramaLunga, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
         End If
