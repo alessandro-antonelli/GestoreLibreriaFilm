@@ -521,8 +521,10 @@ Public Class MainForm
     Sub AggiornaIconeDaLista()
         CacheIcone = Nothing 'Invalido la cache
         ElencoFilm.VirtualListSize = ListaIndiciFilmFiltrati.Count 'ElencoFilm.Items.Clear()
-        IconeFilmGrandi.Images.Clear()
-        IconeFilmPiccole.Images.Clear()
+        SchermateFilmGrandi.Images.Clear()
+        SchermateFilmPiccole.Images.Clear()
+        PosterFilmGrandi.Images.Clear()
+        PosterFilmPiccoli.Images.Clear()
 
         VisualizzazioneContenutoSchermataDestra(False)
 
@@ -568,8 +570,10 @@ Public Class MainForm
         IndicePrimoElementoInCacheIcone = e.StartIndex
         Dim length As Integer = e.EndIndex - e.StartIndex + 1 'indexes are inclusive
         CacheIcone = New ListViewItem(length) {}
-        IconeFilmPiccole.Images.Clear()
-        IconeFilmGrandi.Images.Clear()
+        SchermateFilmPiccole.Images.Clear()
+        SchermateFilmGrandi.Images.Clear()
+        PosterFilmPiccoli.Images.Clear()
+        PosterFilmGrandi.Images.Clear()
 
         'Fill the cache with the appropriate ListViewItems.
         Dim i As Integer
@@ -803,12 +807,22 @@ Public Class MainForm
         elemento.SubItems.Add(If(IsNothing(Film.Musicisti), "", DaListaAStringa(Film.Musicisti, True)))
         elemento.SubItems.Item(elemento.SubItems.Count - 1).Name = "ColMusicisti"
 
-        Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
-        If (My.Computer.FileSystem.FileExists(PercorsoSchermata)) Then
-            Dim Schermata As Image = Image.FromFile(PercorsoSchermata)
-            IconeFilmPiccole.Images.Add(Schermata)
-            IconeFilmGrandi.Images.Add(Schermata)
-            elemento.ImageIndex = IconeFilmPiccole.Images.Count - 1
+        If (SchermataToolStripMenuItem.Checked) Then
+            Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
+            If (My.Computer.FileSystem.FileExists(PercorsoSchermata)) Then
+                Dim Schermata As Image = Image.FromFile(PercorsoSchermata)
+                SchermateFilmPiccole.Images.Add(Schermata)
+                SchermateFilmGrandi.Images.Add(Schermata)
+                elemento.ImageIndex = SchermateFilmPiccole.Images.Count - 1
+            End If
+        ElseIf (PosterToolStripMenuItem.Checked) Then
+            Dim PercorsoPoster As String = MainModule.PercorsoPosterFilm(Film.NomeFile)
+            If (My.Computer.FileSystem.FileExists(PercorsoPoster)) Then
+                Dim Poster As Image = Image.FromFile(PercorsoPoster)
+                PosterFilmPiccoli.Images.Add(Poster)
+                PosterFilmGrandi.Images.Add(Poster)
+                elemento.ImageIndex = PosterFilmPiccoli.Images.Count - 1
+            End If
         End If
 
         Return elemento
@@ -834,8 +848,10 @@ Public Class MainForm
         LibreriaFilm.Clear()
         'ElencoFilm.Items.Clear()
         ElencoFilm.VirtualListSize = 0
-        IconeFilmPiccole.Images.Clear()
-        IconeFilmGrandi.Images.Clear()
+        SchermateFilmPiccole.Images.Clear()
+        SchermateFilmGrandi.Images.Clear()
+        PosterFilmPiccoli.Images.Clear()
+        PosterFilmGrandi.Images.Clear()
 
         FilmPerRegista.Clear()
         FilmPerDecennio.Clear()
@@ -1085,7 +1101,7 @@ Public Class MainForm
         End If
     End Function
 
-    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ElencoFilm.SelectedIndexChanged
+    Private Sub AggiornaContenutoPannelloDestra() Handles ElencoFilm.SelectedIndexChanged
         If (ElencoFilm.SelectedIndices.Count <= 0) Then
             VisualizzazioneContenutoSchermataDestra(False)
         Else
@@ -1427,16 +1443,20 @@ Public Class MainForm
                     TextTramaBreve.Clear()
                 End If
 
-                Dim StrIncassi As String = json.SelectToken("BoxOffice").Value(Of String)()
-                If (StrIncassi.ToUpper.Equals("N/A")) Then
+                If (Not json.ContainsKey("BoxOffice")) Then
                     PanIncassi.Visible = False
                 Else
-                    StrIncassi = StrIncassi.Replace("$", "")
-                    While (StrIncassi.Contains(","))
-                        StrIncassi = StrIncassi.Replace(",", "")
-                    End While
-                    Dim Incassi As UInteger = UInteger.Parse(StrIncassi)
-                    VisualizzaValutazione(Incassi, 2800000000, LabIncassi, LabMoltiplicatoreIncassi, PanIncassi, True, {Color.Green.R, Color.Green.G, Color.Green.B})
+                    Dim StrIncassi As String = json.SelectToken("BoxOffice").Value(Of String)()
+                    If (StrIncassi.ToUpper.Equals("N/A")) Then
+                        PanIncassi.Visible = False
+                    Else
+                        StrIncassi = StrIncassi.Replace("$", "")
+                        While (StrIncassi.Contains(","))
+                            StrIncassi = StrIncassi.Replace(",", "")
+                        End While
+                        Dim Incassi As UInteger = UInteger.Parse(StrIncassi)
+                        VisualizzaValutazione(Incassi, 2800000000, LabIncassi, LabMoltiplicatoreIncassi, PanIncassi, True, {0, 255, 0})
+                    End If
                 End If
 
                 Dim StrVotoIMDB As String = json.SelectToken("imdbRating").Value(Of String)()
@@ -1456,7 +1476,7 @@ Public Class MainForm
                         StrNumVotiIMDB = StrNumVotiIMDB.Replace(",", "")
                     End While
                     Dim NumVotiIMDB As UInteger = UInteger.Parse(StrNumVotiIMDB)
-                    VisualizzaValutazione(NumVotiIMDB, 2500000, LabNumVotiIMDB, LabMoltiplicatoreNumVotiIMDB, PanNumVotiIMDB, True, {Color.SkyBlue.R, Color.SkyBlue.G, Color.SkyBlue.B})
+                    VisualizzaValutazione(NumVotiIMDB, 2500000, LabNumVotiIMDB, LabMoltiplicatoreNumVotiIMDB, PanNumVotiIMDB, True, {102, 255, 255})
                 End If
 
                 Dim StrMetascore As String = json.SelectToken("Metascore").Value(Of String)()
@@ -1468,27 +1488,31 @@ Public Class MainForm
 
                 Dim TrovatoRottenTomatoes As Boolean = False
                 Dim ArrayValutazioni As JArray = json.SelectToken("Ratings")
-                For i As UShort = 0 To ArrayValutazioni.Count - 1
-                    Dim Valutazione As JObject = ArrayValutazioni.Item(i)
-                    Dim fonte As String = Valutazione.SelectToken("Source").Value(Of String)()
-                    Dim StrVoto As String = Valutazione.SelectToken("Value").Value(Of String)()
+                If (Not IsNothing(ArrayValutazioni)) Then
+                    For i As UShort = 0 To ArrayValutazioni.Count - 1
+                        Dim Valutazione As JObject = ArrayValutazioni.Item(i)
+                        Dim fonte As String = Valutazione.SelectToken("Source").Value(Of String)()
+                        Dim StrVoto As String = Valutazione.SelectToken("Value").Value(Of String)()
 
-                    If (fonte.Equals("Rotten Tomatoes")) Then
-                        TrovatoRottenTomatoes = True
-                        StrVoto = StrVoto.Replace("%", "")
-                        VisualizzaValutazione(UShort.Parse(StrVoto), 100, LabRotten, Nothing, PanRotten)
-                        Exit For
-                    End If
-                Next
+                        If (fonte.Equals("Rotten Tomatoes")) Then
+                            TrovatoRottenTomatoes = True
+                            StrVoto = StrVoto.Replace("%", "")
+                            VisualizzaValutazione(UShort.Parse(StrVoto), 100, LabRotten, Nothing, PanRotten)
+                            Exit For
+                        End If
+                    Next
+                End If
                 If (Not TrovatoRottenTomatoes) Then PanRotten.Visible = False
 
                 ' Premi
                 Dim StrPremi As String = json.SelectToken("Awards").Value(Of String)()
                 If (IsNothing(StrPremi) OrElse StrPremi.Length = 0 OrElse StrPremi.ToUpper.Equals("N/A")) Then
-                    PanOscar.Visible = False
-                    PanAltriPremi.Visible = False
+                    PanPremiVinti.Visible = False
+                    PanPremiNominati.Visible = False
                 Else
-                    Dim OscarVinti As UShort = 0, OscarNominati As UShort = 0, AltriPremiVinti As UShort = 0, AltriPremiNominati As UShort = 0
+                    Dim OscarVinti As Short = 0, OscarNominati As Short = 0, BAFTAVinti As Short = 0, BAFTANominati As Short = 0
+                    Dim AltriPremiVinti As Short = 0, AltriPremiNominati As Short = 0
+
                     StrPremi = StrPremi.ToLower
                     Dim StringheDaAnalizzare = New List(Of String)
                     If (StrPremi.Contains(".")) Then
@@ -1521,21 +1545,57 @@ Public Class MainForm
                         End If
                     Next
 
+                    AltriPremiVinti = Math.Max(0, AltriPremiVinti - OscarVinti - BAFTAVinti)
+                    AltriPremiNominati = Math.Max(0, AltriPremiNominati - OscarNominati - BAFTANominati)
 
-                    If (OscarVinti = 0 And OscarNominati = 0) Then
-                        PanOscar.Visible = False
+                    If (OscarNominati = 0 And BAFTANominati = 0 And AltriPremiNominati = 0) Then
+                        PanPremiNominati.Visible = False
                     Else
-                        PanOscar.Visible = True
-                        LabOscarVinti.Text = OscarVinti.ToString
-                        LabOscarNominati.Text = OscarNominati.ToString
+                        PanPremiNominati.Visible = True
+
+                        If (OscarNominati = 0) Then
+                            PanOscarNominati.Visible = False
+                        Else
+                            PanOscarNominati.Visible = True
+                            LabOscarNominati.Text = OscarNominati.ToString
+                        End If
+                        If (BAFTANominati = 0) Then
+                            PanBAFTANominati.Visible = False
+                        Else
+                            PanBAFTANominati.Visible = True
+                            LabBAFTANominati.Text = BAFTANominati.ToString
+                        End If
+                        If (AltriPremiNominati = 0) Then
+                            PanAltriNominati.Visible = False
+                        Else
+                            PanAltriNominati.Visible = True
+                            LabAltriNominati.Text = AltriPremiNominati.ToString
+                        End If
                     End If
 
-                    If (AltriPremiVinti = 0 And AltriPremiNominati = 0) Then
-                        PanAltriPremi.Visible = False
+                    If (OscarVinti = 0 And BAFTAVinti = 0 And AltriPremiVinti = 0) Then
+                        PanPremiVinti.Visible = False
                     Else
-                        PanAltriPremi.Visible = True
-                        LabPremiVinti.Text = (AltriPremiVinti - OscarVinti).ToString
-                        LabPremiNominati.Text = (AltriPremiNominati - OscarNominati).ToString
+                        PanPremiVinti.Visible = True
+
+                        If (OscarVinti = 0) Then
+                            PanOscarVinti.Visible = False
+                        Else
+                            PanOscarVinti.Visible = True
+                            LabOscarVinti.Text = OscarVinti.ToString
+                        End If
+                        If (BAFTAVinti = 0) Then
+                            PanBAFTAVinti.Visible = False
+                        Else
+                            PanBAFTAVinti.Visible = True
+                            LabBAFTAVinti.Text = BAFTAVinti.ToString
+                        End If
+                        If (AltriPremiVinti = 0) Then
+                            PanAltriVinti.Visible = False
+                        Else
+                            PanAltriVinti.Visible = True
+                            LabAltriVinti.Text = AltriPremiVinti.ToString
+                        End If
                     End If
                 End If
 
@@ -1595,6 +1655,15 @@ Public Class MainForm
                 PicSchermata.Visible = False
             End If
 
+            ' Poster
+            Dim PathPoster As String = PercorsoPosterFilm(film.NomeFile)
+            If (My.Computer.FileSystem.FileExists(PathPoster)) Then
+                PicPoster.ImageLocation = PathPoster
+                PicPoster.Visible = True
+            Else
+                PicPoster.Visible = False
+            End If
+
             VisualizzazioneContenutoSchermataDestra(True)
         End If
     End Sub
@@ -1631,8 +1700,9 @@ Public Class MainForm
         If (ScalaEsponenziale) Then
             'Percentuale = Math.Log(1 + Voto / ValutazioneMax) / Math.Log(2)
             'Percentuale = Math.Exp(Voto / ValutazioneMax) / Math.Exp(2)
-            Percentuale = Math.Pow(2.5, Voto / ValutazioneMax) / Math.Pow(2.5, 2)
             'Percentuale = Math.Pow(5, Voto - ValutazioneMax)
+            'Percentuale = (Math.Pow(1.1, Voto / ValutazioneMax) - 1) / (Math.Pow(1.1, 1) - 1)
+            Percentuale = Math.Log10(1 + 200 * Voto / ValutazioneMax) / Math.Log10(200 * 2)
             'If (Percentuale > 1) Then Percentuale = 1
         Else
             Percentuale = Voto / ValutazioneMax
@@ -2056,11 +2126,7 @@ Public Class MainForm
 
     Private Sub PicSchermata_Click(sender As Object, e As EventArgs) Handles PicSchermata.Click
         Dim Film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
-        Dim Path As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + Film.NomeFile + "_screen.jpg"
-        If (Path.Length > 255) Then
-            Dim CharInEccesso As UShort = Path.Length - 255
-            Path = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + Film.NomeFile.Substring(0, Film.NomeFile.Length - CharInEccesso) + "_screen.jpg"
-        End If
+        Dim Path As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
         If (My.Computer.FileSystem.FileExists(Path)) Then
             Process.Start(Path)
         End If
@@ -2448,6 +2514,10 @@ Public Class MainForm
         If (ElencoFilm.SelectedIndices.Count <= 0 OrElse Not My.Computer.Network.IsAvailable) Then Exit Sub
         Dim Film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
         MainModule.ScaricaDatiIMDB(Film)
+        'Aggiorno icone
+        AggiornaContenutoPannelloDestra()
+        CacheIcone = Nothing 'Invalido la cache
+        ElencoFilm.Invalidate()
     End Sub
 
     Private Sub ButtonToggleTrama_Click(sender As Object, e As EventArgs) Handles ButtonToggleTrama.Click
@@ -2468,5 +2538,31 @@ Public Class MainForm
             TextTramaLunga.Visible = True
             ButtonToggleTrama.Text = "Riassumi"
         End If
+    End Sub
+
+    Private Sub PicPoster_Click(sender As Object, e As EventArgs) Handles PicPoster.Click
+        Dim Film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
+        Dim Path As String = MainModule.PercorsoPosterFilm(Film.NomeFile)
+        If (My.Computer.FileSystem.FileExists(Path)) Then
+            Process.Start(Path)
+        End If
+    End Sub
+
+    Private Sub SchermataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SchermataToolStripMenuItem.Click
+        ElencoFilm.LargeImageList = SchermateFilmGrandi
+        ElencoFilm.SmallImageList = SchermateFilmPiccole
+        CacheIcone = Nothing 'Invalido la cache
+        ElencoFilm.Invalidate()
+        SchermataToolStripMenuItem.Checked = True
+        PosterToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub PosterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PosterToolStripMenuItem.Click
+        ElencoFilm.LargeImageList = PosterFilmGrandi
+        ElencoFilm.SmallImageList = PosterFilmPiccoli
+        CacheIcone = Nothing 'Invalido la cache
+        ElencoFilm.Invalidate()
+        SchermataToolStripMenuItem.Checked = False
+        PosterToolStripMenuItem.Checked = True
     End Sub
 End Class

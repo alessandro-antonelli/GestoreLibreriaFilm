@@ -96,11 +96,18 @@ Public Class ScansioneLibreria
                         ListaFileAccessori.Remove(PercorsoTramaLunga)
                     End If
 
+                    Dim PercorsoPoster As String = MainModule.PercorsoPosterFilm(NomeFile)
+                    If (My.Computer.FileSystem.FileExists(PercorsoPoster)) Then
+                        ListaFileAccessori.Remove(PercorsoPoster)
+                    Else
+                        'Lo scaricheremo al prossimo If
+                    End If
+
                     Dim PercorsoInfoIMDB As String = MainModule.PercorsoInfoIMDB(NomeFile)
                     If (My.Computer.FileSystem.FileExists(PercorsoInfoIMDB)) Then
                         ListaFileAccessori.Remove(PercorsoInfoIMDB)
                     Else
-                        'MainModule.ScaricaDatiIMDB(Film)
+                        MainModule.ScaricaDatiIMDB(Film)
                     End If
 
                     i += 1

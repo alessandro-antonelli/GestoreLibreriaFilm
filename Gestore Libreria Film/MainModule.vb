@@ -168,6 +168,10 @@ Module MainModule
         Return PercorsoFileAccessorio(NomeFileFilm, "_screen.jpg")
     End Function
 
+    Function PercorsoPosterFilm(NomeFileFilm As String) As String
+        Return PercorsoFileAccessorio(NomeFileFilm, "_poster.jpg")
+    End Function
+
     Function PercorsoInfoFile(NomeFileFilm As String) As String
         Return PercorsoFileAccessorio(NomeFileFilm, "_info.json")
     End Function
@@ -288,62 +292,275 @@ Module MainModule
         End If
     End Function
 
+    Function TrovaIDimdbAutomatico(Film As Film) As String
+        If (Not My.Computer.Network.IsAvailable Or IsNothing(Film)) Then Return Nothing
+
+        Dim PaginaRisultatiRicerca As String
+        Dim ElencoRisultatiFiltrato As List(Of String())
+
+        If (Film.Anno <> 0) Then
+            'Cerco <TitoloITA, Anno>
+            PaginaRisultatiRicerca = RicercaIMDBperTitolo(Film.TitoloITA)
+            ElencoRisultatiFiltrato = ProcessaRispostaIMDB(PaginaRisultatiRicerca, Film.Anno)(1)
+
+            If (ElencoRisultatiFiltrato.Count = 1) Then
+                Return ElencoRisultatiFiltrato.Item(0)(2)
+            ElseIf (Not IsNothing(Film.TitoloORIG)) Then
+                'Cerco <TitoloORIG, Anno>
+                PaginaRisultatiRicerca = RicercaIMDBperTitolo(Film.TitoloORIG)
+                ElencoRisultatiFiltrato = ProcessaRispostaIMDB(PaginaRisultatiRicerca, Film.Anno)(1)
+                If (ElencoRisultatiFiltrato.Count = 1) Then Return ElencoRisultatiFiltrato.Item(0)(2)
+            End If
+        End If
+
+        'Cerco <TitoloITA>
+        PaginaRisultatiRicerca = RicercaIMDBperTitolo(Film.TitoloITA)
+        ElencoRisultatiFiltrato = ProcessaRispostaIMDB(PaginaRisultatiRicerca, 0)(1)
+        If (ElencoRisultatiFiltrato.Count = 1) Then
+            Return ElencoRisultatiFiltrato.Item(0)(2)
+        Else
+            'Cerco <TitoloORIG>
+            PaginaRisultatiRicerca = RicercaIMDBperTitolo(Film.TitoloORIG)
+            ElencoRisultatiFiltrato = ProcessaRispostaIMDB(PaginaRisultatiRicerca, 0)(1)
+            If (ElencoRisultatiFiltrato.Count = 1) Then Return ElencoRisultatiFiltrato.Item(0)(2)
+        End If
+
+        'Tutti i tentativi hanno dato risultati ambigui (più di un risultato di ricerca): bisogna chiedere intervento manuale all'utente
+        IndividuaIMDB.CaricaInfoFilm(Film)
+        Dim EsitoFinestra As DialogResult = IndividuaIMDB.ShowDialog()
+
+        If (EsitoFinestra = Windows.Forms.DialogResult.OK) Then
+            Return IndividuaIMDB.IdIMDB
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Function RicercaIMDBperTitolo(Titolo As String) As String
+        Dim URL As String = "https://www.imdb.com/find?q=" + Titolo + "&s=tt"
+        Dim PathRisposta As String = My.Computer.FileSystem.GetTempFileName
+        If (My.Computer.FileSystem.FileExists(PathRisposta)) Then My.Computer.FileSystem.DeleteFile(PathRisposta, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+        My.Computer.Network.DownloadFile(URL, PathRisposta)
+
+        Dim LettoreRisposta As New IO.StreamReader(PathRisposta)
+        Dim SorgenteRisposta As String = LettoreRisposta.ReadToEnd
+        LettoreRisposta.Close()
+        Return SorgenteRisposta
+    End Function
+
+    Function IncorniciaCorpoHTML(CorpoHTML As String, SalvaSuFile As Boolean) As String
+        Dim SorgenteHTML As String = "<!DOCTYPE html><html><head><style>a img {outline : none; text-decoration: none; border: none} body {font-family: sans-serif;"
+        If (MainModule.ModalitaNotte) Then
+            SorgenteHTML += "color: white; background-color: black } a {color: orange}"
+        Else
+            SorgenteHTML += "color: black; background-color: white } a {color: blue}"
+        End If
+        SorgenteHTML += "</style></head><body>" + CorpoHTML + "</body></html>"
+
+        If (SalvaSuFile) Then
+            Dim PathFileHTML As String = My.Computer.FileSystem.GetTempFileName + ".htm"
+            Dim ScrittoreHTMLRipulito As New IO.StreamWriter(PathFileHTML, False, System.Text.Encoding.Unicode)
+            ScrittoreHTMLRipulito.Write(SorgenteHTML)
+            ScrittoreHTMLRipulito.Close()
+            Return PathFileHTML
+        Else
+            Return SorgenteHTML
+        End If
+    End Function
+
+    Function ProcessaRispostaIMDB(SorgenteRisposta As String, AnnoFiltraggio As UShort) As Object()
+        Dim ListaRisultati As New List(Of String())
+
+        Dim InizioElenco As Integer = SorgenteRisposta.IndexOf("<table class=""findList"">")
+        Dim FineElenco As Integer = SorgenteRisposta.IndexOf("<div id=""sidebar"">")
+        Dim SorgenteAncoraDaFiltrare, SorgenteFiltrato As String
+
+        If (SorgenteRisposta.Contains("No results found for") Or
+            SorgenteRisposta.Contains("<div class=""findNoResults"">") Or
+            InizioElenco = -1) Then
+            InizioElenco = SorgenteRisposta.IndexOf("<div class=""article"">")
+            SorgenteAncoraDaFiltrare = SorgenteRisposta.Substring(InizioElenco, FineElenco - InizioElenco)
+            SorgenteFiltrato = SorgenteAncoraDaFiltrare
+        Else
+            SorgenteAncoraDaFiltrare = SorgenteRisposta.Substring(InizioElenco, FineElenco - InizioElenco)
+
+            'If (AnnoFiltraggio = 0) Then
+            '    SorgenteElencoFiltrato = SorgenteElenco
+            'Else
+            Dim RigaCorrente As String
+
+            Dim InizioPrimaRiga As Integer = SorgenteAncoraDaFiltrare.IndexOf("<tr")
+            If (InizioPrimaRiga <> -1) Then
+                RigaCorrente = SorgenteAncoraDaFiltrare.Substring(0, InizioPrimaRiga)
+                SorgenteAncoraDaFiltrare = SorgenteAncoraDaFiltrare.Substring(InizioPrimaRiga, SorgenteAncoraDaFiltrare.Length - InizioPrimaRiga)
+            Else
+                RigaCorrente = SorgenteAncoraDaFiltrare
+                SorgenteAncoraDaFiltrare = ""
+            End If
+            SorgenteFiltrato = RigaCorrente
+
+            While (SorgenteAncoraDaFiltrare.Length > 0)
+                Dim FineRiga As Integer = SorgenteAncoraDaFiltrare.IndexOf("</tr>")
+                If (FineRiga <> -1) Then
+                    RigaCorrente = SorgenteAncoraDaFiltrare.Substring(0, FineRiga + 5)
+                    SorgenteAncoraDaFiltrare = SorgenteAncoraDaFiltrare.Substring(FineRiga + 5, SorgenteAncoraDaFiltrare.Length - FineRiga - 5)
+                Else
+                    RigaCorrente = SorgenteAncoraDaFiltrare
+                    SorgenteAncoraDaFiltrare = ""
+                End If
+
+                If (Not RigaCorrente.Contains("<tr")) Then
+                    SorgenteFiltrato += RigaCorrente
+                Else
+                    'If (Riga.Contains("(" + AnnoFiltraggio.ToString + ")") Or AnnoFiltraggio = 0) Then
+                    'SorgenteElencoFiltrato += Riga
+                    'Else
+
+                    Dim FineImmagine As Integer = RigaCorrente.IndexOf("<td class=""result_text"">")
+                    Dim RitaglioRiga As String = RigaCorrente.Substring(FineImmagine, RigaCorrente.Length - FineImmagine)
+
+                    Dim InizioID As Integer = RitaglioRiga.IndexOf("<a href=""/title/") + 16
+                    Dim FineID As Integer = RitaglioRiga.IndexOf("/?ref_=fn_tt_tt")
+                    Dim IDRiga As String = RitaglioRiga.Substring(InizioID, FineID - InizioID)
+
+                    RitaglioRiga = RitaglioRiga.Substring(FineID, RitaglioRiga.Length - FineID)
+
+                    Dim InizioTitolo As Integer = RitaglioRiga.IndexOf(""" >") + 3
+                    Dim FineTitolo As Integer = RitaglioRiga.IndexOf("</a>")
+                    Dim TitoloRiga As String = RitaglioRiga.Substring(InizioTitolo, FineTitolo - InizioTitolo)
+                    RitaglioRiga = RitaglioRiga.Substring(FineTitolo + 4, RitaglioRiga.Length - FineTitolo - 4)
+
+                    'Rimuovo evetuali numeri romani dopo il titolo
+                    RitaglioRiga = RitaglioRiga.Replace("(I)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(II)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(III)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(IV)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(V)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(VI)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(VII)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(VIII)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(IX)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(X)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XI)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XII)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XIII)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XIV)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XV)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XVI)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XVII)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XVIII)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XIX)", "")
+                    RitaglioRiga = RitaglioRiga.Replace("(XX)", "")
+
+                    Dim StrAnnoRiga As String = RitaglioRiga.Substring(RitaglioRiga.IndexOf("(") + 1, 4)
+                    Dim AnnoRiga As UShort
+                    Dim EsitoCast As Boolean = UShort.TryParse(StrAnnoRiga, AnnoRiga)
+
+                    If (AnnoFiltraggio = 0 OrElse (EsitoCast = True AndAlso AnnoRiga = AnnoFiltraggio)) Then
+                        SorgenteFiltrato += RigaCorrente
+                        ListaRisultati.Add({TitoloRiga, If(EsitoCast, AnnoRiga, StrAnnoRiga), IDRiga})
+                    End If
+                End If
+            End While
+            'End If
+        End If
+
+        Return {SorgenteFiltrato, ListaRisultati}
+    End Function
+
     Sub ScaricaDatiIMDB(Film As Film)
         If (IsNothing(Film) OrElse Not My.Computer.Network.IsAvailable) Then Return
-        Dim APIkey As String = MainModule.GetChiaveOMDB()
+        Dim APIkey As String = GetChiaveOMDB()
         If (IsNothing(APIkey)) Then Return
 
+        Dim IdIMDB As String = TrovaIDimdbAutomatico(Film)
+
         Dim PathRisposta As String = PercorsoInfoIMDB(Film.NomeFile)
-        Dim Riuscito As Boolean = False
-        Dim TitoloRicerca As String
+        ScaricaSchedaOMDB(APIkey, IdIMDB, False, PathRisposta)
 
-        If (Not IsNothing(Film.TitoloORIG)) Then
-            TitoloRicerca = Film.TitoloORIG
-            Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
-        End If
-
-        If (Not Riuscito) Then
-            TitoloRicerca = Film.TitoloITA
-            Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
-        End If
-
-        If (Not Riuscito) Then
-            TitoloRicerca = Film.TitoloITA
-            Dim UltimoSpazio As Short = TitoloRicerca.LastIndexOf(" ")
-
-            While (Not Riuscito And UltimoSpazio <> -1)
-                TitoloRicerca = TitoloRicerca.Substring(0, UltimoSpazio)
-                Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
-                UltimoSpazio = TitoloRicerca.LastIndexOf(" ")
-            End While
-        End If
-        While (Not Riuscito)
-            TitoloRicerca = InputBox("Non è stato possibile trovare automaticamente il film su IMDB. Inserire il nome con cui effettuare la ricerca:" + Chr(10) + Chr(10) + "Titolo film: " + Film.TitoloITA + If(Not IsNothing(Film.TitoloORIG), " (" + Film.TitoloORIG + ")", ""), "Insersci titolo manualmente", Film.TitoloITA)
-            If (IsNothing(TitoloRicerca) OrElse TitoloRicerca.Length = 0) Then
-                Exit Sub
-            Else
-                Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
-            End If
-        End While
+        Dim PathTempTramaLunga As String = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_OMDB_tramalunga.json"
+        Dim Riuscito As Boolean = ScaricaSchedaOMDB(APIkey, IdIMDB, True, PathTempTramaLunga)
 
         If (Riuscito) Then
-            Dim PathTempTramaLunga As String = My.Computer.FileSystem.SpecialDirectories.Temp + "\GLF_OMDB_tramalunga.json"
-            Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, True, PathTempTramaLunga, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
-            If (Riuscito) Then
-                Dim ReaderRisposta As New System.IO.StreamReader(PathTempTramaLunga)
-                Dim json As JObject = JObject.Parse(ReaderRisposta.ReadToEnd)
-                Dim StrTramaLunga As String = json.SelectToken("Plot").Value(Of String)()
-                ReaderRisposta.Close()
+            Dim ReaderRisposta As New System.IO.StreamReader(PathTempTramaLunga)
+            Dim json As JObject = JObject.Parse(ReaderRisposta.ReadToEnd)
+            Dim StrTramaLunga As String = json.SelectToken("Plot").Value(Of String)()
+            Dim URLPoster As String = json.SelectToken("Poster").Value(Of String)()
+            ReaderRisposta.Close()
 
-                If (Not StrTramaLunga.ToUpper.Equals("N/A")) Then
-                    Dim WriterTramaLunga As New System.IO.StreamWriter(PercorsoTramaLunga(Film.NomeFile), False, System.Text.Encoding.Unicode)
-                    WriterTramaLunga.Write(StrTramaLunga)
-                    WriterTramaLunga.Close()
-                End If
-                My.Computer.FileSystem.DeleteFile(PathTempTramaLunga, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+            If (Not StrTramaLunga.ToUpper.Equals("N/A")) Then
+                Dim WriterTramaLunga As New System.IO.StreamWriter(PercorsoTramaLunga(Film.NomeFile), False, System.Text.Encoding.Unicode)
+                WriterTramaLunga.Write(StrTramaLunga)
+                WriterTramaLunga.Close()
             End If
+            If (Not IsNothing(URLPoster) AndAlso URLPoster.Length > 0 AndAlso Not URLPoster.Equals("N/A")) Then
+                Dim PathPoster As String = PercorsoPosterFilm(Film.NomeFile)
+                My.Computer.Network.DownloadFile(URLPoster, PathPoster)
+            End If
+            My.Computer.FileSystem.DeleteFile(PathTempTramaLunga, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
         End If
+
+
+        'Dim TitoloRicerca As String
+
+        'If (Not IsNothing(Film.TitoloORIG)) Then
+        '    TitoloRicerca = Film.TitoloORIG
+        '    Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+        'End If
+
+        'If (Not Riuscito) Then
+        '    TitoloRicerca = Film.TitoloITA
+        '    Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+        'End If
+
+        'If (Not Riuscito) Then
+        '    TitoloRicerca = Film.TitoloITA
+        '    Dim UltimoSpazio As Short = TitoloRicerca.LastIndexOf(" ")
+
+        '    While (Not Riuscito And UltimoSpazio <> -1)
+        '        TitoloRicerca = TitoloRicerca.Substring(0, UltimoSpazio)
+        '        Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+        '        UltimoSpazio = TitoloRicerca.LastIndexOf(" ")
+        '    End While
+        'End If
+        'While (Not Riuscito)
+        '    TitoloRicerca = InputBox("Non è stato possibile trovare automaticamente il film su IMDB. Inserire il nome con cui effettuare la ricerca:" + Chr(10) + Chr(10) + "Titolo film: " + Film.TitoloITA + If(Not IsNothing(Film.TitoloORIG), " (" + Film.TitoloORIG + ")", ""), "Insersci titolo manualmente", Film.TitoloITA)
+        '    If (IsNothing(TitoloRicerca) OrElse TitoloRicerca.Length = 0) Then
+        '        Exit Sub
+        '    Else
+        '        Riuscito = ScaricaSchedaOMDB(APIkey, TitoloRicerca, Film.Anno, False, PathRisposta, If(IsNothing(Film.Registi), Nothing, Film.Registi(0)))
+        '    End If
+        'End While
     End Sub
+
+    Function ScaricaSchedaOMDB(APIkey As String, IdIMDB As String, TramaLunga As Boolean, PathRisposta As String) As Boolean 'il valore di ritorno indica l'esito
+        Dim URL As String = "http://www.omdbapi.com/?apikey=" + APIkey
+        URL += "&i=" + IdIMDB
+        URL += "&r=json"
+        URL += If(TramaLunga, "&plot=full", "&plot=short")
+
+        EseguiRichiestaOMDB(URL, PathRisposta)
+        If (Not My.Computer.FileSystem.FileExists(PathRisposta)) Then Return False
+
+        Dim ReaderRisposta As New System.IO.StreamReader(PathRisposta)
+        Try
+            Dim json As JObject = JObject.Parse(ReaderRisposta.ReadToEnd)
+            ReaderRisposta.Close()
+            Dim esito As Boolean = json.SelectToken("Response").Value(Of Boolean)()
+            If (esito = False) Then
+                Dim errore As String = json.SelectToken("Error").Value(Of String)()
+                MessageBox.Show(errore)
+                My.Computer.FileSystem.DeleteFile(PathRisposta, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently, FileIO.UICancelOption.DoNothing)
+                Return False
+            Else
+                Return True
+            End If
+        Catch e As Exception
+            ReaderRisposta.Close()
+            MessageBox.Show(e.ToString)
+            Return False
+        End Try
+    End Function
 
     Function ScaricaSchedaOMDB(APIkey As String, Titolo As String, Anno As UShort, TramaLunga As Boolean,
                                PathRisposta As String, Regista As String) As Boolean 'il valore di ritorno indica l'esito
