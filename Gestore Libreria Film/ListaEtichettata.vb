@@ -3,6 +3,7 @@
     Private Lista As List(Of UShort)
     Private MinAnno As UShort = UShort.MaxValue
     Private MaxAnno As UShort = UShort.MinValue
+    Private DurataTotMinuti As UInteger = 0
 
     Public Sub New(Etichetta As String, PrimoElementoLista As UShort)
         Me.Etichetta = Etichetta
@@ -15,6 +16,9 @@
         Dim anno As UShort = MainForm.LibreriaFilm.Item(elemento).Anno
         If (anno <> 0 And anno < MinAnno) Then MinAnno = anno
         If (anno <> 0 And anno > MaxAnno) Then MaxAnno = anno
+
+        Dim DuratMin As UShort = MainForm.LibreriaFilm.Item(elemento).DurataMinuti
+        DurataTotMinuti += DuratMin
     End Sub
 
     Public Function GetEtichetta() As String
@@ -36,6 +40,10 @@
 
     Public Function GetMaxAnno() As UShort
         Return MaxAnno
+    End Function
+
+    Public Function GetDurataTotMinuti() As UShort
+        Return DurataTotMinuti
     End Function
 
     Public Function GetArray() As UShort()

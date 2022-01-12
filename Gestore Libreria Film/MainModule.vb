@@ -21,11 +21,11 @@ Module MainModule
         End If
 
         ' Ripristino preferenze pannelli
-        MainForm.SplitContainerSX_CDX.SplitterDistance = My.Settings.PannelloSxDimensione
-        MainForm.SplitContainerC_DX.SplitterDistance = MainForm.SplitContainerC_DX.Width - My.Settings.PannelloDxDimensione
+        MainForm.SplitContainerSX_C.SplitterDistance = My.Settings.PannelloSxDimensione
+        MainForm.SplitContainerCSX_DX.SplitterDistance = MainForm.SplitContainerCSX_DX.Width - My.Settings.PannelloDxDimensione
         MainForm.SplitImmagineDettagli.SplitterDistance = My.Settings.PannelloSchermataDimensione
-        MainForm.SplitContainerSX_CDX.Panel1Collapsed = My.Settings.PannelloSxChiuso
-        MainForm.SplitContainerC_DX.Panel2Collapsed = My.Settings.PannelloDxChiuso
+        MainForm.SplitContainerSX_C.Panel1Collapsed = My.Settings.PannelloSxChiuso
+        MainForm.SplitContainerCSX_DX.Panel2Collapsed = My.Settings.PannelloDxChiuso
         MainForm.SplitImmagineDettagli.Panel1Collapsed = My.Settings.PannelloSchermataChiuso
         MainForm.ButtPannelloSchermata.Text = If(My.Settings.PannelloSchermataChiuso, "mostra schermata ∨", "nascondi schermata ∧")
 
