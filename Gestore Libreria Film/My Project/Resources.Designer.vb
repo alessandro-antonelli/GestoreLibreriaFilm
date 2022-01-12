@@ -273,6 +273,26 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property fields() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("fields", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property fields2() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("fields2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property FIN() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("FIN", resourceCulture)
@@ -366,6 +386,16 @@ Namespace My.Resources
         Friend ReadOnly Property IND() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("IND", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property info() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("info", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -573,9 +603,49 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property sidebar_left() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sidebar-left", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sidebar_right() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sidebar-right", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property sole() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("sole", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sort_asc_lett_num() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sort-asc-lett-num", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sort_desc_lett_num() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sort-desc-lett-num", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

@@ -215,7 +215,7 @@ Public Class MainForm
 
                 LabCategoriaScelta.Visible = False
                 LabValoreCategoriaScelta.Text = "La tua libreria" '"Tutti i film"
-                PicCategoriaScelta.Image = My.Resources.ciak_semplice
+                IconaCategoriaScelta.Image = My.Resources.ciak_semplice
                 LabConteggioCategoriaScelta.Text = LibreriaFilm.Count.ToString
                 'Label12.Visible = False
                 'Label13.Visible = False
@@ -234,7 +234,7 @@ Public Class MainForm
                 LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film del regista"
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
-                PicCategoriaScelta.Image = My.Resources.camera
+                IconaCategoriaScelta.Image = My.Resources.camera
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
@@ -248,7 +248,7 @@ Public Class MainForm
                 LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film con l'attore"
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
-                PicCategoriaScelta.Image = My.Resources.persona
+                IconaCategoriaScelta.Image = My.Resources.persona
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = True
@@ -265,9 +265,9 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 Dim IndIcona As Byte = IndiceIconaGenere(ListaCategoria.GetEtichetta)
                 If (IndIcona <> 0) Then
-                    PicCategoriaScelta.Image = IconeCategorieLibreria.Images.Item(IndIcona)
+                    IconaCategoriaScelta.Image = IconeCategorieLibreria.Images.Item(IndIcona)
                 Else
-                    PicCategoriaScelta.Image = My.Resources.generi
+                    IconaCategoriaScelta.Image = My.Resources.generi
                 End If
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
@@ -283,7 +283,7 @@ Public Class MainForm
                 LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film usciti negli anni"
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
-                PicCategoriaScelta.Image = My.Resources.data
+                IconaCategoriaScelta.Image = My.Resources.data
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 'Label12.Visible = False
                 'Label13.Visible = False
@@ -299,7 +299,7 @@ Public Class MainForm
                 LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film di nazionalità"
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
-                ImpostaRisorsaIconaNazione(ListaCategoria.GetEtichetta, PicCategoriaScelta, False)
+                ImpostaRisorsaIconaNazione(ListaCategoria.GetEtichetta, IconaCategoriaScelta, False)
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = False
@@ -307,14 +307,16 @@ Public Class MainForm
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
-            Case 6 'Autori
+            Case 6 'Saghe
+                'TODO
+            Case 7 'Autori
                 Dim ListaCategoria As ListaEtichettata = FilmPerAutore.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Autore: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
 
                 LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film scritti da"
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
-                PicCategoriaScelta.Image = My.Resources.autore
+                IconaCategoriaScelta.Image = My.Resources.autore
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = True
@@ -322,14 +324,14 @@ Public Class MainForm
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
-            Case 7 'Musicisti
+            Case 8 'Musicisti
                 Dim ListaCategoria As ListaEtichettata = FilmPerMusicista.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Musicista: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
 
                 LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film musicati da"
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
-                PicCategoriaScelta.Image = My.Resources.musica
+                IconaCategoriaScelta.Image = My.Resources.musica
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = True
@@ -337,8 +339,8 @@ Public Class MainForm
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
-            Case 8 'Temi
-            Case 9 'Ambientazione
+            Case 9 'Temi
+            Case 10 'Ambientazione
         End Select
 
         FiltroNazioni.Items.Clear()
@@ -1924,13 +1926,12 @@ Public Class MainForm
 
             Me.ForeColor = Color.White
             Me.BackColor = Color.Black
-            For Each Scheda As TabPage In TabControl1.TabPages
+            For Each Scheda As TabPage In SchedeFiltriAvanzati.TabPages
                 Scheda.BackColor = Color.Black
             Next
             BarraStrumentiPrincipale.BackColor = NeroLeggermentePiuChiaro
             BarraStrumentiFilm.BackColor = NeroLeggermentePiuChiaro
             PannelloFiltri.BackColor = NeroLeggermentePiuChiaro
-            PannelloFiltriAvanzati.BackColor = NeroLeggermentePiuChiaro
             ElencoFilm.ForeColor = Color.White
             ElencoFilm.BackColor = Color.Black
             AlberoCategorieLibreria.ForeColor = Color.White
@@ -1939,6 +1940,8 @@ Public Class MainForm
             ListaGeneri.ForeColor = Color.White
             ListaAttori.BackColor = NeroLeggermentePiuChiaro
             ListaAttori.ForeColor = Color.White
+            ListaExtra.BackColor = NeroLeggermentePiuChiaro
+            ListaExtra.ForeColor = Color.White
             CasellaRicerca.BackColor = NeroBottone
             PlaceholderCasellaRicerca.BackColor = NeroBottone
             CasellaRicerca.ForeColor = Color.White
@@ -1968,15 +1971,16 @@ Public Class MainForm
             IntestazioneVideo.BackColor = GrigioIntestazione
             IntestazioneAudio.BackColor = GrigioIntestazione
             IntestazioneSottotitoli.BackColor = GrigioIntestazione
+            IntestazioneExtra.BackColor = GrigioIntestazione
 
             BottCancellaFiltri.BackColor = NeroBottone
             BottFiltra.BackColor = NeroBottone
             BottMostraFiltri.BackColor = NeroBottone
             BottCerca.BackColor = NeroBottone
             BottCancellaFiltri.BackColor = NeroBottone
-            ButImgPersona.BackColor = NeroBottone
+            ButCambiaImgPersona.BackColor = NeroBottone
             ButtonToggleTrama.BackColor = NeroBottone
-            ButtRicercaPersona.BackColor = NeroBottone
+            ButtRicercaPersonaIMDB.BackColor = NeroBottone
 
             ToolStripButton7.Text = "Giorno"
             ToolStripButton7.Image = My.Resources.sole
@@ -1987,13 +1991,12 @@ Public Class MainForm
 
             Me.ForeColor = Color.Black
             Me.BackColor = Color.White
-            For Each Scheda As TabPage In TabControl1.TabPages
+            For Each Scheda As TabPage In SchedeFiltriAvanzati.TabPages
                 Scheda.BackColor = Color.White
             Next
             BarraStrumentiPrincipale.BackColor = GrigioMenu
             BarraStrumentiFilm.BackColor = GrigioMenu
             PannelloFiltri.BackColor = GrigioMenu
-            PannelloFiltriAvanzati.BackColor = GrigioMenu
             ElencoFilm.ForeColor = Color.Black
             ElencoFilm.BackColor = Color.White
             AlberoCategorieLibreria.ForeColor = Color.Black
@@ -2002,6 +2005,8 @@ Public Class MainForm
             ListaGeneri.ForeColor = Color.Black
             ListaAttori.BackColor = Color.White
             ListaAttori.ForeColor = Color.Black
+            ListaExtra.BackColor = Color.White
+            ListaExtra.ForeColor = Color.Black
             CasellaRicerca.BackColor = Color.White
             PlaceholderCasellaRicerca.BackColor = Color.White
             CasellaRicerca.ForeColor = Color.Black
@@ -2024,9 +2029,9 @@ Public Class MainForm
             BottMostraFiltri.BackColor = GrigioPannello
             BottCerca.BackColor = GrigioPannello
             BottCancellaFiltri.BackColor = GrigioPannello
-            ButImgPersona.BackColor = GrigioPannello
+            ButCambiaImgPersona.BackColor = GrigioPannello
             ButtonToggleTrama.BackColor = GrigioPannello
-            ButtRicercaPersona.BackColor = GrigioPannello
+            ButtRicercaPersonaIMDB.BackColor = GrigioPannello
 
             SplitImmagineDettagli.BackColor = GrigioPannello
             RiquadroDestraPanel.BackColor = GrigioPannello
@@ -2040,13 +2045,14 @@ Public Class MainForm
             IntestazioneVideo.BackColor = GrigioIntestazione
             IntestazioneAudio.BackColor = GrigioIntestazione
             IntestazioneSottotitoli.BackColor = GrigioIntestazione
+            IntestazioneExtra.BackColor = GrigioIntestazione
 
             ToolStripButton7.Text = "Notte"
             ToolStripButton7.Image = My.Resources.luna
         End If
     End Sub
 
-    Private Sub SplitContainer2_SplitterMoved(sender As Object, e As SplitterEventArgs)
+    Private Sub SplitContainerCSX_DX_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainerCSX_DX.SplitterMoved
         If (Not SplitContainerCSX_DX.Panel2Collapsed) Then
             My.Settings.PannelloDxDimensione = SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance
             My.Settings.Save()
@@ -2163,7 +2169,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub PicSchermata_SizeChanged(sender As Object, e As EventArgs)
+    Private Sub PicSchermata_SizeChanged(sender As Object, e As EventArgs) Handles PicSchermata.SizeChanged
         'Dim AltezzaMax As UInteger = Math.Floor(Me.Height * 0.33)
         'PicSchermata.Height = Math.Min(AltezzaMax, Math.Round(PicSchermata.Width * 0.625))
     End Sub
@@ -2176,7 +2182,7 @@ Public Class MainForm
         ScegliSchermata.ShowDialog()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BottMostraFiltri.Click
+    Private Sub BottMostraFiltri_Click(sender As Object, e As EventArgs) Handles BottMostraFiltri.Click
         SplitContainerFiltriAvanzati_Icone.Panel1Collapsed = Not SplitContainerFiltriAvanzati_Icone.Panel1Collapsed
         If (SplitContainerFiltriAvanzati_Icone.Panel1Collapsed) Then
             BottMostraFiltri.Text = "➤ Filtri avanzati"
@@ -2320,7 +2326,7 @@ Public Class MainForm
         If (CasellaRicerca.Text.Length = 0) Then PlaceholderCasellaRicerca.Visible = True
     End Sub
 
-    Private Sub ListaGeneri_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Private Sub ListaGeneri_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListaGeneri.SelectedIndexChanged
         If (ListaGeneri.SelectedIndices.Count > 0) Then
             Dim genere As String = ListaGeneri.SelectedItems.Item(0).Text
             Dim IndiceGenere As Short = FilmPerGenere.FindIndex(Function(l) genere.Equals(l.GetEtichetta))
@@ -2328,7 +2334,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub ListaAttori_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Private Sub ListaAttori_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListaAttori.SelectedIndexChanged
         If (ListaAttori.SelectedIndices.Count > 0) Then
             Dim attore As String = ListaAttori.SelectedItems.Item(0).Text
             Dim IndiceAttore As Short = FilmPerAttore.FindIndex(Function(l) attore.Equals(l.GetEtichetta))
@@ -2336,7 +2342,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub PannelloNazione_Click(sender As Object, e As EventArgs)
+    Private Sub PannelloNazione_Click(sender As Object, e As EventArgs) Handles PannelloNazione.Click, NazionePic.Click, NazioneLab.Click
         If (NazioneLab.Text.Length > 0) Then
             Dim IndiceNazione As Short = FilmPerNazione.FindIndex(Function(l) NazioneLab.Text.Equals(l.GetEtichetta, StringComparison.CurrentCultureIgnoreCase))
             If (IndiceNazione <> -1) Then AlberoCategorieLibreria.SelectedNode = AlberoCategorieLibreria.Nodes(5).Nodes(IndiceNazione)
@@ -2525,7 +2531,7 @@ Public Class MainForm
         PanelDettagliCategoria.Visible = Not Visualizzare
     End Sub
 
-    Private Sub LabNomePersona_Click(sender As Object, e As EventArgs)
+    Private Sub ButtRicercaPersonaIMDB_Click(sender As Object, e As EventArgs) Handles ButtRicercaPersonaIMDB.Click
         Process.Start("https://www.imdb.com/search/name-text/?bio=" + Uri.EscapeUriString(LabValoreCategoriaScelta.Text))
     End Sub
 
@@ -2536,7 +2542,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
+    Private Sub ButCambiaImgPersona_Click_1(sender As Object, e As EventArgs) Handles ButCambiaImgPersona.Click
         Dim PathImmagine As String = MainModule.PercorsoImmaginePersona(MainModule.SeparaNomeCognome(LabValoreCategoriaScelta.Text)(1), If(MainModule.SeparaNomeCognome(LabValoreCategoriaScelta.Text)(0) <> "", MainModule.SeparaNomeCognome(LabValoreCategoriaScelta.Text)(0).Chars(0), ""))
         ScegliImmaginePersona.PreparaFinestra(LabValoreCategoriaScelta.Text, PathImmagine)
         ScegliImmaginePersona.ShowDialog()
@@ -2564,7 +2570,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub ButtonToggleTrama_Click(sender As Object, e As EventArgs)
+    Private Sub ButtonToggleTrama_Click(sender As Object, e As EventArgs) Handles ButtonToggleTrama.Click
         If (LabTramaBreve.Visible) Then
             VisualizzaTrama(False)
         Else
@@ -2584,7 +2590,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub PicPoster_Click(sender As Object, e As EventArgs)
+    Private Sub PicPoster_Click(sender As Object, e As EventArgs) Handles PicPoster.Click
         Dim Film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
         Dim Path As String = MainModule.PercorsoPosterFilm(Film.NomeFile)
         If (My.Computer.FileSystem.FileExists(Path)) Then

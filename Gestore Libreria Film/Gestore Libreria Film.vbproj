@@ -413,6 +413,27 @@
   <ItemGroup>
     <None Include="Resources\bafta-argento.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort-asc-lett-num.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort-desc-lett-num.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fields.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fields2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sidebar-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sidebar-right.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
