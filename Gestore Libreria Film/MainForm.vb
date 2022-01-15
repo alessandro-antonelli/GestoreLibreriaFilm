@@ -1144,14 +1144,14 @@ Public Class MainForm
             Dim film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
 
             ' Titolo
-            Label1.Text = film.TitoloITA
+            LabTitoloITA.Text = film.TitoloITA
 
             ' Titolo originale
             If (Not IsNothing(film.TitoloORIG) And film.TitoloORIG <> "") Then
-                Label2.Text = film.TitoloORIG
-                Label2.Visible = True
+                LabTitoloORIG.Text = film.TitoloORIG
+                LabTitoloORIG.Visible = True
             Else
-                Label2.Visible = False
+                LabTitoloORIG.Visible = False
             End If
 
             ' Nazione
@@ -1525,7 +1525,7 @@ Public Class MainForm
 
                 Dim TrovatoRottenTomatoes As Boolean = False
                 Dim ArrayValutazioni As JArray = json.SelectToken("Ratings")
-                If (Not IsNothing(ArrayValutazioni)) Then
+                If (Not IsNothing(ArrayValutazioni) AndAlso ArrayValutazioni.Count > 0) Then
                     For i As UShort = 0 To ArrayValutazioni.Count - 1
                         Dim Valutazione As JObject = ArrayValutazioni.Item(i)
                         Dim fonte As String = Valutazione.SelectToken("Source").Value(Of String)()
@@ -1551,37 +1551,87 @@ Public Class MainForm
                     Dim AltriPremiVinti As Short = 0, AltriPremiNominati As Short = 0
 
                     StrPremi = StrPremi.ToLower
-                    Dim StringheDaAnalizzare = New List(Of String)
-                    If (StrPremi.Contains(".")) Then
-                        StringheDaAnalizzare.Add(StrPremi.Split(".").GetValue(0).ToString.Trim)
 
-                        Dim StrAltriPremi As String = StrPremi.Split(".").GetValue(1).ToString.Trim
-                        If (StrAltriPremi.Contains("&")) Then
-                            StringheDaAnalizzare.Add(StrAltriPremi.Split("&").GetValue(0).ToString.Trim)
-                            StringheDaAnalizzare.Add(StrAltriPremi.Split("&").GetValue(1).ToString.Trim)
-                        Else
-                            StringheDaAnalizzare.Add(StrAltriPremi.Trim)
+                    ' Parsing del premio più rilevante ricevuto
+                    If (StrPremi.StartsWith("won") Or StrPremi.StartsWith("nominated for")) Then
+
+                        Dim NomePremio As String, QuantitaPremio As UShort, Vittoria As Boolean
+
+                        If (StrPremi.StartsWith("won")) Then
+                            Vittoria = True
+                            StrPremi = StrPremi.Substring(4, StrPremi.Length - 4)
+                        ElseIf (StrPremi.StartsWith("nominated for")) Then
+                            Vittoria = False
+                            StrPremi = StrPremi.Substring(14, StrPremi.Length - 14)
                         End If
-                    Else
-                        StringheDaAnalizzare.Add(StrPremi)
+
+                        Dim FineNumeroQuantita As UShort = StrPremi.IndexOf(" ")
+                        QuantitaPremio = UShort.Parse(StrPremi.Substring(0, FineNumeroQuantita))
+                        StrPremi = StrPremi.Substring(FineNumeroQuantita + 1, StrPremi.Length - FineNumeroQuantita - 1)
+
+                        Dim FineNomePremio As UShort
+                        If (StrPremi.Contains(".")) Then
+                            FineNomePremio = StrPremi.IndexOf(".")
+                            NomePremio = StrPremi.Substring(0, FineNomePremio)
+                            StrPremi = StrPremi.Substring(FineNomePremio + 2, StrPremi.Length - FineNomePremio - 2)
+                        Else
+                            'FineNomePremio = indice del primo char che è un numero
+                            Dim i As UShort = 0
+                            For i = 0 To StrPremi.Length - 1
+                                Dim dummy As Byte
+                                If (Byte.TryParse(StrPremi.Chars(i), dummy)) Then
+                                    FineNomePremio = i
+                                    Exit For
+                                End If
+                            Next
+
+                            NomePremio = StrPremi.Substring(0, FineNomePremio - 1)
+                            StrPremi = StrPremi.Substring(FineNomePremio, StrPremi.Length - FineNomePremio)
+                        End If
+
+                        Select Case NomePremio
+                            Case "oscar", "oscars"
+                                If (Vittoria) Then
+                                    OscarVinti = QuantitaPremio
+                                Else
+                                    OscarNominati = QuantitaPremio
+                                End If
+                            Case "bafta film award", "bafta film"
+                                If (Vittoria) Then
+                                    BAFTAVinti = QuantitaPremio
+                                Else
+                                    BAFTANominati = QuantitaPremio
+                                End If
+                        End Select
                     End If
 
-                    For Each stringa In StringheDaAnalizzare
-                        If (stringa.StartsWith("won")) Then
-                            Dim StrOscarVinti = stringa.Substring(4, stringa.LastIndexOf(" ") - 4)
-                            OscarVinti = UShort.Parse(StrOscarVinti)
-                        ElseIf (stringa.StartsWith("nominated for")) Then
-                            Dim StrOscarNominati = stringa.Substring(14, stringa.LastIndexOf(" ") - 14)
-                            OscarNominati = UShort.Parse(StrOscarNominati)
-                        ElseIf (stringa.EndsWith("wins")) Then
-                            Dim StrAltriPremiVinti = stringa.Substring(0, stringa.IndexOf(" "))
-                            AltriPremiVinti = UShort.Parse(StrAltriPremiVinti)
-                        ElseIf (stringa.EndsWith("nominations total")) Then
-                            Dim StrAltriPremiNominati = stringa.Substring(0, stringa.IndexOf(" "))
-                            AltriPremiNominati = UShort.Parse(StrAltriPremiNominati)
-                        End If
-                    Next
+                    'Parsing degli altri premi ricevuti
+                    Dim StrAltreVittorie As String = Nothing, StrAltreNomination As String = Nothing
+                    Dim PosDivisoreVitNom As Short = StrPremi.IndexOf("&")
 
+                    If (PosDivisoreVitNom <> -1) Then
+                        'la stringa elenca sia vittorie che nomination
+                        StrAltreVittorie = StrPremi.Substring(0, PosDivisoreVitNom - 1)
+                        StrAltreNomination = StrPremi.Substring(PosDivisoreVitNom + 2, StrPremi.Length - PosDivisoreVitNom - 2)
+                    Else
+                        'la stringa elenca solo vittorie o solo nomination
+                        If (StrPremi.EndsWith("wins") Or StrPremi.EndsWith("wins total")) Then
+                            StrAltreVittorie = StrPremi
+                        ElseIf (StrPremi.EndsWith("nominations") Or StrPremi.EndsWith("nominations total")) Then
+                            StrAltreNomination = StrPremi
+                        End If
+                    End If
+
+                    If (Not IsNothing(StrAltreVittorie)) Then
+                        Dim StrAltriPremiVinti = StrAltreVittorie.Substring(0, StrAltreVittorie.IndexOf(" "))
+                        AltriPremiVinti = UShort.Parse(StrAltriPremiVinti)
+                    End If
+                    If (Not IsNothing(StrAltreNomination)) Then
+                        Dim StrAltriPremiNominati = StrAltreNomination.Substring(0, StrAltreNomination.IndexOf(" "))
+                        AltriPremiNominati = UShort.Parse(StrAltriPremiNominati)
+                    End If
+
+                    ' Tiro le somme e visualizzo
                     AltriPremiVinti = Math.Max(0, AltriPremiVinti - OscarVinti - BAFTAVinti)
                     AltriPremiNominati = Math.Max(0, AltriPremiNominati - OscarNominati - BAFTANominati)
 
@@ -1653,7 +1703,7 @@ Public Class MainForm
             'Else
             '    PannelloTrama.Visible = False
             'End If
-            Dim PathTramaLunga As String = MainModule.PercorsoTramaLunga(film.NomeFile)
+            Dim PathTramaLunga As String = MainModule.PercorsoTramaLunga(Film.NomeFile)
             Dim AbbiamoTramaLunga As Boolean = My.Computer.FileSystem.FileExists(PathTramaLunga)
 
             If (Not AbbiamoTramaBreve And Not AbbiamoTramaLunga) Then
@@ -1684,7 +1734,7 @@ Public Class MainForm
             End If
 
             ' Schermata
-            Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(film.NomeFile)
+            Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
             If (My.Computer.FileSystem.FileExists(PercorsoSchermata)) Then
                 PicSchermata.ImageLocation = PercorsoSchermata
                 PicSchermata.Visible = True
@@ -1693,12 +1743,12 @@ Public Class MainForm
             End If
 
             ' Poster
-            Dim PathPoster As String = PercorsoPosterFilm(film.NomeFile)
+            Dim PathPoster As String = PercorsoPosterFilm(Film.NomeFile)
             If (My.Computer.FileSystem.FileExists(PathPoster)) Then
                 PicPoster.ImageLocation = PathPoster
-                PicPoster.Visible = True
+                SplitManifestoInfoPrincipali.Panel1Collapsed = False
             Else
-                PicPoster.Visible = False
+                SplitManifestoInfoPrincipali.Panel1Collapsed = True
             End If
 
             VisualizzazioneContenutoSchermataDestra(True)
@@ -2059,12 +2109,27 @@ Public Class MainForm
         End If
         Dim DimensioneMax As New Size(SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance, 0)
         Dim DimensioneMaxConIcona As New Size(DimensioneMax.Width - 32, 0)
-        Label1.MaximumSize = DimensioneMax
-        Label2.MaximumSize = DimensioneMax
-        LabRegisti.MaximumSize = DimensioneMaxConIcona
-        LabAutori.MaximumSize = DimensioneMaxConIcona
-        LabMusicisti.MaximumSize = DimensioneMaxConIcona
+        'LabTitoloITA.MaximumSize = DimensioneMax
+        'LabTitoloORIG.MaximumSize = DimensioneMax
+        'LabRegisti.MaximumSize = DimensioneMaxConIcona
+        'LabAutori.MaximumSize = DimensioneMaxConIcona
+        'LabMusicisti.MaximumSize = DimensioneMaxConIcona
         If (SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance - 32 - 64 > 0) Then LabNote.MaximumSize = New Size(SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance - 32 - 64, 0)
+        If (Not IsNothing(PicPoster.Image)) Then
+            If (DimensioneMax.Width > 200 * 2) Then
+                'a sinistra il manifesto, a destra le info base del film
+                SplitManifestoInfoPrincipali.Height = Math.Max(360, SplitManifestoInfoPrincipali.Panel2.Height)
+                SplitManifestoInfoPrincipali.SplitterDistance = 250 'larghezza del manifesto
+                SplitManifestoInfoPrincipali.Orientation = Orientation.Vertical
+            Else
+                'sopra il manifesto, sotto le info base del film
+                Dim AltezzaPosterPerRiempireLarghezza As UShort = PicPoster.Image.Height * (PicPoster.Width / PicPoster.Image.Width)
+                Dim AltezzaManifesto As UShort = If(AltezzaPosterPerRiempireLarghezza > 360, 360, AltezzaPosterPerRiempireLarghezza)
+                SplitManifestoInfoPrincipali.Height = AltezzaManifesto + SplitManifestoInfoPrincipali.Panel2.Height
+                SplitManifestoInfoPrincipali.SplitterDistance = AltezzaManifesto
+                SplitManifestoInfoPrincipali.Orientation = Orientation.Horizontal
+            End If
+        End If
         RegolaAltezzaElenco(ListaGeneri)
         RegolaAltezzaElenco(ListaAttori)
         RegolaAltezzaTextboxTramaBreve()
@@ -2342,7 +2407,7 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub PannelloNazione_Click(sender As Object, e As EventArgs) Handles PannelloNazione.Click, NazionePic.Click, NazioneLab.Click
+    Private Sub PannelloNazione_Click(sender As Object, e As EventArgs) Handles PannelloNazione.Click, NazioneLab.Click, NazionePic.Click
         If (NazioneLab.Text.Length > 0) Then
             Dim IndiceNazione As Short = FilmPerNazione.FindIndex(Function(l) NazioneLab.Text.Equals(l.GetEtichetta, StringComparison.CurrentCultureIgnoreCase))
             If (IndiceNazione <> -1) Then AlberoCategorieLibreria.SelectedNode = AlberoCategorieLibreria.Nodes(5).Nodes(IndiceNazione)
@@ -2385,12 +2450,12 @@ Public Class MainForm
         Next
     End Sub
 
-    Private Sub RTFAudio_SelectionChanged(sender As Object, e As EventArgs)
+    Private Sub RTFAudio_SelectionChanged(sender As Object, e As EventArgs) Handles RTFAudio.SelectionChanged
         RTFAudio.Select(0, 0)
         Me.Focus()
     End Sub
 
-    Private Sub RTFSottotitoli_SelectionChanged(sender As Object, e As EventArgs)
+    Private Sub RTFSottotitoli_SelectionChanged(sender As Object, e As EventArgs) Handles RTFSottotitoli.SelectionChanged
         RTFSottotitoli.Select(0, 0)
         Me.Focus()
     End Sub

@@ -583,6 +583,16 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property premio_oro2() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("premio-oro2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property quadro() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("quadro", resourceCulture)

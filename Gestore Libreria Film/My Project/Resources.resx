@@ -160,8 +160,8 @@
   <data name="persona" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\persona.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="oscar-argento" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\oscar-argento.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GIA.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sole" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sole.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -183,6 +183,9 @@
   </data>
   <data name="BRA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BRA.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sidebar-left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="oscar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\oscar1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,8 +265,8 @@
   <data name="ciak_semplice" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ciak semplice.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="premio-oro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\premio-oro.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="oscar-argento" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oscar-argento.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fields2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fields2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -277,11 +280,11 @@
   <data name="sort-asc-lett-num" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sort-asc-lett-num.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="premio-oro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\premio-oro.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="IND" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IND.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fields" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fields.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="quadro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quadro.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -289,8 +292,8 @@
   <data name="cerca" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cerca.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GIA.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fields" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fields.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AUS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AUS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -303,6 +306,9 @@
   </data>
   <data name="cartella" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cartella.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidebar-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sidebar-right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="note" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\note.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -317,10 +323,7 @@
     <value>..\Resources\COR.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="sidebar-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sidebar-left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sidebar-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sidebar-right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="premio-oro2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\premio-oro2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
