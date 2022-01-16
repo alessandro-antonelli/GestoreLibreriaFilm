@@ -2142,6 +2142,15 @@ Public Class MainForm
                 SplitPosterInfoPrincipali.Orientation = Orientation.Horizontal
             End If
         End If
+
+        If (DimensioneMax.Width >= 300 And SplitAudioSottotitoli.Orientation = Orientation.Horizontal) Then
+            SplitAudioSottotitoli.Orientation = Orientation.Vertical
+            SplitAudioSottotitoli.SplitterDistance = Math.Round(SplitAudioSottotitoli.Width / 2)
+        ElseIf (DimensioneMax.Width < 300 And SplitAudioSottotitoli.Orientation = Orientation.Vertical) Then
+            SplitAudioSottotitoli.Orientation = Orientation.Horizontal
+            SplitAudioSottotitoli.SplitterDistance = Math.Round(SplitAudioSottotitoli.Height / 2)
+        End If
+
         RegolaAltezzaElenco(ListaGeneri)
         RegolaAltezzaElenco(ListaAttori)
         RegolaAltezzaTextboxTramaBreve()

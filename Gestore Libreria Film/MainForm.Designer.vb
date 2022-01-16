@@ -24,12 +24,12 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
-        Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
-        Dim ListViewItem11 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
-        Dim ListViewItem12 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
-        Dim ListViewItem16 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
-        Dim ListViewItem17 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
-        Dim ListViewItem18 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
+        Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
+        Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
+        Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
+        Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
+        Dim ListViewItem11 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
+        Dim ListViewItem12 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
         Dim TreeNode37 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tutti i film", 1, 1)
         Dim TreeNode38 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Registi", 2, 2)
         Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Attori", 3, 3)
@@ -220,7 +220,6 @@ Partial Class MainForm
         Me.ListaExtra = New System.Windows.Forms.ListBox()
         Me.IntestazioneExtra = New System.Windows.Forms.Label()
         Me.PanelFile = New System.Windows.Forms.Panel()
-        Me.PannelloAudioSottotitoli = New System.Windows.Forms.FlowLayoutPanel()
         Me.PannelloAudio = New System.Windows.Forms.Panel()
         Me.RTFAudio = New System.Windows.Forms.RichTextBox()
         Me.IntestazioneAudio = New System.Windows.Forms.FlowLayoutPanel()
@@ -405,6 +404,7 @@ Partial Class MainForm
         Me.LabValoreCategoriaScelta = New System.Windows.Forms.Label()
         Me.LabCategoriaScelta = New System.Windows.Forms.Label()
         Me.IconaCategoriaScelta = New System.Windows.Forms.PictureBox()
+        Me.SplitAudioSottotitoli = New System.Windows.Forms.SplitContainer()
         Me.BarraStrumentiPrincipale.SuspendLayout()
         Me.SplitContainerFiltriAvanzati_Icone.Panel1.SuspendLayout()
         Me.SplitContainerFiltriAvanzati_Icone.Panel2.SuspendLayout()
@@ -445,7 +445,6 @@ Partial Class MainForm
         Me.PanelDettagliFilm.SuspendLayout()
         Me.PannelloExtra.SuspendLayout()
         Me.PanelFile.SuspendLayout()
-        Me.PannelloAudioSottotitoli.SuspendLayout()
         Me.PannelloAudio.SuspendLayout()
         Me.IntestazioneAudio.SuspendLayout()
         CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -536,6 +535,9 @@ Partial Class MainForm
         Me.PanPeriodoAttività.SuspendLayout()
         CType(Me.PicImgPersona, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IconaCategoriaScelta, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitAudioSottotitoli.Panel1.SuspendLayout()
+        Me.SplitAudioSottotitoli.Panel2.SuspendLayout()
+        Me.SplitAudioSottotitoli.SuspendLayout()
         Me.SuspendLayout()
         '
         'BarraStrumentiPrincipale
@@ -2144,7 +2146,7 @@ Partial Class MainForm
         Me.PannelloExtra.Controls.Add(Me.ListaExtra)
         Me.PannelloExtra.Controls.Add(Me.IntestazioneExtra)
         Me.PannelloExtra.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PannelloExtra.Location = New System.Drawing.Point(0, 1435)
+        Me.PannelloExtra.Location = New System.Drawing.Point(0, 1425)
         Me.PannelloExtra.Name = "PannelloExtra"
         Me.PannelloExtra.Size = New System.Drawing.Size(630, 90)
         Me.PannelloExtra.TabIndex = 104
@@ -2196,7 +2198,7 @@ Partial Class MainForm
         'PanelFile
         '
         Me.PanelFile.AutoSize = True
-        Me.PanelFile.Controls.Add(Me.PannelloAudioSottotitoli)
+        Me.PanelFile.Controls.Add(Me.SplitAudioSottotitoli)
         Me.PanelFile.Controls.Add(Me.PannelloVideo)
         Me.PanelFile.Controls.Add(Me.PannelloContenitore)
         Me.PanelFile.Controls.Add(Me.IntestazioneFile)
@@ -2204,30 +2206,18 @@ Partial Class MainForm
         Me.PanelFile.Location = New System.Drawing.Point(0, 1034)
         Me.PanelFile.MinimumSize = New System.Drawing.Size(0, 64)
         Me.PanelFile.Name = "PanelFile"
-        Me.PanelFile.Size = New System.Drawing.Size(630, 401)
+        Me.PanelFile.Size = New System.Drawing.Size(630, 391)
         Me.PanelFile.TabIndex = 103
-        '
-        'PannelloAudioSottotitoli
-        '
-        Me.PannelloAudioSottotitoli.AutoSize = True
-        Me.PannelloAudioSottotitoli.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PannelloAudioSottotitoli.Controls.Add(Me.PannelloAudio)
-        Me.PannelloAudioSottotitoli.Controls.Add(Me.PannelloSottotitoli)
-        Me.PannelloAudioSottotitoli.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PannelloAudioSottotitoli.Location = New System.Drawing.Point(0, 281)
-        Me.PannelloAudioSottotitoli.MinimumSize = New System.Drawing.Size(0, 120)
-        Me.PannelloAudioSottotitoli.Name = "PannelloAudioSottotitoli"
-        Me.PannelloAudioSottotitoli.Size = New System.Drawing.Size(630, 120)
-        Me.PannelloAudioSottotitoli.TabIndex = 92
         '
         'PannelloAudio
         '
         Me.PannelloAudio.Controls.Add(Me.RTFAudio)
         Me.PannelloAudio.Controls.Add(Me.IntestazioneAudio)
+        Me.PannelloAudio.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PannelloAudio.Location = New System.Drawing.Point(0, 0)
         Me.PannelloAudio.Margin = New System.Windows.Forms.Padding(0)
         Me.PannelloAudio.Name = "PannelloAudio"
-        Me.PannelloAudio.Size = New System.Drawing.Size(200, 120)
+        Me.PannelloAudio.Size = New System.Drawing.Size(310, 110)
         Me.PannelloAudio.TabIndex = 0
         '
         'RTFAudio
@@ -2243,7 +2233,7 @@ Partial Class MainForm
         Me.RTFAudio.ReadOnly = True
         Me.RTFAudio.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
         Me.RTFAudio.ShortcutsEnabled = False
-        Me.RTFAudio.Size = New System.Drawing.Size(154, 120)
+        Me.RTFAudio.Size = New System.Drawing.Size(264, 110)
         Me.RTFAudio.TabIndex = 78
         Me.RTFAudio.Text = ""
         '
@@ -2256,7 +2246,7 @@ Partial Class MainForm
         Me.IntestazioneAudio.Dock = System.Windows.Forms.DockStyle.Left
         Me.IntestazioneAudio.Location = New System.Drawing.Point(0, 0)
         Me.IntestazioneAudio.Name = "IntestazioneAudio"
-        Me.IntestazioneAudio.Size = New System.Drawing.Size(46, 120)
+        Me.IntestazioneAudio.Size = New System.Drawing.Size(46, 110)
         Me.IntestazioneAudio.TabIndex = 89
         '
         'PictureBox20
@@ -2285,10 +2275,11 @@ Partial Class MainForm
         '
         Me.PannelloSottotitoli.Controls.Add(Me.RTFSottotitoli)
         Me.PannelloSottotitoli.Controls.Add(Me.IntestazioneSottotitoli)
-        Me.PannelloSottotitoli.Location = New System.Drawing.Point(200, 0)
+        Me.PannelloSottotitoli.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PannelloSottotitoli.Location = New System.Drawing.Point(0, 0)
         Me.PannelloSottotitoli.Margin = New System.Windows.Forms.Padding(0)
         Me.PannelloSottotitoli.Name = "PannelloSottotitoli"
-        Me.PannelloSottotitoli.Size = New System.Drawing.Size(200, 120)
+        Me.PannelloSottotitoli.Size = New System.Drawing.Size(319, 110)
         Me.PannelloSottotitoli.TabIndex = 1
         '
         'RTFSottotitoli
@@ -2304,7 +2295,7 @@ Partial Class MainForm
         Me.RTFSottotitoli.ReadOnly = True
         Me.RTFSottotitoli.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
         Me.RTFSottotitoli.ShortcutsEnabled = False
-        Me.RTFSottotitoli.Size = New System.Drawing.Size(154, 120)
+        Me.RTFSottotitoli.Size = New System.Drawing.Size(273, 110)
         Me.RTFSottotitoli.TabIndex = 55
         Me.RTFSottotitoli.Text = ""
         '
@@ -2317,7 +2308,7 @@ Partial Class MainForm
         Me.IntestazioneSottotitoli.Dock = System.Windows.Forms.DockStyle.Left
         Me.IntestazioneSottotitoli.Location = New System.Drawing.Point(0, 0)
         Me.IntestazioneSottotitoli.Name = "IntestazioneSottotitoli"
-        Me.IntestazioneSottotitoli.Size = New System.Drawing.Size(46, 120)
+        Me.IntestazioneSottotitoli.Size = New System.Drawing.Size(46, 110)
         Me.IntestazioneSottotitoli.TabIndex = 89
         '
         'PictureBox21
@@ -3583,8 +3574,8 @@ Partial Class MainForm
         Me.ListaAttori.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaAttori.FullRowSelect = True
         Me.ListaAttori.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem10.StateImageIndex = 0
-        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem10, ListViewItem11, ListViewItem12})
+        ListViewItem7.StateImageIndex = 0
+        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem7, ListViewItem8, ListViewItem9})
         Me.ListaAttori.Location = New System.Drawing.Point(0, 32)
         Me.ListaAttori.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaAttori.MultiSelect = False
@@ -3632,8 +3623,8 @@ Partial Class MainForm
         Me.ListaGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaGeneri.FullRowSelect = True
         Me.ListaGeneri.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem18.StateImageIndex = 0
-        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem16, ListViewItem17, ListViewItem18})
+        ListViewItem12.StateImageIndex = 0
+        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem10, ListViewItem11, ListViewItem12})
         Me.ListaGeneri.Location = New System.Drawing.Point(0, 32)
         Me.ListaGeneri.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaGeneri.MultiSelect = False
@@ -4581,6 +4572,25 @@ Partial Class MainForm
         Me.IconaCategoriaScelta.TabIndex = 19
         Me.IconaCategoriaScelta.TabStop = False
         '
+        'SplitAudioSottotitoli
+        '
+        Me.SplitAudioSottotitoli.Dock = System.Windows.Forms.DockStyle.Top
+        Me.SplitAudioSottotitoli.IsSplitterFixed = True
+        Me.SplitAudioSottotitoli.Location = New System.Drawing.Point(0, 281)
+        Me.SplitAudioSottotitoli.Name = "SplitAudioSottotitoli"
+        '
+        'SplitAudioSottotitoli.Panel1
+        '
+        Me.SplitAudioSottotitoli.Panel1.Controls.Add(Me.PannelloAudio)
+        '
+        'SplitAudioSottotitoli.Panel2
+        '
+        Me.SplitAudioSottotitoli.Panel2.Controls.Add(Me.PannelloSottotitoli)
+        Me.SplitAudioSottotitoli.Size = New System.Drawing.Size(630, 110)
+        Me.SplitAudioSottotitoli.SplitterDistance = 310
+        Me.SplitAudioSottotitoli.SplitterWidth = 1
+        Me.SplitAudioSottotitoli.TabIndex = 88
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -4651,8 +4661,6 @@ Partial Class MainForm
         Me.PanelDettagliFilm.PerformLayout()
         Me.PannelloExtra.ResumeLayout(False)
         Me.PanelFile.ResumeLayout(False)
-        Me.PanelFile.PerformLayout()
-        Me.PannelloAudioSottotitoli.ResumeLayout(False)
         Me.PannelloAudio.ResumeLayout(False)
         Me.IntestazioneAudio.ResumeLayout(False)
         Me.IntestazioneAudio.PerformLayout()
@@ -4784,6 +4792,9 @@ Partial Class MainForm
         Me.PanPeriodoAttività.PerformLayout()
         CType(Me.PicImgPersona, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IconaCategoriaScelta, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitAudioSottotitoli.Panel1.ResumeLayout(False)
+        Me.SplitAudioSottotitoli.Panel2.ResumeLayout(False)
+        Me.SplitAudioSottotitoli.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -4977,7 +4988,6 @@ Partial Class MainForm
     Friend WithEvents ListaExtra As System.Windows.Forms.ListBox
     Friend WithEvents IntestazioneExtra As System.Windows.Forms.Label
     Friend WithEvents PanelFile As System.Windows.Forms.Panel
-    Friend WithEvents PannelloAudioSottotitoli As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents PannelloAudio As System.Windows.Forms.Panel
     Friend WithEvents RTFAudio As System.Windows.Forms.RichTextBox
     Friend WithEvents IntestazioneAudio As System.Windows.Forms.FlowLayoutPanel
@@ -5126,5 +5136,6 @@ Partial Class MainForm
     Friend WithEvents ButtTogglePoster As System.Windows.Forms.Button
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents SplitAudioSottotitoli As System.Windows.Forms.SplitContainer
 
 End Class
