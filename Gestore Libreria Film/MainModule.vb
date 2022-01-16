@@ -23,17 +23,14 @@ Module MainModule
         ' Ripristino preferenze pannelli
         MainForm.SplitContainerSX_C.SplitterDistance = My.Settings.PannelloSxDimensione
         MainForm.SplitContainerCSX_DX.SplitterDistance = MainForm.SplitContainerCSX_DX.Width - My.Settings.PannelloDxDimensione
-        MainForm.SplitImmagineDettagli.SplitterDistance = My.Settings.PannelloSchermataDimensione
         MainForm.SplitContainerSX_C.Panel1Collapsed = My.Settings.PannelloSxChiuso
         MainForm.SplitContainerCSX_DX.Panel2Collapsed = My.Settings.PannelloDxChiuso
-        MainForm.SplitImmagineDettagli.Panel1Collapsed = My.Settings.PannelloSchermataChiuso
-        MainForm.ButtPannelloSchermata.Text = If(My.Settings.PannelloSchermataChiuso, "mostra schermata ∨", "nascondi schermata ∧")
 
-        ' Elementi form
-        MainForm.FileSystemWatcher.Path = My.Settings.LibreriaPercorso
-        MainForm.FiltroAnnoMin.Maximum = My.Computer.Clock.LocalTime.Year
-        MainForm.FiltroAnnoMax.Maximum = My.Computer.Clock.LocalTime.Year + 1
-        MainForm.FiltroAnnoMax.Value = My.Computer.Clock.LocalTime.Year + 1
+        MainForm.SplitPosterInfoPrincipali.Panel1Collapsed = My.Settings.PannelloPosterChiuso
+        MainForm.PicSchermata.Visible = Not My.Settings.PannelloSchermataChiuso
+        'MainForm.XXX = My.Settings.PannelloSchermataDimensione
+        MainForm.ButtPannelloSchermata.BackColor = If(My.Settings.PannelloSchermataChiuso, Color.Transparent, Color.FromArgb(192, 192, 255))
+        MainForm.ButtTogglePoster.BackColor = If(My.Settings.PannelloPosterChiuso, Color.Transparent, Color.FromArgb(192, 192, 255))
 
         ' Ripristino preferenze visualizzatore film
         If (My.Settings.PreferisciIconePoster = True) Then
@@ -66,18 +63,8 @@ Module MainModule
         'Me.ElencoFilm.Columns.Add(MainForm.ColRegisti)
         'Me.ElencoFilm.Columns.Add(MainForm.ColGeneri)
 
-        'Visualizza il contenuto della categoria "Tutti i film"
-        'GeneraListaFilmCategoria(0, 0)
-        'AggiornaIconeDaLista()
-
-        ' Cartelle
+        ' Mi assicuro che la cartella della Libreria sia indicata, valida e comprensiva di sottocartella DatiLibreria
         If (Not My.Computer.FileSystem.DirectoryExists(My.Settings.LibreriaPercorso)) Then
-            'E' il primo avvio dell'app
-
-            'Salvo su disco le impostazioni di default
-            'My.Settings.Reset()
-            'My.Settings.Save()
-
             ' Chiedo cartella libreria
             Dim esito As DialogResult = ScegliLibreria.ShowDialog()
             If (esito <> DialogResult.OK Or Not My.Computer.FileSystem.DirectoryExists(My.Settings.LibreriaPercorso)) Then
@@ -95,10 +82,22 @@ Module MainModule
             My.Computer.FileSystem.GetDirectoryInfo(CartellaDatiLibreria).Attributes = IO.FileAttributes.Hidden
         End If
 
+        'Eseguo scansione (visualizzando la relativa finestra)
         ScansioneLibreria.PercorsiFile = My.Computer.FileSystem.GetFiles(My.Settings.LibreriaPercorso)
         ScansioneLibreria.ShowDialog()
 
+        'Avvio monitoraggio dei cambiamenti ai file dopo la scansione
+        MainForm.FileSystemWatcher.Path = My.Settings.LibreriaPercorso
+        MainForm.FiltroAnnoMin.Maximum = My.Computer.Clock.LocalTime.Year
+        MainForm.FiltroAnnoMax.Maximum = My.Computer.Clock.LocalTime.Year + 1
+        MainForm.FiltroAnnoMax.Value = My.Computer.Clock.LocalTime.Year + 1
+
+        'Mostro la finestra principale
         Application.Run(MainForm)
+
+        'Visualizzo il contenuto della categoria "Tutti i film"
+        MainForm.GeneraListaFilmCategoria(0, 0)
+        MainForm.AggiornaIconeDaLista()
     End Sub
 
     Public Function AggiornaModalitaNotte() As Boolean

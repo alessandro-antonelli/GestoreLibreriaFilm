@@ -92,6 +92,7 @@ Partial Class ScegliLibreria
         '
         'CheckSottocartelle
         '
+        Me.CheckSottocartelle.Cursor = System.Windows.Forms.Cursors.Hand
         Me.CheckSottocartelle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckSottocartelle.Location = New System.Drawing.Point(200, 71)
         Me.CheckSottocartelle.Name = "CheckSottocartelle"
@@ -103,9 +104,9 @@ Partial Class ScegliLibreria
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(298, 169)
+        Me.Button2.Location = New System.Drawing.Point(295, 161)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 28)
+        Me.Button2.Size = New System.Drawing.Size(75, 30)
         Me.Button2.TabIndex = 6
         Me.Button2.Text = "Salva"
         Me.Button2.UseVisualStyleBackColor = True

@@ -24,48 +24,48 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
-        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
-        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tutti i film", 1, 1)
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Registi", 2, 2)
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Attori", 3, 3)
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🙂 Commedia")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤣 Comico")
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😭 Drammatico")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🕵️ Giallo")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("👮 Polizesco")
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🏴 Noir")
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤢 Splatter")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😱 Horror", New System.Windows.Forms.TreeNode() {TreeNode10})
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😲 Thriller", New System.Windows.Forms.TreeNode() {TreeNode7, TreeNode8, TreeNode9, TreeNode11})
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🔫 Gangster")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤖 Fantascienza")
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("⚔️ Guerra")
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🎅 Natalizio")
-        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Generi", 4, 4, New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode5, TreeNode6, TreeNode12, TreeNode13, TreeNode14, TreeNode15, TreeNode16})
-        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni", 5, 5)
-        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nazioni", 6, 6)
-        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Saghe", 85, 85)
-        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Autori", 7, 7)
-        Dim TreeNode22 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Musicisti", 8, 8)
-        Dim TreeNode23 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Temi", 9, 9)
-        Dim TreeNode24 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Grecia")
-        Dim TreeNode25 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Roma")
-        Dim TreeNode26 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Medioevo")
-        Dim TreeNode27 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cinquecento")
-        Dim TreeNode28 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seicento")
-        Dim TreeNode29 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Settecento")
-        Dim TreeNode30 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ottocento")
-        Dim TreeNode31 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Prima guerra mondiale")
-        Dim TreeNode32 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seconda guerra mondiale")
-        Dim TreeNode33 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Vietnam")
-        Dim TreeNode34 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni di piombo")
-        Dim TreeNode35 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Novecento", New System.Windows.Forms.TreeNode() {TreeNode31, TreeNode32, TreeNode33, TreeNode34})
-        Dim TreeNode36 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ambientazione", 10, 10, New System.Windows.Forms.TreeNode() {TreeNode24, TreeNode25, TreeNode26, TreeNode27, TreeNode28, TreeNode29, TreeNode30, TreeNode35})
+        Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
+        Dim ListViewItem11 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
+        Dim ListViewItem12 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
+        Dim ListViewItem16 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
+        Dim ListViewItem17 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
+        Dim ListViewItem18 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
+        Dim TreeNode37 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tutti i film", 1, 1)
+        Dim TreeNode38 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Registi", 2, 2)
+        Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Attori", 3, 3)
+        Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🙂 Commedia")
+        Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤣 Comico")
+        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😭 Drammatico")
+        Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🕵️ Giallo")
+        Dim TreeNode44 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("👮 Polizesco")
+        Dim TreeNode45 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🏴 Noir")
+        Dim TreeNode46 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤢 Splatter")
+        Dim TreeNode47 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😱 Horror", New System.Windows.Forms.TreeNode() {TreeNode46})
+        Dim TreeNode48 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😲 Thriller", New System.Windows.Forms.TreeNode() {TreeNode43, TreeNode44, TreeNode45, TreeNode47})
+        Dim TreeNode49 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🔫 Gangster")
+        Dim TreeNode50 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤖 Fantascienza")
+        Dim TreeNode51 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("⚔️ Guerra")
+        Dim TreeNode52 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🎅 Natalizio")
+        Dim TreeNode53 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Generi", 4, 4, New System.Windows.Forms.TreeNode() {TreeNode40, TreeNode41, TreeNode42, TreeNode48, TreeNode49, TreeNode50, TreeNode51, TreeNode52})
+        Dim TreeNode54 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni", 5, 5)
+        Dim TreeNode55 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nazioni", 6, 6)
+        Dim TreeNode56 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Saghe", 85, 85)
+        Dim TreeNode57 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Autori", 7, 7)
+        Dim TreeNode58 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Musicisti", 8, 8)
+        Dim TreeNode59 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Temi", 9, 9)
+        Dim TreeNode60 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Grecia")
+        Dim TreeNode61 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Roma")
+        Dim TreeNode62 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Medioevo")
+        Dim TreeNode63 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cinquecento")
+        Dim TreeNode64 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seicento")
+        Dim TreeNode65 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Settecento")
+        Dim TreeNode66 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ottocento")
+        Dim TreeNode67 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Prima guerra mondiale")
+        Dim TreeNode68 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seconda guerra mondiale")
+        Dim TreeNode69 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Vietnam")
+        Dim TreeNode70 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni di piombo")
+        Dim TreeNode71 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Novecento", New System.Windows.Forms.TreeNode() {TreeNode67, TreeNode68, TreeNode69, TreeNode70})
+        Dim TreeNode72 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ambientazione", 10, 10, New System.Windows.Forms.TreeNode() {TreeNode60, TreeNode61, TreeNode62, TreeNode63, TreeNode64, TreeNode65, TreeNode66, TreeNode71})
         Me.BarraStrumentiPrincipale = New System.Windows.Forms.ToolStrip()
         Me.TogglePannelloSx = New System.Windows.Forms.ToolStripButton()
         Me.TogglePannelloDx = New System.Windows.Forms.ToolStripButton()
@@ -213,10 +213,8 @@ Partial Class MainForm
         Me.LabEsitoFiltri = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.BottCancellaFiltri = New System.Windows.Forms.Button()
-        Me.SplitImmagineDettagli = New System.Windows.Forms.SplitContainer()
-        Me.SplitPosterSchermata = New System.Windows.Forms.SplitContainer()
         Me.PicSchermata = New System.Windows.Forms.PictureBox()
-        Me.RiquadroDestraPanel = New System.Windows.Forms.Panel()
+        Me.PanelDettagliFilm = New System.Windows.Forms.Panel()
         Me.PannelloExtra = New System.Windows.Forms.Panel()
         Me.ButtAddExtra = New System.Windows.Forms.Button()
         Me.ListaExtra = New System.Windows.Forms.ListBox()
@@ -338,7 +336,7 @@ Partial Class MainForm
         Me.PannelloGeneri = New System.Windows.Forms.Panel()
         Me.ListaGeneri = New System.Windows.Forms.ListView()
         Me.IntestazioneGeneri = New System.Windows.Forms.Label()
-        Me.SplitManifestoInfoPrincipali = New System.Windows.Forms.SplitContainer()
+        Me.SplitPosterInfoPrincipali = New System.Windows.Forms.SplitContainer()
         Me.PicPoster = New System.Windows.Forms.PictureBox()
         Me.FlowLayoutPanel6 = New System.Windows.Forms.FlowLayoutPanel()
         Me.LabTitoloITA = New System.Windows.Forms.Label()
@@ -346,6 +344,9 @@ Partial Class MainForm
         Me.PanelNote = New System.Windows.Forms.Panel()
         Me.LabNote = New System.Windows.Forms.Label()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.PanelToggleImg = New System.Windows.Forms.Panel()
+        Me.ButtPannelloSchermata = New System.Windows.Forms.Button()
+        Me.ButtTogglePoster = New System.Windows.Forms.Button()
         Me.PanelAnno = New System.Windows.Forms.Panel()
         Me.LabAnno = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -381,7 +382,6 @@ Partial Class MainForm
         Me.SplitContainerSX_C = New System.Windows.Forms.SplitContainer()
         Me.FileSystemWatcher = New System.IO.FileSystemWatcher()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ButtPannelloSchermata = New System.Windows.Forms.Button()
         Me.PosterFilmPiccoli = New System.Windows.Forms.ImageList(Me.components)
         Me.PosterFilmGrandi = New System.Windows.Forms.ImageList(Me.components)
         Me.SplitContainerCSX_DX = New System.Windows.Forms.SplitContainer()
@@ -441,13 +441,8 @@ Partial Class MainForm
         Me.PannelloFiltri.SuspendLayout()
         Me.PannelloFiltriSemplici.SuspendLayout()
         Me.PannelloEsitoFiltri.SuspendLayout()
-        Me.SplitImmagineDettagli.Panel1.SuspendLayout()
-        Me.SplitImmagineDettagli.Panel2.SuspendLayout()
-        Me.SplitImmagineDettagli.SuspendLayout()
-        Me.SplitPosterSchermata.Panel2.SuspendLayout()
-        Me.SplitPosterSchermata.SuspendLayout()
         CType(Me.PicSchermata, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.RiquadroDestraPanel.SuspendLayout()
+        Me.PanelDettagliFilm.SuspendLayout()
         Me.PannelloExtra.SuspendLayout()
         Me.PanelFile.SuspendLayout()
         Me.PannelloAudioSottotitoli.SuspendLayout()
@@ -503,13 +498,14 @@ Partial Class MainForm
         Me.PannelloTrama.SuspendLayout()
         Me.PannelloAttori.SuspendLayout()
         Me.PannelloGeneri.SuspendLayout()
-        Me.SplitManifestoInfoPrincipali.Panel1.SuspendLayout()
-        Me.SplitManifestoInfoPrincipali.Panel2.SuspendLayout()
-        Me.SplitManifestoInfoPrincipali.SuspendLayout()
+        Me.SplitPosterInfoPrincipali.Panel1.SuspendLayout()
+        Me.SplitPosterInfoPrincipali.Panel2.SuspendLayout()
+        Me.SplitPosterInfoPrincipali.SuspendLayout()
         CType(Me.PicPoster, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel6.SuspendLayout()
         Me.PanelNote.SuspendLayout()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelToggleImg.SuspendLayout()
         Me.PanelAnno.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PannelloNazione.SuspendLayout()
@@ -2109,78 +2105,36 @@ Partial Class MainForm
         Me.BottCancellaFiltri.Text = "Cancella filtri"
         Me.BottCancellaFiltri.UseVisualStyleBackColor = True
         '
-        'SplitImmagineDettagli
-        '
-        Me.SplitImmagineDettagli.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitImmagineDettagli.Location = New System.Drawing.Point(0, 0)
-        Me.SplitImmagineDettagli.Name = "SplitImmagineDettagli"
-        Me.SplitImmagineDettagli.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SplitImmagineDettagli.Panel1
-        '
-        Me.SplitImmagineDettagli.Panel1.Controls.Add(Me.SplitPosterSchermata)
-        Me.SplitImmagineDettagli.Panel1MinSize = 50
-        '
-        'SplitImmagineDettagli.Panel2
-        '
-        Me.SplitImmagineDettagli.Panel2.Controls.Add(Me.RiquadroDestraPanel)
-        Me.SplitImmagineDettagli.Panel2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 47)
-        Me.SplitImmagineDettagli.Panel2MinSize = 100
-        Me.SplitImmagineDettagli.Size = New System.Drawing.Size(651, 743)
-        Me.SplitImmagineDettagli.SplitterDistance = 174
-        Me.SplitImmagineDettagli.SplitterIncrement = 10
-        Me.SplitImmagineDettagli.TabIndex = 1
-        '
-        'SplitPosterSchermata
-        '
-        Me.SplitPosterSchermata.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitPosterSchermata.Location = New System.Drawing.Point(0, 0)
-        Me.SplitPosterSchermata.Name = "SplitPosterSchermata"
-        '
-        'SplitPosterSchermata.Panel1
-        '
-        Me.SplitPosterSchermata.Panel1.Padding = New System.Windows.Forms.Padding(0, 23, 0, 0)
-        Me.SplitPosterSchermata.Panel1Collapsed = True
-        '
-        'SplitPosterSchermata.Panel2
-        '
-        Me.SplitPosterSchermata.Panel2.Controls.Add(Me.PicSchermata)
-        Me.SplitPosterSchermata.Panel2.Padding = New System.Windows.Forms.Padding(0, 23, 0, 0)
-        Me.SplitPosterSchermata.Size = New System.Drawing.Size(651, 174)
-        Me.SplitPosterSchermata.SplitterDistance = 210
-        Me.SplitPosterSchermata.SplitterIncrement = 10
-        Me.SplitPosterSchermata.TabIndex = 2
-        '
         'PicSchermata
         '
         Me.PicSchermata.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PicSchermata.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PicSchermata.Location = New System.Drawing.Point(0, 23)
+        Me.PicSchermata.Location = New System.Drawing.Point(3, 335)
         Me.PicSchermata.Name = "PicSchermata"
-        Me.PicSchermata.Size = New System.Drawing.Size(651, 151)
+        Me.PicSchermata.Size = New System.Drawing.Size(258, 113)
         Me.PicSchermata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicSchermata.TabIndex = 2
         Me.PicSchermata.TabStop = False
         Me.ToolTip.SetToolTip(Me.PicSchermata, "Schermata del film")
-        Me.PicSchermata.Visible = False
         '
-        'RiquadroDestraPanel
+        'PanelDettagliFilm
         '
-        Me.RiquadroDestraPanel.AutoScroll = True
-        Me.RiquadroDestraPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.RiquadroDestraPanel.Controls.Add(Me.PannelloExtra)
-        Me.RiquadroDestraPanel.Controls.Add(Me.PanelFile)
-        Me.RiquadroDestraPanel.Controls.Add(Me.PanelValutazioni)
-        Me.RiquadroDestraPanel.Controls.Add(Me.PannelloTrama)
-        Me.RiquadroDestraPanel.Controls.Add(Me.PannelloAttori)
-        Me.RiquadroDestraPanel.Controls.Add(Me.PannelloGeneri)
-        Me.RiquadroDestraPanel.Controls.Add(Me.SplitManifestoInfoPrincipali)
-        Me.RiquadroDestraPanel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RiquadroDestraPanel.Location = New System.Drawing.Point(0, 0)
-        Me.RiquadroDestraPanel.MinimumSize = New System.Drawing.Size(50, 100)
-        Me.RiquadroDestraPanel.Name = "RiquadroDestraPanel"
-        Me.RiquadroDestraPanel.Size = New System.Drawing.Size(651, 518)
-        Me.RiquadroDestraPanel.TabIndex = 20
+        Me.PanelDettagliFilm.AutoScroll = True
+        Me.PanelDettagliFilm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanelDettagliFilm.Controls.Add(Me.PannelloExtra)
+        Me.PanelDettagliFilm.Controls.Add(Me.PanelFile)
+        Me.PanelDettagliFilm.Controls.Add(Me.PanelValutazioni)
+        Me.PanelDettagliFilm.Controls.Add(Me.PannelloTrama)
+        Me.PanelDettagliFilm.Controls.Add(Me.PannelloAttori)
+        Me.PanelDettagliFilm.Controls.Add(Me.PannelloGeneri)
+        Me.PanelDettagliFilm.Controls.Add(Me.SplitPosterInfoPrincipali)
+        Me.PanelDettagliFilm.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelDettagliFilm.Location = New System.Drawing.Point(0, 0)
+        Me.PanelDettagliFilm.Margin = New System.Windows.Forms.Padding(3, 3, 3, 47)
+        Me.PanelDettagliFilm.MinimumSize = New System.Drawing.Size(50, 100)
+        Me.PanelDettagliFilm.Name = "PanelDettagliFilm"
+        Me.PanelDettagliFilm.Padding = New System.Windows.Forms.Padding(0, 0, 0, 47)
+        Me.PanelDettagliFilm.Size = New System.Drawing.Size(651, 743)
+        Me.PanelDettagliFilm.TabIndex = 20
         '
         'PannelloExtra
         '
@@ -3629,8 +3583,8 @@ Partial Class MainForm
         Me.ListaAttori.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaAttori.FullRowSelect = True
         Me.ListaAttori.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem1.StateImageIndex = 0
-        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3})
+        ListViewItem10.StateImageIndex = 0
+        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem10, ListViewItem11, ListViewItem12})
         Me.ListaAttori.Location = New System.Drawing.Point(0, 32)
         Me.ListaAttori.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaAttori.MultiSelect = False
@@ -3678,8 +3632,8 @@ Partial Class MainForm
         Me.ListaGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaGeneri.FullRowSelect = True
         Me.ListaGeneri.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem6.StateImageIndex = 0
-        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
+        ListViewItem18.StateImageIndex = 0
+        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem16, ListViewItem17, ListViewItem18})
         Me.ListaGeneri.Location = New System.Drawing.Point(0, 32)
         Me.ListaGeneri.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaGeneri.MultiSelect = False
@@ -3706,25 +3660,25 @@ Partial Class MainForm
         Me.IntestazioneGeneri.Text = "Generi"
         Me.IntestazioneGeneri.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'SplitManifestoInfoPrincipali
+        'SplitPosterInfoPrincipali
         '
-        Me.SplitManifestoInfoPrincipali.Dock = System.Windows.Forms.DockStyle.Top
-        Me.SplitManifestoInfoPrincipali.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
-        Me.SplitManifestoInfoPrincipali.IsSplitterFixed = True
-        Me.SplitManifestoInfoPrincipali.Location = New System.Drawing.Point(0, 0)
-        Me.SplitManifestoInfoPrincipali.Name = "SplitManifestoInfoPrincipali"
+        Me.SplitPosterInfoPrincipali.Dock = System.Windows.Forms.DockStyle.Top
+        Me.SplitPosterInfoPrincipali.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.SplitPosterInfoPrincipali.IsSplitterFixed = True
+        Me.SplitPosterInfoPrincipali.Location = New System.Drawing.Point(0, 0)
+        Me.SplitPosterInfoPrincipali.Name = "SplitPosterInfoPrincipali"
         '
-        'SplitManifestoInfoPrincipali.Panel1
+        'SplitPosterInfoPrincipali.Panel1
         '
-        Me.SplitManifestoInfoPrincipali.Panel1.Controls.Add(Me.PicPoster)
+        Me.SplitPosterInfoPrincipali.Panel1.Controls.Add(Me.PicPoster)
         '
-        'SplitManifestoInfoPrincipali.Panel2
+        'SplitPosterInfoPrincipali.Panel2
         '
-        Me.SplitManifestoInfoPrincipali.Panel2.Controls.Add(Me.FlowLayoutPanel6)
-        Me.SplitManifestoInfoPrincipali.Size = New System.Drawing.Size(630, 360)
-        Me.SplitManifestoInfoPrincipali.SplitterDistance = 250
-        Me.SplitManifestoInfoPrincipali.SplitterWidth = 1
-        Me.SplitManifestoInfoPrincipali.TabIndex = 98
+        Me.SplitPosterInfoPrincipali.Panel2.Controls.Add(Me.FlowLayoutPanel6)
+        Me.SplitPosterInfoPrincipali.Size = New System.Drawing.Size(630, 360)
+        Me.SplitPosterInfoPrincipali.SplitterDistance = 250
+        Me.SplitPosterInfoPrincipali.SplitterWidth = 1
+        Me.SplitPosterInfoPrincipali.TabIndex = 98
         '
         'PicPoster
         '
@@ -3745,12 +3699,14 @@ Partial Class MainForm
         Me.FlowLayoutPanel6.Controls.Add(Me.LabTitoloITA)
         Me.FlowLayoutPanel6.Controls.Add(Me.LabTitoloORIG)
         Me.FlowLayoutPanel6.Controls.Add(Me.PanelNote)
+        Me.FlowLayoutPanel6.Controls.Add(Me.PanelToggleImg)
         Me.FlowLayoutPanel6.Controls.Add(Me.PanelAnno)
         Me.FlowLayoutPanel6.Controls.Add(Me.PannelloNazione)
         Me.FlowLayoutPanel6.Controls.Add(Me.PanelDurata)
         Me.FlowLayoutPanel6.Controls.Add(Me.PanelRegisti)
         Me.FlowLayoutPanel6.Controls.Add(Me.PanelAutori)
         Me.FlowLayoutPanel6.Controls.Add(Me.PanelMusicisti)
+        Me.FlowLayoutPanel6.Controls.Add(Me.PicSchermata)
         Me.FlowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel6.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel6.MinimumSize = New System.Drawing.Size(140, 100)
@@ -3787,7 +3743,6 @@ Partial Class MainForm
         Me.PanelNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PanelNote.Controls.Add(Me.LabNote)
         Me.PanelNote.Controls.Add(Me.PictureBox7)
-        Me.FlowLayoutPanel6.SetFlowBreak(Me.PanelNote, True)
         Me.PanelNote.Location = New System.Drawing.Point(3, 84)
         Me.PanelNote.Name = "PanelNote"
         Me.PanelNote.Size = New System.Drawing.Size(137, 37)
@@ -3814,6 +3769,50 @@ Partial Class MainForm
         Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox7.TabIndex = 1
         Me.PictureBox7.TabStop = False
+        '
+        'PanelToggleImg
+        '
+        Me.PanelToggleImg.AutoSize = True
+        Me.PanelToggleImg.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanelToggleImg.Controls.Add(Me.ButtPannelloSchermata)
+        Me.PanelToggleImg.Controls.Add(Me.ButtTogglePoster)
+        Me.FlowLayoutPanel6.SetFlowBreak(Me.PanelToggleImg, True)
+        Me.PanelToggleImg.Location = New System.Drawing.Point(146, 84)
+        Me.PanelToggleImg.Name = "PanelToggleImg"
+        Me.PanelToggleImg.Size = New System.Drawing.Size(79, 35)
+        Me.PanelToggleImg.TabIndex = 88
+        '
+        'ButtPannelloSchermata
+        '
+        Me.ButtPannelloSchermata.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.ButtPannelloSchermata.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.ButtPannelloSchermata.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight
+        Me.ButtPannelloSchermata.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ButtPannelloSchermata.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtPannelloSchermata.Location = New System.Drawing.Point(44, 0)
+        Me.ButtPannelloSchermata.Margin = New System.Windows.Forms.Padding(0)
+        Me.ButtPannelloSchermata.Name = "ButtPannelloSchermata"
+        Me.ButtPannelloSchermata.Size = New System.Drawing.Size(35, 35)
+        Me.ButtPannelloSchermata.TabIndex = 90
+        Me.ButtPannelloSchermata.Text = "S"
+        Me.ToolTip.SetToolTip(Me.ButtPannelloSchermata, "Nascondi/Visualizza la schermata del film")
+        Me.ButtPannelloSchermata.UseVisualStyleBackColor = False
+        '
+        'ButtTogglePoster
+        '
+        Me.ButtTogglePoster.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.ButtTogglePoster.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.ButtTogglePoster.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight
+        Me.ButtTogglePoster.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ButtTogglePoster.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtTogglePoster.Location = New System.Drawing.Point(0, 0)
+        Me.ButtTogglePoster.Margin = New System.Windows.Forms.Padding(0)
+        Me.ButtTogglePoster.Name = "ButtTogglePoster"
+        Me.ButtTogglePoster.Size = New System.Drawing.Size(35, 35)
+        Me.ButtTogglePoster.TabIndex = 0
+        Me.ButtTogglePoster.Text = "P"
+        Me.ToolTip.SetToolTip(Me.ButtTogglePoster, "Nascondi/Visualizza il poster del film")
+        Me.ButtTogglePoster.UseVisualStyleBackColor = False
         '
         'PanelAnno
         '
@@ -4172,101 +4171,101 @@ Partial Class MainForm
         Me.AlberoCategorieLibreria.Location = New System.Drawing.Point(0, 0)
         Me.AlberoCategorieLibreria.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.AlberoCategorieLibreria.Name = "AlberoCategorieLibreria"
-        TreeNode1.ImageIndex = 1
-        TreeNode1.Name = "NodoTuttiFilm"
-        TreeNode1.SelectedImageIndex = 1
-        TreeNode1.Text = "Tutti i film"
-        TreeNode2.ImageIndex = 2
-        TreeNode2.Name = "NodoCatRegisti"
-        TreeNode2.SelectedImageIndex = 2
-        TreeNode2.Text = "Registi"
-        TreeNode3.ImageIndex = 3
-        TreeNode3.Name = "NodoCatAttori"
-        TreeNode3.SelectedImageIndex = 3
-        TreeNode3.Text = "Attori"
-        TreeNode4.Name = "Node5"
-        TreeNode4.Text = "🙂 Commedia"
-        TreeNode5.Name = "Node7"
-        TreeNode5.Text = "🤣 Comico"
-        TreeNode6.Name = "Node6"
-        TreeNode6.Text = "😭 Drammatico"
-        TreeNode7.Name = "Node12"
-        TreeNode7.Text = "🕵️ Giallo"
-        TreeNode8.Name = "Node13"
-        TreeNode8.Text = "👮 Polizesco"
-        TreeNode9.Name = "Node14"
-        TreeNode9.Text = "🏴 Noir"
-        TreeNode10.Name = "Node11"
-        TreeNode10.Text = "🤢 Splatter"
-        TreeNode11.Name = "Node8"
-        TreeNode11.Text = "😱 Horror"
-        TreeNode12.Name = "Node9"
-        TreeNode12.Text = "😲 Thriller"
-        TreeNode13.Name = "Node17"
-        TreeNode13.Text = "🔫 Gangster"
-        TreeNode14.Name = "Node10"
-        TreeNode14.Text = "🤖 Fantascienza"
-        TreeNode15.Name = "Node16"
-        TreeNode15.Text = "⚔️ Guerra"
-        TreeNode16.Name = "Node15"
-        TreeNode16.Text = "🎅 Natalizio"
-        TreeNode17.ImageIndex = 4
-        TreeNode17.Name = "NodoCatGeneri"
-        TreeNode17.SelectedImageIndex = 4
-        TreeNode17.Text = "Generi"
-        TreeNode18.ImageIndex = 5
-        TreeNode18.Name = "NodoCatDecenni"
-        TreeNode18.SelectedImageIndex = 5
-        TreeNode18.Text = "Anni"
-        TreeNode19.ImageIndex = 6
-        TreeNode19.Name = "NodoCatNazioni"
-        TreeNode19.SelectedImageIndex = 6
-        TreeNode19.Text = "Nazioni"
-        TreeNode20.ImageIndex = 85
-        TreeNode20.Name = "NodoCatSaghe"
-        TreeNode20.SelectedImageIndex = 85
-        TreeNode20.Text = "Saghe"
-        TreeNode21.ImageIndex = 7
-        TreeNode21.Name = "NodoCatAutori"
-        TreeNode21.SelectedImageIndex = 7
-        TreeNode21.Text = "Autori"
-        TreeNode22.ImageIndex = 8
-        TreeNode22.Name = "NodoCatMusicisti"
-        TreeNode22.SelectedImageIndex = 8
-        TreeNode22.Text = "Musicisti"
-        TreeNode23.ImageIndex = 9
-        TreeNode23.Name = "NodoCatTemi"
-        TreeNode23.SelectedImageIndex = 9
-        TreeNode23.Text = "Temi"
-        TreeNode24.Name = "Node19"
-        TreeNode24.Text = "Antica Grecia"
-        TreeNode25.Name = "Node20"
-        TreeNode25.Text = "Antica Roma"
-        TreeNode26.Name = "Node21"
-        TreeNode26.Text = "Medioevo"
-        TreeNode27.Name = "Node22"
-        TreeNode27.Text = "Cinquecento"
-        TreeNode28.Name = "Node23"
-        TreeNode28.Text = "Seicento"
-        TreeNode29.Name = "Node24"
-        TreeNode29.Text = "Settecento"
-        TreeNode30.Name = "Node25"
-        TreeNode30.Text = "Ottocento"
-        TreeNode31.Name = "Node41"
-        TreeNode31.Text = "Prima guerra mondiale"
-        TreeNode32.Name = "Node42"
-        TreeNode32.Text = "Seconda guerra mondiale"
-        TreeNode33.Name = "Node27"
-        TreeNode33.Text = "Vietnam"
-        TreeNode34.Name = "Node43"
-        TreeNode34.Text = "Anni di piombo"
-        TreeNode35.Name = "Node26"
-        TreeNode35.Text = "Novecento"
-        TreeNode36.ImageIndex = 10
-        TreeNode36.Name = "NodoCatAmbientazione"
-        TreeNode36.SelectedImageIndex = 10
-        TreeNode36.Text = "Ambientazione"
-        Me.AlberoCategorieLibreria.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3, TreeNode17, TreeNode18, TreeNode19, TreeNode20, TreeNode21, TreeNode22, TreeNode23, TreeNode36})
+        TreeNode37.ImageIndex = 1
+        TreeNode37.Name = "NodoTuttiFilm"
+        TreeNode37.SelectedImageIndex = 1
+        TreeNode37.Text = "Tutti i film"
+        TreeNode38.ImageIndex = 2
+        TreeNode38.Name = "NodoCatRegisti"
+        TreeNode38.SelectedImageIndex = 2
+        TreeNode38.Text = "Registi"
+        TreeNode39.ImageIndex = 3
+        TreeNode39.Name = "NodoCatAttori"
+        TreeNode39.SelectedImageIndex = 3
+        TreeNode39.Text = "Attori"
+        TreeNode40.Name = "Node5"
+        TreeNode40.Text = "🙂 Commedia"
+        TreeNode41.Name = "Node7"
+        TreeNode41.Text = "🤣 Comico"
+        TreeNode42.Name = "Node6"
+        TreeNode42.Text = "😭 Drammatico"
+        TreeNode43.Name = "Node12"
+        TreeNode43.Text = "🕵️ Giallo"
+        TreeNode44.Name = "Node13"
+        TreeNode44.Text = "👮 Polizesco"
+        TreeNode45.Name = "Node14"
+        TreeNode45.Text = "🏴 Noir"
+        TreeNode46.Name = "Node11"
+        TreeNode46.Text = "🤢 Splatter"
+        TreeNode47.Name = "Node8"
+        TreeNode47.Text = "😱 Horror"
+        TreeNode48.Name = "Node9"
+        TreeNode48.Text = "😲 Thriller"
+        TreeNode49.Name = "Node17"
+        TreeNode49.Text = "🔫 Gangster"
+        TreeNode50.Name = "Node10"
+        TreeNode50.Text = "🤖 Fantascienza"
+        TreeNode51.Name = "Node16"
+        TreeNode51.Text = "⚔️ Guerra"
+        TreeNode52.Name = "Node15"
+        TreeNode52.Text = "🎅 Natalizio"
+        TreeNode53.ImageIndex = 4
+        TreeNode53.Name = "NodoCatGeneri"
+        TreeNode53.SelectedImageIndex = 4
+        TreeNode53.Text = "Generi"
+        TreeNode54.ImageIndex = 5
+        TreeNode54.Name = "NodoCatDecenni"
+        TreeNode54.SelectedImageIndex = 5
+        TreeNode54.Text = "Anni"
+        TreeNode55.ImageIndex = 6
+        TreeNode55.Name = "NodoCatNazioni"
+        TreeNode55.SelectedImageIndex = 6
+        TreeNode55.Text = "Nazioni"
+        TreeNode56.ImageIndex = 85
+        TreeNode56.Name = "NodoCatSaghe"
+        TreeNode56.SelectedImageIndex = 85
+        TreeNode56.Text = "Saghe"
+        TreeNode57.ImageIndex = 7
+        TreeNode57.Name = "NodoCatAutori"
+        TreeNode57.SelectedImageIndex = 7
+        TreeNode57.Text = "Autori"
+        TreeNode58.ImageIndex = 8
+        TreeNode58.Name = "NodoCatMusicisti"
+        TreeNode58.SelectedImageIndex = 8
+        TreeNode58.Text = "Musicisti"
+        TreeNode59.ImageIndex = 9
+        TreeNode59.Name = "NodoCatTemi"
+        TreeNode59.SelectedImageIndex = 9
+        TreeNode59.Text = "Temi"
+        TreeNode60.Name = "Node19"
+        TreeNode60.Text = "Antica Grecia"
+        TreeNode61.Name = "Node20"
+        TreeNode61.Text = "Antica Roma"
+        TreeNode62.Name = "Node21"
+        TreeNode62.Text = "Medioevo"
+        TreeNode63.Name = "Node22"
+        TreeNode63.Text = "Cinquecento"
+        TreeNode64.Name = "Node23"
+        TreeNode64.Text = "Seicento"
+        TreeNode65.Name = "Node24"
+        TreeNode65.Text = "Settecento"
+        TreeNode66.Name = "Node25"
+        TreeNode66.Text = "Ottocento"
+        TreeNode67.Name = "Node41"
+        TreeNode67.Text = "Prima guerra mondiale"
+        TreeNode68.Name = "Node42"
+        TreeNode68.Text = "Seconda guerra mondiale"
+        TreeNode69.Name = "Node27"
+        TreeNode69.Text = "Vietnam"
+        TreeNode70.Name = "Node43"
+        TreeNode70.Text = "Anni di piombo"
+        TreeNode71.Name = "Node26"
+        TreeNode71.Text = "Novecento"
+        TreeNode72.ImageIndex = 10
+        TreeNode72.Name = "NodoCatAmbientazione"
+        TreeNode72.SelectedImageIndex = 10
+        TreeNode72.Text = "Ambientazione"
+        Me.AlberoCategorieLibreria.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode37, TreeNode38, TreeNode39, TreeNode53, TreeNode54, TreeNode55, TreeNode56, TreeNode57, TreeNode58, TreeNode59, TreeNode72})
         Me.AlberoCategorieLibreria.SelectedImageIndex = 0
         Me.AlberoCategorieLibreria.ShowNodeToolTips = True
         Me.AlberoCategorieLibreria.ShowRootLines = False
@@ -4302,23 +4301,6 @@ Partial Class MainForm
             Or System.IO.NotifyFilters.LastWrite), System.IO.NotifyFilters)
         Me.FileSystemWatcher.SynchronizingObject = Me
         '
-        'ButtPannelloSchermata
-        '
-        Me.ButtPannelloSchermata.BackColor = System.Drawing.Color.Transparent
-        Me.ButtPannelloSchermata.Dock = System.Windows.Forms.DockStyle.Top
-        Me.ButtPannelloSchermata.FlatAppearance.BorderSize = 0
-        Me.ButtPannelloSchermata.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight
-        Me.ButtPannelloSchermata.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ButtPannelloSchermata.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtPannelloSchermata.ForeColor = System.Drawing.Color.Gray
-        Me.ButtPannelloSchermata.Location = New System.Drawing.Point(0, 0)
-        Me.ButtPannelloSchermata.Name = "ButtPannelloSchermata"
-        Me.ButtPannelloSchermata.Size = New System.Drawing.Size(651, 23)
-        Me.ButtPannelloSchermata.TabIndex = 90
-        Me.ButtPannelloSchermata.Text = "nascondi schermata ∧"
-        Me.ToolTip.SetToolTip(Me.ButtPannelloSchermata, "Nascondi/Visualizza pannello Schermata")
-        Me.ButtPannelloSchermata.UseVisualStyleBackColor = False
-        '
         'PosterFilmPiccoli
         '
         Me.PosterFilmPiccoli.ColorDepth = System.Windows.Forms.ColorDepth.Depth16Bit
@@ -4344,9 +4326,8 @@ Partial Class MainForm
         '
         'SplitContainerCSX_DX.Panel2
         '
-        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.ButtPannelloSchermata)
         Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.BarraStrumentiFilm)
-        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.SplitImmagineDettagli)
+        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliFilm)
         Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliCategoria)
         Me.SplitContainerCSX_DX.Size = New System.Drawing.Size(1214, 743)
         Me.SplitContainerCSX_DX.SplitterDistance = 559
@@ -4665,14 +4646,9 @@ Partial Class MainForm
         Me.PannelloFiltriSemplici.PerformLayout()
         Me.PannelloEsitoFiltri.ResumeLayout(False)
         Me.PannelloEsitoFiltri.PerformLayout()
-        Me.SplitImmagineDettagli.Panel1.ResumeLayout(False)
-        Me.SplitImmagineDettagli.Panel2.ResumeLayout(False)
-        Me.SplitImmagineDettagli.ResumeLayout(False)
-        Me.SplitPosterSchermata.Panel2.ResumeLayout(False)
-        Me.SplitPosterSchermata.ResumeLayout(False)
         CType(Me.PicSchermata, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.RiquadroDestraPanel.ResumeLayout(False)
-        Me.RiquadroDestraPanel.PerformLayout()
+        Me.PanelDettagliFilm.ResumeLayout(False)
+        Me.PanelDettagliFilm.PerformLayout()
         Me.PannelloExtra.ResumeLayout(False)
         Me.PanelFile.ResumeLayout(False)
         Me.PanelFile.PerformLayout()
@@ -4753,16 +4729,17 @@ Partial Class MainForm
         Me.PannelloTrama.PerformLayout()
         Me.PannelloAttori.ResumeLayout(False)
         Me.PannelloGeneri.ResumeLayout(False)
-        Me.SplitManifestoInfoPrincipali.Panel1.ResumeLayout(False)
-        Me.SplitManifestoInfoPrincipali.Panel2.ResumeLayout(False)
-        Me.SplitManifestoInfoPrincipali.Panel2.PerformLayout()
-        Me.SplitManifestoInfoPrincipali.ResumeLayout(False)
+        Me.SplitPosterInfoPrincipali.Panel1.ResumeLayout(False)
+        Me.SplitPosterInfoPrincipali.Panel2.ResumeLayout(False)
+        Me.SplitPosterInfoPrincipali.Panel2.PerformLayout()
+        Me.SplitPosterInfoPrincipali.ResumeLayout(False)
         CType(Me.PicPoster, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel6.ResumeLayout(False)
         Me.FlowLayoutPanel6.PerformLayout()
         Me.PanelNote.ResumeLayout(False)
         Me.PanelNote.PerformLayout()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelToggleImg.ResumeLayout(False)
         Me.PanelAnno.ResumeLayout(False)
         Me.PanelAnno.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4884,16 +4861,14 @@ Partial Class MainForm
     Friend WithEvents FiltroRisoluzioneMin As System.Windows.Forms.TrackBar
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents FiltroBitrateMin As System.Windows.Forms.TrackBar
-    Friend WithEvents SplitImmagineDettagli As System.Windows.Forms.SplitContainer
     Friend WithEvents PicSchermata As System.Windows.Forms.PictureBox
-    Friend WithEvents RiquadroDestraPanel As System.Windows.Forms.Panel
+    Friend WithEvents PanelDettagliFilm As System.Windows.Forms.Panel
     Friend WithEvents ToolStripDropDownButton1 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents PrimaRigaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TitoloITAToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TitoloOriginaleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SecondaRigaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TerzaRigaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SplitPosterSchermata As System.Windows.Forms.SplitContainer
     Friend WithEvents ToolStripDropDownButton2 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents SchermataToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PosterToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -4997,8 +4972,6 @@ Partial Class MainForm
     Friend WithEvents Panel14 As System.Windows.Forms.Panel
     Friend WithEvents Label62 As System.Windows.Forms.Label
     Friend WithEvents CheckedListBox2 As System.Windows.Forms.CheckedListBox
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents PannelloExtra As System.Windows.Forms.Panel
     Friend WithEvents ButtAddExtra As System.Windows.Forms.Button
     Friend WithEvents ListaExtra As System.Windows.Forms.ListBox
@@ -5120,7 +5093,7 @@ Partial Class MainForm
     Friend WithEvents PannelloGeneri As System.Windows.Forms.Panel
     Friend WithEvents ListaGeneri As System.Windows.Forms.ListView
     Friend WithEvents IntestazioneGeneri As System.Windows.Forms.Label
-    Friend WithEvents SplitManifestoInfoPrincipali As System.Windows.Forms.SplitContainer
+    Friend WithEvents SplitPosterInfoPrincipali As System.Windows.Forms.SplitContainer
     Friend WithEvents PicPoster As System.Windows.Forms.PictureBox
     Friend WithEvents FlowLayoutPanel6 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents LabTitoloITA As System.Windows.Forms.Label
@@ -5149,5 +5122,9 @@ Partial Class MainForm
     Friend WithEvents PanelMusicisti As System.Windows.Forms.Panel
     Friend WithEvents LabMusicisti As System.Windows.Forms.Label
     Friend WithEvents PictureBox5 As System.Windows.Forms.PictureBox
+    Friend WithEvents PanelToggleImg As System.Windows.Forms.Panel
+    Friend WithEvents ButtTogglePoster As System.Windows.Forms.Button
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
 
 End Class

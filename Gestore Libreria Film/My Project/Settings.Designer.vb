@@ -233,6 +233,18 @@ Namespace My
                 Me("PreferisciIconePoster") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property PannelloPosterChiuso() As Boolean
+            Get
+                Return CType(Me("PannelloPosterChiuso"),Boolean)
+            End Get
+            Set
+                Me("PannelloPosterChiuso") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

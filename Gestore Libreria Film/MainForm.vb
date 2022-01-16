@@ -222,11 +222,17 @@ Public Class MainForm
                 VisualizzazioneSchedaPersona(False)
 
                 Dim DurataTotMinuti As UInteger = 0
+                Dim MinAnno As UShort = UShort.MaxValue
+                Dim MaxAnno As UShort = UShort.MinValue
                 For i As Short = 0 To (LibreriaFilm.Count - 1)
                     ListaIndiciFilmInCategoria.Add(i)
                     DurataTotMinuti += LibreriaFilm(i).DurataMinuti
+                    Dim AnnoFilm As UShort = LibreriaFilm(i).Anno
+                    If (AnnoFilm < MinAnno) Then MinAnno = AnnoFilm
+                    If (AnnoFilm <> 0 AndAlso AnnoFilm > MaxAnno) Then MaxAnno = AnnoFilm
                 Next
                 LabDurataCat.Text = FormattaDurata(DurataTotMinuti)
+                ImpostaAnnoAttività(MinAnno, MaxAnno)
             Case 1 'Registi
                 Dim ListaCategoria As ListaEtichettata = FilmPerRegista.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Regista: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
@@ -236,7 +242,7 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.camera
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
+                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
 
@@ -250,7 +256,7 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.persona
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
+                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = True
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
@@ -270,7 +276,7 @@ Public Class MainForm
                     IconaCategoriaScelta.Image = My.Resources.generi
                 End If
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
+                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = False
                 VisualizzazioneSchedaPersona(False)
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
@@ -301,7 +307,7 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 ImpostaRisorsaIconaNazione(ListaCategoria.GetEtichetta, IconaCategoriaScelta, False)
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
+                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = False
                 VisualizzazioneSchedaPersona(False)
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
@@ -318,7 +324,7 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.autore
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
+                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = True
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
@@ -333,7 +339,7 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.musica
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                'ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
+                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 'LabValoreCategoriaScelta.Enabled = True
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
                 LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
@@ -731,7 +737,7 @@ Public Class MainForm
         Next
 
         'Autori
-        AlberoCategorieLibreria.Nodes.Item(6).Nodes.Clear()
+        AlberoCategorieLibreria.Nodes.Item(7).Nodes.Clear()
         FilmPerAutore.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
         For Each autore In FilmPerAutore
             Dim elem As New TreeNode()
@@ -744,11 +750,11 @@ Public Class MainForm
             elem.Text += Chr(10) + Chr(13) + "(" + autore.Conteggio.ToString + ")"
             elem.ImageIndex = 0
             elem.SelectedImageIndex = 0
-            AlberoCategorieLibreria.Nodes.Item(6).Nodes.Add(elem)
+            AlberoCategorieLibreria.Nodes.Item(7).Nodes.Add(elem)
         Next
 
         'Musicisti
-        AlberoCategorieLibreria.Nodes.Item(7).Nodes.Clear()
+        AlberoCategorieLibreria.Nodes.Item(8).Nodes.Clear()
         FilmPerMusicista.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
         For Each musicista In FilmPerMusicista
             Dim elem As New TreeNode()
@@ -761,7 +767,7 @@ Public Class MainForm
             elem.Text += Chr(10) + Chr(13) + "(" + musicista.Conteggio.ToString + ")"
             elem.ImageIndex = 0
             elem.SelectedImageIndex = 0
-            AlberoCategorieLibreria.Nodes.Item(7).Nodes.Add(elem)
+            AlberoCategorieLibreria.Nodes.Item(8).Nodes.Add(elem)
         Next
     End Sub
 
@@ -1743,12 +1749,20 @@ Public Class MainForm
             End If
 
             ' Poster
-            Dim PathPoster As String = PercorsoPosterFilm(Film.NomeFile)
-            If (My.Computer.FileSystem.FileExists(PathPoster)) Then
-                PicPoster.ImageLocation = PathPoster
-                SplitManifestoInfoPrincipali.Panel1Collapsed = False
+            If (My.Settings.PannelloPosterChiuso) Then
+                SplitPosterInfoPrincipali.Panel1Collapsed = True
+                ButtTogglePoster.Enabled = True
             Else
-                SplitManifestoInfoPrincipali.Panel1Collapsed = True
+                Dim PathPoster As String = PercorsoPosterFilm(film.NomeFile)
+                If (My.Computer.FileSystem.FileExists(PathPoster)) Then
+                    PicPoster.ImageLocation = PathPoster
+                    SplitPosterInfoPrincipali.Panel1Collapsed = False
+                    ButtTogglePoster.Enabled = True
+                Else
+                    PicPoster.ImageLocation = ""
+                    SplitPosterInfoPrincipali.Panel1Collapsed = True
+                    ButtTogglePoster.Enabled = False
+                End If
             End If
 
             VisualizzazioneContenutoSchermataDestra(True)
@@ -2009,8 +2023,7 @@ Public Class MainForm
             RTFSottotitoli.ForeColor = Color.White
             RTFAudio.Rtf = RTFAudio.Rtf.Replace(ColoriTestoRTFGiorno, ColoriTestoRTFNotte)
 
-            SplitImmagineDettagli.BackColor = NeroLeggermentePiuChiaro
-            RiquadroDestraPanel.BackColor = NeroLeggermentePiuChiaro
+            PanelDettagliFilm.BackColor = NeroLeggermentePiuChiaro
             SplitContainerCSX_DX.Panel2.BackColor = NeroLeggermentePiuChiaro
             IntestazioneAttori.BackColor = GrigioIntestazione
             IntestazioneFile.BackColor = GrigioIntestazione
@@ -2083,8 +2096,7 @@ Public Class MainForm
             ButtonToggleTrama.BackColor = GrigioPannello
             ButtRicercaPersonaIMDB.BackColor = GrigioPannello
 
-            SplitImmagineDettagli.BackColor = GrigioPannello
-            RiquadroDestraPanel.BackColor = GrigioPannello
+            PanelDettagliFilm.BackColor = GrigioPannello
             SplitContainerCSX_DX.Panel2.BackColor = GrigioPannello
             IntestazioneAttori.BackColor = GrigioIntestazione
             IntestazioneFile.BackColor = GrigioIntestazione
@@ -2118,16 +2130,16 @@ Public Class MainForm
         If (Not IsNothing(PicPoster.Image)) Then
             If (DimensioneMax.Width > 200 * 2) Then
                 'a sinistra il manifesto, a destra le info base del film
-                SplitManifestoInfoPrincipali.Height = Math.Max(360, SplitManifestoInfoPrincipali.Panel2.Height)
-                SplitManifestoInfoPrincipali.SplitterDistance = 250 'larghezza del manifesto
-                SplitManifestoInfoPrincipali.Orientation = Orientation.Vertical
+                SplitPosterInfoPrincipali.Height = Math.Max(360, SplitPosterInfoPrincipali.Panel2.Height)
+                SplitPosterInfoPrincipali.SplitterDistance = 250 'larghezza del manifesto
+                SplitPosterInfoPrincipali.Orientation = Orientation.Vertical
             Else
                 'sopra il manifesto, sotto le info base del film
                 Dim AltezzaPosterPerRiempireLarghezza As UShort = PicPoster.Image.Height * (PicPoster.Width / PicPoster.Image.Width)
                 Dim AltezzaManifesto As UShort = If(AltezzaPosterPerRiempireLarghezza > 360, 360, AltezzaPosterPerRiempireLarghezza)
-                SplitManifestoInfoPrincipali.Height = AltezzaManifesto + SplitManifestoInfoPrincipali.Panel2.Height
-                SplitManifestoInfoPrincipali.SplitterDistance = AltezzaManifesto
-                SplitManifestoInfoPrincipali.Orientation = Orientation.Horizontal
+                SplitPosterInfoPrincipali.Height = AltezzaManifesto + SplitPosterInfoPrincipali.Panel2.Height
+                SplitPosterInfoPrincipali.SplitterDistance = AltezzaManifesto
+                SplitPosterInfoPrincipali.Orientation = Orientation.Horizontal
             End If
         End If
         RegolaAltezzaElenco(ListaGeneri)
@@ -2575,24 +2587,31 @@ Public Class MainForm
         If (ModalitaCambiata) Then ImpostaColori(MainModule.ModalitaNotte)
     End Sub
 
-    Private Sub SplitImmagineDettagli_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitImmagineDettagli.SplitterMoved
-        If (SplitImmagineDettagli.Panel1Collapsed = False) Then
-            My.Settings.PannelloSchermataDimensione = SplitImmagineDettagli.SplitterDistance
-            My.Settings.Save()
-        End If
-    End Sub
+    'Private Sub SplitImmagineDettagli_SplitterMoved(sender As Object, e As SplitterEventArgs)
+    '    If (SplitImmagineDettagli.Panel1Collapsed = False) Then
+    '        My.Settings.PannelloSchermataDimensione = SplitImmagineDettagli.SplitterDistance
+    '        My.Settings.Save()
+    '    End If
+    'End Sub
 
     Private Sub ButtPannelloSchermata_Click(sender As Object, e As EventArgs) Handles ButtPannelloSchermata.Click
-        SplitImmagineDettagli.Panel1Collapsed = Not (SplitImmagineDettagli.Panel1Collapsed)
-        ButtPannelloSchermata.Text = If(SplitImmagineDettagli.Panel1Collapsed, "mostra schermata ∨", "nascondi schermata ∧")
-        My.Settings.PannelloSchermataChiuso = SplitImmagineDettagli.Panel1Collapsed
+        PicSchermata.Visible = Not (PicSchermata.Visible)
+        'ButtPannelloSchermata.Text = If(SplitImmagineDettagli.Panel1Collapsed, "mostra schermata ∨", "nascondi schermata ∧")
+        ButtPannelloSchermata.BackColor = If(PicSchermata.Visible, Color.FromArgb(192, 192, 255), Color.Transparent)
+        My.Settings.PannelloSchermataChiuso = Not PicSchermata.Visible
+        My.Settings.Save()
+    End Sub
+
+    Private Sub ButtTogglePoster_Click(sender As Object, e As EventArgs) Handles ButtTogglePoster.Click
+        SplitPosterInfoPrincipali.Panel1Collapsed = Not SplitPosterInfoPrincipali.Panel1Collapsed
+        ButtTogglePoster.BackColor = If(SplitPosterInfoPrincipali.Panel1Collapsed, Color.Transparent, Color.FromArgb(192, 192, 255))
+        My.Settings.PannelloPosterChiuso = SplitPosterInfoPrincipali.Panel1Collapsed
         My.Settings.Save()
     End Sub
 
     Public Sub VisualizzazioneContenutoSchermataDestra(Visualizzare As Boolean)
-        SplitImmagineDettagli.Visible = Visualizzare
+        PanelDettagliFilm.Visible = Visualizzare
         BarraStrumentiFilm.Visible = Visualizzare
-        ButtPannelloSchermata.Visible = Visualizzare
         PanelDettagliCategoria.Visible = Not Visualizzare
     End Sub
 
