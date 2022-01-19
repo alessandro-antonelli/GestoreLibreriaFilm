@@ -188,10 +188,10 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property OrdinamentoIcone() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property OrdinamentoIcone() As Byte
             Get
-                Return CType(Me("OrdinamentoIcone"),String)
+                Return CType(Me("OrdinamentoIcone"),Byte)
             End Get
             Set
                 Me("OrdinamentoIcone") = value
@@ -200,10 +200,10 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property CategoriaPredefinita() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property CategoriaPredefinita() As Byte
             Get
-                Return CType(Me("CategoriaPredefinita"),String)
+                Return CType(Me("CategoriaPredefinita"),Byte)
             End Get
             Set
                 Me("CategoriaPredefinita") = value
@@ -243,6 +243,54 @@ Namespace My
             End Get
             Set
                 Me("PannelloPosterChiuso") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property CategorieOrdinamento() As Byte
+            Get
+                Return CType(Me("CategorieOrdinamento"),Byte)
+            End Get
+            Set
+                Me("CategorieOrdinamento") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property CategorieInfo() As Byte
+            Get
+                Return CType(Me("CategorieInfo"),Byte)
+            End Get
+            Set
+                Me("CategorieInfo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property CategorieFormatoNomi() As Byte
+            Get
+                Return CType(Me("CategorieFormatoNomi"),Byte)
+            End Get
+            Set
+                Me("CategorieFormatoNomi") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property TemaColori() As Byte
+            Get
+                Return CType(Me("TemaColori"),Byte)
+            End Get
+            Set
+                Me("TemaColori") = value
             End Set
         End Property
     End Class

@@ -18,14 +18,119 @@ Public Class MainForm
     Public FilmPerAutore As New List(Of ListaEtichettata)
     Public FilmPerMusicista As New List(Of ListaEtichettata)
 
+    'Cronologia di navigazione
+    Dim CatNavigazioneAttuale As Byte = 0, ValoreNavigazioneAttuale As Short = -1
+
+    Dim PrecedentiCatNavigazione As New List(Of Byte)
+    Dim PrecedentiValNavigazione As New List(Of UShort)
+    Dim PrecedentiIconaSelezionataNavigazione As New List(Of UShort)
+
+    Dim SuccessiveCatNavigazione As New List(Of Byte)
+    Dim SuccessiviValNavigazione As New List(Of UShort)
+    Dim SuccessivaIconaSelezionataNavigazione As New List(Of UShort)
+
     Const ColoriTestoRTFNotte As String = "\deff0 {\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red64\green200\blue64;\red0\green128\blue255;}"
     Const ColoriTestoRTFGiorno As String = "\deff0 {\colortbl;\red0\green0\blue0;\red255\green0\blue0;\red64\green200\blue64;\red0\green128\blue255;}"
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SplitContainerFiltriAvanzati_Icone.Panel1Collapsed = True
         'Visualizzo la categoria "tutti i film"
-        GeneraListaFilmCategoria(0, 0)
+        NavigaAllaCategoria(0, 0)
+    End Sub
+
+    Sub NavigaAllaCategoria(IndiceCategoria As Byte, ValoreCategoria As UShort)
+        If (ValoreNavigazioneAttuale <> -1) Then
+            PrecedentiCatNavigazione.Add(CatNavigazioneAttuale)
+            PrecedentiValNavigazione.Add(ValoreNavigazioneAttuale)
+            If (ElencoFilm.SelectedIndices.Count > 0) Then
+                PrecedentiIconaSelezionataNavigazione.Add(ElencoFilm.SelectedIndices.Item(0))
+            Else
+                PrecedentiIconaSelezionataNavigazione.Add(0)
+            End If
+            ButtCronoIndietro.Enabled = True
+        End If
+
+        SuccessiveCatNavigazione.Clear()
+        SuccessiviValNavigazione.Clear()
+        SuccessivaIconaSelezionataNavigazione.Clear()
+        ButtCronoAvanti.Enabled = False
+
+        'cambio cat
+        CatNavigazioneAttuale = IndiceCategoria
+        ValoreNavigazioneAttuale = ValoreCategoria
+
+        GeneraListaFilmCategoria(IndiceCategoria, ValoreCategoria)
         AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub ButtCronoIndietro_Click(sender As Object, e As EventArgs) Handles ButtCronoIndietro.Click
+        Dim IndicePrecedenteCronologia As UShort = PrecedentiCatNavigazione.Count - 1
+
+        Dim IndiceCategoria As Byte = PrecedentiCatNavigazione.Item(IndicePrecedenteCronologia)
+        Dim ValoreCategoria As UShort = PrecedentiValNavigazione.Item(IndicePrecedenteCronologia)
+        Dim IconaSelezionata As UShort = PrecedentiIconaSelezionataNavigazione.Item(IndicePrecedenteCronologia)
+
+        PrecedentiCatNavigazione.RemoveAt(IndicePrecedenteCronologia)
+        PrecedentiValNavigazione.RemoveAt(IndicePrecedenteCronologia)
+        PrecedentiIconaSelezionataNavigazione.RemoveAt(IndicePrecedenteCronologia)
+        If (PrecedentiCatNavigazione.Count <= 0) Then
+            ButtCronoIndietro.Enabled = False
+        End If
+
+        SuccessiveCatNavigazione.Add(CatNavigazioneAttuale)
+        SuccessiviValNavigazione.Add(ValoreNavigazioneAttuale)
+        If (ElencoFilm.SelectedIndices.Count > 0) Then
+            SuccessivaIconaSelezionataNavigazione.Add(ElencoFilm.SelectedIndices.Item(0))
+        Else
+            SuccessivaIconaSelezionataNavigazione.Add(0)
+        End If
+        ButtCronoAvanti.Enabled = True
+
+        'cambio cat
+        CatNavigazioneAttuale = IndiceCategoria
+        ValoreNavigazioneAttuale = ValoreCategoria
+
+        GeneraListaFilmCategoria(IndiceCategoria, ValoreCategoria)
+        AggiornaIconeDaLista()
+
+        ElencoFilm.Focus()
+        ElencoFilm.Items.Item(IconaSelezionata).EnsureVisible()
+        ElencoFilm.Items.Item(IconaSelezionata).Selected = True
+    End Sub
+
+    Private Sub ButtCronoAvanti_Click(sender As Object, e As EventArgs) Handles ButtCronoAvanti.Click
+        Dim IndiceProssimaCronologia As UShort = SuccessiveCatNavigazione.Count - 1
+
+        Dim IndiceCategoria As Byte = SuccessiveCatNavigazione.Item(IndiceProssimaCronologia)
+        Dim ValoreCategoria As UShort = SuccessiviValNavigazione.Item(IndiceProssimaCronologia)
+        Dim IconaSelezionata As UShort = SuccessivaIconaSelezionataNavigazione.Item(IndiceProssimaCronologia)
+
+        SuccessiveCatNavigazione.RemoveAt(IndiceProssimaCronologia)
+        SuccessiviValNavigazione.RemoveAt(IndiceProssimaCronologia)
+        SuccessivaIconaSelezionataNavigazione.RemoveAt(IndiceProssimaCronologia)
+        If (SuccessiveCatNavigazione.Count <= 0) Then
+            ButtCronoAvanti.Enabled = False
+        End If
+
+        PrecedentiCatNavigazione.Add(CatNavigazioneAttuale)
+        PrecedentiValNavigazione.Add(ValoreNavigazioneAttuale)
+        If (ElencoFilm.SelectedIndices.Count > 0) Then
+            PrecedentiIconaSelezionataNavigazione.Add(ElencoFilm.SelectedIndices.Item(0))
+        Else
+            PrecedentiIconaSelezionataNavigazione.Add(0)
+        End If
+        ButtCronoIndietro.Enabled = True
+
+        'cambio cat
+        CatNavigazioneAttuale = IndiceCategoria
+        ValoreNavigazioneAttuale = ValoreCategoria
+
+        GeneraListaFilmCategoria(IndiceCategoria, ValoreCategoria)
+        AggiornaIconeDaLista()
+
+        ElencoFilm.Focus()
+        ElencoFilm.Items.Item(IconaSelezionata).EnsureVisible()
+        ElencoFilm.Items.Item(IconaSelezionata).Selected = True
     End Sub
 
     Public Sub AggiungiFilm(Film As Film)
@@ -169,8 +274,7 @@ Public Class MainForm
 
         If (selezionato.Level = 0) Then
             If (selezionato.Index = 0) Then
-                GeneraListaFilmCategoria(0, 0)
-                AggiornaIconeDaLista()
+                NavigaAllaCategoria(0, 0)
             Else
                 Dim EraChiuso As Boolean = Not selezionato.IsExpanded
                 AlberoCategorieLibreria.CollapseAll()
@@ -185,24 +289,35 @@ Public Class MainForm
                 End If
             End If
         ElseIf (selezionato.Level = 1) Then
-            GeneraListaFilmCategoria(selezionato.Parent.Index, selezionato.Index)
-            AggiornaIconeDaLista()
+            NavigaAllaCategoria(selezionato.Parent.Index, selezionato.Index)
         End If
     End Sub
 
-    Function FormattaDurata(DurataMinuti As UInteger) As String
+    Function FormattaDurata(DurataMinuti As UInteger, Sintetico As Boolean) As String
         Const MinutiInUnGiorno As UShort = 1440
         Dim Minuti As UShort = (DurataMinuti Mod 60)
 
         If (DurataMinuti < 60) Then
-            Return Minuti.ToString + " min"
+            If (Not Sintetico) Then
+                Return Minuti.ToString + " min"
+            Else
+                Return Minuti.ToString + "m"
+            End If
         ElseIf (DurataMinuti < MinutiInUnGiorno) Then
-            Dim Ore As UShort = Math.Floor(DurataMinuti / 60) Mod 24
-            Return Ore.ToString + If(Ore = 1, " ora, ", " ore") + If(Minuti <> 0, ", " + Minuti.ToString + " min", "")
+            If (Not Sintetico) Then
+                Dim Ore As UShort = Math.Floor(DurataMinuti / 60) Mod 24
+                Return Ore.ToString + If(Ore = 1, " ora, ", " ore") + If(Minuti <> 0, ", " + Minuti.ToString + " min", "")
+            Else
+                Return Math.Round(DurataMinuti / 60, 1).ToString + "h"
+            End If
         ElseIf (DurataMinuti > MinutiInUnGiorno) Then
-            Dim GiorniArrotondati As UShort = Math.Round(DurataMinuti / MinutiInUnGiorno)
-            Dim OreArrotondate As UShort = Math.Round(DurataMinuti / 60) Mod 24
-            Return GiorniArrotondati.ToString + If(GiorniArrotondati = 1, " giorno, ", " giorni, ") + OreArrotondate.ToString + If(OreArrotondate = 1, " ora", " ore")
+            If (Not Sintetico) Then
+                Dim OreArrotondate As UShort = Math.Round(DurataMinuti / 60) Mod 24
+                Dim GiorniArrotondati As UShort = Math.Round((DurataMinuti - OreArrotondate * 60) / MinutiInUnGiorno)
+                Return GiorniArrotondati.ToString + If(GiorniArrotondati = 1, " giorno, ", " giorni, ") + OreArrotondate.ToString + If(OreArrotondate = 1, " ora", " ore")
+            Else
+                Return Math.Round(DurataMinuti / MinutiInUnGiorno, 1).ToString + "g"
+            End If
         End If
     End Function
 
@@ -217,8 +332,6 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = "La tua libreria" '"Tutti i film"
                 IconaCategoriaScelta.Image = My.Resources.ciak_semplice
                 LabConteggioCategoriaScelta.Text = LibreriaFilm.Count.ToString
-                'Label12.Visible = False
-                'Label13.Visible = False
                 VisualizzazioneSchedaPersona(False)
 
                 Dim DurataTotMinuti As UInteger = 0
@@ -231,7 +344,7 @@ Public Class MainForm
                     If (AnnoFilm < MinAnno) Then MinAnno = AnnoFilm
                     If (AnnoFilm <> 0 AndAlso AnnoFilm > MaxAnno) Then MaxAnno = AnnoFilm
                 Next
-                LabDurataCat.Text = FormattaDurata(DurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(DurataTotMinuti, False)
                 ImpostaAnnoAttività(MinAnno, MaxAnno)
             Case 1 'Registi
                 Dim ListaCategoria As ListaEtichettata = FilmPerRegista.Item(IndiceSelezioneNellaCategoria)
@@ -244,7 +357,7 @@ Public Class MainForm
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 2 'Attori
@@ -257,9 +370,8 @@ Public Class MainForm
                 IconaCategoriaScelta.Image = My.Resources.persona
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
-                'LabValoreCategoriaScelta.Enabled = True
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 3 'Generi
@@ -277,9 +389,8 @@ Public Class MainForm
                 End If
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
-                'LabValoreCategoriaScelta.Enabled = False
                 VisualizzazioneSchedaPersona(False)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 4 'Anni pubblicazione
@@ -291,11 +402,9 @@ Public Class MainForm
                 LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.data
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                'Label12.Visible = False
-                'Label13.Visible = False
-                'LabValoreCategoriaScelta.Enabled = False
+                PanPeriodoAttività.Visible = False
                 VisualizzazioneSchedaPersona(False)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 5 'Nazioni
@@ -308,9 +417,8 @@ Public Class MainForm
                 ImpostaRisorsaIconaNazione(ListaCategoria.GetEtichetta, IconaCategoriaScelta, False)
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
-                'LabValoreCategoriaScelta.Enabled = False
                 VisualizzazioneSchedaPersona(False)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 6 'Saghe
@@ -325,9 +433,8 @@ Public Class MainForm
                 IconaCategoriaScelta.Image = My.Resources.autore
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
-                'LabValoreCategoriaScelta.Enabled = True
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 8 'Musicisti
@@ -340,9 +447,8 @@ Public Class MainForm
                 IconaCategoriaScelta.Image = My.Resources.musica
                 LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
-                'LabValoreCategoriaScelta.Enabled = True
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti)
+                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
 
                 ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 9 'Temi
@@ -420,6 +526,7 @@ Public Class MainForm
             Label12.Visible = False
             Label13.Visible = False
         End If
+        PanPeriodoAttività.Visible = True
     End Sub
 
     Sub GeneraListaFilmFiltrati()
@@ -652,123 +759,145 @@ Public Class MainForm
         End Select
     End Sub
 
+    Public Enum FonteIconeValoriCategoria As Byte
+        Nessuna
+        Generi
+        Nazioni
+    End Enum
+
+    Sub PopolaRamoCategoria(Ramo As Windows.Forms.TreeNode, ListaValoriCategoria As List(Of ListaEtichettata), IconeDaUsare As FonteIconeValoriCategoria,
+                            Ordinamento As MainModule.OrdinamentoValoriCategorie, Info As MainModule.InfoCategoria)
+        Ramo.Nodes.Clear()
+
+        Select Case Ordinamento
+            Case OrdinamentoValoriCategorie.NumFilm
+                ListaValoriCategoria.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio)
+            Case OrdinamentoValoriCategorie.DurataFilm
+                ListaValoriCategoria.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) Integer.Parse(B.GetDurataTotMinuti) - Integer.Parse(A.GetDurataTotMinuti))
+            Case OrdinamentoValoriCategorie.NomeAsc
+                ListaValoriCategoria.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) String.Compare(A.GetCognomeNome, B.GetCognomeNome))
+            Case OrdinamentoValoriCategorie.UltimaUscitaDesc
+                ListaValoriCategoria.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) Short.Parse(B.GetMaxAnno) - Short.Parse(A.GetMaxAnno))
+            Case OrdinamentoValoriCategorie.UltimaUscitaAsc
+                ListaValoriCategoria.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) Short.Parse(A.GetMaxAnno) - Short.Parse(B.GetMaxAnno))
+        End Select
+
+        For Each ValoreCategoria In ListaValoriCategoria
+            Dim elem As New TreeNode()
+            If (ValoreCategoria.GetEtichetta.StartsWith("[")) Then
+                elem.Text = ValoreCategoria.GetEtichetta
+                elem.ForeColor = Color.SkyBlue
+            Else
+                elem.Text = ValoreCategoria.GetCognomeNome(True)
+            End If
+
+            If (Info <> InfoCategoria.Nessuna) Then elem.Text += " (" 'Chr(10) + Chr(13)
+
+            Select Case Info
+                Case InfoCategoria.ConteggioFilm
+                    elem.Text += ValoreCategoria.Conteggio.ToString + ")"
+                Case InfoCategoria.DurataFilm
+                    elem.Text += FormattaDurata(ValoreCategoria.GetDurataTotMinuti, True) + ")"
+                Case InfoCategoria.PeriodoAttivita
+                    elem.Text += FormattaPeriodoAttivita(ValoreCategoria.GetMinAnno, ValoreCategoria.GetMaxAnno) + ")"
+            End Select
+
+            Dim IndiceIcona As UShort
+            Select Case IconeDaUsare
+                Case FonteIconeValoriCategoria.Nessuna
+                    IndiceIcona = 0
+                Case FonteIconeValoriCategoria.Generi
+                    IndiceIcona = IndiceIconaGenere(ValoreCategoria.GetEtichetta)
+                Case FonteIconeValoriCategoria.Nazioni
+                    IndiceIcona = IndiceIconaNazione(ValoreCategoria.GetEtichetta)
+            End Select
+            elem.ImageIndex = IndiceIcona
+            elem.SelectedImageIndex = IndiceIcona
+
+            Ramo.Nodes.Add(elem)
+        Next
+    End Sub
+
+    Function FormattaPeriodoAttivita(MinAnno As UShort, MaxAnno As UShort) As String
+        If (MinAnno <> UShort.MaxValue And MaxAnno <> UShort.MinValue) Then
+            If (MinAnno = MaxAnno) Then
+                Return MinAnno.ToString
+            Else
+                Return MinAnno.ToString + "-" + MaxAnno.ToString.Substring(2, 2)
+            End If
+        Else
+            Return "?"
+        End If
+    End Function
+
     Public Sub AggiornaAlberoCategorie()
+        ' ======================= AGGIORNO menu impostazioni albero categorie ======================
+
+        ' Ordinamento categorie
+        For Each item As ToolStripMenuItem In DropDownOrdinamentoCategorie.DropDownItems
+            item.Checked = False
+        Next
+        Select Case My.Settings.CategorieOrdinamento
+            Case MainModule.OrdinamentoValoriCategorie.NumFilm
+                NumeroFilmToolStripMenuItem.Checked = True
+            Case MainModule.OrdinamentoValoriCategorie.DurataFilm
+                DurataFilmToolStripMenuItem.Checked = True
+            Case MainModule.OrdinamentoValoriCategorie.NomeAsc
+                AlfabeticoToolStripMenuItem.Checked = True
+            Case MainModule.OrdinamentoValoriCategorie.UltimaUscitaDesc
+                EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Checked = True
+            Case MainModule.OrdinamentoValoriCategorie.UltimaUscitaAsc
+                EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Checked = True
+        End Select
+
+        ' Info da visualizzare
+        For Each item As ToolStripMenuItem In DropDownInfoCategoria.DropDownItems
+            item.Checked = False
+        Next
+        Select Case My.Settings.CategorieInfo
+            Case MainModule.InfoCategoria.Nessuna
+                NessunaInformazioneToolStripMenuItem.Checked = True
+            Case MainModule.InfoCategoria.PeriodoAttivita
+                PeriodoDiAttivitàToolStripMenuItem.Checked = True
+            Case MainModule.InfoCategoria.DurataFilm
+                DurataFilmToolStripMenuItem1.Checked = True
+            Case MainModule.InfoCategoria.ConteggioFilm
+                ConteggioFilmToolStripMenuItem.Checked = True
+        End Select
+
         ' ======================= AGGIORNO TreeView AlberoCategorieLibreria =======================
-        AlberoCategorieLibreria.Nodes.Item(0).Text = "Tutti i film" + Chr(10) + Chr(13) + "(" + LibreriaFilm.Count.ToString + ")"
+        AlberoCategorieLibreria.Nodes.Item(0).Text = "Tutti i film"
+
+        AlberoCategorieLibreria.Nodes.Item(0).Text += Chr(10) + Chr(13) + "(" + LibreriaFilm.Count.ToString + ")"
+        'Select Case My.Settings.CategorieInfo
+        '    Case MainModule.InfoCategoria.ConteggioFilm
+        '        AlberoCategorieLibreria.Nodes.Item(0).Text += Chr(10) + Chr(13) + "(" + LibreriaFilm.Count.ToString + ")"
+        '    Case MainModule.InfoCategoria.DurataFilm
+        '        'TODO
+        '    Case MainModule.InfoCategoria.PeriodoAttivita
+        '        'TODO
+        'End Select
 
         'Registi
-        AlberoCategorieLibreria.Nodes.Item(1).Nodes.Clear()
-        FilmPerRegista.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
-        For Each regista In FilmPerRegista
-            Dim elem As New TreeNode()
-            If (regista.GetEtichetta.StartsWith("[")) Then
-                elem.Text = regista.GetEtichetta
-                elem.ForeColor = Color.SkyBlue
-            Else
-                elem.Text = regista.GetCognomeNome(True)
-            End If
-            elem.Text += Chr(10) + Chr(13) + "(" + regista.Conteggio.ToString + ")"
-            elem.ImageIndex = 0
-            elem.SelectedImageIndex = 0
-            AlberoCategorieLibreria.Nodes.Item(1).Nodes.Add(elem)
-        Next
+        PopolaRamoCategoria(AlberoCategorieLibreria.Nodes.Item(1), FilmPerRegista, FonteIconeValoriCategoria.Nessuna, My.Settings.CategorieOrdinamento, My.Settings.CategorieInfo)
 
         'Attori
-        AlberoCategorieLibreria.Nodes.Item(2).Nodes.Clear()
-        FilmPerAttore.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
-        For Each attore In FilmPerAttore
-            Dim elem As New TreeNode()
-            If (attore.GetEtichetta.StartsWith("[")) Then
-                elem.Text = attore.GetEtichetta
-                elem.ForeColor = Color.SkyBlue
-            Else
-                elem.Text = attore.GetCognomeNome(True)
-            End If
-            elem.Text += Chr(10) + Chr(13) + "(" + attore.Conteggio.ToString + ")"
-            elem.ImageIndex = 0
-            elem.SelectedImageIndex = 0
-            AlberoCategorieLibreria.Nodes.Item(2).Nodes.Add(elem)
-        Next
+        PopolaRamoCategoria(AlberoCategorieLibreria.Nodes.Item(2), FilmPerAttore, FonteIconeValoriCategoria.Nessuna, My.Settings.CategorieOrdinamento, My.Settings.CategorieInfo)
 
         'Generi
-        AlberoCategorieLibreria.Nodes.Item(3).Nodes.Clear()
-        FilmPerGenere.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
-        For Each genere In FilmPerGenere
-            Dim elem As New TreeNode()
-            If (genere.GetEtichetta.StartsWith("[")) Then
-                elem.ForeColor = Color.SkyBlue
-            End If
-            elem.Text = genere.GetEtichetta + Chr(10) + Chr(13) + "(" + genere.Conteggio.ToString + ")"
-
-            Dim icona As Short = IndiceIconaGenere(genere.GetEtichetta)
-            elem.ImageIndex = icona
-            elem.SelectedImageIndex = icona
-
-            AlberoCategorieLibreria.Nodes.Item(3).Nodes.Add(elem)
-        Next
+        PopolaRamoCategoria(AlberoCategorieLibreria.Nodes.Item(3), FilmPerGenere, FonteIconeValoriCategoria.Generi, My.Settings.CategorieOrdinamento, My.Settings.CategorieInfo)
 
         'Decenni
-        AlberoCategorieLibreria.Nodes.Item(4).Nodes.Clear()
-        FilmPerDecennio.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
-        For Each decennio In FilmPerDecennio
-            Dim elem As New TreeNode()
-            If (decennio.GetEtichetta.StartsWith("[")) Then
-                elem.ForeColor = Color.SkyBlue
-            End If
-            elem.Text = decennio.GetEtichetta + Chr(10) + Chr(13) + "(" + decennio.Conteggio.ToString + ")"
-            elem.ImageIndex = 0
-            elem.SelectedImageIndex = 0
-            AlberoCategorieLibreria.Nodes.Item(4).Nodes.Add(elem)
-        Next
+        PopolaRamoCategoria(AlberoCategorieLibreria.Nodes.Item(4), FilmPerDecennio, FonteIconeValoriCategoria.Nessuna, My.Settings.CategorieOrdinamento, My.Settings.CategorieInfo)
 
         'Nazioni
-        AlberoCategorieLibreria.Nodes.Item(5).Nodes.Clear()
-        FilmPerNazione.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
-        For Each nazione In FilmPerNazione
-            Dim elem As New TreeNode()
-            If (nazione.GetEtichetta.StartsWith("[")) Then
-                elem.ForeColor = Color.SkyBlue
-            End If
-            elem.Text = nazione.GetEtichetta.ToUpper + Chr(10) + Chr(13) + "(" + nazione.Conteggio.ToString + ")"
-            Dim Icona As Byte = IndiceIconaNazione(nazione.GetEtichetta)
-            elem.ImageIndex = Icona
-            elem.SelectedImageIndex = Icona
-            AlberoCategorieLibreria.Nodes.Item(5).Nodes.Add(elem)
-        Next
+        PopolaRamoCategoria(AlberoCategorieLibreria.Nodes.Item(5), FilmPerNazione, FonteIconeValoriCategoria.Nazioni, My.Settings.CategorieOrdinamento, My.Settings.CategorieInfo)
 
         'Autori
-        AlberoCategorieLibreria.Nodes.Item(7).Nodes.Clear()
-        FilmPerAutore.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
-        For Each autore In FilmPerAutore
-            Dim elem As New TreeNode()
-            If (autore.GetEtichetta.StartsWith("[")) Then
-                elem.Text = autore.GetEtichetta
-                elem.ForeColor = Color.SkyBlue
-            Else
-                elem.Text = autore.GetCognomeNome(True)
-            End If
-            elem.Text += Chr(10) + Chr(13) + "(" + autore.Conteggio.ToString + ")"
-            elem.ImageIndex = 0
-            elem.SelectedImageIndex = 0
-            AlberoCategorieLibreria.Nodes.Item(7).Nodes.Add(elem)
-        Next
+        PopolaRamoCategoria(AlberoCategorieLibreria.Nodes.Item(7), FilmPerAutore, FonteIconeValoriCategoria.Nessuna, My.Settings.CategorieOrdinamento, My.Settings.CategorieInfo)
 
         'Musicisti
-        AlberoCategorieLibreria.Nodes.Item(8).Nodes.Clear()
-        FilmPerMusicista.Sort(Function(A As ListaEtichettata, B As ListaEtichettata) B.Conteggio - A.Conteggio) 'OrdinePerConteggio
-        For Each musicista In FilmPerMusicista
-            Dim elem As New TreeNode()
-            If (musicista.GetEtichetta.StartsWith("[")) Then
-                elem.Text = musicista.GetEtichetta
-                elem.ForeColor = Color.SkyBlue
-            Else
-                elem.Text = musicista.GetCognomeNome(True)
-            End If
-            elem.Text += Chr(10) + Chr(13) + "(" + musicista.Conteggio.ToString + ")"
-            elem.ImageIndex = 0
-            elem.SelectedImageIndex = 0
-            AlberoCategorieLibreria.Nodes.Item(8).Nodes.Add(elem)
-        Next
+        PopolaRamoCategoria(AlberoCategorieLibreria.Nodes.Item(8), FilmPerMusicista, FonteIconeValoriCategoria.Nessuna, My.Settings.CategorieOrdinamento, My.Settings.CategorieInfo)
     End Sub
 
     Private Sub BottCancellaFiltri_Click(sender As Object, e As EventArgs) Handles BottCancellaFiltri.Click
@@ -803,13 +932,13 @@ Public Class MainForm
         AggiornaIconeDaLista()
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles TogglePannelloSx.Click
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ButtTogglePannelloSx.Click
         SplitContainerSX_C.Panel1Collapsed = Not SplitContainerSX_C.Panel1Collapsed
         My.Settings.PannelloSxChiuso = SplitContainerSX_C.Panel1Collapsed
         My.Settings.Save()
     End Sub
 
-    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles TogglePannelloDx.Click
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ButtTogglePannelloDx.Click
         SplitContainerCSX_DX.Panel2Collapsed = Not SplitContainerCSX_DX.Panel2Collapsed
         My.Settings.PannelloDxChiuso = SplitContainerCSX_DX.Panel2Collapsed
         My.Settings.Save()
@@ -869,21 +998,6 @@ Public Class MainForm
 
         Return elemento
     End Function
-
-    Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
-        SvuotaElencoFilm()
-        ScansioneLibreria.PercorsiFile = My.Computer.FileSystem.GetFiles(My.Settings.LibreriaPercorso)
-        ScansioneLibreria.ShowDialog()
-
-        'Aggiorno categorie disponibili (albero menu sinistra)
-        AggiornaAlberoCategorie()
-        'Ricalcolo i film da visualizzare in base a categoria e filtri selezionati, e ripopolo la ListView con le relative icone
-        SelezioneCategoria()
-    End Sub
-
-    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        ScegliLibreria.ShowDialog()
-    End Sub
 
     Sub SvuotaElencoFilm()
         VisualizzazioneContenutoSchermataDestra(False)
@@ -1709,7 +1823,7 @@ Public Class MainForm
             'Else
             '    PannelloTrama.Visible = False
             'End If
-            Dim PathTramaLunga As String = MainModule.PercorsoTramaLunga(Film.NomeFile)
+            Dim PathTramaLunga As String = MainModule.PercorsoTramaLunga(film.NomeFile)
             Dim AbbiamoTramaLunga As Boolean = My.Computer.FileSystem.FileExists(PathTramaLunga)
 
             If (Not AbbiamoTramaBreve And Not AbbiamoTramaLunga) Then
@@ -1740,7 +1854,7 @@ Public Class MainForm
             End If
 
             ' Schermata
-            Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(Film.NomeFile)
+            Dim PercorsoSchermata As String = MainModule.PercorsoSchermataFilm(film.NomeFile)
             If (My.Computer.FileSystem.FileExists(PercorsoSchermata)) Then
                 PicSchermata.ImageLocation = PercorsoSchermata
                 PicSchermata.Visible = True
@@ -1861,7 +1975,7 @@ Public Class MainForm
         Process.Start("explorer", "/select,""" + LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0))).PercorsoFile + """")
     End Sub
 
-    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ButtFilmCasuale.Click
         Dim NumElem As Integer = ElencoFilm.Items.Count
         If (NumElem = 0) Then Exit Sub
 
@@ -1977,11 +2091,6 @@ Public Class MainForm
         ModificaInfo.ShowDialog()
     End Sub
 
-    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
-        MainModule.ModalitaNotte = Not MainModule.ModalitaNotte
-        ImpostaColori(MainModule.ModalitaNotte)
-    End Sub
-
     Sub ImpostaColori(ModalitaNotte As Boolean)
         If (ModalitaNotte = True) Then
             Dim NeroLeggermentePiuChiaro As Color = Color.FromArgb(255, 24, 24, 24)
@@ -1995,7 +2104,9 @@ Public Class MainForm
             Next
             BarraStrumentiPrincipale.BackColor = NeroLeggermentePiuChiaro
             BarraStrumentiFilm.BackColor = NeroLeggermentePiuChiaro
+            ToolStripCategorie.BackColor = NeroLeggermentePiuChiaro
             PannelloFiltri.BackColor = NeroLeggermentePiuChiaro
+            StatusEsecuzioneBackground.BackColor = NeroLeggermentePiuChiaro
             ElencoFilm.ForeColor = Color.White
             ElencoFilm.BackColor = Color.Black
             AlberoCategorieLibreria.ForeColor = Color.White
@@ -2044,9 +2155,6 @@ Public Class MainForm
             ButCambiaImgPersona.BackColor = NeroBottone
             ButtonToggleTrama.BackColor = NeroBottone
             ButtRicercaPersonaIMDB.BackColor = NeroBottone
-
-            ToolStripButton7.Text = "Giorno"
-            ToolStripButton7.Image = My.Resources.sole
         ElseIf (ModalitaNotte = False) Then
             Dim GrigioMenu As Color = Color.FromArgb(255, 246, 246, 246)
             Dim GrigioPannello As Color = Color.FromArgb(255, 248, 248, 248)
@@ -2059,7 +2167,9 @@ Public Class MainForm
             Next
             BarraStrumentiPrincipale.BackColor = GrigioMenu
             BarraStrumentiFilm.BackColor = GrigioMenu
+            ToolStripCategorie.BackColor = GrigioMenu
             PannelloFiltri.BackColor = GrigioMenu
+            StatusEsecuzioneBackground.BackColor = GrigioMenu
             ElencoFilm.ForeColor = Color.Black
             ElencoFilm.BackColor = Color.White
             AlberoCategorieLibreria.ForeColor = Color.Black
@@ -2108,14 +2218,11 @@ Public Class MainForm
             IntestazioneAudio.BackColor = GrigioIntestazione
             IntestazioneSottotitoli.BackColor = GrigioIntestazione
             IntestazioneExtra.BackColor = GrigioIntestazione
-
-            ToolStripButton7.Text = "Notte"
-            ToolStripButton7.Image = My.Resources.luna
         End If
     End Sub
 
     Private Sub SplitContainerCSX_DX_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainerCSX_DX.SplitterMoved
-        If (Not SplitContainerCSX_DX.Panel2Collapsed) Then
+        If (Not SplitContainerCSX_DX.Panel2Collapsed And Me.Visible) Then
             My.Settings.PannelloDxDimensione = SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance
             My.Settings.Save()
         End If
@@ -2126,7 +2233,7 @@ Public Class MainForm
         'LabRegisti.MaximumSize = DimensioneMaxConIcona
         'LabAutori.MaximumSize = DimensioneMaxConIcona
         'LabMusicisti.MaximumSize = DimensioneMaxConIcona
-        If (SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance - 32 - 64 > 0) Then LabNote.MaximumSize = New Size(SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance - 32 - 64, 0)
+        'If (SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance - 32 - 64 > 0) Then LabNote.MaximumSize = New Size(SplitContainerCSX_DX.Width - SplitContainerCSX_DX.SplitterDistance - 32 - 64, 0)
         If (Not IsNothing(PicPoster.Image)) Then
             If (DimensioneMax.Width > 200 * 2) Then
                 'a sinistra il manifesto, a destra le info base del film
@@ -2156,7 +2263,7 @@ Public Class MainForm
         RegolaAltezzaTextboxTramaBreve()
     End Sub
     Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainerSX_C.SplitterMoved
-        If (Not SplitContainerSX_C.Panel1Collapsed) Then
+        If (Not SplitContainerSX_C.Panel1Collapsed And Me.Visible) Then
             My.Settings.PannelloSxDimensione = SplitContainerSX_C.SplitterDistance
             My.Settings.Save()
         End If
@@ -2464,7 +2571,7 @@ Public Class MainForm
     End Sub
 
     Sub TogliTutteLeSpunteDalMenuOrdinamento()
-        For Each MenuEntry In ToolStripButton8.DropDownItems
+        For Each MenuEntry In SottoMenuOrdineIcone.DropDownItems
             If (MenuEntry.GetType Is GetType(ToolStripMenuItem)) Then
                 MenuEntry.Checked = False
             End If
@@ -2597,7 +2704,7 @@ Public Class MainForm
     End Sub
 
     'Private Sub SplitImmagineDettagli_SplitterMoved(sender As Object, e As SplitterEventArgs)
-    '    If (SplitImmagineDettagli.Panel1Collapsed = False) Then
+    '    If (SplitImmagineDettagli.Panel1Collapsed = False And Me.Visible) Then
     '        My.Settings.PannelloSchermataDimensione = SplitImmagineDettagli.SplitterDistance
     '        My.Settings.Save()
     '    End If
@@ -2725,5 +2832,103 @@ Public Class MainForm
         ElencoFilm.SmallImageList.Images.Clear()
         'Obbligo il ListView a rigenerare le icone
         ElencoFilm.Invalidate()
+    End Sub
+
+    Private Sub ScegliLibreriaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScegliLibreriaToolStripMenuItem.Click
+        ScegliLibreria.ShowDialog()
+    End Sub
+
+    Private Sub AutomaticosegueQuelloDiWindowsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TemaWindowsToolStripMenuItem.Click
+        My.Settings.TemaColori = MainModule.SceltaTema.Windows
+        My.Settings.Save()
+        MainModule.AggiornaTemaColoriDaImpostazioni()
+    End Sub
+
+    Private Sub TemaChiaroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TemaChiaroToolStripMenuItem.Click
+        My.Settings.TemaColori = MainModule.SceltaTema.Giorno
+        My.Settings.Save()
+        MainModule.AggiornaTemaColoriDaImpostazioni()
+    End Sub
+
+    Private Sub TemaScuroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TemaScuroToolStripMenuItem.Click
+        My.Settings.TemaColori = MainModule.SceltaTema.Notte
+        My.Settings.Save()
+        MainModule.AggiornaTemaColoriDaImpostazioni()
+    End Sub
+
+    Private Sub NumeroFilmToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NumeroFilmToolStripMenuItem.Click
+        My.Settings.CategorieOrdinamento = MainModule.OrdinamentoValoriCategorie.NumFilm
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub DurataFilmToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DurataFilmToolStripMenuItem.Click
+
+        My.Settings.CategorieOrdinamento = MainModule.OrdinamentoValoriCategorie.DurataFilm
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub AlfabeticoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AlfabeticoToolStripMenuItem.Click
+        My.Settings.CategorieOrdinamento = MainModule.OrdinamentoValoriCategorie.NomeAsc
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Click
+        My.Settings.CategorieOrdinamento = MainModule.OrdinamentoValoriCategorie.UltimaUscitaDesc
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Click
+        My.Settings.CategorieOrdinamento = MainModule.OrdinamentoValoriCategorie.UltimaUscitaAsc
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub NessunaInformazioneToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NessunaInformazioneToolStripMenuItem.Click
+        My.Settings.CategorieInfo = MainModule.InfoCategoria.Nessuna
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub PeriodoDiAttivitàToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeriodoDiAttivitàToolStripMenuItem.Click
+        My.Settings.CategorieInfo = MainModule.InfoCategoria.PeriodoAttivita
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub DurataFilmToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DurataFilmToolStripMenuItem1.Click
+        My.Settings.CategorieInfo = MainModule.InfoCategoria.DurataFilm
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub ConteggioFilmToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConteggioFilmToolStripMenuItem.Click
+        My.Settings.CategorieInfo = MainModule.InfoCategoria.ConteggioFilm
+        My.Settings.Save()
+        AggiornaAlberoCategorie()
+    End Sub
+
+    Private Sub SplitContainerFiltriAvanzati_Icone_SizeChanged(sender As Object, e As EventArgs) Handles SplitContainerFiltriAvanzati_Icone.SizeChanged
+        If (SplitContainerFiltriAvanzati_Icone.Width < 800 And SplitContainerFiltriAvanzati_Icone.Orientation = Orientation.Vertical) Then
+            SplitContainerFiltriAvanzati_Icone.Orientation = Orientation.Horizontal
+            SplitContainerFiltriAvanzati_Icone.SplitterDistance = Math.Floor(SplitContainerFiltriAvanzati_Icone.Height / 3)
+        ElseIf (SplitContainerFiltriAvanzati_Icone.Width >= 800 And SplitContainerFiltriAvanzati_Icone.Orientation = Orientation.Horizontal) Then
+            SplitContainerFiltriAvanzati_Icone.Orientation = Orientation.Vertical
+            SplitContainerFiltriAvanzati_Icone.SplitterDistance = Math.Floor(SplitContainerFiltriAvanzati_Icone.Width / 4)
+        End If
+    End Sub
+
+    Private Sub AggiornaLibreriaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AggiornaLibreriaToolStripMenuItem.Click
+        SvuotaElencoFilm()
+        ScansioneLibreria.PercorsiFile = My.Computer.FileSystem.GetFiles(My.Settings.LibreriaPercorso)
+        ScansioneLibreria.ShowDialog()
+
+        'Aggiorno categorie disponibili (albero menu sinistra)
+        AggiornaAlberoCategorie()
+        'Ricalcolo i film da visualizzare in base a categoria e filtri selezionati, e ripopolo la ListView con le relative icone
+        SelezioneCategoria()
     End Sub
 End Class

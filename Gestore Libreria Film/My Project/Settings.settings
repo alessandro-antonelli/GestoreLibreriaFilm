@@ -35,11 +35,11 @@
     <Setting Name="PannelloSchermataDimensione" Type="System.UInt16" Scope="User">
       <Value Profile="(Default)">150</Value>
     </Setting>
-    <Setting Name="OrdinamentoIcone" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="OrdinamentoIcone" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="CategoriaPredefinita" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="CategoriaPredefinita" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="LibreriaIncludiSottocartelle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -49,6 +49,18 @@
     </Setting>
     <Setting Name="PannelloPosterChiuso" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CategorieOrdinamento" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="CategorieInfo" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="CategorieFormatoNomi" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TemaColori" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

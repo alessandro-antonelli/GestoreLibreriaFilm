@@ -26,11 +26,15 @@
     End Function
 
     Public Function GetCognomeNome(Optional SoloCognome As Boolean = False) As String
-        Dim NomeCognome As String() = MainModule.SeparaNomeCognome(Etichetta)
-        If (SoloCognome) Then
-            Return NomeCognome(1)
+        If (Etichetta.StartsWith("[")) Then
+            Return New String(Me.Etichetta)
         Else
-            Return NomeCognome(1) + ", " + NomeCognome(0)
+            Dim NomeCognome As String() = MainModule.SeparaNomeCognome(Etichetta)
+            If (SoloCognome) Then
+                Return NomeCognome(1)
+            Else
+                Return NomeCognome(1) + ", " + NomeCognome(0)
+            End If
         End If
     End Function
 

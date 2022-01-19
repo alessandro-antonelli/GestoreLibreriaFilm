@@ -121,7 +121,7 @@
     <value>0, 11</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ToolStripSplitButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="SottoMenuVisualizzazioneIcone.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMkAAADJCAYAAACJxhYFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAA7QSURBVHhe7Z3PqyVHHcXnP3DtVgSXBhEXuhIli4gLV5HJ
@@ -198,7 +198,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAA
-        cwMAAk1TRnQBSQFMAgEBVgEAAQgBBQEIAQUBIAEAASABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAGA
+        cwMAAk1TRnQBSQFMAgEBVgEAAUgBBQFIAQUBIAEAASABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAGA
         AwABwAECAgABAQEAARAGAAHAAQJRAAEUATYBTwEVAU8BFQFPARUBTwEVAU8BFQFPARUBTwEVAU8BFQFP
         ARUBTwEVAU8BFQFPARUBTwEVAU8BFQFPARUBTwEVAU8BFQFPARUBcAEdAd4Be9YAAU8BFQFPARUBcAEZ
         AXABGQFwARkBcAEZAXABGQFwARkBcAEZAXABGQFwARkBcAEZAXABGQFwARkBcAEdAXABGQFwARkBcAEZ
@@ -3968,6 +3968,9 @@
         B/8BwAEDAf4BAwH4AQ8B/wFgARcH/wH8AQMP/wHDGP8L
 </value>
   </data>
+  <metadata name="StatusEsecuzioneBackground.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1056, 7</value>
+  </metadata>
   <metadata name="SchermateFilmGrandi.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>979, 4</value>
   </metadata>
@@ -3979,6 +3982,9 @@
   </metadata>
   <metadata name="BarraStrumentiFilm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>627, 9</value>
+  </metadata>
+  <metadata name="ToolStripCategorie.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 28</value>
   </metadata>
   <metadata name="FileSystemWatcher.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>384, 11</value>

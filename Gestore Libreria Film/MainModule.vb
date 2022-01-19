@@ -1,15 +1,25 @@
 ﻿Imports Newtonsoft.Json.Linq
 
-Module MainModule
+Public Module MainModule
     Public ModalitaNotte As Boolean
 
     Sub Main(args As String())
         Application.EnableVisualStyles()
         MainForm.VisualizzazioneContenutoSchermataDestra(False)
 
-        ' Modalità notte
-        AggiornaModalitaNotte()
-        If (ModalitaNotte) Then MainForm.ImpostaColori(True)
+        ' Tema colori
+        'TODOOOOOOOOOOOOOO
+        'MessageBox.Show(Environment.OSVersion.Version.ToString)
+        'MessageBox.Show(My.Computer.Info.OSVersion)
+        If (Environment.OSVersion.Version.Major < 6 Or Environment.OSVersion.Version.Major = 6 And Environment.OSVersion.Version.Minor < 2) Then
+            'Se il sistema operativo è windows 7 o inferiore, il tema automatico non è disponibile
+            MainForm.TemaWindowsToolStripMenuItem.Enabled = False
+            If (My.Settings.TemaColori = SceltaTema.Windows) Then
+                My.Settings.TemaColori = SceltaTema.Giorno
+                My.Settings.Save()
+            End If
+        End If
+        AggiornaTemaColoriDaImpostazioni()
 
         ' Ripristino preferenze finestra
         MainForm.Size = My.Settings.FinestraDimensione
@@ -100,6 +110,29 @@ Module MainModule
         MainForm.AggiornaIconeDaLista()
     End Sub
 
+    Function AggiornaTemaColoriDaImpostazioni()
+        Select Case My.Settings.TemaColori
+            Case SceltaTema.Giorno
+                ModalitaNotte = False
+                MainForm.TemaWindowsToolStripMenuItem.Checked = False
+                MainForm.TemaChiaroToolStripMenuItem.Checked = True
+                MainForm.TemaScuroToolStripMenuItem.Checked = False
+                MainForm.ImpostaColori(False)
+            Case SceltaTema.Notte
+                ModalitaNotte = True
+                MainForm.TemaWindowsToolStripMenuItem.Checked = False
+                MainForm.TemaChiaroToolStripMenuItem.Checked = False
+                MainForm.TemaScuroToolStripMenuItem.Checked = True
+                MainForm.ImpostaColori(True)
+            Case SceltaTema.Windows
+                MainForm.TemaWindowsToolStripMenuItem.Checked = True
+                MainForm.TemaChiaroToolStripMenuItem.Checked = False
+                MainForm.TemaScuroToolStripMenuItem.Checked = False
+                AggiornaModalitaNotte()
+                MainForm.ImpostaColori(ModalitaNotte)
+        End Select
+    End Function
+
     Public Function AggiornaModalitaNotte() As Boolean
         Dim ValorePrecedente As Boolean = ModalitaNotte
 
@@ -112,6 +145,7 @@ Module MainModule
 
         Return (ModalitaNotte.Equals(ValorePrecedente))
     End Function
+
     Public Function SeparaNomeCognome(Nominativo) As String()
         Dim Nome As String = ""
         Dim Cognome As String = ""
@@ -642,4 +676,50 @@ Module MainModule
             MessageBox.Show(ex.ToString)
         End Try
     End Sub
+
+    Public Enum OrdinamentoFilm As Byte
+        TitoloITA
+        Anno
+        Nazione
+        Durata
+        Definizione
+        Bitrate
+        VotoIMDB
+        NumVotiIMDB
+        VotoMetacritic
+        VotoRotten
+        Incassi
+        OscarVinti
+        OscarTotali
+        PremiVinti
+        PremiTotali
+    End Enum
+
+    Public Enum OrdinamentoValoriCategorie As Byte
+        NumFilm
+        DurataFilm
+        NomeAsc
+        UltimaUscitaDesc
+        UltimaUscitaAsc
+    End Enum
+
+    Public Enum FormatoNomePersona As Byte
+        InizNomeCognome
+        Cognome
+        CognomeNome
+        NomeCognome
+    End Enum
+
+    Public Enum InfoCategoria As Byte
+        ConteggioFilm
+        DurataFilm
+        PeriodoAttivita
+        Nessuna
+    End Enum
+
+    Public Enum SceltaTema As Byte
+        Windows
+        Giorno
+        Notte
+    End Enum
 End Module
