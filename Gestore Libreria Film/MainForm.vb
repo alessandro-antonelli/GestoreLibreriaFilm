@@ -284,7 +284,7 @@ Public Class MainForm
                     Me.Text = Application.ProductName
                     PannelloFiltri.Visible = False
                     ElencoFilm.VirtualListSize = 0
-                    VisualizzazioneContenutoSchermataDestra(False)
+                    ImpostaContenutoSchermataDestra(False, False)
                     VisualizzazioneSchedaPersona(False)
                 End If
             End If
@@ -457,6 +457,8 @@ Public Class MainForm
 
         FiltroNazioni.Items.Clear()
         FiltroGeneri.Items.Clear()
+        FiltroAudio.Items.Clear()
+        FiltroSottotitoli.Items.Clear()
         For Each indice In ListaIndiciFilmInCategoria
             Dim Nazione As String = LibreriaFilm.Item(indice).Nazione
             If (Not IsNothing(Nazione)) Then
@@ -465,8 +467,22 @@ Public Class MainForm
 
             Dim Generi As List(Of String) = LibreriaFilm.Item(indice).Generi
             If (Not IsNothing(Generi)) Then
-                For Each genere In Generi
+                For Each genere As String In Generi
                     If (Not FiltroGeneri.Items.Contains(genere)) Then FiltroGeneri.Items.Add(genere)
+                Next
+            End If
+
+            Dim Sonori As List(Of Sonoro) = LibreriaFilm.Item(indice).Sonori
+            If (Not IsNothing(Sonori)) Then
+                For Each audio As Sonoro In Sonori
+                    If (Not IsNothing(audio.Lingua) AndAlso Not FiltroAudio.Items.Contains(audio.Lingua.ToUpper)) Then FiltroAudio.Items.Add(audio.Lingua.ToUpper)
+                Next
+            End If
+
+            Dim Sottotitoli As List(Of Sottotitolo) = LibreriaFilm.Item(indice).Sottotitoli
+            If (Not IsNothing(Sottotitoli)) Then
+                For Each sottotitolo As Sottotitolo In Sottotitoli
+                    If (Not IsNothing(sottotitolo.Lingua) AndAlso Not FiltroSottotitoli.Items.Contains(sottotitolo.Lingua.ToUpper)) Then FiltroSottotitoli.Items.Add(sottotitolo.Lingua.ToUpper)
                 Next
             End If
         Next
@@ -645,6 +661,87 @@ Public Class MainForm
                 Next
             End If
 
+            ' Lingua audio
+            If (FiltriSuperati AndAlso FiltroAudio.SelectedItems.Count > 0) Then
+                For Each lingua As String In FiltroAudio.SelectedItems
+                    If (IsNothing(Film.Sonori)) Then
+                        FiltriSuperati = False
+                    ElseIf (Not Film.Sonori.Exists(Function(x) x.Lingua.ToUpper.Equals(lingua))) Then
+                        FiltriSuperati = False
+                    End If
+                Next
+            End If
+
+            ' Lingua sottotitoli
+            If (FiltriSuperati AndAlso FiltroSottotitoli.SelectedItems.Count > 0) Then
+                For Each lingua As String In FiltroSottotitoli.SelectedItems
+                    If (IsNothing(Film.Sottotitoli)) Then
+                        FiltriSuperati = False
+                    ElseIf (Not Film.Sottotitoli.Exists(Function(x) x.Lingua.ToUpper.Equals(lingua))) Then
+                        FiltriSuperati = False
+                    End If
+                Next
+            End If
+
+            ' Voto IMDB
+            If (FiltriSuperati AndAlso FiltroMinVotoIMDB.Value > FiltroMinVotoIMDB.Minimum) Then
+                If (IsNothing(Film.VotoIMDB) OrElse Film.VotoIMDB = 0) Then
+                    FiltriSuperati = False
+                Else
+                    If (Film.VotoIMDB < (FiltroMinVotoIMDB.Value / 10)) Then FiltriSuperati = False
+                End If
+            End If
+
+            ' Num voti IMDB
+            If (FiltriSuperati AndAlso FiltroMinNumVotiIMDB.Value > FiltroMinNumVotiIMDB.Minimum) Then
+                If (IsNothing(Film.NumVotiIMDB) OrElse Film.NumVotiIMDB = 0) Then
+                    FiltriSuperati = False
+                Else
+                    If (Film.NumVotiIMDB < (FiltroMinNumVotiIMDB.Value * 1000)) Then FiltriSuperati = False
+                End If
+            End If
+
+            ' Incasso
+            If (FiltriSuperati AndAlso FiltroMinIncasso.Value > FiltroMinIncasso.Minimum) Then
+                If (IsNothing(Film.IncassoDollari) OrElse Film.IncassoDollari = 0) Then
+                    FiltriSuperati = False
+                Else
+                    If (Film.IncassoDollari < (FiltroMinIncasso.Value * 1000)) Then FiltriSuperati = False
+                End If
+            End If
+
+            ' Voto Metacritic
+            If (FiltriSuperati AndAlso FiltroMinVotoMetacritic.Value > FiltroMinVotoMetacritic.Minimum) Then
+                If (IsNothing(Film.VotoMetacritic) OrElse Film.VotoMetacritic = 0) Then
+                    FiltriSuperati = False
+                Else
+                    If (Film.VotoMetacritic < FiltroMinVotoMetacritic.Value) Then FiltriSuperati = False
+                End If
+            End If
+
+            ' Voto Rotten Tomatoes
+            If (FiltriSuperati AndAlso FiltroMinVotoRotten.Value > FiltroMinVotoRotten.Minimum) Then
+                If (IsNothing(Film.VotoRottenTomatoes) OrElse Film.VotoRottenTomatoes = 0) Then
+                    FiltriSuperati = False
+                Else
+                    If (Film.VotoRottenTomatoes < FiltroMinVotoRotten.Value) Then FiltriSuperati = False
+                End If
+            End If
+
+            ' Premi ricevuti
+            If (FiltriSuperati AndAlso RadioButton2.Checked AndAlso Film.OscarNominati + Film.BAFTANominati + Film.AltriPremiNominati = 0) Then
+                FiltriSuperati = False
+            End If
+            If (FiltriSuperati AndAlso RadioButton3.Checked AndAlso Film.OscarNominati = 0) Then
+                FiltriSuperati = False
+            End If
+            If (FiltriSuperati AndAlso RadioButton4.Checked AndAlso Film.OscarVinti + Film.BAFTAVinti + Film.AltriPremiVinti = 0) Then
+                FiltriSuperati = False
+            End If
+            If (FiltriSuperati AndAlso RadioButton5.Checked AndAlso Film.OscarVinti = 0) Then
+                FiltriSuperati = False
+            End If
+
             If (FiltriSuperati = True) Then ListaIndiciFilmFiltrati.Add(indice)
         Next
 
@@ -661,7 +758,7 @@ Public Class MainForm
         ForzaAggiornamentoIcone()
         ElencoFilm.VirtualListSize = ListaIndiciFilmFiltrati.Count
 
-        VisualizzazioneContenutoSchermataDestra(False)
+        ImpostaContenutoSchermataDestra(False, True)
 
         'For Each indice In ListaIndiciFilmFiltrati
         '    Dim Film As Film = ListaFilm(indice)
@@ -912,6 +1009,13 @@ Public Class MainForm
         FiltroRisoluzioneMin.Value = FiltroRisoluzioneMin.Minimum
         FiltroBitrateMin.Value = FiltroBitrateMin.Minimum
 
+        FiltroMinIncasso.Value = FiltroMinIncasso.Minimum
+        FiltroMinNumVotiIMDB.Value = FiltroMinNumVotiIMDB.Minimum
+        FiltroMinVotoIMDB.Value = FiltroMinVotoIMDB.Minimum
+        FiltroMinVotoMetacritic.Value = FiltroMinVotoMetacritic.Minimum
+        FiltroMinVotoRotten.Value = FiltroMinVotoRotten.Minimum
+        RadioButton1.Checked = True
+
         If (FiltroNazioni.SelectedItems.Count > 0) Then
             For i As UInteger = 0 To FiltroNazioni.Items.Count - 1
                 FiltroNazioni.SetItemChecked(i, False)
@@ -921,6 +1025,18 @@ Public Class MainForm
         If (FiltroGeneri.SelectedItems.Count > 0) Then
             For i As UInteger = 0 To FiltroGeneri.Items.Count - 1
                 FiltroGeneri.SetItemChecked(i, False)
+            Next
+        End If
+
+        If (FiltroAudio.SelectedItems.Count > 0) Then
+            For i As UInteger = 0 To FiltroAudio.Items.Count - 1
+                FiltroAudio.SetItemChecked(i, False)
+            Next
+        End If
+
+        If (FiltroSottotitoli.SelectedItems.Count > 0) Then
+            For i As UInteger = 0 To FiltroSottotitoli.Items.Count - 1
+                FiltroSottotitoli.SetItemChecked(i, False)
             Next
         End If
 
@@ -1000,7 +1116,7 @@ Public Class MainForm
     End Function
 
     Sub SvuotaElencoFilm()
-        VisualizzazioneContenutoSchermataDestra(False)
+        ImpostaContenutoSchermataDestra(False, True)
         LibreriaFilm.Clear()
         'ElencoFilm.Items.Clear()
         ElencoFilm.VirtualListSize = 0
@@ -1259,7 +1375,7 @@ Public Class MainForm
 
     Private Sub AggiornaContenutoPannelloDestra() Handles ElencoFilm.SelectedIndexChanged
         If (ElencoFilm.SelectedIndices.Count <= 0) Then
-            VisualizzazioneContenutoSchermataDestra(False)
+            ImpostaContenutoSchermataDestra(False, True)
         Else
             Dim film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
 
@@ -1574,262 +1690,29 @@ Public Class MainForm
                 PanelMusicisti.Visible = True
             End If
 
+            'Trama
+            Dim AbbiamoTramaBreve As Boolean = Not IsNothing(film.TramaBreve)
+            Dim AbbiamoTramaLunga As Boolean = Not IsNothing(film.TramaLunga)
 
-
-            'JSON IMDB
-            Dim PathInfoIMDB As String = MainModule.PercorsoInfoIMDB(film.NomeFile)
-            Dim AbbiamoDatiIMDB As Boolean = My.Computer.FileSystem.FileExists(PathInfoIMDB)
-            Dim AbbiamoTramaBreve As Boolean
-            If (Not AbbiamoDatiIMDB) Then
-                PanelValutazioni.Visible = False
-                AbbiamoTramaBreve = False
-            Else
-                Dim ReaderIMDB As New System.IO.StreamReader(PathInfoIMDB)
-                'Try
-                Dim json As JObject = JObject.Parse(ReaderIMDB.ReadToEnd)
-                ' Valutazioni
-                PanelValutazioni.Visible = True
-
-                'Trama breve
-                Dim TramaBreve As String = json.SelectToken("Plot").Value(Of String)()
-                AbbiamoTramaBreve = Not TramaBreve.ToUpper.Equals("N/A")
-                If (AbbiamoTramaBreve) Then
-                    LabTramaBreve.Text = TramaBreve
-                    RegolaAltezzaTextboxTramaBreve()
-                Else
-                    LabTramaBreve.Text = ""
-                End If
-
-                If (Not json.ContainsKey("BoxOffice")) Then
-                    PanIncassi.Visible = False
-                Else
-                    Dim StrIncassi As String = json.SelectToken("BoxOffice").Value(Of String)()
-                    If (StrIncassi.ToUpper.Equals("N/A")) Then
-                        PanIncassi.Visible = False
-                    Else
-                        StrIncassi = StrIncassi.Replace("$", "")
-                        While (StrIncassi.Contains(","))
-                            StrIncassi = StrIncassi.Replace(",", "")
-                        End While
-                        Dim Incassi As UInteger = UInteger.Parse(StrIncassi)
-                        VisualizzaValutazione(Incassi, 2800000000, LabIncassi, LabMoltiplicatoreIncassi, PanIncassi, True, {0, 255, 0})
-                    End If
-                End If
-
-                Dim StrVotoIMDB As String = json.SelectToken("imdbRating").Value(Of String)()
-                StrVotoIMDB = StrVotoIMDB.Trim
-                If (StrVotoIMDB.Length <> 3 OrElse StrVotoIMDB.Chars(1) <> Chr(46)) Then 'Chr(46) = punto (.)
-                    PanVotoIMDB.Visible = False
-                Else
-                    Dim VotoIMDB As Double = Short.Parse(StrVotoIMDB.Chars(0)) + (Integer.Parse(StrVotoIMDB.Chars(2)) / 10)
-                    VisualizzaValutazione(VotoIMDB, 10, LabVotoIMDB, Nothing, PanVotoIMDB)
-                End If
-
-                Dim StrNumVotiIMDB As String = json.SelectToken("imdbVotes").Value(Of String)()
-                If (StrNumVotiIMDB.ToUpper.Equals("N/A")) Then
-                    PanNumVotiIMDB.Visible = False
-                Else
-                    While (StrNumVotiIMDB.Contains(","))
-                        StrNumVotiIMDB = StrNumVotiIMDB.Replace(",", "")
-                    End While
-                    Dim NumVotiIMDB As UInteger = UInteger.Parse(StrNumVotiIMDB)
-                    VisualizzaValutazione(NumVotiIMDB, 2500000, LabNumVotiIMDB, LabMoltiplicatoreNumVotiIMDB, PanNumVotiIMDB, True, {102, 255, 255})
-                End If
-
-                Dim StrMetascore As String = json.SelectToken("Metascore").Value(Of String)()
-                If (StrMetascore.ToUpper.Equals("N/A")) Then
-                    PanMetacritic.Visible = False
-                Else
-                    VisualizzaValutazione(UShort.Parse(StrMetascore), 100, LabMetacritic, Nothing, PanMetacritic)
-                End If
-
-                Dim TrovatoRottenTomatoes As Boolean = False
-                Dim ArrayValutazioni As JArray = json.SelectToken("Ratings")
-                If (Not IsNothing(ArrayValutazioni) AndAlso ArrayValutazioni.Count > 0) Then
-                    For i As UShort = 0 To ArrayValutazioni.Count - 1
-                        Dim Valutazione As JObject = ArrayValutazioni.Item(i)
-                        Dim fonte As String = Valutazione.SelectToken("Source").Value(Of String)()
-                        Dim StrVoto As String = Valutazione.SelectToken("Value").Value(Of String)()
-
-                        If (fonte.Equals("Rotten Tomatoes")) Then
-                            TrovatoRottenTomatoes = True
-                            StrVoto = StrVoto.Replace("%", "")
-                            VisualizzaValutazione(UShort.Parse(StrVoto), 100, LabRotten, Nothing, PanRotten)
-                            Exit For
-                        End If
-                    Next
-                End If
-                If (Not TrovatoRottenTomatoes) Then PanRotten.Visible = False
-
-                ' Premi
-                Dim StrPremi As String = json.SelectToken("Awards").Value(Of String)()
-                If (IsNothing(StrPremi) OrElse StrPremi.Length = 0 OrElse StrPremi.ToUpper.Equals("N/A")) Then
-                    PanPremiVinti.Visible = False
-                    PanPremiNominati.Visible = False
-                Else
-                    Dim OscarVinti As Short = 0, OscarNominati As Short = 0, BAFTAVinti As Short = 0, BAFTANominati As Short = 0
-                    Dim AltriPremiVinti As Short = 0, AltriPremiNominati As Short = 0
-
-                    StrPremi = StrPremi.ToLower
-
-                    ' Parsing del premio più rilevante ricevuto
-                    If (StrPremi.StartsWith("won") Or StrPremi.StartsWith("nominated for")) Then
-
-                        Dim NomePremio As String, QuantitaPremio As UShort, Vittoria As Boolean
-
-                        If (StrPremi.StartsWith("won")) Then
-                            Vittoria = True
-                            StrPremi = StrPremi.Substring(4, StrPremi.Length - 4)
-                        ElseIf (StrPremi.StartsWith("nominated for")) Then
-                            Vittoria = False
-                            StrPremi = StrPremi.Substring(14, StrPremi.Length - 14)
-                        End If
-
-                        Dim FineNumeroQuantita As UShort = StrPremi.IndexOf(" ")
-                        QuantitaPremio = UShort.Parse(StrPremi.Substring(0, FineNumeroQuantita))
-                        StrPremi = StrPremi.Substring(FineNumeroQuantita + 1, StrPremi.Length - FineNumeroQuantita - 1)
-
-                        Dim FineNomePremio As UShort
-                        If (StrPremi.Contains(".")) Then
-                            FineNomePremio = StrPremi.IndexOf(".")
-                            NomePremio = StrPremi.Substring(0, FineNomePremio)
-                            StrPremi = StrPremi.Substring(FineNomePremio + 2, StrPremi.Length - FineNomePremio - 2)
-                        Else
-                            'FineNomePremio = indice del primo char che è un numero
-                            Dim i As UShort = 0
-                            For i = 0 To StrPremi.Length - 1
-                                Dim dummy As Byte
-                                If (Byte.TryParse(StrPremi.Chars(i), dummy)) Then
-                                    FineNomePremio = i
-                                    Exit For
-                                End If
-                            Next
-
-                            NomePremio = StrPremi.Substring(0, FineNomePremio - 1)
-                            StrPremi = StrPremi.Substring(FineNomePremio, StrPremi.Length - FineNomePremio)
-                        End If
-
-                        Select Case NomePremio
-                            Case "oscar", "oscars"
-                                If (Vittoria) Then
-                                    OscarVinti = QuantitaPremio
-                                Else
-                                    OscarNominati = QuantitaPremio
-                                End If
-                            Case "bafta film award", "bafta film"
-                                If (Vittoria) Then
-                                    BAFTAVinti = QuantitaPremio
-                                Else
-                                    BAFTANominati = QuantitaPremio
-                                End If
-                        End Select
-                    End If
-
-                    'Parsing degli altri premi ricevuti
-                    Dim StrAltreVittorie As String = Nothing, StrAltreNomination As String = Nothing
-                    Dim PosDivisoreVitNom As Short = StrPremi.IndexOf("&")
-
-                    If (PosDivisoreVitNom <> -1) Then
-                        'la stringa elenca sia vittorie che nomination
-                        StrAltreVittorie = StrPremi.Substring(0, PosDivisoreVitNom - 1)
-                        StrAltreNomination = StrPremi.Substring(PosDivisoreVitNom + 2, StrPremi.Length - PosDivisoreVitNom - 2)
-                    Else
-                        'la stringa elenca solo vittorie o solo nomination
-                        If (StrPremi.EndsWith("wins") Or StrPremi.EndsWith("wins total")) Then
-                            StrAltreVittorie = StrPremi
-                        ElseIf (StrPremi.EndsWith("nominations") Or StrPremi.EndsWith("nominations total")) Then
-                            StrAltreNomination = StrPremi
-                        End If
-                    End If
-
-                    If (Not IsNothing(StrAltreVittorie)) Then
-                        Dim StrAltriPremiVinti = StrAltreVittorie.Substring(0, StrAltreVittorie.IndexOf(" "))
-                        AltriPremiVinti = UShort.Parse(StrAltriPremiVinti)
-                    End If
-                    If (Not IsNothing(StrAltreNomination)) Then
-                        Dim StrAltriPremiNominati = StrAltreNomination.Substring(0, StrAltreNomination.IndexOf(" "))
-                        AltriPremiNominati = UShort.Parse(StrAltriPremiNominati)
-                    End If
-
-                    ' Tiro le somme e visualizzo
-                    AltriPremiVinti = Math.Max(0, AltriPremiVinti - OscarVinti - BAFTAVinti)
-                    AltriPremiNominati = Math.Max(0, AltriPremiNominati - OscarNominati - BAFTANominati)
-
-                    If (OscarNominati = 0 And BAFTANominati = 0 And AltriPremiNominati = 0) Then
-                        PanPremiNominati.Visible = False
-                    Else
-                        PanPremiNominati.Visible = True
-
-                        If (OscarNominati = 0) Then
-                            PanOscarNominati.Visible = False
-                        Else
-                            PanOscarNominati.Visible = True
-                            LabOscarNominati.Text = OscarNominati.ToString
-                        End If
-                        If (BAFTANominati = 0) Then
-                            PanBAFTANominati.Visible = False
-                        Else
-                            PanBAFTANominati.Visible = True
-                            LabBAFTANominati.Text = BAFTANominati.ToString
-                        End If
-                        If (AltriPremiNominati = 0) Then
-                            PanAltriNominati.Visible = False
-                        Else
-                            PanAltriNominati.Visible = True
-                            LabAltriNominati.Text = AltriPremiNominati.ToString
-                        End If
-                    End If
-
-                    If (OscarVinti = 0 And BAFTAVinti = 0 And AltriPremiVinti = 0) Then
-                        PanPremiVinti.Visible = False
-                    Else
-                        PanPremiVinti.Visible = True
-
-                        If (OscarVinti = 0) Then
-                            PanOscarVinti.Visible = False
-                        Else
-                            PanOscarVinti.Visible = True
-                            LabOscarVinti.Text = OscarVinti.ToString
-                        End If
-                        If (BAFTAVinti = 0) Then
-                            PanBAFTAVinti.Visible = False
-                        Else
-                            PanBAFTAVinti.Visible = True
-                            LabBAFTAVinti.Text = BAFTAVinti.ToString
-                        End If
-                        If (AltriPremiVinti = 0) Then
-                            PanAltriVinti.Visible = False
-                        Else
-                            PanAltriVinti.Visible = True
-                            LabAltriVinti.Text = AltriPremiVinti.ToString
-                        End If
-                    End If
-                End If
-
-                'Catch ex As Exception
-                '
-                'End Try
-                ReaderIMDB.Close()
-            End If
-
-            ' ========= TRAMA ========
-
-            'If (Not IsNothing(film.TramaLunga)) Then
-            '    LabTramaBreve.Text = film.TramaLunga
-            '    PannelloTrama.Visible = True
-            'ElseIf (Not IsNothing(film.TramaBreve)) Then
-            '    LabTramaBreve.Text = film.TramaBreve
-            '    PannelloTrama.Visible = True
-            'Else
-            '    PannelloTrama.Visible = False
-            'End If
-            Dim PathTramaLunga As String = MainModule.PercorsoTramaLunga(film.NomeFile)
-            Dim AbbiamoTramaLunga As Boolean = My.Computer.FileSystem.FileExists(PathTramaLunga)
-
-            If (Not AbbiamoTramaBreve And Not AbbiamoTramaLunga) Then
+            If (Not AbbiamoTramaBreve AndAlso Not AbbiamoTramaLunga) Then
                 PannelloTrama.Visible = False
             Else
                 PannelloTrama.Visible = True
+
+                'Trama breve
+                If (AbbiamoTramaBreve) Then
+                    LabTramaBreve.Text = film.TramaBreve
+                Else
+                    LabTramaBreve.Text = ""
+                End If
+                RegolaAltezzaTextboxTramaBreve()
+
+                'Trama lunga
+                If (AbbiamoTramaLunga) Then
+                    TextTramaLunga.Text = film.TramaLunga
+                Else
+                    TextTramaLunga.Clear()
+                End If
 
                 'Imposto visualizzazione opportuna
                 If (AbbiamoTramaBreve And Not AbbiamoTramaLunga) Then
@@ -1842,14 +1725,103 @@ Public Class MainForm
                     VisualizzaTrama(True) 'se abbiamo entrambe, di default mostro quella breve
                     ButtonToggleTrama.Enabled = True
                 End If
+            End If
 
-                'Leggo il contenuto dai file
-                If (AbbiamoTramaLunga) Then
-                    Dim LettoreFile As New IO.StreamReader(PathTramaLunga)
-                    TextTramaLunga.Text = LettoreFile.ReadToEnd
-                    LettoreFile.Close()
+            ' Valutazioni
+            If (film.VotoMetacritic = 0 AndAlso film.VotoRottenTomatoes = 0 AndAlso
+              film.IncassoDollari = 0 AndAlso film.VotoIMDB = 0 AndAlso film.NumVotiIMDB = 0 AndAlso
+              film.OscarVinti = 0 AndAlso film.BAFTAVinti = 0 AndAlso film.AltriPremiVinti = 0 AndAlso
+              film.OscarNominati = 0 AndAlso film.BAFTANominati = 0 AndAlso film.AltriPremiNominati = 0) Then
+
+                PanelValutazioni.Visible = False
+            Else
+                PanelValutazioni.Visible = True
+
+                'Incassi
+                If (film.IncassoDollari > 0) Then
+                    VisualizzaValutazione(film.IncassoDollari, 2800000000, LabIncassi, LabMoltiplicatoreIncassi, PanIncassi, True, {0, 255, 0})
                 Else
-                    TextTramaLunga.Clear()
+                    PanIncassi.Visible = False
+                End If
+
+                'Voto IMDB
+                If (film.VotoIMDB > 0) Then
+                    VisualizzaValutazione(film.VotoIMDB, 10, LabVotoIMDB, Nothing, PanVotoIMDB)
+                Else
+                    PanVotoIMDB.Visible = False
+                End If
+
+                'Num voti IMDB
+                If (film.NumVotiIMDB > 0) Then
+                    VisualizzaValutazione(film.NumVotiIMDB, 2500000, LabNumVotiIMDB, LabMoltiplicatoreNumVotiIMDB, PanNumVotiIMDB, True, {102, 255, 255})
+                Else
+                    PanNumVotiIMDB.Visible = False
+                End If
+
+                'Metacritic
+                If (film.VotoMetacritic > 0) Then
+                    VisualizzaValutazione(film.VotoMetacritic, 100, LabMetacritic, Nothing, PanMetacritic)
+                Else
+                    PanMetacritic.Visible = False
+                End If
+
+                'Rotten Tomatoes
+                If (film.VotoRottenTomatoes > 0) Then
+                    VisualizzaValutazione(film.VotoRottenTomatoes, 100, LabRotten, Nothing, PanRotten)
+                Else
+                    PanRotten.Visible = False
+                End If
+
+                'Premi nominati
+                If (film.OscarNominati = 0 AndAlso film.BAFTANominati = 0 AndAlso film.AltriPremiNominati = 0) Then
+                    PanPremiNominati.Visible = False
+                Else
+                    PanPremiNominati.Visible = True
+
+                    If (film.OscarNominati = 0) Then
+                        PanOscarNominati.Visible = False
+                    Else
+                        PanOscarNominati.Visible = True
+                        LabOscarNominati.Text = film.OscarNominati.ToString
+                    End If
+                    If (film.BAFTANominati = 0) Then
+                        PanBAFTANominati.Visible = False
+                    Else
+                        PanBAFTANominati.Visible = True
+                        LabBAFTANominati.Text = film.BAFTANominati.ToString
+                    End If
+                    If (film.AltriPremiNominati = 0) Then
+                        PanAltriNominati.Visible = False
+                    Else
+                        PanAltriNominati.Visible = True
+                        LabAltriNominati.Text = film.AltriPremiNominati.ToString
+                    End If
+                End If
+
+                'Premi vinti
+                If (film.OscarVinti = 0 AndAlso film.BAFTAVinti = 0 AndAlso film.AltriPremiVinti = 0) Then
+                    PanPremiVinti.Visible = False
+                Else
+                    PanPremiVinti.Visible = True
+
+                    If (film.OscarVinti = 0) Then
+                        PanOscarVinti.Visible = False
+                    Else
+                        PanOscarVinti.Visible = True
+                        LabOscarVinti.Text = film.OscarVinti.ToString
+                    End If
+                    If (film.BAFTAVinti = 0) Then
+                        PanBAFTAVinti.Visible = False
+                    Else
+                        PanBAFTAVinti.Visible = True
+                        LabBAFTAVinti.Text = film.BAFTAVinti.ToString
+                    End If
+                    If (film.AltriPremiVinti = 0) Then
+                        PanAltriVinti.Visible = False
+                    Else
+                        PanAltriVinti.Visible = True
+                        LabAltriVinti.Text = film.AltriPremiVinti.ToString
+                    End If
                 End If
             End If
 
@@ -1879,7 +1851,7 @@ Public Class MainForm
                 End If
             End If
 
-            VisualizzazioneContenutoSchermataDestra(True)
+            ImpostaContenutoSchermataDestra(True, False)
         End If
     End Sub
 
@@ -2092,133 +2064,94 @@ Public Class MainForm
     End Sub
 
     Sub ImpostaColori(ModalitaNotte As Boolean)
-        If (ModalitaNotte = True) Then
-            Dim NeroLeggermentePiuChiaro As Color = Color.FromArgb(255, 24, 24, 24)
-            Dim NeroBottone As Color = Color.FromArgb(255, 48, 48, 48)
-            Dim GrigioIntestazione As Color = Color.FromArgb(255, 56, 56, 56)
+        Dim Testo As Color
+        Dim Sfondo As Color
+        Dim SfondoPannello As Color
+        Dim BottonieCaselle As Color
+        Dim IntestazioniSezione As Color
 
-            Me.ForeColor = Color.White
-            Me.BackColor = Color.Black
-            For Each Scheda As TabPage In SchedeFiltriAvanzati.TabPages
-                Scheda.BackColor = Color.Black
-            Next
-            BarraStrumentiPrincipale.BackColor = NeroLeggermentePiuChiaro
-            BarraStrumentiFilm.BackColor = NeroLeggermentePiuChiaro
-            ToolStripCategorie.BackColor = NeroLeggermentePiuChiaro
-            PannelloFiltri.BackColor = NeroLeggermentePiuChiaro
-            StatusEsecuzioneBackground.BackColor = NeroLeggermentePiuChiaro
-            ElencoFilm.ForeColor = Color.White
-            ElencoFilm.BackColor = Color.Black
-            AlberoCategorieLibreria.ForeColor = Color.White
-            AlberoCategorieLibreria.BackColor = Color.Black
-            ListaGeneri.BackColor = NeroLeggermentePiuChiaro
-            ListaGeneri.ForeColor = Color.White
-            ListaAttori.BackColor = NeroLeggermentePiuChiaro
-            ListaAttori.ForeColor = Color.White
-            ListaExtra.BackColor = NeroLeggermentePiuChiaro
-            ListaExtra.ForeColor = Color.White
-            CasellaRicerca.BackColor = NeroBottone
-            PlaceholderCasellaRicerca.BackColor = NeroBottone
-            CasellaRicerca.ForeColor = Color.White
-            FiltroNazioni.BackColor = NeroLeggermentePiuChiaro
-            FiltroNazioni.ForeColor = Color.White
-            FiltroGeneri.BackColor = NeroLeggermentePiuChiaro
-            FiltroGeneri.ForeColor = Color.White
-            LabTramaBreve.BackColor = NeroLeggermentePiuChiaro
-            LabTramaBreve.ForeColor = Color.White
-            TextTramaLunga.BackColor = NeroLeggermentePiuChiaro
-            TextTramaLunga.ForeColor = Color.White
+        If (ModalitaNotte) Then
+            Testo = Color.White
+            Sfondo = Color.Black
+            SfondoPannello = Color.FromArgb(255, 24, 24, 24) 'nero leggermente più chiaro
+            BottonieCaselle = Color.FromArgb(255, 48, 48, 48) 'nero ancora più chiaro
+            IntestazioniSezione = Color.FromArgb(255, 56, 56, 56) 'grigio
 
-            RTFAudio.BackColor = NeroLeggermentePiuChiaro
-            RTFSottotitoli.BackColor = NeroLeggermentePiuChiaro
-            RTFSottotitoli.ForeColor = Color.White
             RTFAudio.Rtf = RTFAudio.Rtf.Replace(ColoriTestoRTFGiorno, ColoriTestoRTFNotte)
+        Else
+            Testo = Color.Black
+            Sfondo = Color.White
+            SfondoPannello = Color.FromArgb(255, 246, 246, 246) 'GrigioMenu
+            BottonieCaselle = Color.FromArgb(255, 248, 248, 248) 'GrigioPannello
+            IntestazioniSezione = Color.FromArgb(255, 227, 227, 227) 'grigio
 
-            PanelDettagliFilm.BackColor = NeroLeggermentePiuChiaro
-            SplitContainerCSX_DX.Panel2.BackColor = NeroLeggermentePiuChiaro
-            IntestazioneAttori.BackColor = GrigioIntestazione
-            IntestazioneFile.BackColor = GrigioIntestazione
-            IntestazioneGeneri.BackColor = GrigioIntestazione
-            IntestazioneTrama.BackColor = GrigioIntestazione
-            IntestazioneValutazioni.BackColor = GrigioIntestazione
-            IntestazioneContenitore.BackColor = GrigioIntestazione
-            IntestazioneVideo.BackColor = GrigioIntestazione
-            IntestazioneAudio.BackColor = GrigioIntestazione
-            IntestazioneSottotitoli.BackColor = GrigioIntestazione
-            IntestazioneExtra.BackColor = GrigioIntestazione
-
-            BottCancellaFiltri.BackColor = NeroBottone
-            BottFiltra.BackColor = NeroBottone
-            BottMostraFiltri.BackColor = NeroBottone
-            BottCerca.BackColor = NeroBottone
-            BottCancellaFiltri.BackColor = NeroBottone
-            ButCambiaImgPersona.BackColor = NeroBottone
-            ButtonToggleTrama.BackColor = NeroBottone
-            ButtRicercaPersonaIMDB.BackColor = NeroBottone
-        ElseIf (ModalitaNotte = False) Then
-            Dim GrigioMenu As Color = Color.FromArgb(255, 246, 246, 246)
-            Dim GrigioPannello As Color = Color.FromArgb(255, 248, 248, 248)
-            Dim GrigioIntestazione As Color = Color.FromArgb(255, 227, 227, 227)
-
-            Me.ForeColor = Color.Black
-            Me.BackColor = Color.White
-            For Each Scheda As TabPage In SchedeFiltriAvanzati.TabPages
-                Scheda.BackColor = Color.White
-            Next
-            BarraStrumentiPrincipale.BackColor = GrigioMenu
-            BarraStrumentiFilm.BackColor = GrigioMenu
-            ToolStripCategorie.BackColor = GrigioMenu
-            PannelloFiltri.BackColor = GrigioMenu
-            StatusEsecuzioneBackground.BackColor = GrigioMenu
-            ElencoFilm.ForeColor = Color.Black
-            ElencoFilm.BackColor = Color.White
-            AlberoCategorieLibreria.ForeColor = Color.Black
-            AlberoCategorieLibreria.BackColor = Color.White
-            ListaGeneri.BackColor = Color.White
-            ListaGeneri.ForeColor = Color.Black
-            ListaAttori.BackColor = Color.White
-            ListaAttori.ForeColor = Color.Black
-            ListaExtra.BackColor = Color.White
-            ListaExtra.ForeColor = Color.Black
-            CasellaRicerca.BackColor = Color.White
-            PlaceholderCasellaRicerca.BackColor = Color.White
-            CasellaRicerca.ForeColor = Color.Black
-            FiltroNazioni.BackColor = Color.White
-            FiltroNazioni.ForeColor = Color.Black
-            FiltroGeneri.BackColor = Color.White
-            FiltroGeneri.ForeColor = Color.Black
-            LabTramaBreve.BackColor = Color.White
-            LabTramaBreve.ForeColor = Color.Black
-            TextTramaLunga.BackColor = Color.White
-            TextTramaLunga.ForeColor = Color.Black
-
-            RTFAudio.BackColor = GrigioPannello
             RTFAudio.Rtf = RTFAudio.Rtf.Replace(ColoriTestoRTFNotte, ColoriTestoRTFGiorno)
-            RTFSottotitoli.BackColor = GrigioPannello
-            RTFSottotitoli.ForeColor = Color.Black
-
-            BottCancellaFiltri.BackColor = GrigioPannello
-            BottFiltra.BackColor = GrigioPannello
-            BottMostraFiltri.BackColor = GrigioPannello
-            BottCerca.BackColor = GrigioPannello
-            BottCancellaFiltri.BackColor = GrigioPannello
-            ButCambiaImgPersona.BackColor = GrigioPannello
-            ButtonToggleTrama.BackColor = GrigioPannello
-            ButtRicercaPersonaIMDB.BackColor = GrigioPannello
-
-            PanelDettagliFilm.BackColor = GrigioPannello
-            SplitContainerCSX_DX.Panel2.BackColor = GrigioPannello
-            IntestazioneAttori.BackColor = GrigioIntestazione
-            IntestazioneFile.BackColor = GrigioIntestazione
-            IntestazioneGeneri.BackColor = GrigioIntestazione
-            IntestazioneTrama.BackColor = GrigioIntestazione
-            IntestazioneValutazioni.BackColor = GrigioIntestazione
-            IntestazioneContenitore.BackColor = GrigioIntestazione
-            IntestazioneVideo.BackColor = GrigioIntestazione
-            IntestazioneAudio.BackColor = GrigioIntestazione
-            IntestazioneSottotitoli.BackColor = GrigioIntestazione
-            IntestazioneExtra.BackColor = GrigioIntestazione
         End If
+
+        Me.ForeColor = Testo
+        Me.BackColor = Sfondo
+        For Each Scheda As TabPage In SchedeFiltriAvanzati.TabPages
+            Scheda.BackColor = Sfondo
+        Next
+        BarraStrumentiPrincipale.BackColor = SfondoPannello
+        BarraStrumentiFilm.BackColor = SfondoPannello
+        ToolStripCategorie.BackColor = SfondoPannello
+
+        PannelloFiltri.BackColor = SfondoPannello
+        StatusEsecuzioneBackground.BackColor = SfondoPannello
+        PanelDettagliFilm.BackColor = SfondoPannello
+        SplitContainerCSX_DX.Panel2.BackColor = SfondoPannello
+        ElencoFilm.ForeColor = Testo
+        ElencoFilm.BackColor = Sfondo
+        AlberoCategorieLibreria.ForeColor = Testo
+        AlberoCategorieLibreria.BackColor = Sfondo
+
+        ListaGeneri.BackColor = SfondoPannello
+        ListaGeneri.ForeColor = Testo
+        ListaAttori.BackColor = SfondoPannello
+        ListaAttori.ForeColor = Testo
+        ListaExtra.BackColor = SfondoPannello
+        ListaExtra.ForeColor = Testo
+        LabTramaBreve.BackColor = SfondoPannello
+        LabTramaBreve.ForeColor = Testo
+        TextTramaLunga.BackColor = SfondoPannello
+        TextTramaLunga.ForeColor = Testo
+        RTFAudio.BackColor = SfondoPannello
+        RTFSottotitoli.BackColor = SfondoPannello
+        RTFSottotitoli.ForeColor = Testo
+
+        CasellaRicerca.BackColor = BottonieCaselle
+        PlaceholderCasellaRicerca.BackColor = BottonieCaselle
+        CasellaRicerca.ForeColor = Testo
+
+        FiltroNazioni.BackColor = SfondoPannello
+        FiltroNazioni.ForeColor = Testo
+        FiltroGeneri.BackColor = SfondoPannello
+        FiltroGeneri.ForeColor = Testo
+        FiltroAudio.BackColor = SfondoPannello
+        FiltroAudio.ForeColor = Testo
+        FiltroSottotitoli.BackColor = SfondoPannello
+        FiltroSottotitoli.ForeColor = Testo
+
+        IntestazioneAttori.BackColor = IntestazioniSezione
+        IntestazioneFile.BackColor = IntestazioniSezione
+        IntestazioneGeneri.BackColor = IntestazioniSezione
+        IntestazioneTrama.BackColor = IntestazioniSezione
+        IntestazioneValutazioni.BackColor = IntestazioniSezione
+        IntestazioneContenitore.BackColor = IntestazioniSezione
+        IntestazioneVideo.BackColor = IntestazioniSezione
+        IntestazioneAudio.BackColor = IntestazioniSezione
+        IntestazioneSottotitoli.BackColor = IntestazioniSezione
+        IntestazioneExtra.BackColor = IntestazioniSezione
+
+        BottCancellaFiltri.BackColor = BottonieCaselle
+        BottFiltra.BackColor = BottonieCaselle
+        BottMostraFiltri.BackColor = BottonieCaselle
+        BottCerca.BackColor = BottonieCaselle
+        BottCancellaFiltri.BackColor = BottonieCaselle
+        ButCambiaImgPersona.BackColor = BottonieCaselle
+        ButtonToggleTrama.BackColor = BottonieCaselle
+        ButtRicercaPersonaIMDB.BackColor = BottonieCaselle
     End Sub
 
     Private Sub SplitContainerCSX_DX_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainerCSX_DX.SplitterMoved
@@ -2725,10 +2658,10 @@ Public Class MainForm
         My.Settings.Save()
     End Sub
 
-    Public Sub VisualizzazioneContenutoSchermataDestra(Visualizzare As Boolean)
-        PanelDettagliFilm.Visible = Visualizzare
-        BarraStrumentiFilm.Visible = Visualizzare
-        PanelDettagliCategoria.Visible = Not Visualizzare
+    Public Sub ImpostaContenutoSchermataDestra(VisualizzaInfoFilm As Boolean, VisualizzaInfoCategoria As Boolean)
+        PanelDettagliFilm.Visible = VisualizzaInfoFilm
+        BarraStrumentiFilm.Visible = VisualizzaInfoFilm
+        PanelDettagliCategoria.Visible = VisualizzaInfoCategoria
     End Sub
 
     Private Sub ButtRicercaPersonaIMDB_Click(sender As Object, e As EventArgs) Handles ButtRicercaPersonaIMDB.Click
@@ -2930,5 +2863,114 @@ Public Class MainForm
         AggiornaAlberoCategorie()
         'Ricalcolo i film da visualizzare in base a categoria e filtri selezionati, e ripopolo la ListView con le relative icone
         SelezioneCategoria()
+    End Sub
+
+    Private Sub FiltroMinVotoIMDB_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinVotoIMDB.ValueChanged
+        If (FiltroMinVotoIMDB.Value = FiltroMinVotoIMDB.Minimum) Then
+            LabMinVotoIMDB.Text = "Qualsiasi"
+        Else
+            LabMinVotoIMDB.Text = (FiltroMinVotoIMDB.Value / 10).ToString
+        End If
+    End Sub
+
+    Private Sub FiltroMinVotoMetacritic_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinVotoMetacritic.ValueChanged
+        If (FiltroMinVotoMetacritic.Value = FiltroMinVotoMetacritic.Minimum) Then
+            LabMinVotoMetacritic.Text = "Qualsiasi"
+        Else
+            LabMinVotoMetacritic.Text = FiltroMinVotoMetacritic.Value.ToString + " /100"
+        End If
+    End Sub
+
+    Private Sub FiltroMinVotoRotten_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinVotoRotten.ValueChanged
+        If (FiltroMinVotoRotten.Value = FiltroMinVotoRotten.Minimum) Then
+            LabMinVotoRotten.Text = "Qualsiasi"
+        Else
+            LabMinVotoRotten.Text = FiltroMinVotoRotten.Value.ToString + "%"
+        End If
+    End Sub
+
+    Private Sub FiltroMinNumVotiIMDB_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinNumVotiIMDB.ValueChanged
+        If (FiltroMinNumVotiIMDB.Value = FiltroMinNumVotiIMDB.Minimum) Then
+            LabMinNumVotiIMDB.Text = "Qualsiasi"
+        ElseIf (FiltroMinNumVotiIMDB.Value < 1000) Then
+            LabMinNumVotiIMDB.Text = FiltroMinNumVotiIMDB.Value.ToString + " mila"
+        Else
+            LabMinNumVotiIMDB.Text = Math.Round(FiltroMinNumVotiIMDB.Value / 1000, 2).ToString + " mln"
+        End If
+    End Sub
+
+    Private Sub FiltroMinIncasso_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinIncasso.ValueChanged
+        If (FiltroMinIncasso.Value = FiltroMinIncasso.Minimum) Then
+            LabMinIncasso.Text = "Qualsiasi"
+        ElseIf (FiltroMinIncasso.Value < 1000) Then
+            LabMinIncasso.Text = FiltroMinIncasso.Value.ToString + " mila $"
+        ElseIf (FiltroMinIncasso.Value < 1000000) Then
+            LabMinIncasso.Text = Math.Round(FiltroMinIncasso.Value / 1000, 1).ToString + " mln $"
+        Else
+            LabMinIncasso.Text = Math.Round(FiltroMinIncasso.Value / 1000000, 1).ToString + " mld $"
+        End If
+    End Sub
+
+    Private Sub PerValutazioneIMDBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerValutazioneIMDBToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (LibreriaFilm.Item(A).VotoIMDB - LibreriaFilm.Item(B).VotoIMDB))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerNumeroVotiIMDBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerNumeroVotiIMDBToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Integer.Parse(LibreriaFilm.Item(A).NumVotiIMDB.ToString) - LibreriaFilm.Item(B).NumVotiIMDB))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerValutazioneMetacriticToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerValutazioneMetacriticToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Short.Parse(LibreriaFilm.Item(A).VotoMetacritic.ToString) - LibreriaFilm.Item(B).VotoMetacritic))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerValutazioneRottenTomatoesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerValutazioneRottenTomatoesToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Short.Parse(LibreriaFilm.Item(A).VotoRottenTomatoes.ToString) - LibreriaFilm.Item(B).VotoRottenTomatoes))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerIncassiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerIncassiToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Integer.Parse(LibreriaFilm.Item(A).IncassoDollari.ToString) - LibreriaFilm.Item(B).IncassoDollari))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerOscarVintiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerOscarVintiToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Short.Parse(LibreriaFilm.Item(A).OscarVinti.ToString) - LibreriaFilm.Item(B).OscarVinti))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerOscarvintiNominatiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerOscarvintiNominatiToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Short.Parse(LibreriaFilm.Item(A).OscarVinti + LibreriaFilm.Item(A).OscarNominati) - (LibreriaFilm.Item(B).OscarVinti + LibreriaFilm.Item(B).OscarNominati)))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerPremiVintiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerPremiVintiToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Short.Parse(LibreriaFilm.Item(A).OscarVinti + LibreriaFilm.Item(A).BAFTAVinti + LibreriaFilm.Item(A).AltriPremiVinti) - (LibreriaFilm.Item(B).OscarVinti + LibreriaFilm.Item(B).BAFTAVinti + LibreriaFilm.Item(B).AltriPremiVinti)))
+        AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub PerPremiNominatiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PerPremiNominatiToolStripMenuItem.Click
+        TogliTutteLeSpunteDalMenuOrdinamento()
+        sender.Checked = True
+        ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Short.Parse(LibreriaFilm.Item(A).OscarNominati + LibreriaFilm.Item(A).BAFTANominati + LibreriaFilm.Item(A).AltriPremiNominati) - (LibreriaFilm.Item(B).OscarNominati + LibreriaFilm.Item(B).BAFTANominati + LibreriaFilm.Item(B).AltriPremiNominati)))
+        AggiornaIconeDaLista()
     End Sub
 End Class

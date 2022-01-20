@@ -1,4 +1,6 @@
 ﻿Public Class Film
+    Public IMDBID As Integer
+
     Public NomeFile As String
     Public PercorsoFile As String
     Public HashMD5 As String
@@ -34,9 +36,17 @@
     Public TramaBreve As String
     Public TramaLunga As String
     Public URLPoster As String
-    Public IMDBMetascore As Byte
-    Public IMDBRating As Byte
-    Public IMDBNumVoti As Integer
-    Public Premi As String
-    Public IMDBID As Integer
+
+    Public IncassoDollari As UInteger
+    Public VotoIMDB As Double
+    Public NumVotiIMDB As Integer
+    Public VotoMetacritic As Byte
+    Public VotoRottenTomatoes As Byte
+
+    Public OscarVinti As UShort
+    Public OscarNominati As UShort
+    Public BAFTAVinti As UShort
+    Public BAFTANominati As UShort
+    Public AltriPremiVinti As UShort
+    Public AltriPremiNominati As UShort
 End Class

@@ -85,6 +85,8 @@ Public Class ScansioneLibreria
                 If (IndividuaIMDB.ShowDialog() = Windows.Forms.DialogResult.OK) Then
                     If (Not IsNothing(IndividuaIMDB.IdIMDB)) Then
                         MainModule.ScaricaDatiIMDB(IndividuaIMDB.IdIMDB, Film.NomeFile)
+                        'TODO
+                        'Film = ParsingJSONIMDB(Film, PercorsoInfoIMDB)
                     End If
                 End If
 
@@ -153,22 +155,14 @@ Public Class ScansioneLibreria
                         CatturaSchermata(PercorsoFile, PercorsoSchermata)
                     End If
 
-                    Dim PercorsoTramaLunga As String = MainModule.PercorsoTramaLunga(NomeFile)
-                    If (My.Computer.FileSystem.FileExists(PercorsoTramaLunga)) Then
-                        ListaFileAccessori.Remove(PercorsoTramaLunga)
-                    End If
-
-                    Dim PercorsoPoster As String = MainModule.PercorsoPosterFilm(NomeFile)
-                    If (My.Computer.FileSystem.FileExists(PercorsoPoster)) Then
-                        ListaFileAccessori.Remove(PercorsoPoster)
-                    End If
-
                     Dim PercorsoFlagNoIMDB As String = MainModule.PercorsoFlagNienteIMDB(NomeFile)
                     If (My.Computer.FileSystem.FileExists(PercorsoFlagNoIMDB)) Then
                         ListaFileAccessori.Remove(PercorsoFlagNoIMDB)
                     Else
                         Dim PercorsoInfoIMDB As String = MainModule.PercorsoInfoIMDB(NomeFile)
                         If (My.Computer.FileSystem.FileExists(PercorsoInfoIMDB)) Then
+                            BackgroundWorker.ReportProgress(i, {"Lettura informazioni di IMDB", NomeFile})
+                            Film = ParsingJSONIMDB(Film, PercorsoInfoIMDB)
                             ListaFileAccessori.Remove(PercorsoInfoIMDB)
                         Else
                             If (My.Computer.Network.IsAvailable) Then
@@ -177,11 +171,27 @@ Public Class ScansioneLibreria
                                 If (Not IsNothing(IdIMDB)) Then
                                     BackgroundWorker.ReportProgress(i, {"Download informazioni da IMDB", NomeFile})
                                     MainModule.ScaricaDatiIMDB(IdIMDB, Film.NomeFile)
+                                    BackgroundWorker.ReportProgress(i, {"Lettura informazioni di IMDB", NomeFile})
+                                    If (My.Computer.FileSystem.FileExists(PercorsoInfoIMDB)) Then Film = ParsingJSONIMDB(Film, PercorsoInfoIMDB)
                                 Else
                                     IdIMDBmancante = True
                                 End If
                             End If
                         End If
+                    End If
+
+                    Dim PercorsoTramaLunga As String = MainModule.PercorsoTramaLunga(NomeFile)
+                    If (My.Computer.FileSystem.FileExists(PercorsoTramaLunga)) Then
+                        Dim LettoreFile As New IO.StreamReader(PercorsoTramaLunga)
+                        Film.TramaLunga = LettoreFile.ReadToEnd
+                        LettoreFile.Close()
+
+                        ListaFileAccessori.Remove(PercorsoTramaLunga)
+                    End If
+
+                    Dim PercorsoPoster As String = MainModule.PercorsoPosterFilm(NomeFile)
+                    If (My.Computer.FileSystem.FileExists(PercorsoPoster)) Then
+                        ListaFileAccessori.Remove(PercorsoPoster)
                     End If
 
                     i += 1
@@ -205,10 +215,183 @@ Public Class ScansioneLibreria
         End If
     End Sub
 
-    Function ParsingJSONInfo(Film As Film, PercorsoInfo As String) As Film
-        Dim Reader As New System.IO.StreamReader(PercorsoInfo)
+    Function ParsingJSONIMDB(Film As Film, PercorsoInfo As String) As Film
         Try
+            Dim ReaderIMDB As New System.IO.StreamReader(PercorsoInfo)
+            Dim json As JObject = JObject.Parse(ReaderIMDB.ReadToEnd)
+            ReaderIMDB.Close()
+
+            'Trama breve
+            If (json.ContainsKey("Plot")) Then
+                Dim TramaBreve As String = json.SelectToken("Plot").Value(Of String)()
+                If (Not TramaBreve.ToUpper.Equals("N/A")) Then
+                    Film.TramaBreve = TramaBreve
+                End If
+            End If
+
+            'Incassi
+            If (json.ContainsKey("BoxOffice")) Then
+                Dim StrIncassi As String = json.SelectToken("BoxOffice").Value(Of String)()
+                If (Not StrIncassi.ToUpper.Equals("N/A")) Then
+                    StrIncassi = StrIncassi.Replace("$", "")
+                    While (StrIncassi.Contains(","))
+                        StrIncassi = StrIncassi.Replace(",", "")
+                    End While
+                    Film.IncassoDollari = UInteger.Parse(StrIncassi)
+                End If
+            End If
+
+            'Rating IMDB
+            If (json.ContainsKey("imdbRating")) Then
+                Dim StrVotoIMDB As String = json.SelectToken("imdbRating").Value(Of String)()
+                StrVotoIMDB = StrVotoIMDB.Trim
+                If (StrVotoIMDB.Length = 3 AndAlso StrVotoIMDB.Chars(1) = Chr(46)) Then 'Chr(46) = punto (.)
+                    Dim VotoIMDB As Double = Short.Parse(StrVotoIMDB.Chars(0)) + (Integer.Parse(StrVotoIMDB.Chars(2)) / 10)
+                    Film.VotoIMDB = VotoIMDB
+                End If
+            End If
+
+            'Numero voti IMDB
+            If (json.ContainsKey("imdbVotes")) Then
+                Dim StrNumVotiIMDB As String = json.SelectToken("imdbVotes").Value(Of String)()
+                If (Not StrNumVotiIMDB.ToUpper.Equals("N/A")) Then
+                    While (StrNumVotiIMDB.Contains(","))
+                        StrNumVotiIMDB = StrNumVotiIMDB.Replace(",", "")
+                    End While
+                    Film.NumVotiIMDB = UInteger.Parse(StrNumVotiIMDB)
+                End If
+            End If
+
+            'Metacritic
+            If (json.ContainsKey("Metascore")) Then
+                Dim StrMetascore As String = json.SelectToken("Metascore").Value(Of String)()
+                If (Not StrMetascore.ToUpper.Equals("N/A")) Then
+                    Film.VotoMetacritic = UShort.Parse(StrMetascore)
+                End If
+            End If
+
+            'Rotten Tomatoes
+            If (json.ContainsKey("Ratings")) Then
+                Dim ArrayValutazioni As JArray = json.SelectToken("Ratings")
+                If (Not IsNothing(ArrayValutazioni) AndAlso ArrayValutazioni.Count > 0) Then
+                    For i As UShort = 0 To ArrayValutazioni.Count - 1
+                        Dim Valutazione As JObject = ArrayValutazioni.Item(i)
+                        If (Valutazione.ContainsKey("Source") And Valutazione.ContainsKey("Value")) Then
+                            Dim fonte As String = Valutazione.SelectToken("Source").Value(Of String)()
+                            Dim StrVoto As String = Valutazione.SelectToken("Value").Value(Of String)()
+
+                            If (fonte.Equals("Rotten Tomatoes")) Then
+                                StrVoto = StrVoto.Replace("%", "")
+                                Film.VotoRottenTomatoes = UShort.Parse(StrVoto)
+                                Exit For
+                            End If
+                        End If
+                    Next
+                End If
+            End If
+
+            ' =================================== PREMI ================================
+            If (json.ContainsKey("Awards")) Then
+                Dim StrPremi As String = json.SelectToken("Awards").Value(Of String)()
+                If (Not IsNothing(StrPremi) AndAlso StrPremi.Length <> 0 AndAlso Not StrPremi.ToUpper.Equals("N/A")) Then
+                    StrPremi = StrPremi.ToLower
+
+                    ' Parsing del premio più rilevante ricevuto
+                    If (StrPremi.StartsWith("won") Or StrPremi.StartsWith("nominated for")) Then
+
+                        Dim NomePremio As String, QuantitaPremio As UShort, Vittoria As Boolean
+
+                        If (StrPremi.StartsWith("won")) Then
+                            Vittoria = True
+                            StrPremi = StrPremi.Substring(4, StrPremi.Length - 4)
+                        ElseIf (StrPremi.StartsWith("nominated for")) Then
+                            Vittoria = False
+                            StrPremi = StrPremi.Substring(14, StrPremi.Length - 14)
+                        End If
+
+                        Dim FineNumeroQuantita As UShort = StrPremi.IndexOf(" ")
+                        QuantitaPremio = UShort.Parse(StrPremi.Substring(0, FineNumeroQuantita))
+                        StrPremi = StrPremi.Substring(FineNumeroQuantita + 1, StrPremi.Length - FineNumeroQuantita - 1)
+
+                        Dim FineNomePremio As UShort
+                        If (StrPremi.Contains(".")) Then
+                            FineNomePremio = StrPremi.IndexOf(".")
+                            NomePremio = StrPremi.Substring(0, FineNomePremio)
+                            StrPremi = StrPremi.Substring(FineNomePremio + 2, StrPremi.Length - FineNomePremio - 2)
+                        Else
+                            'FineNomePremio = indice del primo char che è un numero
+                            Dim i As UShort = 0
+                            For i = 0 To StrPremi.Length - 1
+                                Dim dummy As Byte
+                                If (Byte.TryParse(StrPremi.Chars(i), dummy)) Then
+                                    FineNomePremio = i
+                                    Exit For
+                                End If
+                            Next
+
+                            NomePremio = StrPremi.Substring(0, FineNomePremio - 1)
+                            StrPremi = StrPremi.Substring(FineNomePremio, StrPremi.Length - FineNomePremio)
+                        End If
+
+                        Select Case NomePremio
+                            Case "oscar", "oscars"
+                                If (Vittoria) Then
+                                    Film.OscarVinti = QuantitaPremio
+                                Else
+                                    Film.OscarNominati = QuantitaPremio
+                                End If
+                            Case "bafta film award", "bafta film"
+                                If (Vittoria) Then
+                                    Film.BAFTAVinti = QuantitaPremio
+                                Else
+                                    Film.BAFTANominati = QuantitaPremio
+                                End If
+                        End Select
+                    End If
+
+                    'Parsing degli altri premi ricevuti
+                    Dim StrAltreVittorie As String = Nothing, StrAltreNomination As String = Nothing
+                    Dim PosDivisoreVitNom As Short = StrPremi.IndexOf("&")
+
+                    If (PosDivisoreVitNom <> -1) Then
+                        'la stringa elenca sia vittorie che nomination
+                        StrAltreVittorie = StrPremi.Substring(0, PosDivisoreVitNom - 1)
+                        StrAltreNomination = StrPremi.Substring(PosDivisoreVitNom + 2, StrPremi.Length - PosDivisoreVitNom - 2)
+                    Else
+                        'la stringa elenca solo vittorie o solo nomination
+                        If (StrPremi.EndsWith("wins") Or StrPremi.EndsWith("wins total")) Then
+                            StrAltreVittorie = StrPremi
+                        ElseIf (StrPremi.EndsWith("nominations") Or StrPremi.EndsWith("nominations total")) Then
+                            StrAltreNomination = StrPremi
+                        End If
+                    End If
+
+                    If (Not IsNothing(StrAltreVittorie)) Then
+                        Dim StrAltriPremiVinti = StrAltreVittorie.Substring(0, StrAltreVittorie.IndexOf(" "))
+                        Film.AltriPremiVinti = UShort.Parse(StrAltriPremiVinti)
+                    End If
+                    If (Not IsNothing(StrAltreNomination)) Then
+                        Dim StrAltriPremiNominati = StrAltreNomination.Substring(0, StrAltreNomination.IndexOf(" "))
+                        Film.AltriPremiNominati = UShort.Parse(StrAltriPremiNominati)
+                    End If
+
+                    ' Sottraggo i premi già conteggiati separatamente (Oscar, BAFTA)
+                    Film.AltriPremiVinti = If(Film.AltriPremiVinti > Film.OscarVinti + Film.BAFTAVinti, Film.AltriPremiVinti - Film.OscarVinti - Film.BAFTAVinti, 0)
+                    Film.AltriPremiNominati = If(Film.AltriPremiNominati > Film.OscarNominati + Film.BAFTANominati, Film.AltriPremiNominati - Film.OscarNominati - Film.BAFTANominati, 0)
+                End If
+            End If
+
+        Catch ex As JsonReaderException
+
+        End Try
+        Return Film
+    End Function
+
+    Function ParsingJSONInfo(Film As Film, PercorsoInfo As String) As Film
+        Try
+            Dim Reader As New System.IO.StreamReader(PercorsoInfo)
             Dim json As JObject = JObject.Parse(Reader.ReadToEnd)
+            Reader.Close()
 
             Dim DurataSecondi As Double = json.SelectToken("format").SelectToken("duration").Value(Of Double)()
             Film.DurataSecondi = DurataSecondi
@@ -325,7 +508,7 @@ Public Class ScansioneLibreria
                 End If
             Next
         Catch ex As JsonReaderException
-            '
+
         End Try
         Return Film
     End Function

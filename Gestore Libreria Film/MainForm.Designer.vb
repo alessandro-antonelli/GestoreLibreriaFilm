@@ -24,12 +24,12 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
-        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
-        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
-        Dim ListViewItem13 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
-        Dim ListViewItem14 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
-        Dim ListViewItem15 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
+        Dim ListViewItem31 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
+        Dim ListViewItem32 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
+        Dim ListViewItem33 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
+        Dim ListViewItem37 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
+        Dim ListViewItem38 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
+        Dim ListViewItem39 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
         Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tutti i film", 1, 1)
         Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Registi", 2, 2)
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Attori", 3, 3)
@@ -115,6 +115,8 @@ Partial Class MainForm
         Me.ButtFilmCasuale = New System.Windows.Forms.ToolStripButton()
         Me.SottoMenuImpostazioni = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ScegliLibreriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AggiornaLibreriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.TemaColoriToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TemaWindowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TemaChiaroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -147,10 +149,10 @@ Partial Class MainForm
         Me.FlowLayoutPanel8 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Label61 = New System.Windows.Forms.Label()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.FiltroAudio = New System.Windows.Forms.CheckedListBox()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Label62 = New System.Windows.Forms.Label()
-        Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox()
+        Me.FiltroSottotitoli = New System.Windows.Forms.CheckedListBox()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -169,23 +171,23 @@ Partial Class MainForm
         Me.Label60 = New System.Windows.Forms.Label()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.FiltroMinVotoRotten = New System.Windows.Forms.TrackBar()
-        Me.Label58 = New System.Windows.Forms.Label()
+        Me.LabMinVotoRotten = New System.Windows.Forms.Label()
         Me.Label59 = New System.Windows.Forms.Label()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.FiltroMinVotoMetacritic = New System.Windows.Forms.TrackBar()
-        Me.Label56 = New System.Windows.Forms.Label()
+        Me.LabMinVotoMetacritic = New System.Windows.Forms.Label()
         Me.Label57 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.FiltroMinIncasso = New System.Windows.Forms.TrackBar()
-        Me.Label54 = New System.Windows.Forms.Label()
+        Me.LabMinIncasso = New System.Windows.Forms.Label()
         Me.Label55 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.FiltroMinNumVotiIMDB = New System.Windows.Forms.TrackBar()
-        Me.Label52 = New System.Windows.Forms.Label()
+        Me.LabMinNumVotiIMDB = New System.Windows.Forms.Label()
         Me.Label53 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.FiltroMinVotoIMDB = New System.Windows.Forms.TrackBar()
-        Me.Label51 = New System.Windows.Forms.Label()
+        Me.LabMinVotoIMDB = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.BottFiltra = New System.Windows.Forms.Button()
@@ -423,8 +425,6 @@ Partial Class MainForm
         Me.LabValoreCategoriaScelta = New System.Windows.Forms.Label()
         Me.LabCategoriaScelta = New System.Windows.Forms.Label()
         Me.IconaCategoriaScelta = New System.Windows.Forms.PictureBox()
-        Me.AggiornaLibreriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.BarraStrumentiPrincipale.SuspendLayout()
         Me.SplitContainerFiltriAvanzati_Icone.Panel1.SuspendLayout()
         Me.SplitContainerFiltriAvanzati_Icone.Panel2.SuspendLayout()
@@ -932,6 +932,19 @@ Partial Class MainForm
         Me.ScegliLibreriaToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
         Me.ScegliLibreriaToolStripMenuItem.Text = "Scegli posizione della libreria"
         '
+        'AggiornaLibreriaToolStripMenuItem
+        '
+        Me.AggiornaLibreriaToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.aggiorna
+        Me.AggiornaLibreriaToolStripMenuItem.Name = "AggiornaLibreriaToolStripMenuItem"
+        Me.AggiornaLibreriaToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
+        Me.AggiornaLibreriaToolStripMenuItem.Text = "Aggiorna libreria"
+        Me.AggiornaLibreriaToolStripMenuItem.ToolTipText = "Aggiorna l'elenco dei film dal disco"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(277, 6)
+        '
         'TemaColoriToolStripMenuItem
         '
         Me.TemaColoriToolStripMenuItem.AutoSize = False
@@ -1266,13 +1279,15 @@ Partial Class MainForm
         '
         'FiltroAnnoMin
         '
+        Me.FiltroAnnoMin.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltroAnnoMin.AutoSize = False
         Me.FiltroAnnoMin.LargeChange = 10
         Me.FiltroAnnoMin.Location = New System.Drawing.Point(86, 21)
         Me.FiltroAnnoMin.Maximum = 2022
         Me.FiltroAnnoMin.Minimum = 1894
         Me.FiltroAnnoMin.Name = "FiltroAnnoMin"
-        Me.FiltroAnnoMin.Size = New System.Drawing.Size(280, 30)
+        Me.FiltroAnnoMin.Size = New System.Drawing.Size(284, 30)
         Me.FiltroAnnoMin.TabIndex = 1
         Me.FiltroAnnoMin.TickFrequency = 10
         Me.FiltroAnnoMin.TickStyle = System.Windows.Forms.TickStyle.None
@@ -1309,7 +1324,7 @@ Partial Class MainForm
         Me.FiltroGeneri.Location = New System.Drawing.Point(152, 202)
         Me.FiltroGeneri.MultiColumn = True
         Me.FiltroGeneri.Name = "FiltroGeneri"
-        Me.FiltroGeneri.Size = New System.Drawing.Size(0, 92)
+        Me.FiltroGeneri.Size = New System.Drawing.Size(200, 92)
         Me.FiltroGeneri.Sorted = True
         Me.FiltroGeneri.TabIndex = 13
         '
@@ -1364,7 +1379,7 @@ Partial Class MainForm
         'Panel13
         '
         Me.Panel13.Controls.Add(Me.Label61)
-        Me.Panel13.Controls.Add(Me.CheckedListBox1)
+        Me.Panel13.Controls.Add(Me.FiltroAudio)
         Me.Panel13.Location = New System.Drawing.Point(3, 3)
         Me.Panel13.Name = "Panel13"
         Me.Panel13.Size = New System.Drawing.Size(225, 100)
@@ -1381,24 +1396,23 @@ Partial Class MainForm
         Me.Label61.TabIndex = 14
         Me.Label61.Text = "Deve avere audio in lingua:"
         '
-        'CheckedListBox1
+        'FiltroAudio
         '
-        Me.CheckedListBox1.CheckOnClick = True
-        Me.CheckedListBox1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CheckedListBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CheckedListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(0, 0)
-        Me.CheckedListBox1.MultiColumn = True
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(225, 100)
-        Me.CheckedListBox1.Sorted = True
-        Me.CheckedListBox1.TabIndex = 13
+        Me.FiltroAudio.CheckOnClick = True
+        Me.FiltroAudio.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.FiltroAudio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FiltroAudio.FormattingEnabled = True
+        Me.FiltroAudio.Location = New System.Drawing.Point(0, 0)
+        Me.FiltroAudio.MultiColumn = True
+        Me.FiltroAudio.Name = "FiltroAudio"
+        Me.FiltroAudio.Size = New System.Drawing.Size(225, 92)
+        Me.FiltroAudio.Sorted = True
+        Me.FiltroAudio.TabIndex = 13
         '
         'Panel14
         '
         Me.Panel14.Controls.Add(Me.Label62)
-        Me.Panel14.Controls.Add(Me.CheckedListBox2)
+        Me.Panel14.Controls.Add(Me.FiltroSottotitoli)
         Me.Panel14.Location = New System.Drawing.Point(3, 109)
         Me.Panel14.Name = "Panel14"
         Me.Panel14.Size = New System.Drawing.Size(248, 100)
@@ -1415,19 +1429,19 @@ Partial Class MainForm
         Me.Label62.TabIndex = 14
         Me.Label62.Text = "Deve avere sottotitoli in lingua:"
         '
-        'CheckedListBox2
+        'FiltroSottotitoli
         '
-        Me.CheckedListBox2.CheckOnClick = True
-        Me.CheckedListBox2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CheckedListBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CheckedListBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckedListBox2.FormattingEnabled = True
-        Me.CheckedListBox2.Location = New System.Drawing.Point(0, 0)
-        Me.CheckedListBox2.MultiColumn = True
-        Me.CheckedListBox2.Name = "CheckedListBox2"
-        Me.CheckedListBox2.Size = New System.Drawing.Size(248, 100)
-        Me.CheckedListBox2.Sorted = True
-        Me.CheckedListBox2.TabIndex = 13
+        Me.FiltroSottotitoli.CheckOnClick = True
+        Me.FiltroSottotitoli.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.FiltroSottotitoli.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FiltroSottotitoli.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FiltroSottotitoli.FormattingEnabled = True
+        Me.FiltroSottotitoli.Location = New System.Drawing.Point(0, 0)
+        Me.FiltroSottotitoli.MultiColumn = True
+        Me.FiltroSottotitoli.Name = "FiltroSottotitoli"
+        Me.FiltroSottotitoli.Size = New System.Drawing.Size(248, 100)
+        Me.FiltroSottotitoli.Sorted = True
+        Me.FiltroSottotitoli.TabIndex = 13
         '
         'Panel11
         '
@@ -1471,7 +1485,6 @@ Partial Class MainForm
         Me.FiltroBitrateMin.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltroBitrateMin.AutoSize = False
-        Me.FiltroBitrateMin.BackColor = System.Drawing.SystemColors.Control
         Me.FiltroBitrateMin.LargeChange = 1
         Me.FiltroBitrateMin.Location = New System.Drawing.Point(98, 19)
         Me.FiltroBitrateMin.Maximum = 16
@@ -1521,7 +1534,6 @@ Partial Class MainForm
         Me.FiltroRisoluzioneMin.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltroRisoluzioneMin.AutoSize = False
-        Me.FiltroRisoluzioneMin.BackColor = System.Drawing.SystemColors.Control
         Me.FiltroRisoluzioneMin.LargeChange = 1
         Me.FiltroRisoluzioneMin.Location = New System.Drawing.Point(93, 21)
         Me.FiltroRisoluzioneMin.Maximum = 7
@@ -1556,8 +1568,9 @@ Partial Class MainForm
         Me.Panel9.Controls.Add(Me.Label60)
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(3, 253)
+        Me.Panel9.MaximumSize = New System.Drawing.Size(275, 0)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(373, 140)
+        Me.Panel9.Size = New System.Drawing.Size(275, 140)
         Me.Panel9.TabIndex = 6
         '
         'RadioButton5
@@ -1567,7 +1580,7 @@ Partial Class MainForm
         Me.RadioButton5.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton5.Location = New System.Drawing.Point(0, 116)
         Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(373, 24)
+        Me.RadioButton5.Size = New System.Drawing.Size(275, 24)
         Me.RadioButton5.TabIndex = 6
         Me.RadioButton5.Text = "Vittoria degli Oscar"
         Me.RadioButton5.UseVisualStyleBackColor = True
@@ -1579,7 +1592,7 @@ Partial Class MainForm
         Me.RadioButton4.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton4.Location = New System.Drawing.Point(0, 92)
         Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(373, 24)
+        Me.RadioButton4.Size = New System.Drawing.Size(275, 24)
         Me.RadioButton4.TabIndex = 5
         Me.RadioButton4.Text = "Vittoria di qualsiasi premio"
         Me.RadioButton4.UseVisualStyleBackColor = True
@@ -1591,7 +1604,7 @@ Partial Class MainForm
         Me.RadioButton3.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton3.Location = New System.Drawing.Point(0, 68)
         Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(373, 24)
+        Me.RadioButton3.Size = New System.Drawing.Size(275, 24)
         Me.RadioButton3.TabIndex = 4
         Me.RadioButton3.Text = "Nomination degli Oscar"
         Me.RadioButton3.UseVisualStyleBackColor = True
@@ -1603,7 +1616,7 @@ Partial Class MainForm
         Me.RadioButton2.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton2.Location = New System.Drawing.Point(0, 44)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(373, 24)
+        Me.RadioButton2.Size = New System.Drawing.Size(275, 24)
         Me.RadioButton2.TabIndex = 3
         Me.RadioButton2.Text = "Nomination di qualsiasi premio"
         Me.RadioButton2.UseVisualStyleBackColor = True
@@ -1616,7 +1629,7 @@ Partial Class MainForm
         Me.RadioButton1.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton1.Location = New System.Drawing.Point(0, 20)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(373, 24)
+        Me.RadioButton1.Size = New System.Drawing.Size(275, 24)
         Me.RadioButton1.TabIndex = 2
         Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = "Nessun requisito"
@@ -1628,7 +1641,7 @@ Partial Class MainForm
         Me.Label60.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label60.Location = New System.Drawing.Point(0, 0)
         Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(373, 20)
+        Me.Label60.Size = New System.Drawing.Size(275, 20)
         Me.Label60.TabIndex = 1
         Me.Label60.Text = "Deve aver ricevuto:"
         Me.Label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1636,7 +1649,7 @@ Partial Class MainForm
         'Panel8
         '
         Me.Panel8.Controls.Add(Me.FiltroMinVotoRotten)
-        Me.Panel8.Controls.Add(Me.Label58)
+        Me.Panel8.Controls.Add(Me.LabMinVotoRotten)
         Me.Panel8.Controls.Add(Me.Label59)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel8.Location = New System.Drawing.Point(3, 203)
@@ -1647,7 +1660,6 @@ Partial Class MainForm
         'FiltroMinVotoRotten
         '
         Me.FiltroMinVotoRotten.AutoSize = False
-        Me.FiltroMinVotoRotten.BackColor = System.Drawing.SystemColors.Control
         Me.FiltroMinVotoRotten.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinVotoRotten.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FiltroMinVotoRotten.LargeChange = 10
@@ -1658,17 +1670,17 @@ Partial Class MainForm
         Me.FiltroMinVotoRotten.TabIndex = 17
         Me.FiltroMinVotoRotten.TickFrequency = 10
         '
-        'Label58
+        'LabMinVotoRotten
         '
-        Me.Label58.AutoSize = True
-        Me.Label58.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label58.Location = New System.Drawing.Point(0, 20)
-        Me.Label58.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(79, 30)
-        Me.Label58.TabIndex = 1
-        Me.Label58.Text = "Qualsiasi"
-        Me.Label58.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LabMinVotoRotten.AutoSize = True
+        Me.LabMinVotoRotten.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabMinVotoRotten.Location = New System.Drawing.Point(0, 20)
+        Me.LabMinVotoRotten.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinVotoRotten.Name = "LabMinVotoRotten"
+        Me.LabMinVotoRotten.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinVotoRotten.TabIndex = 1
+        Me.LabMinVotoRotten.Text = "Qualsiasi"
+        Me.LabMinVotoRotten.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label59
         '
@@ -1684,7 +1696,7 @@ Partial Class MainForm
         'Panel7
         '
         Me.Panel7.Controls.Add(Me.FiltroMinVotoMetacritic)
-        Me.Panel7.Controls.Add(Me.Label56)
+        Me.Panel7.Controls.Add(Me.LabMinVotoMetacritic)
         Me.Panel7.Controls.Add(Me.Label57)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel7.Location = New System.Drawing.Point(3, 153)
@@ -1695,7 +1707,6 @@ Partial Class MainForm
         'FiltroMinVotoMetacritic
         '
         Me.FiltroMinVotoMetacritic.AutoSize = False
-        Me.FiltroMinVotoMetacritic.BackColor = System.Drawing.SystemColors.Control
         Me.FiltroMinVotoMetacritic.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinVotoMetacritic.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FiltroMinVotoMetacritic.LargeChange = 10
@@ -1706,17 +1717,17 @@ Partial Class MainForm
         Me.FiltroMinVotoMetacritic.TabIndex = 17
         Me.FiltroMinVotoMetacritic.TickFrequency = 10
         '
-        'Label56
+        'LabMinVotoMetacritic
         '
-        Me.Label56.AutoSize = True
-        Me.Label56.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label56.Location = New System.Drawing.Point(0, 20)
-        Me.Label56.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.Label56.Name = "Label56"
-        Me.Label56.Size = New System.Drawing.Size(79, 30)
-        Me.Label56.TabIndex = 1
-        Me.Label56.Text = "Qualsiasi"
-        Me.Label56.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LabMinVotoMetacritic.AutoSize = True
+        Me.LabMinVotoMetacritic.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabMinVotoMetacritic.Location = New System.Drawing.Point(0, 20)
+        Me.LabMinVotoMetacritic.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinVotoMetacritic.Name = "LabMinVotoMetacritic"
+        Me.LabMinVotoMetacritic.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinVotoMetacritic.TabIndex = 1
+        Me.LabMinVotoMetacritic.Text = "Qualsiasi"
+        Me.LabMinVotoMetacritic.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label57
         '
@@ -1732,7 +1743,7 @@ Partial Class MainForm
         'Panel6
         '
         Me.Panel6.Controls.Add(Me.FiltroMinIncasso)
-        Me.Panel6.Controls.Add(Me.Label54)
+        Me.Panel6.Controls.Add(Me.LabMinIncasso)
         Me.Panel6.Controls.Add(Me.Label55)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel6.Location = New System.Drawing.Point(3, 103)
@@ -1743,27 +1754,28 @@ Partial Class MainForm
         'FiltroMinIncasso
         '
         Me.FiltroMinIncasso.AutoSize = False
-        Me.FiltroMinIncasso.BackColor = System.Drawing.SystemColors.Control
         Me.FiltroMinIncasso.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinIncasso.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FiltroMinIncasso.LargeChange = 1
+        Me.FiltroMinIncasso.LargeChange = 200000
         Me.FiltroMinIncasso.Location = New System.Drawing.Point(79, 20)
-        Me.FiltroMinIncasso.Maximum = 7
+        Me.FiltroMinIncasso.Maximum = 2800000
         Me.FiltroMinIncasso.Name = "FiltroMinIncasso"
         Me.FiltroMinIncasso.Size = New System.Drawing.Size(294, 30)
+        Me.FiltroMinIncasso.SmallChange = 1000
         Me.FiltroMinIncasso.TabIndex = 17
+        Me.FiltroMinIncasso.TickFrequency = 200000
         '
-        'Label54
+        'LabMinIncasso
         '
-        Me.Label54.AutoSize = True
-        Me.Label54.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label54.Location = New System.Drawing.Point(0, 20)
-        Me.Label54.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(79, 30)
-        Me.Label54.TabIndex = 1
-        Me.Label54.Text = "Qualsiasi"
-        Me.Label54.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LabMinIncasso.AutoSize = True
+        Me.LabMinIncasso.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabMinIncasso.Location = New System.Drawing.Point(0, 20)
+        Me.LabMinIncasso.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinIncasso.Name = "LabMinIncasso"
+        Me.LabMinIncasso.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinIncasso.TabIndex = 1
+        Me.LabMinIncasso.Text = "Qualsiasi"
+        Me.LabMinIncasso.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label55
         '
@@ -1779,7 +1791,7 @@ Partial Class MainForm
         'Panel4
         '
         Me.Panel4.Controls.Add(Me.FiltroMinNumVotiIMDB)
-        Me.Panel4.Controls.Add(Me.Label52)
+        Me.Panel4.Controls.Add(Me.LabMinNumVotiIMDB)
         Me.Panel4.Controls.Add(Me.Label53)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel4.Location = New System.Drawing.Point(3, 53)
@@ -1790,27 +1802,28 @@ Partial Class MainForm
         'FiltroMinNumVotiIMDB
         '
         Me.FiltroMinNumVotiIMDB.AutoSize = False
-        Me.FiltroMinNumVotiIMDB.BackColor = System.Drawing.SystemColors.Control
         Me.FiltroMinNumVotiIMDB.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinNumVotiIMDB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FiltroMinNumVotiIMDB.LargeChange = 1
+        Me.FiltroMinNumVotiIMDB.LargeChange = 250
         Me.FiltroMinNumVotiIMDB.Location = New System.Drawing.Point(79, 20)
-        Me.FiltroMinNumVotiIMDB.Maximum = 7
+        Me.FiltroMinNumVotiIMDB.Maximum = 2500
         Me.FiltroMinNumVotiIMDB.Name = "FiltroMinNumVotiIMDB"
         Me.FiltroMinNumVotiIMDB.Size = New System.Drawing.Size(294, 30)
+        Me.FiltroMinNumVotiIMDB.SmallChange = 25
         Me.FiltroMinNumVotiIMDB.TabIndex = 17
+        Me.FiltroMinNumVotiIMDB.TickFrequency = 250
         '
-        'Label52
+        'LabMinNumVotiIMDB
         '
-        Me.Label52.AutoSize = True
-        Me.Label52.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label52.Location = New System.Drawing.Point(0, 20)
-        Me.Label52.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(79, 30)
-        Me.Label52.TabIndex = 1
-        Me.Label52.Text = "Qualsiasi"
-        Me.Label52.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LabMinNumVotiIMDB.AutoSize = True
+        Me.LabMinNumVotiIMDB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabMinNumVotiIMDB.Location = New System.Drawing.Point(0, 20)
+        Me.LabMinNumVotiIMDB.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinNumVotiIMDB.Name = "LabMinNumVotiIMDB"
+        Me.LabMinNumVotiIMDB.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinNumVotiIMDB.TabIndex = 1
+        Me.LabMinNumVotiIMDB.Text = "Qualsiasi"
+        Me.LabMinNumVotiIMDB.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label53
         '
@@ -1826,7 +1839,7 @@ Partial Class MainForm
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.FiltroMinVotoIMDB)
-        Me.Panel2.Controls.Add(Me.Label51)
+        Me.Panel2.Controls.Add(Me.LabMinVotoIMDB)
         Me.Panel2.Controls.Add(Me.Label19)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
@@ -1837,27 +1850,27 @@ Partial Class MainForm
         'FiltroMinVotoIMDB
         '
         Me.FiltroMinVotoIMDB.AutoSize = False
-        Me.FiltroMinVotoIMDB.BackColor = System.Drawing.SystemColors.Control
         Me.FiltroMinVotoIMDB.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinVotoIMDB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FiltroMinVotoIMDB.LargeChange = 1
+        Me.FiltroMinVotoIMDB.LargeChange = 10
         Me.FiltroMinVotoIMDB.Location = New System.Drawing.Point(79, 20)
-        Me.FiltroMinVotoIMDB.Maximum = 7
+        Me.FiltroMinVotoIMDB.Maximum = 100
         Me.FiltroMinVotoIMDB.Name = "FiltroMinVotoIMDB"
         Me.FiltroMinVotoIMDB.Size = New System.Drawing.Size(294, 30)
         Me.FiltroMinVotoIMDB.TabIndex = 17
+        Me.FiltroMinVotoIMDB.TickFrequency = 10
         '
-        'Label51
+        'LabMinVotoIMDB
         '
-        Me.Label51.AutoSize = True
-        Me.Label51.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label51.Location = New System.Drawing.Point(0, 20)
-        Me.Label51.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(79, 30)
-        Me.Label51.TabIndex = 1
-        Me.Label51.Text = "Qualsiasi"
-        Me.Label51.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LabMinVotoIMDB.AutoSize = True
+        Me.LabMinVotoIMDB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabMinVotoIMDB.Location = New System.Drawing.Point(0, 20)
+        Me.LabMinVotoIMDB.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinVotoIMDB.Name = "LabMinVotoIMDB"
+        Me.LabMinVotoIMDB.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinVotoIMDB.TabIndex = 1
+        Me.LabMinVotoIMDB.Text = "Qualsiasi"
+        Me.LabMinVotoIMDB.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label19
         '
@@ -3626,8 +3639,8 @@ Partial Class MainForm
         Me.ListaAttori.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaAttori.FullRowSelect = True
         Me.ListaAttori.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem4.StateImageIndex = 0
-        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
+        ListViewItem31.StateImageIndex = 0
+        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem31, ListViewItem32, ListViewItem33})
         Me.ListaAttori.Location = New System.Drawing.Point(0, 32)
         Me.ListaAttori.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaAttori.MultiSelect = False
@@ -3675,8 +3688,8 @@ Partial Class MainForm
         Me.ListaGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaGeneri.FullRowSelect = True
         Me.ListaGeneri.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem15.StateImageIndex = 0
-        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem13, ListViewItem14, ListViewItem15})
+        ListViewItem39.StateImageIndex = 0
+        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem37, ListViewItem38, ListViewItem39})
         Me.ListaGeneri.Location = New System.Drawing.Point(0, 32)
         Me.ListaGeneri.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaGeneri.MultiSelect = False
@@ -4508,8 +4521,8 @@ Partial Class MainForm
         'SplitContainerCSX_DX.Panel2
         '
         Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.BarraStrumentiFilm)
-        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliCategoria)
         Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliFilm)
+        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliCategoria)
         Me.SplitContainerCSX_DX.Size = New System.Drawing.Size(1214, 743)
         Me.SplitContainerCSX_DX.SplitterDistance = 559
         Me.SplitContainerCSX_DX.SplitterIncrement = 10
@@ -4764,19 +4777,6 @@ Partial Class MainForm
         Me.IconaCategoriaScelta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.IconaCategoriaScelta.TabIndex = 19
         Me.IconaCategoriaScelta.TabStop = False
-        '
-        'AggiornaLibreriaToolStripMenuItem
-        '
-        Me.AggiornaLibreriaToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.aggiorna
-        Me.AggiornaLibreriaToolStripMenuItem.Name = "AggiornaLibreriaToolStripMenuItem"
-        Me.AggiornaLibreriaToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
-        Me.AggiornaLibreriaToolStripMenuItem.Text = "Aggiorna libreria"
-        Me.AggiornaLibreriaToolStripMenuItem.ToolTipText = "Aggiorna l'elenco dei film dal disco"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(277, 6)
         '
         'MainForm
         '
@@ -5105,22 +5105,22 @@ Partial Class MainForm
     Friend WithEvents Label60 As System.Windows.Forms.Label
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents FiltroMinVotoRotten As System.Windows.Forms.TrackBar
-    Friend WithEvents Label58 As System.Windows.Forms.Label
+    Friend WithEvents LabMinVotoRotten As System.Windows.Forms.Label
     Friend WithEvents Label59 As System.Windows.Forms.Label
     Friend WithEvents Panel7 As System.Windows.Forms.Panel
     Friend WithEvents FiltroMinVotoMetacritic As System.Windows.Forms.TrackBar
-    Friend WithEvents Label56 As System.Windows.Forms.Label
+    Friend WithEvents LabMinVotoMetacritic As System.Windows.Forms.Label
     Friend WithEvents Label57 As System.Windows.Forms.Label
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents FiltroMinIncasso As System.Windows.Forms.TrackBar
-    Friend WithEvents Label54 As System.Windows.Forms.Label
+    Friend WithEvents LabMinIncasso As System.Windows.Forms.Label
     Friend WithEvents Label55 As System.Windows.Forms.Label
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents FiltroMinNumVotiIMDB As System.Windows.Forms.TrackBar
-    Friend WithEvents Label52 As System.Windows.Forms.Label
+    Friend WithEvents LabMinNumVotiIMDB As System.Windows.Forms.Label
     Friend WithEvents Label53 As System.Windows.Forms.Label
     Friend WithEvents FiltroMinVotoIMDB As System.Windows.Forms.TrackBar
-    Friend WithEvents Label51 As System.Windows.Forms.Label
+    Friend WithEvents LabMinVotoIMDB As System.Windows.Forms.Label
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Panel11 As System.Windows.Forms.Panel
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
@@ -5167,10 +5167,10 @@ Partial Class MainForm
     Friend WithEvents FlowLayoutPanel8 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents Panel13 As System.Windows.Forms.Panel
     Friend WithEvents Label61 As System.Windows.Forms.Label
-    Friend WithEvents CheckedListBox1 As System.Windows.Forms.CheckedListBox
+    Friend WithEvents FiltroAudio As System.Windows.Forms.CheckedListBox
     Friend WithEvents Panel14 As System.Windows.Forms.Panel
     Friend WithEvents Label62 As System.Windows.Forms.Label
-    Friend WithEvents CheckedListBox2 As System.Windows.Forms.CheckedListBox
+    Friend WithEvents FiltroSottotitoli As System.Windows.Forms.CheckedListBox
     Friend WithEvents PannelloExtra As System.Windows.Forms.Panel
     Friend WithEvents ButtAddExtra As System.Windows.Forms.Button
     Friend WithEvents ListaExtra As System.Windows.Forms.ListBox

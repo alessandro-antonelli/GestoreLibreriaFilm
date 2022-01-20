@@ -5,7 +5,7 @@ Public Module MainModule
 
     Sub Main(args As String())
         Application.EnableVisualStyles()
-        MainForm.VisualizzazioneContenutoSchermataDestra(False)
+        MainForm.ImpostaContenutoSchermataDestra(False, False)
 
         ' Tema colori
         'TODOOOOOOOOOOOOOO
