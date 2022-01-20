@@ -89,6 +89,12 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.Designer.vb">
+      <DependentUpon>About.vb</DependentUpon>
+    </Compile>
+    <Compile Include="About.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AggiungiGenere.Designer.vb">
       <DependentUpon>AggiungiGenere.vb</DependentUpon>
     </Compile>
@@ -108,6 +114,7 @@
     <Compile Include="InserisciNomeCognome.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Libreria.vb" />
     <Compile Include="ListaEtichettata.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
@@ -167,6 +174,9 @@
     <Compile Include="Sottotitolo.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AggiungiGenere.resx">
       <DependentUpon>AggiungiGenere.vb</DependentUpon>
     </EmbeddedResource>

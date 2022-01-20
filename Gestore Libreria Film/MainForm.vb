@@ -10,6 +10,7 @@ Public Class MainForm
     Dim ListaIndiciFilmInCategoria As New List(Of UShort)
     Dim ListaIndiciFilmFiltrati As New List(Of UShort)
 
+    Public TuttiIFilm As ListaEtichettata
     Public FilmPerRegista As New List(Of ListaEtichettata)
     Public FilmPerDecennio As New List(Of ListaEtichettata)
     Public FilmPerAttore As New List(Of ListaEtichettata)
@@ -136,6 +137,11 @@ Public Class MainForm
     Public Sub AggiungiFilm(Film As Film)
         Dim indice As UShort = LibreriaFilm.Count
         LibreriaFilm.Add(Film)
+        If (IsNothing(TuttiIFilm)) Then
+            TuttiIFilm = New ListaEtichettata("La tua libreria", indice)
+        Else
+            TuttiIFilm.Aggiungi(indice)
+        End If
 
         'FilmPerRegista
         If (Not IsNothing(Film.Registi)) Then
@@ -306,7 +312,7 @@ Public Class MainForm
         ElseIf (DurataMinuti < MinutiInUnGiorno) Then
             If (Not Sintetico) Then
                 Dim Ore As UShort = Math.Floor(DurataMinuti / 60) Mod 24
-                Return Ore.ToString + If(Ore = 1, " ora, ", " ore") + If(Minuti <> 0, ", " + Minuti.ToString + " min", "")
+                Return Ore.ToString + If(Ore = 1, " ora", " ore") + If(Minuti <> 0, ", " + Minuti.ToString + " min", "")
             Else
                 Return Math.Round(DurataMinuti / 60, 1).ToString + "h"
             End If
@@ -323,169 +329,150 @@ Public Class MainForm
 
     Sub GeneraListaFilmCategoria(IndiceCategoria As UShort, IndiceSelezioneNellaCategoria As UShort)
         ListaIndiciFilmInCategoria.Clear()
+
+        FiltroNazioni.Items.Clear()
+        FiltroGeneri.Items.Clear()
+        FiltroAudio.Items.Clear()
+        FiltroSottotitoli.Items.Clear()
         PannelloFiltri.Visible = True
+
+        Dim ListaCategoria As ListaEtichettata
+
         Select Case IndiceCategoria
             Case 0 'Tutti i film
+                ListaCategoria = TuttiIFilm
                 Me.Text = "Tutti i film - " + Application.ProductName
-
                 LabCategoriaScelta.Visible = False
                 LabValoreCategoriaScelta.Text = "La tua libreria" '"Tutti i film"
                 IconaCategoriaScelta.Image = My.Resources.ciak_semplice
                 LabConteggioCategoriaScelta.Text = LibreriaFilm.Count.ToString
                 VisualizzazioneSchedaPersona(False)
-
-                Dim DurataTotMinuti As UInteger = 0
-                Dim MinAnno As UShort = UShort.MaxValue
-                Dim MaxAnno As UShort = UShort.MinValue
-                For i As Short = 0 To (LibreriaFilm.Count - 1)
-                    ListaIndiciFilmInCategoria.Add(i)
-                    DurataTotMinuti += LibreriaFilm(i).DurataMinuti
-                    Dim AnnoFilm As UShort = LibreriaFilm(i).Anno
-                    If (AnnoFilm < MinAnno) Then MinAnno = AnnoFilm
-                    If (AnnoFilm <> 0 AndAlso AnnoFilm > MaxAnno) Then MaxAnno = AnnoFilm
-                Next
-                LabDurataCat.Text = FormattaDurata(DurataTotMinuti, False)
-                ImpostaAnnoAttività(MinAnno, MaxAnno)
             Case 1 'Registi
-                Dim ListaCategoria As ListaEtichettata = FilmPerRegista.Item(IndiceSelezioneNellaCategoria)
+                ListaCategoria = FilmPerRegista.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Regista: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
-
-                LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film del regista"
-                LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.camera
-                LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
-
-                ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 2 'Attori
-                Dim ListaCategoria As ListaEtichettata = FilmPerAttore.Item(IndiceSelezioneNellaCategoria)
+                ListaCategoria = FilmPerAttore.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Attore: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
-
-                LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film con l'attore"
-                LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.persona
-                LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
-
-                ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 3 'Generi
-                Dim ListaCategoria As ListaEtichettata = FilmPerGenere.Item(IndiceSelezioneNellaCategoria)
+                ListaCategoria = FilmPerGenere.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Genere: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
-
-                LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film di genere"
-                LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 Dim IndIcona As Byte = IndiceIconaGenere(ListaCategoria.GetEtichetta)
                 If (IndIcona <> 0) Then
                     IconaCategoriaScelta.Image = IconeCategorieLibreria.Images.Item(IndIcona)
                 Else
                     IconaCategoriaScelta.Image = My.Resources.generi
                 End If
-                LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(False)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
-
-                ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 4 'Anni pubblicazione
-                Dim ListaCategoria As ListaEtichettata = FilmPerDecennio.Item(IndiceSelezioneNellaCategoria)
+                ListaCategoria = FilmPerDecennio.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Decennio: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
-
-                LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film usciti negli anni"
-                LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.data
-                LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
                 PanPeriodoAttività.Visible = False
                 VisualizzazioneSchedaPersona(False)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
-
-                ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 5 'Nazioni
-                Dim ListaCategoria As ListaEtichettata = FilmPerNazione.Item(IndiceSelezioneNellaCategoria)
+                ListaCategoria = FilmPerNazione.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Nazione: " + ListaCategoria.GetEtichetta.ToUpper + " - " + Application.ProductName
-
-                LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film di nazionalità"
-                LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 ImpostaRisorsaIconaNazione(ListaCategoria.GetEtichetta, IconaCategoriaScelta, False)
-                LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(False)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
-
-                ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 6 'Saghe
                 'TODO
             Case 7 'Autori
-                Dim ListaCategoria As ListaEtichettata = FilmPerAutore.Item(IndiceSelezioneNellaCategoria)
+                ListaCategoria = FilmPerAutore.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Autore: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
-
-                LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film scritti da"
-                LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.autore
-                LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
-
-                ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 8 'Musicisti
-                Dim ListaCategoria As ListaEtichettata = FilmPerMusicista.Item(IndiceSelezioneNellaCategoria)
+                ListaCategoria = FilmPerMusicista.Item(IndiceSelezioneNellaCategoria)
                 Me.Text = "Musicista: " + ListaCategoria.GetEtichetta + " - " + Application.ProductName
-
-                LabCategoriaScelta.Visible = True
                 LabCategoriaScelta.Text = "Film musicati da"
-                LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
                 IconaCategoriaScelta.Image = My.Resources.musica
-                LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
-                ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
                 VisualizzazioneSchedaPersona(True, ListaCategoria)
-                LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
-
-                ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
             Case 9 'Temi
             Case 10 'Ambientazione
         End Select
 
-        FiltroNazioni.Items.Clear()
-        FiltroGeneri.Items.Clear()
-        FiltroAudio.Items.Clear()
-        FiltroSottotitoli.Items.Clear()
-        For Each indice In ListaIndiciFilmInCategoria
-            Dim Nazione As String = LibreriaFilm.Item(indice).Nazione
-            If (Not IsNothing(Nazione)) Then
-                If (Not FiltroNazioni.Items.Contains(Nazione.ToUpper)) Then FiltroNazioni.Items.Add(Nazione.ToUpper)
+        If (IndiceCategoria <> 0) Then LabCategoriaScelta.Visible = True
+        If (Not IsNothing(ListaCategoria)) Then
+            LabValoreCategoriaScelta.Text = ListaCategoria.GetEtichetta
+            LabConteggioCategoriaScelta.Text = ListaCategoria.Conteggio.ToString
+            If (IndiceCategoria <> 4) Then ImpostaAnnoAttività(ListaCategoria.GetMinAnno, ListaCategoria.GetMaxAnno)
+            LabDurataCat.Text = FormattaDurata(ListaCategoria.GetDurataTotMinuti, False)
+
+            'Incasso medio
+            If (ListaCategoria.GetIncassoMedio > 0) Then
+                VisualizzaValutazione(ListaCategoria.GetIncassoMedio, 2800000000, IncassiCat, Label64, Panel17, True, {0, 255, 0})
+            Else
+                Panel17.Visible = False
             End If
 
-            Dim Generi As List(Of String) = LibreriaFilm.Item(indice).Generi
-            If (Not IsNothing(Generi)) Then
-                For Each genere As String In Generi
-                    If (Not FiltroGeneri.Items.Contains(genere)) Then FiltroGeneri.Items.Add(genere)
-                Next
+            'Voto IMDB medio
+            If (ListaCategoria.GetVotoIMDBMedio > 0) Then
+                VisualizzaValutazione(ListaCategoria.GetVotoIMDBMedio, 10, VotoIMDBCat, Nothing, Panel15)
+            Else
+                Panel15.Visible = False
             End If
 
-            Dim Sonori As List(Of Sonoro) = LibreriaFilm.Item(indice).Sonori
-            If (Not IsNothing(Sonori)) Then
-                For Each audio As Sonoro In Sonori
-                    If (Not IsNothing(audio.Lingua) AndAlso Not FiltroAudio.Items.Contains(audio.Lingua.ToUpper)) Then FiltroAudio.Items.Add(audio.Lingua.ToUpper)
-                Next
+            'Num voti IMDB medio
+            If (ListaCategoria.GetNumVotiIMDBMedio > 0) Then
+                VisualizzaValutazione(ListaCategoria.GetNumVotiIMDBMedio, 2500000, NumVotiIMDBCat, Label54, Panel16, True, {102, 255, 255})
+            Else
+                Panel16.Visible = False
             End If
 
-            Dim Sottotitoli As List(Of Sottotitolo) = LibreriaFilm.Item(indice).Sottotitoli
-            If (Not IsNothing(Sottotitoli)) Then
-                For Each sottotitolo As Sottotitolo In Sottotitoli
-                    If (Not IsNothing(sottotitolo.Lingua) AndAlso Not FiltroSottotitoli.Items.Contains(sottotitolo.Lingua.ToUpper)) Then FiltroSottotitoli.Items.Add(sottotitolo.Lingua.ToUpper)
-                Next
+            'Metacritic medio
+            If (ListaCategoria.GetVotoMetacriticMedio > 0) Then
+                VisualizzaValutazione(ListaCategoria.GetVotoMetacriticMedio, 100, VotoMetacriticCat, Nothing, Panel18)
+            Else
+                Panel18.Visible = False
             End If
-        Next
+
+            'Rotten Tomatoes medio
+            If (ListaCategoria.GetVotoRottenMedio > 0) Then
+                VisualizzaValutazione(ListaCategoria.GetVotoRottenMedio, 100, RottenCat, Nothing, Panel19)
+            Else
+                Panel19.Visible = False
+            End If
+
+            ListaIndiciFilmInCategoria.AddRange(ListaCategoria.GetArray)
+
+            For Each indice In ListaIndiciFilmInCategoria
+                Dim Nazione As String = LibreriaFilm.Item(indice).Nazione
+                If (Not IsNothing(Nazione)) Then
+                    If (Not FiltroNazioni.Items.Contains(Nazione.ToUpper)) Then FiltroNazioni.Items.Add(Nazione.ToUpper)
+                End If
+
+                Dim Generi As List(Of String) = LibreriaFilm.Item(indice).Generi
+                If (Not IsNothing(Generi)) Then
+                    For Each genere As String In Generi
+                        If (Not FiltroGeneri.Items.Contains(genere)) Then FiltroGeneri.Items.Add(genere)
+                    Next
+                End If
+
+                Dim Sonori As List(Of Sonoro) = LibreriaFilm.Item(indice).Sonori
+                If (Not IsNothing(Sonori)) Then
+                    For Each audio As Sonoro In Sonori
+                        If (Not IsNothing(audio.Lingua) AndAlso Not FiltroAudio.Items.Contains(audio.Lingua.ToUpper)) Then FiltroAudio.Items.Add(audio.Lingua.ToUpper)
+                    Next
+                End If
+
+                Dim Sottotitoli As List(Of Sottotitolo) = LibreriaFilm.Item(indice).Sottotitoli
+                If (Not IsNothing(Sottotitoli)) Then
+                    For Each sottotitolo As Sottotitolo In Sottotitoli
+                        If (Not IsNothing(sottotitolo.Lingua) AndAlso Not FiltroSottotitoli.Items.Contains(sottotitolo.Lingua.ToUpper)) Then FiltroSottotitoli.Items.Add(sottotitolo.Lingua.ToUpper)
+                    Next
+                End If
+            Next
+        End If
 
         GeneraListaFilmFiltrati()
     End Sub
@@ -513,7 +500,7 @@ Public Class MainForm
                 PicImgPersona.ImageLocation = PathImmagine
             Else
                 Me.UseWaitCursor = True
-                Dim PathTemporaneo() As String = MainModule.SalvaImmaginiGoogle(ListaCategoria.GetEtichetta, 1)
+                Dim PathTemporaneo() As String = MainModule.SalvaImmaginiGoogle("site:imdb.com " + ListaCategoria.GetEtichetta, 1)
                 If (Not IsNothing(PathTemporaneo) And PathTemporaneo.Length >= 1) Then
                     My.Computer.FileSystem.MoveFile(PathTemporaneo(0), PathImmagine, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
                     PicImgPersona.ImageLocation = PathImmagine
@@ -2684,22 +2671,19 @@ Public Class MainForm
     Private Sub DownloadButton_Click(sender As Object, e As EventArgs) Handles DownloadButton.Click
         If (ElencoFilm.SelectedIndices.Count <= 0 OrElse Not My.Computer.Network.IsAvailable) Then Exit Sub
         Dim Film As Film = LibreriaFilm.Item(ListaIndiciFilmFiltrati.Item(ElencoFilm.SelectedIndices.Item(0)))
-        Dim IdIMDB As String = TrovaIDimdbAutomatico(Film)
 
-        If (IsNothing(IdIMDB)) Then
-            IndividuaIMDB.CaricaInfoFilm(Film)
-            If (IndividuaIMDB.ShowDialog() = Windows.Forms.DialogResult.OK) Then
-                IdIMDB = IndividuaIMDB.IdIMDB
-            Else
-                Exit Sub
+        IndividuaIMDB.CaricaInfoFilm(Film)
+        If (IndividuaIMDB.ShowDialog() <> Windows.Forms.DialogResult.OK) Then
+            Exit Sub
+        Else
+            Dim IdIMDB As String = IndividuaIMDB.IdIMDB
+
+            If (Not IsNothing(IdIMDB)) Then
+                MainModule.ScaricaDatiIMDB(IdIMDB, Film.NomeFile)
+                'Aggiorno icone
+                AggiornaContenutoPannelloDestra()
+                ForzaAggiornamentoIcone()
             End If
-        End If
-
-        If (Not IsNothing(IdIMDB)) Then
-            MainModule.ScaricaDatiIMDB(IdIMDB, Film.NomeFile)
-            'Aggiorno icone
-            AggiornaContenutoPannelloDestra()
-            ForzaAggiornamentoIcone()
         End If
     End Sub
 
@@ -2972,5 +2956,9 @@ Public Class MainForm
         sender.Checked = True
         ListaIndiciFilmFiltrati.Sort(Function(A As UShort, B As UShort) -1 * (Short.Parse(LibreriaFilm.Item(A).OscarNominati + LibreriaFilm.Item(A).BAFTANominati + LibreriaFilm.Item(A).AltriPremiNominati) - (LibreriaFilm.Item(B).OscarNominati + LibreriaFilm.Item(B).BAFTANominati + LibreriaFilm.Item(B).AltriPremiNominati)))
         AggiornaIconeDaLista()
+    End Sub
+
+    Private Sub CreditiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreditiToolStripMenuItem.Click
+        About.ShowDialog()
     End Sub
 End Class

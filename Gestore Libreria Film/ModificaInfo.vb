@@ -4,16 +4,16 @@
 
     Public Sub InizializzaFinestra(Film As Film)
         Me.Film = Film
-        Me.LinkLabel1.Text = Film.TitoloITA + If(Not IsNothing(Film.Anno), " [" + Film.Anno.ToString + "]", "")
+        Me.LinkFile.Text = Film.TitoloITA + If(Not IsNothing(Film.Anno), " [" + Film.Anno.ToString + "]", "")
         UpDownAnno.Maximum = My.Computer.Clock.LocalTime.Year
 
         If (MainModule.ModalitaNotte) Then
             Me.BackColor = Color.Black
             Me.ForeColor = Color.White
-            LinkLabel1.LinkColor = Color.Yellow
+            LinkFile.LinkColor = Color.Yellow
             Dim grigio As Color = Color.FromArgb(255, 32, 32, 32)
             ButtSalva.BackColor = grigio
-            Button2.BackColor = grigio
+            ButtRinominaManuale.BackColor = grigio
             Button13.BackColor = grigio
             Button14.BackColor = grigio
             Button15.BackColor = grigio
@@ -91,68 +91,7 @@
         Next
     End Sub
 
-    Function ControllaSeNomeValido() As Boolean Handles TextTitoloITA.TextChanged, TextTitoloITA.KeyPress, TextTitoloORIG.TextChanged, TextTitoloORIG.KeyPress, TextNote.TextChanged, TextNote.KeyPress, TextNazione.TextChanged, TextNazione.KeyPress
-        Dim NomeFile As String = GeneraNome()
-
-        If (Film.NomeFile.Equals(NomeFile)) Then
-            NomeNonValido("coincide con quello di partenza!")
-            Return False
-        End If
-
-        Dim PercorsoFile As String = My.Settings.LibreriaPercorso + "\" + NomeFile
-        If (PercorsoFile.Length > 255) Then
-            NomeNonValido("nome troppo lungo (sfora di " + (PercorsoFile.Length - 255).ToString + " caratteri)!")
-            Return False
-        End If
-
-        If (My.Computer.FileSystem.FileExists(PercorsoFile)) Then
-            NomeNonValido("esiste un altro file con lo stesso nome!")
-            Return False
-        End If
-
-        If (NomeFile.EndsWith(" ")) Then
-            NomeNonValido("non può terminare con uno spazio!")
-            Return False
-        End If
-        If (NomeFile.EndsWith(".")) Then
-            NomeNonValido("non può terminare con un punto!")
-            Return False
-        End If
-        If (NomeFile.Contains("<") OrElse
-            NomeFile.Contains(">") OrElse
-            NomeFile.Contains(":") OrElse
-            NomeFile.Contains("""") OrElse
-            NomeFile.Contains("/") OrElse
-            NomeFile.Contains("\") OrElse
-            NomeFile.Contains("|") OrElse
-            NomeFile.Contains("?") OrElse
-            NomeFile.Contains("*")) Then
-            NomeNonValido("contiene un carattere non consentito!")
-            Return False
-        End If
-
-        If (TextNazione.Text.Length <> 0 And TextNazione.Text.Length <> 3) Then
-            NomeNonValido("il nome della nazione deve essere una sigla di 3 lettere!")
-            Return False
-        End If
-
-        'Altrimenti...
-        NomeValido()
-        Return True
-    End Function
-
-    Sub NomeNonValido(motivo As String)
-        Label6.Text = "Nome file non valido: " + motivo
-        ButtSalva.Enabled = False
-    End Sub
-
-    Sub NomeValido()
-        Label6.Text = ""
-        ButtSalva.Enabled = True
-    End Sub
-
-
-    Function GeneraNome() As String
+    Function GeneraNomeDaForm() As String
         Dim Nome As String = ""
 
         If (CheckAnnoVuoto.Checked = False) Then
@@ -212,140 +151,212 @@
         Return Nome + "." + Film.Estensione
     End Function
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        If (My.Computer.FileSystem.FileExists(Film.PercorsoFile)) Then Process.Start(Film.PercorsoFile)
-    End Sub
+    Function EPossibileRinominare(NuovoNome As String) As String 'restituisce Nothing se è possibile, altrimenti il motivo per cui non è possibile
+        Dim VecchioNome As String = Film.NomeFile
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim VecchioNome As String = film.NomeFile
-        Dim NuovoNome = InputBox("Inserisci il nuovo nome per il file:", "Rinomina file", VecchioNome)
-        Dim NuovoPercorso = My.Computer.FileSystem.GetFileInfo(film.PercorsoFile).Directory.FullName + "\" + NuovoNome
-        If (NuovoNome = "" Or NuovoNome = VecchioNome) Then Exit Sub
-        If (My.Computer.FileSystem.FileExists(NuovoPercorso)) Then
-            MessageBox.Show("Impossibile rinominare: esiste già un altro file con questo nome!")
-            Exit Sub
+        ' File del film
+        If (IsNothing(NuovoNome) OrElse NuovoNome.Length = 0) Then Return "il nome inserito è vuoto!"
+
+        If (VecchioNome.Equals(NuovoNome)) Then
+            Return "coincide con quello di partenza!"
         End If
 
+        Dim PercorsoFile As String = My.Settings.LibreriaPercorso + "\" + NuovoNome
+        If (PercorsoFile.Length > 255) Then
+            Return "nome troppo lungo (sfora di " + (PercorsoFile.Length - 255).ToString + " caratteri)!"
+        End If
+
+        If (My.Computer.FileSystem.FileExists(PercorsoFile)) Then
+            Return "esiste un altro file con lo stesso nome!"
+        End If
+
+        If (NuovoNome.EndsWith(" ")) Then
+            Return "non può terminare con uno spazio!"
+        End If
+        If (NuovoNome.EndsWith(".")) Then
+            Return "non può terminare con un punto!"
+        End If
+        If (NuovoNome.Contains("<") OrElse
+            NuovoNome.Contains(">") OrElse
+            NuovoNome.Contains(":") OrElse
+            NuovoNome.Contains("""") OrElse
+            NuovoNome.Contains("/") OrElse
+            NuovoNome.Contains("\") OrElse
+            NuovoNome.Contains("|") OrElse
+            NuovoNome.Contains("?") OrElse
+            NuovoNome.Contains("*")) Then
+            Return "contiene un carattere non consentito!"
+        End If
+
+        If (TextNazione.Text.Length <> 0 And TextNazione.Text.Length <> 3) Then
+            Return "il nome della nazione deve essere una sigla di 3 lettere!"
+        End If
+
+        'File della Schermata
+        Dim PercorsoSchermataVecchio As String = MainModule.PercorsoSchermataFilm(VecchioNome)
+        If (My.Computer.FileSystem.FileExists(PercorsoSchermataVecchio)) Then
+            Dim PercorsoSchermataNuovo As String = MainModule.PercorsoSchermataFilm(NuovoNome)
+            If (My.Computer.FileSystem.FileExists(PercorsoSchermataNuovo)) Then
+                Return "esiste già un'altra schermata con questo nome!"
+            End If
+        End If
+
+        'File del Poster
+        Dim PercorsoPosterVecchio As String = MainModule.PercorsoPosterFilm(VecchioNome)
+        If (My.Computer.FileSystem.FileExists(PercorsoPosterVecchio)) Then
+            Dim PercorsoPosterNuovo As String = MainModule.PercorsoPosterFilm(NuovoNome)
+            If (My.Computer.FileSystem.FileExists(PercorsoPosterNuovo)) Then
+                Return "esiste già un altro poster con questo nome!"
+            End If
+        End If
+
+        'File della Trama lunga
+        Dim PercorsoTramaVecchio As String = MainModule.PercorsoTramaLunga(VecchioNome)
+        If (My.Computer.FileSystem.FileExists(PercorsoTramaVecchio)) Then
+            Dim PercorsoTramaNuovo As String = MainModule.PercorsoTramaLunga(NuovoNome)
+            If (My.Computer.FileSystem.FileExists(PercorsoTramaNuovo)) Then
+                Return "esiste già un altro file della trama con questo nome!"
+            End If
+        End If
+
+        'File JSON delle Info multimediali
+        Dim PercorsoInfoFileVecchio As String = MainModule.PercorsoInfoFile(VecchioNome)
+        If (My.Computer.FileSystem.FileExists(PercorsoInfoFileVecchio)) Then
+            Dim PercorsoInfoNuovo As String = MainModule.PercorsoInfoFile(NuovoNome)
+            If (My.Computer.FileSystem.FileExists(PercorsoInfoNuovo)) Then
+                Return "esiste già un altro file di informazioni multimediali con questo nome!"
+            End If
+        End If
+
+        'File JSON delle Info IMDB
+        Dim PercorsoFlagNoIMDBFileVecchio As String = MainModule.PercorsoFlagNienteIMDB(VecchioNome)
+        If (My.Computer.FileSystem.FileExists(PercorsoFlagNoIMDBFileVecchio)) Then
+            Dim PercorsoFlagNoIMDBFileNuovo As String = MainModule.PercorsoFlagNienteIMDB(NuovoNome)
+            If (My.Computer.FileSystem.FileExists(PercorsoFlagNoIMDBFileNuovo)) Then
+                Return "esiste già un altro file-flag di assenza informazioni IMDB con questo nome!"
+            End If
+        Else
+            Dim PercorsoIMDBFileVecchio As String = MainModule.PercorsoInfoIMDB(VecchioNome)
+            If (My.Computer.FileSystem.FileExists(PercorsoIMDBFileVecchio)) Then
+                Dim PercorsoIMDBFileNuovo As String = MainModule.PercorsoInfoIMDB(NuovoNome)
+                If (My.Computer.FileSystem.FileExists(PercorsoIMDBFileNuovo)) Then
+                    Return "esiste già un altro file di informazioni IMDB con questo nome!"
+                End If
+            End If
+        End If
+
+        'Se nessuno dei precedenti controlli ha causato il Return:
+        Return Nothing
+    End Function
+
+    Sub EseguiRinomina(VecchioNomeFile As String, NuovoNomeFile As String)
         Try
             'Schermata
-            Dim PercorsoSchermataVecchio As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + VecchioNome + "_screen.jpg"
-            If (PercorsoSchermataVecchio.Length > 255) Then
-                Dim CharInEccesso As UShort = PercorsoSchermataVecchio.Length - 255
-                PercorsoSchermataVecchio = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + VecchioNome.Substring(0, VecchioNome.Length - CharInEccesso) + "_screen.jpg"
-            End If
+            Dim PercorsoSchermataVecchio As String = MainModule.PercorsoSchermataFilm(VecchioNomeFile)
             If (My.Computer.FileSystem.FileExists(PercorsoSchermataVecchio)) Then
-                Dim PercorsoSchermataNuovo As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNome + "_screen.jpg"
-                If (PercorsoSchermataNuovo.Length > 255) Then
-                    Dim CharInEccesso As UShort = PercorsoSchermataNuovo.Length - 255
-                    PercorsoSchermataNuovo = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNome.Substring(0, NuovoNome.Length - CharInEccesso) + "_screen.jpg"
-                End If
-                If (My.Computer.FileSystem.FileExists(PercorsoSchermataNuovo)) Then
-                    MessageBox.Show("Impossibile rinominare: esiste già un altro file con questo nome!")
-                    Exit Sub
-                End If
-
+                Dim PercorsoSchermataNuovo As String = MainModule.PercorsoSchermataFilm(NuovoNomeFile)
                 My.Computer.FileSystem.MoveFile(PercorsoSchermataVecchio, PercorsoSchermataNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
             End If
 
-            'Info
-            Dim PercorsoInfoVecchio As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + VecchioNome + "_info.json"
-            If (PercorsoInfoVecchio.Length > 255) Then
-                Dim CharInEccesso As UShort = PercorsoInfoVecchio.Length - 255
-                PercorsoInfoVecchio = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + VecchioNome.Substring(0, VecchioNome.Length - CharInEccesso) + "_info.json"
+            'Poster
+            Dim PercorsoPosterVecchio As String = MainModule.PercorsoPosterFilm(VecchioNomeFile)
+            If (My.Computer.FileSystem.FileExists(PercorsoPosterVecchio)) Then
+                Dim PercorsoPosterNuovo As String = MainModule.PercorsoPosterFilm(NuovoNomeFile)
+                My.Computer.FileSystem.MoveFile(PercorsoPosterVecchio, PercorsoPosterNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
             End If
-            If (My.Computer.FileSystem.FileExists(PercorsoInfoVecchio)) Then
-                Dim PercorsoInfoNuovo As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNome + "_info.json"
-                If (PercorsoInfoNuovo.Length > 255) Then
-                    Dim CharInEccesso As UShort = PercorsoInfoNuovo.Length - 255
-                    PercorsoInfoNuovo = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNome.Substring(0, NuovoNome.Length - CharInEccesso) + "_info.json"
-                End If
-                If (My.Computer.FileSystem.FileExists(PercorsoInfoNuovo)) Then
-                    MessageBox.Show("Impossibile rinominare: esiste già un altro file con questo nome!")
-                    Exit Sub
-                End If
 
-                My.Computer.FileSystem.MoveFile(PercorsoInfoVecchio, PercorsoInfoNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
+            'Trama lunga
+            Dim PercorsoTramaVecchio As String = MainModule.PercorsoTramaLunga(VecchioNomeFile)
+            If (My.Computer.FileSystem.FileExists(PercorsoTramaVecchio)) Then
+                Dim PercorsoTramaNuovo As String = MainModule.PercorsoTramaLunga(NuovoNomeFile)
+                My.Computer.FileSystem.MoveFile(PercorsoTramaVecchio, PercorsoTramaNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
+            End If
+
+            'Info file
+            Dim PercorsoInfoFileVecchio As String = MainModule.PercorsoInfoFile(VecchioNomeFile)
+            If (My.Computer.FileSystem.FileExists(PercorsoInfoFileVecchio)) Then
+                Dim PercorsoInfoNuovo As String = MainModule.PercorsoInfoFile(NuovoNomeFile)
+                My.Computer.FileSystem.MoveFile(PercorsoInfoFileVecchio, PercorsoInfoNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
+            End If
+
+            'Info IMDB
+            Dim PercorsoFlagNoIMDBFileVecchio As String = MainModule.PercorsoFlagNienteIMDB(VecchioNomeFile)
+            If (My.Computer.FileSystem.FileExists(PercorsoFlagNoIMDBFileVecchio)) Then
+                Dim PercorsoFlagNoIMDBFileNuovo As String = MainModule.PercorsoFlagNienteIMDB(NuovoNomeFile)
+                My.Computer.FileSystem.MoveFile(PercorsoFlagNoIMDBFileVecchio, PercorsoFlagNoIMDBFileNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
+            Else
+                Dim PercorsoIMDBFileVecchio As String = MainModule.PercorsoInfoIMDB(VecchioNomeFile)
+                If (My.Computer.FileSystem.FileExists(PercorsoIMDBFileVecchio)) Then
+                    Dim PercorsoIMDBFileNuovo As String = MainModule.PercorsoInfoIMDB(NuovoNomeFile)
+                    My.Computer.FileSystem.MoveFile(PercorsoIMDBFileVecchio, PercorsoIMDBFileNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
+                End If
             End If
 
             'Film
-            My.Computer.FileSystem.MoveFile(Film.PercorsoFile, NuovoPercorso, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
-
-            Me.Close()
+            My.Computer.FileSystem.RenameFile(My.Settings.LibreriaPercorso + "\" + VecchioNomeFile, NuovoNomeFile)
         Catch ex As Exception
-            MessageBox.Show("Impossibile rinominare il file: " + e.ToString)
+            MessageBox.Show("Impossibile rinominare: " + ex.ToString)
         End Try
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckAnnoVuoto.CheckedChanged
-        UpDownAnno.Enabled = Not CheckAnnoVuoto.Checked
-        ControllaSeNomeValido()
-    End Sub
+    Function ControllaSeValoriFormValidi() As Boolean Handles TextTitoloITA.TextChanged, TextTitoloITA.KeyPress, TextTitoloORIG.TextChanged, TextTitoloORIG.KeyPress, TextNote.TextChanged, TextNote.KeyPress, TextNazione.TextChanged, TextNazione.KeyPress
+        Dim OstacoliAllaRinomina As String = EPossibileRinominare(GeneraNomeDaForm())
+
+        If (IsNothing(OstacoliAllaRinomina)) Then
+            Label6.Text = ""
+            ButtSalva.Enabled = True
+            Return True
+        Else
+            Label6.Text = "Nome file non valido: " + OstacoliAllaRinomina
+            ButtSalva.Enabled = False
+            Return False
+        End If
+    End Function
 
     Private Sub ButtSalva_Click(sender As Object, e As EventArgs) Handles ButtSalva.Click
-        If (ControllaSeNomeValido()) Then
-            Dim NuovoNomeFile As String = GeneraNome()
-            Dim NuovoPercorsoFile As String = My.Settings.LibreriaPercorso + "\" + NuovoNomeFile
+        If (ControllaSeValoriFormValidi()) Then
+            Dim NuovoNomeFile As String = GeneraNomeDaForm()
 
-            If (MessageBox.Show("Il file:" + Chr(10) + Chr(10) + Film.NomeFile + Chr(10) + Chr(10) + "sarà rinominato in:" + Chr(10) + Chr(10) + NuovoNomeFile, "Confermi rinomina?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) <> Windows.Forms.DialogResult.Yes) Then
+            If (MessageBox.Show("Il file:" + Chr(10) + Chr(10) + Film.NomeFile + Chr(10) + Chr(10) +
+                                "sarà rinominato in:" + Chr(10) + Chr(10) + NuovoNomeFile, "Confermi rinomina?",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) <> Windows.Forms.DialogResult.Yes) Then
                 Exit Sub
             End If
 
-            Try
-                'Schermata
-                Dim PercorsoSchermataVecchio As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + Film.NomeFile + "_screen.jpg"
-                If (PercorsoSchermataVecchio.Length > 255) Then
-                    Dim CharInEccesso As UShort = PercorsoSchermataVecchio.Length - 255
-                    PercorsoSchermataVecchio = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + Film.NomeFile.Substring(0, Film.NomeFile.Length - CharInEccesso) + "_screen.jpg"
-                End If
-                If (My.Computer.FileSystem.FileExists(PercorsoSchermataVecchio)) Then
-                    Dim PercorsoSchermataNuovo As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNomeFile + "_screen.jpg"
-                    If (PercorsoSchermataNuovo.Length > 255) Then
-                        Dim CharInEccesso As UShort = PercorsoSchermataNuovo.Length - 255
-                        PercorsoSchermataNuovo = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNomeFile.Substring(0, NuovoNomeFile.Length - CharInEccesso) + "_screen.jpg"
-                    End If
-                    If (My.Computer.FileSystem.FileExists(PercorsoSchermataNuovo)) Then
-                        MessageBox.Show("Impossibile rinominare la schermata: esiste già un altro file con questo nome!")
-                        Exit Sub
-                    End If
+            EseguiRinomina(Film.NomeFile, NuovoNomeFile)
 
-                    My.Computer.FileSystem.MoveFile(PercorsoSchermataVecchio, PercorsoSchermataNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
-                End If
-
-                'Info
-                Dim PercorsoInfoVecchio As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + Film.NomeFile + "_info.json"
-                If (PercorsoInfoVecchio.Length > 255) Then
-                    Dim CharInEccesso As UShort = PercorsoInfoVecchio.Length - 255
-                    PercorsoInfoVecchio = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + Film.NomeFile.Substring(0, Film.NomeFile.Length - CharInEccesso) + "_info.json"
-                End If
-                If (My.Computer.FileSystem.FileExists(PercorsoInfoVecchio)) Then
-                    Dim PercorsoInfoNuovo As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNomeFile + "_info.json"
-                    If (PercorsoInfoNuovo.Length > 255) Then
-                        Dim CharInEccesso As UShort = PercorsoInfoNuovo.Length - 255
-                        PercorsoInfoNuovo = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\" + NuovoNomeFile.Substring(0, NuovoNomeFile.Length - CharInEccesso) + "_info.json"
-                    End If
-                    If (My.Computer.FileSystem.FileExists(PercorsoInfoNuovo)) Then
-                        MessageBox.Show("Impossibile rinominare le informazioni multimediali: esiste già un altro file con questo nome!")
-                        Exit Sub
-                    End If
-
-                    My.Computer.FileSystem.MoveFile(PercorsoInfoVecchio, PercorsoInfoNuovo, FileIO.UIOption.OnlyErrorDialogs, FileIO.UICancelOption.DoNothing)
-                End If
-
-                'Film
-                My.Computer.FileSystem.RenameFile(Film.PercorsoFile, NuovoNomeFile)
-
-                Me.Close()
-            Catch ex As Exception
-                MessageBox.Show("Impossibile rinominare: " + e.ToString)
-            End Try
+            Me.Close()
         End If
+    End Sub
+
+    Private Sub ButtRinominaManuale_Click(sender As Object, e As EventArgs) Handles ButtRinominaManuale.Click
+        Dim NuovoNome = InputBox("Inserisci il nuovo nome per il file:", "Rinomina file", Film.NomeFile)
+        If (NuovoNome = "" Or NuovoNome = Film.NomeFile) Then Exit Sub
+
+        Dim OstacoliAllaRinomina As String = EPossibileRinominare(NuovoNome)
+
+        If (IsNothing(OstacoliAllaRinomina)) Then
+            EseguiRinomina(Film.NomeFile, NuovoNome)
+            Me.Close()
+        Else
+            MessageBox.Show("Il nome inserito non è valido: " + OstacoliAllaRinomina)
+        End If
+    End Sub
+
+    Private Sub LinkFile_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkFile.LinkClicked
+        If (My.Computer.FileSystem.FileExists(Film.PercorsoFile)) Then Process.Start(Film.PercorsoFile)
+    End Sub
+
+    Private Sub CheckAnnoVuoto_CheckedChanged(sender As Object, e As EventArgs) Handles CheckAnnoVuoto.CheckedChanged
+        UpDownAnno.Enabled = Not CheckAnnoVuoto.Checked
+        ControllaSeValoriFormValidi()
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
         If (ListRegisti.SelectedItems.Count > 0) Then
             If (MessageBox.Show("Vuoi rimuovere """ + ListRegisti.SelectedItem.ToString + """ dalla lista dei registi del film?", "Confermi rimozione?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
                 ListRegisti.Items.RemoveAt(ListRegisti.SelectedIndex)
-                ControllaSeNomeValido()
+                ControllaSeValoriFormValidi()
             End If
         End If
     End Sub
@@ -354,7 +365,7 @@
         If (ListAttori.SelectedItems.Count > 0) Then
             If (MessageBox.Show("Vuoi rimuovere """ + ListAttori.SelectedItem.ToString + """ dalla lista degli attori del film?", "Confermi rimozione?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
                 ListAttori.Items.RemoveAt(ListAttori.SelectedIndex)
-                ControllaSeNomeValido()
+                ControllaSeValoriFormValidi()
             End If
         End If
     End Sub
@@ -363,7 +374,7 @@
         If (ListGeneri.SelectedItems.Count > 0) Then
             If (MessageBox.Show("Vuoi rimuovere """ + ListGeneri.SelectedItem.ToString + """ dalla lista dei generi del film?", "Confermi rimozione?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
                 ListGeneri.Items.RemoveAt(ListGeneri.SelectedIndex)
-                ControllaSeNomeValido()
+                ControllaSeValoriFormValidi()
             End If
         End If
     End Sub
@@ -372,7 +383,7 @@
         If (ListAutori.SelectedItems.Count > 0) Then
             If (MessageBox.Show("Vuoi rimuovere """ + ListAutori.SelectedItem.ToString + """ dalla lista degli autori del film?", "Confermi rimozione?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
                 ListAutori.Items.RemoveAt(ListAutori.SelectedIndex)
-                ControllaSeNomeValido()
+                ControllaSeValoriFormValidi()
             End If
         End If
     End Sub
@@ -381,7 +392,7 @@
         If (ListMusicisti.SelectedItems.Count > 0) Then
             If (MessageBox.Show("Vuoi rimuovere """ + ListMusicisti.SelectedItem.ToString + """ dalla lista dei musicisti del film?", "Confermi rimozione?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes) Then
                 ListMusicisti.Items.RemoveAt(ListMusicisti.SelectedIndex)
-                ControllaSeNomeValido()
+                ControllaSeValoriFormValidi()
             End If
         End If
     End Sub
@@ -394,7 +405,7 @@
             Else
                 ListRegisti.Items.Add(InserisciNomeCognome.Nome + " " + InserisciNomeCognome.Cognome)
             End If
-            ControllaSeNomeValido()
+            ControllaSeValoriFormValidi()
         End If
     End Sub
 
@@ -405,7 +416,7 @@
             Else
                 ListAttori.Items.Add(InserisciNomeCognome.Nome + " " + InserisciNomeCognome.Cognome)
             End If
-            ControllaSeNomeValido()
+            ControllaSeValoriFormValidi()
         End If
     End Sub
 
@@ -417,7 +428,7 @@
             Else
                 ListAutori.Items.Add(InserisciNomeCognome.Nome + " " + InserisciNomeCognome.Cognome)
             End If
-            ControllaSeNomeValido()
+            ControllaSeValoriFormValidi()
         End If
     End Sub
 
@@ -429,14 +440,14 @@
             Else
                 ListMusicisti.Items.Add(InserisciNomeCognome.Nome + " " + InserisciNomeCognome.Cognome)
             End If
-            ControllaSeNomeValido()
+            ControllaSeValoriFormValidi()
         End If
     End Sub
 
     Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
         If (AggiungiGenere.ShowDialog() = Windows.Forms.DialogResult.OK) Then
             ListGeneri.Items.Add(AggiungiGenere.Genere)
-            ControllaSeNomeValido()
+            ControllaSeValoriFormValidi()
         End If
     End Sub
 End Class
