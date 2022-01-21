@@ -629,7 +629,7 @@ Public Class MainForm
             End If
 
             ' Nazioni
-            If (FiltriSuperati AndAlso FiltroNazioni.SelectedItems.Count > 0) Then
+            If (FiltriSuperati AndAlso FiltroNazioni.CheckedItems.Count > 0) Then
                 If (IsNothing(Film.Nazione)) Then
                     FiltriSuperati = False
                 ElseIf (Not FiltroNazioni.CheckedItems.Contains(Film.Nazione)) Then
@@ -638,8 +638,8 @@ Public Class MainForm
             End If
 
             ' Generi
-            If (FiltriSuperati AndAlso FiltroGeneri.SelectedItems.Count > 0) Then
-                For Each genere As String In FiltroGeneri.SelectedItems
+            If (FiltriSuperati AndAlso FiltroGeneri.CheckedItems.Count > 0) Then
+                For Each genere As String In FiltroGeneri.CheckedItems
                     If (IsNothing(Film.Generi)) Then
                         FiltriSuperati = False
                     ElseIf (Not Film.Generi.Contains(genere)) Then
@@ -649,22 +649,22 @@ Public Class MainForm
             End If
 
             ' Lingua audio
-            If (FiltriSuperati AndAlso FiltroAudio.SelectedItems.Count > 0) Then
-                For Each lingua As String In FiltroAudio.SelectedItems
+            If (FiltriSuperati AndAlso FiltroAudio.CheckedItems.Count > 0) Then
+                For Each lingua As String In FiltroAudio.CheckedItems
                     If (IsNothing(Film.Sonori)) Then
                         FiltriSuperati = False
-                    ElseIf (Not Film.Sonori.Exists(Function(x) x.Lingua.ToUpper.Equals(lingua))) Then
+                    ElseIf (Not Film.Sonori.Exists(Function(x) Not IsNothing(x.Lingua) AndAlso x.Lingua.ToUpper.Equals(lingua))) Then
                         FiltriSuperati = False
                     End If
                 Next
             End If
 
             ' Lingua sottotitoli
-            If (FiltriSuperati AndAlso FiltroSottotitoli.SelectedItems.Count > 0) Then
-                For Each lingua As String In FiltroSottotitoli.SelectedItems
+            If (FiltriSuperati AndAlso FiltroSottotitoli.CheckedItems.Count > 0) Then
+                For Each lingua As String In FiltroSottotitoli.CheckedItems
                     If (IsNothing(Film.Sottotitoli)) Then
                         FiltriSuperati = False
-                    ElseIf (Not Film.Sottotitoli.Exists(Function(x) x.Lingua.ToUpper.Equals(lingua))) Then
+                    ElseIf (Not Film.Sottotitoli.Exists(Function(x) Not IsNothing(x.Lingua) AndAlso x.Lingua.ToUpper.Equals(lingua))) Then
                         FiltriSuperati = False
                     End If
                 Next
@@ -684,7 +684,7 @@ Public Class MainForm
                 If (IsNothing(Film.NumVotiIMDB) OrElse Film.NumVotiIMDB = 0) Then
                     FiltriSuperati = False
                 Else
-                    If (Film.NumVotiIMDB < (FiltroMinNumVotiIMDB.Value * 1000)) Then FiltriSuperati = False
+                    If (Film.NumVotiIMDB < DaValoreSliderANumVoti(FiltroMinNumVotiIMDB.Value)) Then FiltriSuperati = False
                 End If
             End If
 
@@ -693,7 +693,7 @@ Public Class MainForm
                 If (IsNothing(Film.IncassoDollari) OrElse Film.IncassoDollari = 0) Then
                     FiltriSuperati = False
                 Else
-                    If (Film.IncassoDollari < (FiltroMinIncasso.Value * 1000)) Then FiltriSuperati = False
+                    If (Film.IncassoDollari < DaValoreSliderADollari(FiltroMinIncasso.Value)) Then FiltriSuperati = False
                 End If
             End If
 
@@ -985,7 +985,7 @@ Public Class MainForm
     End Sub
 
     Private Sub BottCancellaFiltri_Click(sender As Object, e As EventArgs) Handles BottCancellaFiltri.Click
-        CasellaRicerca.Text = ""
+        CasellaRicerca.Clear()
 
         FiltroAnnoMin.Value = FiltroAnnoMin.Minimum
         FiltroAnnoMax.Value = FiltroAnnoMax.Maximum
@@ -1027,7 +1027,8 @@ Public Class MainForm
             Next
         End If
 
-        FiltraLista()
+        'FiltraLista()
+        NavigaAllaCategoria(CatNavigazioneAttuale, ValoreNavigazioneAttuale)
     End Sub
 
     Sub FiltraLista() Handles BottCerca.Click, BottFiltra.Click
@@ -1343,6 +1344,28 @@ Public Class MainForm
         End Select
     End Sub
 
+    Function ClassificaRisoluzione(PixelAltezza As UShort) As Object()
+        ' Restituisce { Nome categoria breve, Nome categoria completo, Colore sfondo box, Colore testo box }
+
+        If (PixelAltezza >= 4300) Then '8K UHD | 4320p
+            Return {"8K UHD", "8K Ultra HD", Color.Silver, Color.Black}
+        ElseIf (PixelAltezza >= 1700) Then '4K UHD | 2160p - 1716p
+            Return {"4K UHD", "4K Ultra HD", Color.Gold, Color.Black}
+        ElseIf (PixelAltezza >= 1400) Then 'QHD - Quad HD | 1440p
+            Return {"QHD", "Quad HD", Color.SandyBrown, Color.Black}
+        ElseIf (PixelAltezza >= 1000) Then 'FullHD (BD) 1080p
+            Return {"FullHD", "Full HD", Color.DodgerBlue, Color.White}
+        ElseIf (PixelAltezza >= 700) Then 'Standard HD / HD ready (BD) 720p
+            Return {"HD", "High Definition", Color.MediumVioletRed, Color.White}
+        ElseIf (PixelAltezza >= 460) Then 'SD - VGA-SVGA (DVD - VHS) 480p / 576p
+            Return {"SD", "Standard Definition", Color.White, Color.Black}
+        ElseIf (PixelAltezza >= 220) Then 'LD (VCD, PS1, iPhone1, primo Youtube, PSP) 360p / 240p / 288p
+            Return {"LD", "Low Definition", Color.FromArgb(80, 80, 80), Color.White}
+        Else '144p (min Youtube), 120p (primo Nokia a colori)
+            Return {"<< LD", "Inferiore a Low Definition", Color.Black, Color.Yellow}
+        End If
+    End Function
+
     Function GradazioneNeroRossoGialloVerde(Percentuale As Double) As Color
         If (Percentuale > 1) Then Percentuale = 1
         If (Percentuale <= (1 / 3)) Then
@@ -1358,6 +1381,78 @@ Public Class MainForm
             Dim SottoPercentuale As Double = (Percentuale - (2 / 3)) * 3
             Return Color.FromArgb(255 - Math.Round(255 * SottoPercentuale), 255, 0)
         End If
+    End Function
+
+    Function CategoriazzaProporzione(Proporzione As String) As Object()
+        'Restituisce { nome categoria proporzione, rapporto, booleano E' widescreen? }
+
+        Dim PosSeparatore As UShort = Proporzione.IndexOf(":")
+        If (PosSeparatore < 0) Then Return Nothing
+
+        Dim Numeratore As UShort = UShort.Parse(Proporzione.Substring(0, PosSeparatore))
+        Dim Denominatore As UShort = UShort.Parse(Proporzione.Substring(PosSeparatore + 1, Proporzione.Length - PosSeparatore - 1))
+
+        Dim Rapporto As Double
+        If (Numeratore > Denominatore) Then
+            Rapporto = Numeratore / Denominatore
+        Else
+            Rapporto = Denominatore / Numeratore
+        End If
+
+        Dim NomeCategoriaProporzione As String
+        If (Rapporto < 1.1) Then
+            NomeCategoriaProporzione = "Quadrato (1:1)" '1 [0 - 1.10]
+        ElseIf (Rapporto < 1.23) Then
+            NomeCategoriaProporzione = "Fox Movietone (6:5)" '1.20 [1.10 - 1.23]
+        ElseIf (Rapporto < 1.28) Then
+            NomeCategoriaProporzione = "TV degli albori (5:4)" '1.25 [1.23 - 1.28]
+        ElseIf (Rapporto < 1.35) Then
+            NomeCategoriaProporzione = "TV (4:3)" '1.33 [1.28 - 1.35]
+        ElseIf (Rapporto < 1.4) Then
+            NomeCategoriaProporzione = "Academy standard (11:8)" '1.37 [1.35 - 1.40]
+        ElseIf (Rapporto < 1.47) Then
+            NomeCategoriaProporzione = "IMAX (1,43:1)" '1.43 [1.40 - 1.47]
+        ElseIf (Rapporto < 1.53) Then
+            NomeCategoriaProporzione = "35mm (3:2)" '1.5 [1.47 - 1.53]
+        ElseIf (Rapporto < 1.58) Then
+            NomeCategoriaProporzione = "Compromesso wide-narrow screen (14:9)" '1.56 [1.53 - 1.58]
+        ElseIf (Rapporto < 1.61) Then
+            NomeCategoriaProporzione = "Vecchi PC WideScreen (16:10)" '1.6 [1.58 - 1.61]
+        ElseIf (Rapporto < 1.64) Then
+            NomeCategoriaProporzione = "Sezione aurea (1,6:1)" '1.62 [1.61 - 1.64]
+        ElseIf (Rapporto < 1.71) Then
+            NomeCategoriaProporzione = "Paramount / Super 16mm (5:3)" '1.66 [1.64 - 1.71]
+        ElseIf (Rapporto < 1.81) Then
+            NomeCategoriaProporzione = "TV e PC WideScreen (16:9)" '1.77 [1.71 - 1.81]
+        ElseIf (Rapporto < 1.88) Then
+            NomeCategoriaProporzione = "Widescreen USA (1,85:1)" '1.85 [1.81 - 1.88]
+        ElseIf (Rapporto < 1.95) Then
+            NomeCategoriaProporzione = "Digital IMAX (1,9:1)" '1.9 [1.88- 1.95]
+        ElseIf (Rapporto < 2.1) Then
+            NomeCategoriaProporzione = "Univisium (2:1)" '2 [1.95 - 2.1]
+        ElseIf (Rapporto < 2.27) Then
+            NomeCategoriaProporzione = "70mm (2,2:1)" '2.2 [2.1 - 2.27]
+        ElseIf (Rapporto < 2.36) Then
+            NomeCategoriaProporzione = "Anamorfico (2,35:1)" '2.35 [2.27 - 2.36]
+        ElseIf (Rapporto < 2.38) Then
+            NomeCategoriaProporzione = "CinemaScope UltraWide Screen (21:9 o 64:27)" '2.37 [2.36 - 2.38]
+        ElseIf (Rapporto < 2.405) Then
+            NomeCategoriaProporzione = "Anamorfico (2,39:1)" '2.39, 2.4 [2.38 - 2.405]
+        ElseIf (Rapporto < 2.59) Then
+            NomeCategoriaProporzione = "Sezione argentea (2,41:1)" '2.41 [2.405 - 2.59]
+        ElseIf (Rapporto < 3.16) Then
+            NomeCategoriaProporzione = "Ultra Panavision 70 (2,76:1)" '2.76 [2.59 - 3.16]
+        ElseIf (Rapporto < 3.57) Then
+            NomeCategoriaProporzione = "Super UltraWide Screen 3.55 (32:9)" '3.55 [3.16 - 3.57]
+        ElseIf (Rapporto < 3.8) Then
+            NomeCategoriaProporzione = "Super UltraWide Screen 3.6 (18:5)" '3.6 [3.57 - 3.8]
+        ElseIf (Rapporto < 4.1) Then
+            NomeCategoriaProporzione = "Polyvision (4:1)" '4 [3.8 - 4.1]
+        Else
+            NomeCategoriaProporzione = Math.Round(Rapporto, 2).ToString + " (" + Proporzione + ")"
+        End If
+
+        Return {NomeCategoriaProporzione, Rapporto, Rapporto >= 1.58}
     End Function
 
     Private Sub AggiornaContenutoPannelloDestra() Handles ElencoFilm.SelectedIndexChanged
@@ -1481,44 +1576,14 @@ Public Class MainForm
                 PannelloRisoluzione.Visible = False
             Else
                 PannelloRisoluzione.Visible = True
-                Dim altezza = film.Risoluzione.Height
                 'LabRisoluzione.Text = film.Risoluzione.Width.ToString + "x" + film.Risoluzione.Height.ToString
-
-                If (altezza >= 4300) Then '8K UHD | 4320p
-                    LabTipoRisoluzione.Text = "8K UHD"
-                    BadgeRisoluzione.BackColor = Color.Silver
-                    BadgeRisoluzione.ForeColor = Color.Black
-                ElseIf (altezza >= 1700) Then '4K UHD | 2160p - 1716p
-                    LabTipoRisoluzione.Text = "4K UHD"
-                    BadgeRisoluzione.BackColor = Color.Gold
-                    BadgeRisoluzione.ForeColor = Color.Black
-                ElseIf (altezza >= 1400) Then 'QHD - Quad HD | 1440p
-                    LabTipoRisoluzione.Text = "QHD"
-                    BadgeRisoluzione.BackColor = Color.SandyBrown
-                    BadgeRisoluzione.ForeColor = Color.Black
-                ElseIf (altezza >= 1000) Then 'FullHD (BD) 1080p
-                    LabTipoRisoluzione.Text = "FullHD"
-                    BadgeRisoluzione.BackColor = Color.DodgerBlue
-                    BadgeRisoluzione.ForeColor = Color.White
-                ElseIf (altezza >= 700) Then 'Standard HD / HD ready (BD) 720p
-                    LabTipoRisoluzione.Text = "HD"
-                    BadgeRisoluzione.BackColor = Color.MediumVioletRed
-                    BadgeRisoluzione.ForeColor = Color.White
-                ElseIf (altezza >= 460) Then 'SD - VGA-SVGA (DVD - VHS) 480p / 576p
-                    LabTipoRisoluzione.Text = "SD"
-                    BadgeRisoluzione.BackColor = Color.White
-                    BadgeRisoluzione.ForeColor = Color.Black
-                ElseIf (altezza >= 220) Then 'LD (VCD, PS1, iPhone1, primo Youtube, PSP) 360p / 240p / 288p
-                    LabTipoRisoluzione.Text = "LD"
-                    BadgeRisoluzione.BackColor = Color.FromArgb(80, 80, 80)
-                    BadgeRisoluzione.ForeColor = Color.White
-                Else '144p (min Youtube), 120p (primo Nokia a colori)
-                    LabTipoRisoluzione.Text = "<< LD"
-                    BadgeRisoluzione.BackColor = Color.Black
-                    BadgeRisoluzione.ForeColor = Color.Yellow
-                End If
-
+                Dim altezza As UShort = film.Risoluzione.Height
                 LabAltezzaRisoluzione.Text = altezza.ToString + "p"
+
+                Dim CategoriaRisoluzione As Object() = ClassificaRisoluzione(altezza)
+                LabTipoRisoluzione.Text = CategoriaRisoluzione(1).ToString
+                BadgeRisoluzione.BackColor = CategoriaRisoluzione(2)
+                BadgeRisoluzione.ForeColor = CategoriaRisoluzione(3)
             End If
 
             'Proporzioni
@@ -1526,7 +1591,24 @@ Public Class MainForm
                 PannelloProporzioni.Visible = False
             Else
                 PannelloProporzioni.Visible = True
-                LabProporzioni.Text = film.Proporzioni
+                Dim CategoriaProporzione As Object() = CategoriazzaProporzione(film.Proporzioni)
+                LabProporzioni.Text = CategoriaProporzione(0)
+                LabProporzioni.ForeColor = Color.Black
+
+                If (CategoriaProporzione(2)) Then
+                    'Widescreen
+                    Dim Percentuale As Double = (CategoriaProporzione(1) - 1.58) / (4 - 1.58)
+                    LabProporzioni.BackColor = Color.FromArgb(146 - Math.Round(70 * Percentuale), 92 - Math.Round(28 * Percentuale), 247 - Math.Round(86 * Percentuale))
+                    'da 146, 92, 247
+                    'a 76, 64, 161
+                Else
+                    'Narrow screen
+                    Dim Percentuale As Double = (CategoriaProporzione(1) - 1) / 0.58
+                    LabProporzioni.BackColor = Color.FromArgb(255 - Math.Round(15 * Percentuale), 64 + Math.Round(64 * Percentuale), 64 + Math.Round(64 * Percentuale))
+                    'da 255, 64, 64
+                    'a 240 128 128
+                End If
+                'LabProporzioni.BackColor = If(CategoriaProporzione(2), Color.LightCoral, Color.Cyan)
             End If
 
             'Codec video
@@ -2130,6 +2212,7 @@ Public Class MainForm
         IntestazioneAudio.BackColor = IntestazioniSezione
         IntestazioneSottotitoli.BackColor = IntestazioniSezione
         IntestazioneExtra.BackColor = IntestazioniSezione
+        Label88.BackColor = IntestazioniSezione
 
         BottCancellaFiltri.BackColor = BottonieCaselle
         BottFiltra.BackColor = BottonieCaselle
@@ -2515,23 +2598,23 @@ Public Class MainForm
                 Label29.BackColor = Color.Transparent
                 Label29.ForeColor = Nothing
             Case 1
-                Label29.Text = "Low Definition (240p)"
+                Label29.Text = "LD (240p)"
                 Label29.BackColor = Color.FromArgb(80, 80, 80)
                 Label29.ForeColor = Color.White
             Case 2
-                Label29.Text = "Standard Definition (480p)"
+                Label29.Text = "SD (480p)"
                 Label29.BackColor = Color.White
                 Label29.ForeColor = Color.Black
             Case 3
-                Label29.Text = "High Definition (720p)"
+                Label29.Text = "HD (720p)"
                 Label29.BackColor = Color.MediumVioletRed
                 Label29.ForeColor = Color.White
             Case 4
-                Label29.Text = "Full HD (1080p)"
+                Label29.Text = "FullHD (1080p)"
                 Label29.BackColor = Color.DodgerBlue
                 Label29.ForeColor = Color.White
             Case 5
-                Label29.Text = "Quad HD (1440p)"
+                Label29.Text = "QHD (1440p)"
                 Label29.BackColor = Color.SandyBrown
                 Label29.ForeColor = Color.Black
             Case 6
@@ -2852,46 +2935,140 @@ Public Class MainForm
     Private Sub FiltroMinVotoIMDB_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinVotoIMDB.ValueChanged
         If (FiltroMinVotoIMDB.Value = FiltroMinVotoIMDB.Minimum) Then
             LabMinVotoIMDB.Text = "Qualsiasi"
+            LabMinVotoIMDB.BackColor = Color.Transparent
+            LabMinVotoIMDB.ForeColor = Nothing 'default
         Else
-            LabMinVotoIMDB.Text = (FiltroMinVotoIMDB.Value / 10).ToString
+            LabMinVotoIMDB.Text = (FiltroMinVotoIMDB.Value / 10).ToString + " /10"
+            LabMinVotoIMDB.BackColor = GradazioneNeroRossoGialloVerde(FiltroMinVotoIMDB.Value / 100)
+            LabMinVotoIMDB.ForeColor = If(FiltroMinVotoIMDB.Value < 30, Color.White, Color.Black)
         End If
     End Sub
 
     Private Sub FiltroMinVotoMetacritic_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinVotoMetacritic.ValueChanged
         If (FiltroMinVotoMetacritic.Value = FiltroMinVotoMetacritic.Minimum) Then
             LabMinVotoMetacritic.Text = "Qualsiasi"
+            LabMinVotoMetacritic.BackColor = Color.Transparent
+            LabMinVotoIMDB.ForeColor = Nothing 'default
         Else
             LabMinVotoMetacritic.Text = FiltroMinVotoMetacritic.Value.ToString + " /100"
+            LabMinVotoMetacritic.BackColor = GradazioneNeroRossoGialloVerde(FiltroMinVotoMetacritic.Value / 100)
+            LabMinVotoMetacritic.ForeColor = If(FiltroMinVotoMetacritic.Value < 30, Color.White, Color.Black)
         End If
     End Sub
 
     Private Sub FiltroMinVotoRotten_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinVotoRotten.ValueChanged
         If (FiltroMinVotoRotten.Value = FiltroMinVotoRotten.Minimum) Then
             LabMinVotoRotten.Text = "Qualsiasi"
+            LabMinVotoRotten.BackColor = Color.Transparent
+            LabMinVotoIMDB.ForeColor = Nothing 'default
         Else
             LabMinVotoRotten.Text = FiltroMinVotoRotten.Value.ToString + "%"
+            LabMinVotoRotten.BackColor = GradazioneNeroRossoGialloVerde(FiltroMinVotoRotten.Value / 100)
+            LabMinVotoRotten.ForeColor = If(FiltroMinVotoRotten.Value < 30, Color.White, Color.Black)
         End If
     End Sub
 
     Private Sub FiltroMinNumVotiIMDB_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinNumVotiIMDB.ValueChanged
-        If (FiltroMinNumVotiIMDB.Value = FiltroMinNumVotiIMDB.Minimum) Then
+        Dim NumVoti As UInteger = DaValoreSliderANumVoti(FiltroMinNumVotiIMDB.Value)
+        If (NumVoti = 0) Then
             LabMinNumVotiIMDB.Text = "Qualsiasi"
-        ElseIf (FiltroMinNumVotiIMDB.Value < 1000) Then
-            LabMinNumVotiIMDB.Text = FiltroMinNumVotiIMDB.Value.ToString + " mila"
+        ElseIf (NumVoti < 1000) Then
+            LabMinNumVotiIMDB.Text = NumVoti.ToString
+        ElseIf (NumVoti < 1000000) Then
+            LabMinNumVotiIMDB.Text = Math.Round(NumVoti / 1000).ToString + " mila"
         Else
-            LabMinNumVotiIMDB.Text = Math.Round(FiltroMinNumVotiIMDB.Value / 1000, 2).ToString + " mln"
+            LabMinNumVotiIMDB.Text = Math.Round(NumVoti / 1000000, 2).ToString + " mln"
         End If
     End Sub
 
+    Function DaValoreSliderADollari(ValoreSlider As Byte) As UInteger
+        Select Case ValoreSlider
+            Case 0
+                Return 0
+            Case 1
+                Return 1000
+            Case 2
+                Return 500000
+            Case 3
+                Return 5000000
+            Case 4
+                Return 20000000
+            Case 5
+                Return 33000000
+            Case 6
+                Return 50000000
+            Case 7
+                Return 66000000
+            Case 8
+                Return 100000000
+            Case 9
+                Return 133000000
+            Case 10
+                Return 200000000
+            Case 11
+                Return 300000000
+            Case 12
+                Return 500000000
+            Case 13
+                Return 750000000
+            Case 14
+                Return 1000000000
+            Case 15
+                Return 1500000000
+            Case 16
+                Return 2000000000
+        End Select
+    End Function
+
+    Function DaValoreSliderANumVoti(ValoreSlider As Byte) As UInteger
+        Select Case ValoreSlider
+            Case 0
+                Return 0
+            Case 1
+                Return 10
+            Case 2
+                Return 750
+            Case 3
+                Return 2000
+            Case 4
+                Return 5000
+            Case 5
+                Return 15000
+            Case 6
+                Return 40000
+            Case 7
+                Return 75000
+            Case 8
+                Return 150000
+            Case 9
+                Return 225000
+            Case 10
+                Return 350000
+            Case 11
+                Return 500000
+            Case 12
+                Return 750000
+            Case 13
+                Return 1000000
+            Case 14
+                Return 1500000
+            Case 15
+                Return 2000000
+        End Select
+    End Function
+
     Private Sub FiltroMinIncasso_ValueChanged(sender As Object, e As EventArgs) Handles FiltroMinIncasso.ValueChanged
-        If (FiltroMinIncasso.Value = FiltroMinIncasso.Minimum) Then
+        Dim Dollari As UInteger = DaValoreSliderADollari(FiltroMinIncasso.Value)
+        If (Dollari = 0) Then
             LabMinIncasso.Text = "Qualsiasi"
-        ElseIf (FiltroMinIncasso.Value < 1000) Then
-            LabMinIncasso.Text = FiltroMinIncasso.Value.ToString + " mila $"
-        ElseIf (FiltroMinIncasso.Value < 1000000) Then
-            LabMinIncasso.Text = Math.Round(FiltroMinIncasso.Value / 1000, 1).ToString + " mln $"
+        ElseIf (Dollari = 1000) Then
+            LabMinIncasso.Text = "1000 $"
+        ElseIf (Dollari < 1000000) Then
+            LabMinIncasso.Text = Math.Round(Dollari / 1000).ToString + " mila $"
+        ElseIf (Dollari < 1000000000) Then
+            LabMinIncasso.Text = Math.Round(Dollari / 1000000).ToString + " mln $"
         Else
-            LabMinIncasso.Text = Math.Round(FiltroMinIncasso.Value / 1000000, 1).ToString + " mld $"
+            LabMinIncasso.Text = Math.Round(Dollari / 1000000000, 2).ToString + " mld $"
         End If
     End Sub
 
@@ -2960,5 +3137,21 @@ Public Class MainForm
 
     Private Sub CreditiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreditiToolStripMenuItem.Click
         About.ShowDialog()
+    End Sub
+
+    Private Sub FiltroNazioni_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles FiltroNazioni.ItemCheck
+        'MessageBox.Show(e.CurrentValue + "->" + e.NewValue)
+        If (FiltroNazioni.CheckedIndices.Count > 0 And e.CurrentValue = CheckState.Unchecked And
+            e.NewValue = CheckState.Checked) Then
+            Dim IndiceDaDeselezionare As UShort
+            If (FiltroNazioni.CheckedIndices.Item(0) <> e.Index) Then
+                IndiceDaDeselezionare = FiltroNazioni.CheckedIndices.Item(0)
+            Else
+                IndiceDaDeselezionare = FiltroNazioni.CheckedIndices.Item(1)
+            End If
+            FiltroNazioni.SetItemChecked(IndiceDaDeselezionare, False)
+            'FiltroNazioni.SetItemChecked(e.Index, False)
+            'e.NewValue = False
+        End If
     End Sub
 End Class

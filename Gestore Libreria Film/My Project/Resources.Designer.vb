@@ -333,6 +333,16 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property FPS_grey() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("FPS-grey", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property FRA() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("FRA", resourceCulture)
@@ -573,6 +583,16 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property peso_grey() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("peso-grey", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property play() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("play", resourceCulture)
@@ -643,9 +663,29 @@ Namespace My.Resources
         '''<summary>
         '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property sidebar_left_grey() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sidebar-left-grey", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property sidebar_right() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("sidebar-right", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sidebar_right_grey() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sidebar-right-grey", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

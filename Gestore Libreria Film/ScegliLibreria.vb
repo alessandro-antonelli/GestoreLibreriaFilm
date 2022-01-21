@@ -8,6 +8,7 @@
             Me.ForeColor = Color.White
             LinkLabel1.LinkColor = Color.Yellow
             Button1.BackColor = Color.FromArgb(255, 48, 48, 48)
+            Button2.BackColor = Color.FromArgb(255, 48, 48, 48)
         End If
 
         If (Not IsNothing(My.Settings.LibreriaPercorso) AndAlso My.Settings.LibreriaPercorso <> "") Then

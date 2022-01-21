@@ -32,7 +32,12 @@ Public Module MainModule
 
         ' Ripristino preferenze pannelli
         MainForm.SplitContainerSX_C.SplitterDistance = My.Settings.PannelloSxDimensione
-        MainForm.SplitContainerCSX_DX.SplitterDistance = MainForm.SplitContainerCSX_DX.Width - My.Settings.PannelloDxDimensione
+        Dim PosSplitterDx As Short = MainForm.SplitContainerCSX_DX.Width - My.Settings.PannelloDxDimensione
+        If (PosSplitterDx > 0) Then
+            MainForm.SplitContainerCSX_DX.SplitterDistance = PosSplitterDx
+        Else
+            MainForm.SplitContainerCSX_DX.SplitterDistance = Math.Round(MainForm.SplitContainerCSX_DX.Width * 0.375)
+        End If
         MainForm.SplitContainerSX_C.Panel1Collapsed = My.Settings.PannelloSxChiuso
         MainForm.SplitContainerCSX_DX.Panel2Collapsed = My.Settings.PannelloDxChiuso
 

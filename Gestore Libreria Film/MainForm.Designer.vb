@@ -23,48 +23,48 @@ Partial Class MainForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
-        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
-        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tutti i film", 1, 1)
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Registi", 2, 2)
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Attori", 3, 3)
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🙂 Commedia")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤣 Comico")
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😭 Drammatico")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🕵️ Giallo")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("👮 Polizesco")
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🏴 Noir")
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤢 Splatter")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😱 Horror", New System.Windows.Forms.TreeNode() {TreeNode10})
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😲 Thriller", New System.Windows.Forms.TreeNode() {TreeNode7, TreeNode8, TreeNode9, TreeNode11})
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🔫 Gangster")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤖 Fantascienza")
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("⚔️ Guerra")
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🎅 Natalizio")
-        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Generi", 4, 4, New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode5, TreeNode6, TreeNode12, TreeNode13, TreeNode14, TreeNode15, TreeNode16})
-        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni", 5, 5)
-        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nazioni", 6, 6)
-        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Saghe", 85, 85)
-        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Autori", 7, 7)
-        Dim TreeNode22 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Musicisti", 8, 8)
-        Dim TreeNode23 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Temi", 9, 9)
-        Dim TreeNode24 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Grecia")
-        Dim TreeNode25 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Roma")
-        Dim TreeNode26 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Medioevo")
-        Dim TreeNode27 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cinquecento")
-        Dim TreeNode28 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seicento")
-        Dim TreeNode29 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Settecento")
-        Dim TreeNode30 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ottocento")
-        Dim TreeNode31 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Prima guerra mondiale")
-        Dim TreeNode32 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seconda guerra mondiale")
-        Dim TreeNode33 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Vietnam")
-        Dim TreeNode34 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni di piombo")
-        Dim TreeNode35 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Novecento", New System.Windows.Forms.TreeNode() {TreeNode31, TreeNode32, TreeNode33, TreeNode34})
-        Dim TreeNode36 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ambientazione", 10, 10, New System.Windows.Forms.TreeNode() {TreeNode24, TreeNode25, TreeNode26, TreeNode27, TreeNode28, TreeNode29, TreeNode30, TreeNode35})
+        Dim ListViewItem40 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("C. Grant")
+        Dim ListViewItem41 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("G. Kelly")
+        Dim ListViewItem42 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("B. Pitt")
+        Dim ListViewItem46 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Guerra", 29)
+        Dim ListViewItem47 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Drammatico", 20)
+        Dim ListViewItem48 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("Comico", 18)
+        Dim TreeNode37 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tutti i film", 1, 1)
+        Dim TreeNode38 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Registi", 2, 2)
+        Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Attori", 3, 3)
+        Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🙂 Commedia")
+        Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤣 Comico")
+        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😭 Drammatico")
+        Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🕵️ Giallo")
+        Dim TreeNode44 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("👮 Polizesco")
+        Dim TreeNode45 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🏴 Noir")
+        Dim TreeNode46 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤢 Splatter")
+        Dim TreeNode47 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😱 Horror", New System.Windows.Forms.TreeNode() {TreeNode46})
+        Dim TreeNode48 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("😲 Thriller", New System.Windows.Forms.TreeNode() {TreeNode43, TreeNode44, TreeNode45, TreeNode47})
+        Dim TreeNode49 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🔫 Gangster")
+        Dim TreeNode50 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🤖 Fantascienza")
+        Dim TreeNode51 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("⚔️ Guerra")
+        Dim TreeNode52 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("🎅 Natalizio")
+        Dim TreeNode53 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Generi", 4, 4, New System.Windows.Forms.TreeNode() {TreeNode40, TreeNode41, TreeNode42, TreeNode48, TreeNode49, TreeNode50, TreeNode51, TreeNode52})
+        Dim TreeNode54 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni", 5, 5)
+        Dim TreeNode55 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Nazioni", 6, 6)
+        Dim TreeNode56 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Saghe", 85, 85)
+        Dim TreeNode57 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Autori", 7, 7)
+        Dim TreeNode58 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Musicisti", 8, 8)
+        Dim TreeNode59 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Temi", 9, 9)
+        Dim TreeNode60 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Grecia")
+        Dim TreeNode61 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Antica Roma")
+        Dim TreeNode62 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Medioevo")
+        Dim TreeNode63 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cinquecento")
+        Dim TreeNode64 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seicento")
+        Dim TreeNode65 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Settecento")
+        Dim TreeNode66 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ottocento")
+        Dim TreeNode67 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Prima guerra mondiale")
+        Dim TreeNode68 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Seconda guerra mondiale")
+        Dim TreeNode69 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Vietnam")
+        Dim TreeNode70 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Anni di piombo")
+        Dim TreeNode71 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Novecento", New System.Windows.Forms.TreeNode() {TreeNode67, TreeNode68, TreeNode69, TreeNode70})
+        Dim TreeNode72 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Ambientazione", 10, 10, New System.Windows.Forms.TreeNode() {TreeNode60, TreeNode61, TreeNode62, TreeNode63, TreeNode64, TreeNode65, TreeNode66, TreeNode71})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.BarraStrumentiPrincipale = New System.Windows.Forms.ToolStrip()
         Me.IconeCategorieLibreria = New System.Windows.Forms.ImageList(Me.components)
@@ -84,17 +84,13 @@ Partial Class MainForm
         Me.FiltroAnnoMin = New System.Windows.Forms.TrackBar()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.FiltroGeneri = New System.Windows.Forms.CheckedListBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.FiltroNazioni = New System.Windows.Forms.CheckedListBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.FlowLayoutPanel8 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Label61 = New System.Windows.Forms.Label()
-        Me.FiltroAudio = New System.Windows.Forms.CheckedListBox()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Label62 = New System.Windows.Forms.Label()
-        Me.FiltroSottotitoli = New System.Windows.Forms.CheckedListBox()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -298,6 +294,32 @@ Partial Class MainForm
         Me.SplitContainerCSX_DX = New System.Windows.Forms.SplitContainer()
         Me.SplitContainerBarreStrumenti_CSX = New System.Windows.Forms.SplitContainer()
         Me.PanelDettagliCategoria = New System.Windows.Forms.Panel()
+        Me.ValutazioniCat = New System.Windows.Forms.Panel()
+        Me.FlowLayoutPanel5 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.VotoIMDBCat = New System.Windows.Forms.Label()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.Label54 = New System.Windows.Forms.Label()
+        Me.NumVotiIMDBCat = New System.Windows.Forms.Label()
+        Me.Label58 = New System.Windows.Forms.Label()
+        Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.Label63 = New System.Windows.Forms.Label()
+        Me.Label64 = New System.Windows.Forms.Label()
+        Me.IncassiCat = New System.Windows.Forms.Label()
+        Me.Label66 = New System.Windows.Forms.Label()
+        Me.Label67 = New System.Windows.Forms.Label()
+        Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.Label68 = New System.Windows.Forms.Label()
+        Me.VotoMetacriticCat = New System.Windows.Forms.Label()
+        Me.Label70 = New System.Windows.Forms.Label()
+        Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.Label71 = New System.Windows.Forms.Label()
+        Me.RottenCat = New System.Windows.Forms.Label()
+        Me.Label73 = New System.Windows.Forms.Label()
+        Me.Label88 = New System.Windows.Forms.Label()
         Me.FlowLayoutPanel3 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ButtRicercaPersonaIMDB = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -390,15 +412,6 @@ Partial Class MainForm
         Me.InizialeCognomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BottFiltra = New System.Windows.Forms.Button()
         Me.BottCerca = New System.Windows.Forms.Button()
-        Me.PlayButton = New System.Windows.Forms.ToolStripButton()
-        Me.EsploraRisorseButton = New System.Windows.Forms.ToolStripButton()
-        Me.RinominaButton = New System.Windows.Forms.ToolStripButton()
-        Me.DownloadButton = New System.Windows.Forms.ToolStripButton()
-        Me.CercaInternetButton = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.GoogleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WikiITToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IMDBToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.PictureBox20 = New System.Windows.Forms.PictureBox()
         Me.PictureBox21 = New System.Windows.Forms.PictureBox()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
@@ -423,34 +436,24 @@ Partial Class MainForm
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.PicSchermata = New System.Windows.Forms.PictureBox()
+        Me.PlayButton = New System.Windows.Forms.ToolStripButton()
+        Me.EsploraRisorseButton = New System.Windows.Forms.ToolStripButton()
+        Me.RinominaButton = New System.Windows.Forms.ToolStripButton()
+        Me.DownloadButton = New System.Windows.Forms.ToolStripButton()
+        Me.CercaInternetButton = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.GoogleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WikiITToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IMDBToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.PicImgPersona = New System.Windows.Forms.PictureBox()
         Me.IconaCategoriaScelta = New System.Windows.Forms.PictureBox()
-        Me.ValutazioniCat = New System.Windows.Forms.Panel()
-        Me.FlowLayoutPanel5 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel15 = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.VotoIMDBCat = New System.Windows.Forms.Label()
-        Me.Label52 = New System.Windows.Forms.Label()
-        Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.Label54 = New System.Windows.Forms.Label()
-        Me.NumVotiIMDBCat = New System.Windows.Forms.Label()
-        Me.Label58 = New System.Windows.Forms.Label()
-        Me.Panel17 = New System.Windows.Forms.Panel()
-        Me.Label63 = New System.Windows.Forms.Label()
-        Me.Label64 = New System.Windows.Forms.Label()
-        Me.IncassiCat = New System.Windows.Forms.Label()
-        Me.Label66 = New System.Windows.Forms.Label()
-        Me.Label67 = New System.Windows.Forms.Label()
-        Me.Panel18 = New System.Windows.Forms.Panel()
-        Me.Label68 = New System.Windows.Forms.Label()
-        Me.VotoMetacriticCat = New System.Windows.Forms.Label()
-        Me.Label70 = New System.Windows.Forms.Label()
-        Me.Panel19 = New System.Windows.Forms.Panel()
-        Me.Label71 = New System.Windows.Forms.Label()
-        Me.RottenCat = New System.Windows.Forms.Label()
-        Me.Label73 = New System.Windows.Forms.Label()
-        Me.Label88 = New System.Windows.Forms.Label()
+        Me.FiltroAudio = New System.Windows.Forms.CheckedListBox()
+        Me.FiltroSottotitoli = New System.Windows.Forms.CheckedListBox()
+        Me.FlowLayoutPanel9 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.FiltroNazioni = New System.Windows.Forms.CheckedListBox()
+        Me.FiltroGeneri = New System.Windows.Forms.CheckedListBox()
         Me.BarraStrumentiPrincipale.SuspendLayout()
         Me.SplitContainerFiltriAvanzati_Icone.Panel1.SuspendLayout()
         Me.SplitContainerFiltriAvanzati_Icone.Panel2.SuspendLayout()
@@ -556,6 +559,13 @@ Partial Class MainForm
         Me.SplitContainerBarreStrumenti_CSX.Panel2.SuspendLayout()
         Me.SplitContainerBarreStrumenti_CSX.SuspendLayout()
         Me.PanelDettagliCategoria.SuspendLayout()
+        Me.ValutazioniCat.SuspendLayout()
+        Me.FlowLayoutPanel5.SuspendLayout()
+        Me.Panel15.SuspendLayout()
+        Me.Panel16.SuspendLayout()
+        Me.Panel17.SuspendLayout()
+        Me.Panel18.SuspendLayout()
+        Me.Panel19.SuspendLayout()
         Me.FlowLayoutPanel3.SuspendLayout()
         Me.PanNumeroFilm.SuspendLayout()
         Me.PanDurataTotale.SuspendLayout()
@@ -586,13 +596,9 @@ Partial Class MainForm
         CType(Me.PicSchermata, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicImgPersona, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IconaCategoriaScelta, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ValutazioniCat.SuspendLayout()
-        Me.FlowLayoutPanel5.SuspendLayout()
-        Me.Panel15.SuspendLayout()
-        Me.Panel16.SuspendLayout()
-        Me.Panel17.SuspendLayout()
-        Me.Panel18.SuspendLayout()
-        Me.Panel19.SuspendLayout()
+        Me.FlowLayoutPanel9.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        Me.Panel20.SuspendLayout()
         Me.SuspendLayout()
         '
         'BarraStrumentiPrincipale
@@ -740,12 +746,9 @@ Partial Class MainForm
         'TabPage1
         '
         Me.TabPage1.AutoScroll = True
+        Me.TabPage1.Controls.Add(Me.FlowLayoutPanel9)
         Me.TabPage1.Controls.Add(Me.Panel3)
         Me.TabPage1.Controls.Add(Me.Panel1)
-        Me.TabPage1.Controls.Add(Me.Label10)
-        Me.TabPage1.Controls.Add(Me.FiltroGeneri)
-        Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.FiltroNazioni)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -910,51 +913,25 @@ Partial Class MainForm
         '
         'Label10
         '
-        Me.Label10.AutoSize = True
+        Me.Label10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(152, 181)
+        Me.Label10.Location = New System.Drawing.Point(0, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(63, 18)
+        Me.Label10.Size = New System.Drawing.Size(200, 18)
         Me.Label10.TabIndex = 14
         Me.Label10.Text = "Generi:"
-        '
-        'FiltroGeneri
-        '
-        Me.FiltroGeneri.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FiltroGeneri.CheckOnClick = True
-        Me.FiltroGeneri.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.FiltroGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FiltroGeneri.FormattingEnabled = True
-        Me.FiltroGeneri.Location = New System.Drawing.Point(152, 202)
-        Me.FiltroGeneri.MultiColumn = True
-        Me.FiltroGeneri.Name = "FiltroGeneri"
-        Me.FiltroGeneri.Size = New System.Drawing.Size(158, 92)
-        Me.FiltroGeneri.Sorted = True
-        Me.FiltroGeneri.TabIndex = 13
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
+        Me.Label6.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(6, 181)
+        Me.Label6.Location = New System.Drawing.Point(0, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(70, 18)
+        Me.Label6.Size = New System.Drawing.Size(100, 18)
         Me.Label6.TabIndex = 12
         Me.Label6.Text = "Nazioni:"
-        '
-        'FiltroNazioni
-        '
-        Me.FiltroNazioni.CheckOnClick = True
-        Me.FiltroNazioni.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.FiltroNazioni.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FiltroNazioni.FormattingEnabled = True
-        Me.FiltroNazioni.Location = New System.Drawing.Point(6, 202)
-        Me.FiltroNazioni.MultiColumn = True
-        Me.FiltroNazioni.Name = "FiltroNazioni"
-        Me.FiltroNazioni.Size = New System.Drawing.Size(140, 92)
-        Me.FiltroNazioni.Sorted = True
-        Me.FiltroNazioni.TabIndex = 11
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TabPage2
         '
@@ -976,77 +953,50 @@ Partial Class MainForm
         Me.FlowLayoutPanel8.Controls.Add(Me.Panel13)
         Me.FlowLayoutPanel8.Controls.Add(Me.Panel14)
         Me.FlowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.FlowLayoutPanel8.Location = New System.Drawing.Point(3, 109)
+        Me.FlowLayoutPanel8.Location = New System.Drawing.Point(3, 121)
         Me.FlowLayoutPanel8.Name = "FlowLayoutPanel8"
-        Me.FlowLayoutPanel8.Size = New System.Drawing.Size(373, 212)
+        Me.FlowLayoutPanel8.Size = New System.Drawing.Size(373, 223)
         Me.FlowLayoutPanel8.TabIndex = 24
         '
         'Panel13
         '
-        Me.Panel13.Controls.Add(Me.Label61)
         Me.Panel13.Controls.Add(Me.FiltroAudio)
+        Me.Panel13.Controls.Add(Me.Label61)
         Me.Panel13.Location = New System.Drawing.Point(3, 3)
         Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(225, 100)
+        Me.Panel13.Size = New System.Drawing.Size(150, 214)
         Me.Panel13.TabIndex = 23
         '
         'Label61
         '
-        Me.Label61.AutoSize = True
         Me.Label61.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label61.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label61.Location = New System.Drawing.Point(0, 0)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(210, 18)
+        Me.Label61.Size = New System.Drawing.Size(150, 40)
         Me.Label61.TabIndex = 14
         Me.Label61.Text = "Deve avere audio in lingua:"
-        '
-        'FiltroAudio
-        '
-        Me.FiltroAudio.CheckOnClick = True
-        Me.FiltroAudio.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.FiltroAudio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FiltroAudio.FormattingEnabled = True
-        Me.FiltroAudio.Location = New System.Drawing.Point(0, 0)
-        Me.FiltroAudio.MultiColumn = True
-        Me.FiltroAudio.Name = "FiltroAudio"
-        Me.FiltroAudio.Size = New System.Drawing.Size(225, 92)
-        Me.FiltroAudio.Sorted = True
-        Me.FiltroAudio.TabIndex = 13
+        Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel14
         '
-        Me.Panel14.Controls.Add(Me.Label62)
         Me.Panel14.Controls.Add(Me.FiltroSottotitoli)
-        Me.Panel14.Location = New System.Drawing.Point(3, 109)
+        Me.Panel14.Controls.Add(Me.Label62)
+        Me.Panel14.Location = New System.Drawing.Point(159, 3)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(248, 100)
+        Me.Panel14.Size = New System.Drawing.Size(170, 217)
         Me.Panel14.TabIndex = 24
         '
         'Label62
         '
-        Me.Label62.AutoSize = True
         Me.Label62.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label62.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label62.Location = New System.Drawing.Point(0, 0)
         Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(240, 18)
+        Me.Label62.Size = New System.Drawing.Size(170, 40)
         Me.Label62.TabIndex = 14
         Me.Label62.Text = "Deve avere sottotitoli in lingua:"
-        '
-        'FiltroSottotitoli
-        '
-        Me.FiltroSottotitoli.CheckOnClick = True
-        Me.FiltroSottotitoli.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.FiltroSottotitoli.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FiltroSottotitoli.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FiltroSottotitoli.FormattingEnabled = True
-        Me.FiltroSottotitoli.Location = New System.Drawing.Point(0, 0)
-        Me.FiltroSottotitoli.MultiColumn = True
-        Me.FiltroSottotitoli.Name = "FiltroSottotitoli"
-        Me.FiltroSottotitoli.Size = New System.Drawing.Size(248, 100)
-        Me.FiltroSottotitoli.Sorted = True
-        Me.FiltroSottotitoli.TabIndex = 13
+        Me.Label62.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel11
         '
@@ -1056,23 +1006,22 @@ Partial Class MainForm
         Me.Panel11.Controls.Add(Me.Label31)
         Me.Panel11.Controls.Add(Me.FiltroBitrateMin)
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel11.Location = New System.Drawing.Point(3, 57)
+        Me.Panel11.Location = New System.Drawing.Point(3, 69)
         Me.Panel11.Name = "Panel11"
         Me.Panel11.Size = New System.Drawing.Size(373, 52)
         Me.Panel11.TabIndex = 22
         '
         'Label30
         '
-        Me.Label30.AutoSize = True
         Me.Label30.Dock = System.Windows.Forms.DockStyle.Left
         Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label30.Location = New System.Drawing.Point(0, 18)
         Me.Label30.MinimumSize = New System.Drawing.Size(0, 30)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(89, 30)
+        Me.Label30.Size = New System.Drawing.Size(100, 34)
         Me.Label30.TabIndex = 22
         Me.Label30.Text = "Qualunque"
-        Me.Label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label30.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label31
         '
@@ -1091,10 +1040,10 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltroBitrateMin.AutoSize = False
         Me.FiltroBitrateMin.LargeChange = 1
-        Me.FiltroBitrateMin.Location = New System.Drawing.Point(98, 19)
+        Me.FiltroBitrateMin.Location = New System.Drawing.Point(106, 19)
         Me.FiltroBitrateMin.Maximum = 16
         Me.FiltroBitrateMin.Name = "FiltroBitrateMin"
-        Me.FiltroBitrateMin.Size = New System.Drawing.Size(267, 30)
+        Me.FiltroBitrateMin.Size = New System.Drawing.Size(259, 30)
         Me.FiltroBitrateMin.TabIndex = 19
         '
         'Panel10
@@ -1107,7 +1056,7 @@ Partial Class MainForm
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel10.Location = New System.Drawing.Point(3, 3)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(373, 54)
+        Me.Panel10.Size = New System.Drawing.Size(373, 66)
         Me.Panel10.TabIndex = 21
         '
         'Label29
@@ -1116,12 +1065,13 @@ Partial Class MainForm
         Me.Label29.Dock = System.Windows.Forms.DockStyle.Left
         Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.Location = New System.Drawing.Point(0, 18)
-        Me.Label29.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.Label29.MaximumSize = New System.Drawing.Size(95, 45)
+        Me.Label29.MinimumSize = New System.Drawing.Size(95, 45)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(89, 30)
+        Me.Label29.Size = New System.Drawing.Size(95, 45)
         Me.Label29.TabIndex = 18
         Me.Label29.Text = "Qualunque"
-        Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label28
         '
@@ -1140,10 +1090,10 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltroRisoluzioneMin.AutoSize = False
         Me.FiltroRisoluzioneMin.LargeChange = 1
-        Me.FiltroRisoluzioneMin.Location = New System.Drawing.Point(93, 21)
+        Me.FiltroRisoluzioneMin.Location = New System.Drawing.Point(101, 21)
         Me.FiltroRisoluzioneMin.Maximum = 7
         Me.FiltroRisoluzioneMin.Name = "FiltroRisoluzioneMin"
-        Me.FiltroRisoluzioneMin.Size = New System.Drawing.Size(272, 30)
+        Me.FiltroRisoluzioneMin.Size = New System.Drawing.Size(264, 42)
         Me.FiltroRisoluzioneMin.TabIndex = 16
         '
         'TabPage3
@@ -1173,9 +1123,9 @@ Partial Class MainForm
         Me.Panel9.Controls.Add(Me.Label60)
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(3, 253)
-        Me.Panel9.MaximumSize = New System.Drawing.Size(275, 0)
+        Me.Panel9.MaximumSize = New System.Drawing.Size(300, 0)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(275, 140)
+        Me.Panel9.Size = New System.Drawing.Size(300, 140)
         Me.Panel9.TabIndex = 6
         '
         'RadioButton5
@@ -1185,7 +1135,7 @@ Partial Class MainForm
         Me.RadioButton5.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton5.Location = New System.Drawing.Point(0, 116)
         Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(275, 24)
+        Me.RadioButton5.Size = New System.Drawing.Size(300, 24)
         Me.RadioButton5.TabIndex = 6
         Me.RadioButton5.Text = "Vittoria degli Oscar"
         Me.RadioButton5.UseVisualStyleBackColor = True
@@ -1197,7 +1147,7 @@ Partial Class MainForm
         Me.RadioButton4.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton4.Location = New System.Drawing.Point(0, 92)
         Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(275, 24)
+        Me.RadioButton4.Size = New System.Drawing.Size(300, 24)
         Me.RadioButton4.TabIndex = 5
         Me.RadioButton4.Text = "Vittoria di qualsiasi premio"
         Me.RadioButton4.UseVisualStyleBackColor = True
@@ -1209,7 +1159,7 @@ Partial Class MainForm
         Me.RadioButton3.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton3.Location = New System.Drawing.Point(0, 68)
         Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(275, 24)
+        Me.RadioButton3.Size = New System.Drawing.Size(300, 24)
         Me.RadioButton3.TabIndex = 4
         Me.RadioButton3.Text = "Nomination degli Oscar"
         Me.RadioButton3.UseVisualStyleBackColor = True
@@ -1221,7 +1171,7 @@ Partial Class MainForm
         Me.RadioButton2.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton2.Location = New System.Drawing.Point(0, 44)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(275, 24)
+        Me.RadioButton2.Size = New System.Drawing.Size(300, 24)
         Me.RadioButton2.TabIndex = 3
         Me.RadioButton2.Text = "Nomination di qualsiasi premio"
         Me.RadioButton2.UseVisualStyleBackColor = True
@@ -1234,7 +1184,7 @@ Partial Class MainForm
         Me.RadioButton1.Dock = System.Windows.Forms.DockStyle.Top
         Me.RadioButton1.Location = New System.Drawing.Point(0, 20)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(275, 24)
+        Me.RadioButton1.Size = New System.Drawing.Size(300, 24)
         Me.RadioButton1.TabIndex = 2
         Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = "Nessun requisito"
@@ -1246,7 +1196,7 @@ Partial Class MainForm
         Me.Label60.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label60.Location = New System.Drawing.Point(0, 0)
         Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(275, 20)
+        Me.Label60.Size = New System.Drawing.Size(300, 20)
         Me.Label60.TabIndex = 1
         Me.Label60.Text = "Deve aver ricevuto:"
         Me.Label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1268,10 +1218,10 @@ Partial Class MainForm
         Me.FiltroMinVotoRotten.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinVotoRotten.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FiltroMinVotoRotten.LargeChange = 10
-        Me.FiltroMinVotoRotten.Location = New System.Drawing.Point(79, 20)
+        Me.FiltroMinVotoRotten.Location = New System.Drawing.Point(80, 20)
         Me.FiltroMinVotoRotten.Maximum = 100
         Me.FiltroMinVotoRotten.Name = "FiltroMinVotoRotten"
-        Me.FiltroMinVotoRotten.Size = New System.Drawing.Size(294, 30)
+        Me.FiltroMinVotoRotten.Size = New System.Drawing.Size(293, 30)
         Me.FiltroMinVotoRotten.TabIndex = 17
         Me.FiltroMinVotoRotten.TickFrequency = 10
         '
@@ -1280,9 +1230,9 @@ Partial Class MainForm
         Me.LabMinVotoRotten.AutoSize = True
         Me.LabMinVotoRotten.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabMinVotoRotten.Location = New System.Drawing.Point(0, 20)
-        Me.LabMinVotoRotten.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinVotoRotten.MinimumSize = New System.Drawing.Size(80, 30)
         Me.LabMinVotoRotten.Name = "LabMinVotoRotten"
-        Me.LabMinVotoRotten.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinVotoRotten.Size = New System.Drawing.Size(80, 30)
         Me.LabMinVotoRotten.TabIndex = 1
         Me.LabMinVotoRotten.Text = "Qualsiasi"
         Me.LabMinVotoRotten.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1315,10 +1265,10 @@ Partial Class MainForm
         Me.FiltroMinVotoMetacritic.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinVotoMetacritic.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FiltroMinVotoMetacritic.LargeChange = 10
-        Me.FiltroMinVotoMetacritic.Location = New System.Drawing.Point(79, 20)
+        Me.FiltroMinVotoMetacritic.Location = New System.Drawing.Point(80, 20)
         Me.FiltroMinVotoMetacritic.Maximum = 100
         Me.FiltroMinVotoMetacritic.Name = "FiltroMinVotoMetacritic"
-        Me.FiltroMinVotoMetacritic.Size = New System.Drawing.Size(294, 30)
+        Me.FiltroMinVotoMetacritic.Size = New System.Drawing.Size(293, 30)
         Me.FiltroMinVotoMetacritic.TabIndex = 17
         Me.FiltroMinVotoMetacritic.TickFrequency = 10
         '
@@ -1327,9 +1277,9 @@ Partial Class MainForm
         Me.LabMinVotoMetacritic.AutoSize = True
         Me.LabMinVotoMetacritic.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabMinVotoMetacritic.Location = New System.Drawing.Point(0, 20)
-        Me.LabMinVotoMetacritic.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinVotoMetacritic.MinimumSize = New System.Drawing.Size(80, 30)
         Me.LabMinVotoMetacritic.Name = "LabMinVotoMetacritic"
-        Me.LabMinVotoMetacritic.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinVotoMetacritic.Size = New System.Drawing.Size(80, 30)
         Me.LabMinVotoMetacritic.TabIndex = 1
         Me.LabMinVotoMetacritic.Text = "Qualsiasi"
         Me.LabMinVotoMetacritic.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1361,23 +1311,22 @@ Partial Class MainForm
         Me.FiltroMinIncasso.AutoSize = False
         Me.FiltroMinIncasso.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinIncasso.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FiltroMinIncasso.LargeChange = 200000
-        Me.FiltroMinIncasso.Location = New System.Drawing.Point(79, 20)
-        Me.FiltroMinIncasso.Maximum = 2800000
+        Me.FiltroMinIncasso.LargeChange = 3
+        Me.FiltroMinIncasso.Location = New System.Drawing.Point(95, 20)
+        Me.FiltroMinIncasso.Maximum = 16
         Me.FiltroMinIncasso.Name = "FiltroMinIncasso"
-        Me.FiltroMinIncasso.Size = New System.Drawing.Size(294, 30)
-        Me.FiltroMinIncasso.SmallChange = 1000
+        Me.FiltroMinIncasso.Size = New System.Drawing.Size(278, 30)
         Me.FiltroMinIncasso.TabIndex = 17
-        Me.FiltroMinIncasso.TickFrequency = 200000
+        Me.FiltroMinIncasso.TickFrequency = 3
         '
         'LabMinIncasso
         '
         Me.LabMinIncasso.AutoSize = True
         Me.LabMinIncasso.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabMinIncasso.Location = New System.Drawing.Point(0, 20)
-        Me.LabMinIncasso.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinIncasso.MinimumSize = New System.Drawing.Size(95, 30)
         Me.LabMinIncasso.Name = "LabMinIncasso"
-        Me.LabMinIncasso.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinIncasso.Size = New System.Drawing.Size(95, 30)
         Me.LabMinIncasso.TabIndex = 1
         Me.LabMinIncasso.Text = "Qualsiasi"
         Me.LabMinIncasso.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1409,23 +1358,22 @@ Partial Class MainForm
         Me.FiltroMinNumVotiIMDB.AutoSize = False
         Me.FiltroMinNumVotiIMDB.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinNumVotiIMDB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FiltroMinNumVotiIMDB.LargeChange = 250
-        Me.FiltroMinNumVotiIMDB.Location = New System.Drawing.Point(79, 20)
-        Me.FiltroMinNumVotiIMDB.Maximum = 2500
+        Me.FiltroMinNumVotiIMDB.LargeChange = 4
+        Me.FiltroMinNumVotiIMDB.Location = New System.Drawing.Point(85, 20)
+        Me.FiltroMinNumVotiIMDB.Maximum = 15
         Me.FiltroMinNumVotiIMDB.Name = "FiltroMinNumVotiIMDB"
-        Me.FiltroMinNumVotiIMDB.Size = New System.Drawing.Size(294, 30)
-        Me.FiltroMinNumVotiIMDB.SmallChange = 25
+        Me.FiltroMinNumVotiIMDB.Size = New System.Drawing.Size(288, 30)
         Me.FiltroMinNumVotiIMDB.TabIndex = 17
-        Me.FiltroMinNumVotiIMDB.TickFrequency = 250
+        Me.FiltroMinNumVotiIMDB.TickFrequency = 4
         '
         'LabMinNumVotiIMDB
         '
         Me.LabMinNumVotiIMDB.AutoSize = True
         Me.LabMinNumVotiIMDB.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabMinNumVotiIMDB.Location = New System.Drawing.Point(0, 20)
-        Me.LabMinNumVotiIMDB.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinNumVotiIMDB.MinimumSize = New System.Drawing.Size(85, 30)
         Me.LabMinNumVotiIMDB.Name = "LabMinNumVotiIMDB"
-        Me.LabMinNumVotiIMDB.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinNumVotiIMDB.Size = New System.Drawing.Size(85, 30)
         Me.LabMinNumVotiIMDB.TabIndex = 1
         Me.LabMinNumVotiIMDB.Text = "Qualsiasi"
         Me.LabMinNumVotiIMDB.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1458,10 +1406,10 @@ Partial Class MainForm
         Me.FiltroMinVotoIMDB.Cursor = System.Windows.Forms.Cursors.Default
         Me.FiltroMinVotoIMDB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FiltroMinVotoIMDB.LargeChange = 10
-        Me.FiltroMinVotoIMDB.Location = New System.Drawing.Point(79, 20)
+        Me.FiltroMinVotoIMDB.Location = New System.Drawing.Point(80, 20)
         Me.FiltroMinVotoIMDB.Maximum = 100
         Me.FiltroMinVotoIMDB.Name = "FiltroMinVotoIMDB"
-        Me.FiltroMinVotoIMDB.Size = New System.Drawing.Size(294, 30)
+        Me.FiltroMinVotoIMDB.Size = New System.Drawing.Size(293, 30)
         Me.FiltroMinVotoIMDB.TabIndex = 17
         Me.FiltroMinVotoIMDB.TickFrequency = 10
         '
@@ -1470,9 +1418,9 @@ Partial Class MainForm
         Me.LabMinVotoIMDB.AutoSize = True
         Me.LabMinVotoIMDB.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabMinVotoIMDB.Location = New System.Drawing.Point(0, 20)
-        Me.LabMinVotoIMDB.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.LabMinVotoIMDB.MinimumSize = New System.Drawing.Size(80, 30)
         Me.LabMinVotoIMDB.Name = "LabMinVotoIMDB"
-        Me.LabMinVotoIMDB.Size = New System.Drawing.Size(79, 30)
+        Me.LabMinVotoIMDB.Size = New System.Drawing.Size(80, 30)
         Me.LabMinVotoIMDB.TabIndex = 1
         Me.LabMinVotoIMDB.Text = "Qualsiasi"
         Me.LabMinVotoIMDB.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1756,7 +1704,7 @@ Partial Class MainForm
         Me.PanelDettagliFilm.MinimumSize = New System.Drawing.Size(50, 100)
         Me.PanelDettagliFilm.Name = "PanelDettagliFilm"
         Me.PanelDettagliFilm.Padding = New System.Windows.Forms.Padding(0, 0, 0, 47)
-        Me.PanelDettagliFilm.Size = New System.Drawing.Size(651, 696)
+        Me.PanelDettagliFilm.Size = New System.Drawing.Size(651, 743)
         Me.PanelDettagliFilm.TabIndex = 20
         '
         'PannelloExtra
@@ -1767,7 +1715,7 @@ Partial Class MainForm
         Me.PannelloExtra.Controls.Add(Me.ListaExtra)
         Me.PannelloExtra.Controls.Add(Me.IntestazioneExtra)
         Me.PannelloExtra.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PannelloExtra.Location = New System.Drawing.Point(0, 1425)
+        Me.PannelloExtra.Location = New System.Drawing.Point(0, 1497)
         Me.PannelloExtra.Name = "PannelloExtra"
         Me.PannelloExtra.Size = New System.Drawing.Size(630, 90)
         Me.PannelloExtra.TabIndex = 104
@@ -1824,7 +1772,7 @@ Partial Class MainForm
         Me.PanelFile.Controls.Add(Me.PannelloContenitore)
         Me.PanelFile.Controls.Add(Me.IntestazioneFile)
         Me.PanelFile.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelFile.Location = New System.Drawing.Point(0, 1034)
+        Me.PanelFile.Location = New System.Drawing.Point(0, 1106)
         Me.PanelFile.MinimumSize = New System.Drawing.Size(0, 64)
         Me.PanelFile.Name = "PanelFile"
         Me.PanelFile.Size = New System.Drawing.Size(630, 391)
@@ -1987,11 +1935,12 @@ Partial Class MainForm
         Me.PannelloRisoluzione.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
         Me.PannelloRisoluzione.MinimumSize = New System.Drawing.Size(0, 36)
         Me.PannelloRisoluzione.Name = "PannelloRisoluzione"
-        Me.PannelloRisoluzione.Size = New System.Drawing.Size(214, 36)
+        Me.PannelloRisoluzione.Size = New System.Drawing.Size(218, 36)
         Me.PannelloRisoluzione.TabIndex = 59
         '
         'BadgeRisoluzione
         '
+        Me.BadgeRisoluzione.AutoSize = True
         Me.BadgeRisoluzione.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BadgeRisoluzione.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.BadgeRisoluzione.Controls.Add(Me.LabAltezzaRisoluzione)
@@ -2000,7 +1949,7 @@ Partial Class MainForm
         Me.BadgeRisoluzione.Location = New System.Drawing.Point(82, 0)
         Me.BadgeRisoluzione.Name = "BadgeRisoluzione"
         Me.BadgeRisoluzione.Padding = New System.Windows.Forms.Padding(3)
-        Me.BadgeRisoluzione.Size = New System.Drawing.Size(132, 36)
+        Me.BadgeRisoluzione.Size = New System.Drawing.Size(136, 36)
         Me.BadgeRisoluzione.TabIndex = 50
         '
         'LabAltezzaRisoluzione
@@ -2051,7 +2000,7 @@ Partial Class MainForm
         Me.PannelloCodecVideo.Controls.Add(Me.LabCodecVideo)
         Me.PannelloCodecVideo.Controls.Add(Me.Label27)
         Me.PannelloCodecVideo.Controls.Add(Me.PictureBox15)
-        Me.PannelloCodecVideo.Location = New System.Drawing.Point(257, 3)
+        Me.PannelloCodecVideo.Location = New System.Drawing.Point(261, 3)
         Me.PannelloCodecVideo.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
         Me.PannelloCodecVideo.MinimumSize = New System.Drawing.Size(0, 32)
         Me.PannelloCodecVideo.Name = "PannelloCodecVideo"
@@ -2090,7 +2039,7 @@ Partial Class MainForm
         Me.PannelloBitrateVideo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PannelloBitrateVideo.Controls.Add(Me.LabBitrateVideo)
         Me.PannelloBitrateVideo.Controls.Add(Me.PictureBox14)
-        Me.PannelloBitrateVideo.Location = New System.Drawing.Point(421, 3)
+        Me.PannelloBitrateVideo.Location = New System.Drawing.Point(425, 3)
         Me.PannelloBitrateVideo.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
         Me.PannelloBitrateVideo.MinimumSize = New System.Drawing.Size(0, 32)
         Me.PannelloBitrateVideo.Name = "PannelloBitrateVideo"
@@ -2378,10 +2327,11 @@ Partial Class MainForm
         '
         'PanelValutazioni
         '
+        Me.PanelValutazioni.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PanelValutazioni.Controls.Add(Me.PanComtenutoValutazioni)
         Me.PanelValutazioni.Controls.Add(Me.IntestazioneValutazioni)
         Me.PanelValutazioni.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelValutazioni.Location = New System.Drawing.Point(0, 749)
+        Me.PanelValutazioni.Location = New System.Drawing.Point(0, 821)
         Me.PanelValutazioni.Name = "PanelValutazioni"
         Me.PanelValutazioni.Size = New System.Drawing.Size(630, 285)
         Me.PanelValutazioni.TabIndex = 102
@@ -2973,7 +2923,7 @@ Partial Class MainForm
         Me.PannelloTrama.Controls.Add(Me.ButtonToggleTrama)
         Me.PannelloTrama.Controls.Add(Me.IntestazioneTrama)
         Me.PannelloTrama.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PannelloTrama.Location = New System.Drawing.Point(0, 522)
+        Me.PannelloTrama.Location = New System.Drawing.Point(0, 594)
         Me.PannelloTrama.Name = "PannelloTrama"
         Me.PannelloTrama.Size = New System.Drawing.Size(630, 227)
         Me.PannelloTrama.TabIndex = 101
@@ -2989,7 +2939,7 @@ Partial Class MainForm
         Me.LabTramaBreve.Name = "LabTramaBreve"
         Me.LabTramaBreve.Size = New System.Drawing.Size(630, 75)
         Me.LabTramaBreve.TabIndex = 88
-        Me.LabTramaBreve.Text = "Label18"
+        Me.LabTramaBreve.Text = "LabTramaBreve"
         '
         'TextTramaLunga
         '
@@ -3005,6 +2955,7 @@ Partial Class MainForm
         Me.TextTramaLunga.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TextTramaLunga.Size = New System.Drawing.Size(630, 120)
         Me.TextTramaLunga.TabIndex = 42
+        Me.TextTramaLunga.Text = "TextTramaLunga"
         Me.TextTramaLunga.Visible = False
         '
         'ButtonToggleTrama
@@ -3037,7 +2988,7 @@ Partial Class MainForm
         Me.PannelloAttori.Controls.Add(Me.ListaAttori)
         Me.PannelloAttori.Controls.Add(Me.IntestazioneAttori)
         Me.PannelloAttori.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PannelloAttori.Location = New System.Drawing.Point(0, 455)
+        Me.PannelloAttori.Location = New System.Drawing.Point(0, 527)
         Me.PannelloAttori.Name = "PannelloAttori"
         Me.PannelloAttori.Size = New System.Drawing.Size(630, 67)
         Me.PannelloAttori.TabIndex = 100
@@ -3053,8 +3004,8 @@ Partial Class MainForm
         Me.ListaAttori.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaAttori.FullRowSelect = True
         Me.ListaAttori.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem1.StateImageIndex = 0
-        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3})
+        ListViewItem40.StateImageIndex = 0
+        Me.ListaAttori.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem40, ListViewItem41, ListViewItem42})
         Me.ListaAttori.Location = New System.Drawing.Point(0, 32)
         Me.ListaAttori.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaAttori.MultiSelect = False
@@ -3086,7 +3037,7 @@ Partial Class MainForm
         Me.PannelloGeneri.Controls.Add(Me.ListaGeneri)
         Me.PannelloGeneri.Controls.Add(Me.IntestazioneGeneri)
         Me.PannelloGeneri.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PannelloGeneri.Location = New System.Drawing.Point(0, 360)
+        Me.PannelloGeneri.Location = New System.Drawing.Point(0, 432)
         Me.PannelloGeneri.Name = "PannelloGeneri"
         Me.PannelloGeneri.Size = New System.Drawing.Size(630, 95)
         Me.PannelloGeneri.TabIndex = 99
@@ -3102,8 +3053,8 @@ Partial Class MainForm
         Me.ListaGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListaGeneri.FullRowSelect = True
         Me.ListaGeneri.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
-        ListViewItem6.StateImageIndex = 0
-        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
+        ListViewItem48.StateImageIndex = 0
+        Me.ListaGeneri.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem46, ListViewItem47, ListViewItem48})
         Me.ListaGeneri.Location = New System.Drawing.Point(0, 32)
         Me.ListaGeneri.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
         Me.ListaGeneri.MultiSelect = False
@@ -3145,7 +3096,7 @@ Partial Class MainForm
         'SplitPosterInfoPrincipali.Panel2
         '
         Me.SplitPosterInfoPrincipali.Panel2.Controls.Add(Me.FlowLayoutPanel6)
-        Me.SplitPosterInfoPrincipali.Size = New System.Drawing.Size(630, 360)
+        Me.SplitPosterInfoPrincipali.Size = New System.Drawing.Size(630, 432)
         Me.SplitPosterInfoPrincipali.SplitterDistance = 250
         Me.SplitPosterInfoPrincipali.SplitterWidth = 1
         Me.SplitPosterInfoPrincipali.TabIndex = 98
@@ -3169,7 +3120,7 @@ Partial Class MainForm
         Me.FlowLayoutPanel6.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel6.MinimumSize = New System.Drawing.Size(140, 100)
         Me.FlowLayoutPanel6.Name = "FlowLayoutPanel6"
-        Me.FlowLayoutPanel6.Size = New System.Drawing.Size(379, 360)
+        Me.FlowLayoutPanel6.Size = New System.Drawing.Size(379, 432)
         Me.FlowLayoutPanel6.TabIndex = 2
         '
         'LabTitoloITA
@@ -3201,19 +3152,20 @@ Partial Class MainForm
         Me.PanelNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PanelNote.Controls.Add(Me.LabNote)
         Me.PanelNote.Controls.Add(Me.PictureBox7)
-        Me.PanelNote.Location = New System.Drawing.Point(3, 84)
+        Me.PanelNote.Location = New System.Drawing.Point(3, 81)
         Me.PanelNote.Name = "PanelNote"
-        Me.PanelNote.Size = New System.Drawing.Size(137, 37)
+        Me.PanelNote.Size = New System.Drawing.Size(149, 34)
         Me.PanelNote.TabIndex = 74
         '
         'LabNote
         '
         Me.LabNote.AutoSize = True
-        Me.LabNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabNote.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabNote.Location = New System.Drawing.Point(38, 0)
+        Me.LabNote.Margin = New System.Windows.Forms.Padding(0)
         Me.LabNote.MinimumSize = New System.Drawing.Size(0, 32)
         Me.LabNote.Name = "LabNote"
-        Me.LabNote.Size = New System.Drawing.Size(96, 32)
+        Me.LabNote.Size = New System.Drawing.Size(111, 32)
         Me.LabNote.TabIndex = 7
         Me.LabNote.Text = "Director's cut"
         Me.LabNote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -3225,7 +3177,7 @@ Partial Class MainForm
         Me.PanelToggleImg.Controls.Add(Me.ButtPannelloSchermata)
         Me.PanelToggleImg.Controls.Add(Me.ButtTogglePoster)
         Me.FlowLayoutPanel6.SetFlowBreak(Me.PanelToggleImg, True)
-        Me.PanelToggleImg.Location = New System.Drawing.Point(146, 84)
+        Me.PanelToggleImg.Location = New System.Drawing.Point(158, 81)
         Me.PanelToggleImg.Name = "PanelToggleImg"
         Me.PanelToggleImg.Size = New System.Drawing.Size(79, 35)
         Me.PanelToggleImg.TabIndex = 88
@@ -3237,6 +3189,7 @@ Partial Class MainForm
         Me.ButtPannelloSchermata.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight
         Me.ButtPannelloSchermata.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ButtPannelloSchermata.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtPannelloSchermata.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtPannelloSchermata.Location = New System.Drawing.Point(44, 0)
         Me.ButtPannelloSchermata.Margin = New System.Windows.Forms.Padding(0)
         Me.ButtPannelloSchermata.Name = "ButtPannelloSchermata"
@@ -3253,6 +3206,7 @@ Partial Class MainForm
         Me.ButtTogglePoster.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight
         Me.ButtTogglePoster.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ButtTogglePoster.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtTogglePoster.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtTogglePoster.Location = New System.Drawing.Point(0, 0)
         Me.ButtTogglePoster.Margin = New System.Windows.Forms.Padding(0)
         Me.ButtTogglePoster.Name = "ButtTogglePoster"
@@ -3268,21 +3222,21 @@ Partial Class MainForm
         Me.PanelAnno.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PanelAnno.Controls.Add(Me.LabAnno)
         Me.PanelAnno.Controls.Add(Me.PictureBox1)
-        Me.PanelAnno.Location = New System.Drawing.Point(3, 127)
+        Me.PanelAnno.Location = New System.Drawing.Point(3, 122)
         Me.PanelAnno.MinimumSize = New System.Drawing.Size(0, 32)
         Me.PanelAnno.Name = "PanelAnno"
-        Me.PanelAnno.Size = New System.Drawing.Size(89, 35)
+        Me.PanelAnno.Size = New System.Drawing.Size(98, 32)
         Me.PanelAnno.TabIndex = 53
         '
         'LabAnno
         '
         Me.LabAnno.AutoSize = True
-        Me.LabAnno.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabAnno.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabAnno.Location = New System.Drawing.Point(32, 0)
-        Me.LabAnno.Margin = New System.Windows.Forms.Padding(3, 0, 12, 0)
+        Me.LabAnno.Margin = New System.Windows.Forms.Padding(0, 0, 12, 0)
         Me.LabAnno.MinimumSize = New System.Drawing.Size(45, 32)
         Me.LabAnno.Name = "LabAnno"
-        Me.LabAnno.Size = New System.Drawing.Size(45, 32)
+        Me.LabAnno.Size = New System.Drawing.Size(54, 32)
         Me.LabAnno.TabIndex = 2
         Me.LabAnno.Text = "1959"
         Me.LabAnno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -3295,7 +3249,7 @@ Partial Class MainForm
         Me.PannelloNazione.Controls.Add(Me.NazioneLab)
         Me.PannelloNazione.Cursor = System.Windows.Forms.Cursors.Hand
         Me.FlowLayoutPanel6.SetFlowBreak(Me.PannelloNazione, True)
-        Me.PannelloNazione.Location = New System.Drawing.Point(98, 127)
+        Me.PannelloNazione.Location = New System.Drawing.Point(107, 122)
         Me.PannelloNazione.MinimumSize = New System.Drawing.Size(0, 32)
         Me.PannelloNazione.Name = "PannelloNazione"
         Me.PannelloNazione.Size = New System.Drawing.Size(114, 32)
@@ -3307,11 +3261,12 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.NazioneLab.AutoSize = True
-        Me.NazioneLab.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NazioneLab.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NazioneLab.Location = New System.Drawing.Point(38, 0)
+        Me.NazioneLab.Margin = New System.Windows.Forms.Padding(0)
         Me.NazioneLab.MinimumSize = New System.Drawing.Size(0, 32)
         Me.NazioneLab.Name = "NazioneLab"
-        Me.NazioneLab.Size = New System.Drawing.Size(41, 32)
+        Me.NazioneLab.Size = New System.Drawing.Size(51, 32)
         Me.NazioneLab.TabIndex = 16
         Me.NazioneLab.Text = "USA"
         Me.NazioneLab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -3326,19 +3281,20 @@ Partial Class MainForm
         Me.PanelDurata.Controls.Add(Me.LabFineVisione)
         Me.PanelDurata.Controls.Add(Me.Label14)
         Me.FlowLayoutPanel6.SetFlowBreak(Me.PanelDurata, True)
-        Me.PanelDurata.Location = New System.Drawing.Point(3, 168)
+        Me.PanelDurata.Location = New System.Drawing.Point(3, 160)
         Me.PanelDurata.Name = "PanelDurata"
-        Me.PanelDurata.Size = New System.Drawing.Size(239, 38)
+        Me.PanelDurata.Size = New System.Drawing.Size(239, 32)
         Me.PanelDurata.TabIndex = 75
         '
         'LabDurata
         '
         Me.LabDurata.AutoSize = True
-        Me.LabDurata.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabDurata.Location = New System.Drawing.Point(41, 0)
+        Me.LabDurata.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabDurata.Location = New System.Drawing.Point(32, 0)
+        Me.LabDurata.Margin = New System.Windows.Forms.Padding(0)
         Me.LabDurata.MinimumSize = New System.Drawing.Size(0, 32)
         Me.LabDurata.Name = "LabDurata"
-        Me.LabDurata.Size = New System.Drawing.Size(49, 32)
+        Me.LabDurata.Size = New System.Drawing.Size(61, 32)
         Me.LabDurata.TabIndex = 9
         Me.LabDurata.Text = "1h 20"
         Me.LabDurata.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -3389,19 +3345,20 @@ Partial Class MainForm
         Me.PanelRegisti.Controls.Add(Me.LabRegisti)
         Me.PanelRegisti.Controls.Add(Me.PictureBox4)
         Me.FlowLayoutPanel6.SetFlowBreak(Me.PanelRegisti, True)
-        Me.PanelRegisti.Location = New System.Drawing.Point(3, 212)
+        Me.PanelRegisti.Location = New System.Drawing.Point(3, 198)
         Me.PanelRegisti.Name = "PanelRegisti"
-        Me.PanelRegisti.Size = New System.Drawing.Size(143, 35)
+        Me.PanelRegisti.Size = New System.Drawing.Size(168, 32)
         Me.PanelRegisti.TabIndex = 25
         '
         'LabRegisti
         '
         Me.LabRegisti.AutoSize = True
-        Me.LabRegisti.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabRegisti.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabRegisti.Location = New System.Drawing.Point(32, 0)
+        Me.LabRegisti.Margin = New System.Windows.Forms.Padding(0)
         Me.LabRegisti.MinimumSize = New System.Drawing.Size(0, 32)
         Me.LabRegisti.Name = "LabRegisti"
-        Me.LabRegisti.Size = New System.Drawing.Size(108, 32)
+        Me.LabRegisti.Size = New System.Drawing.Size(136, 32)
         Me.LabRegisti.TabIndex = 7
         Me.LabRegisti.Text = "Sergio Leone"
         Me.LabRegisti.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -3413,19 +3370,20 @@ Partial Class MainForm
         Me.PanelAutori.Controls.Add(Me.LabAutori)
         Me.PanelAutori.Controls.Add(Me.PictureBox6)
         Me.FlowLayoutPanel6.SetFlowBreak(Me.PanelAutori, True)
-        Me.PanelAutori.Location = New System.Drawing.Point(3, 253)
+        Me.PanelAutori.Location = New System.Drawing.Point(3, 236)
         Me.PanelAutori.Name = "PanelAutori"
-        Me.PanelAutori.Size = New System.Drawing.Size(130, 35)
+        Me.PanelAutori.Size = New System.Drawing.Size(140, 32)
         Me.PanelAutori.TabIndex = 26
         '
         'LabAutori
         '
         Me.LabAutori.AutoSize = True
-        Me.LabAutori.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabAutori.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabAutori.Location = New System.Drawing.Point(32, 0)
+        Me.LabAutori.Margin = New System.Windows.Forms.Padding(0)
         Me.LabAutori.MinimumSize = New System.Drawing.Size(0, 32)
         Me.LabAutori.Name = "LabAutori"
-        Me.LabAutori.Size = New System.Drawing.Size(95, 32)
+        Me.LabAutori.Size = New System.Drawing.Size(108, 32)
         Me.LabAutori.TabIndex = 13
         Me.LabAutori.Text = "Stephen King"
         Me.LabAutori.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -3436,19 +3394,20 @@ Partial Class MainForm
         Me.PanelMusicisti.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PanelMusicisti.Controls.Add(Me.LabMusicisti)
         Me.PanelMusicisti.Controls.Add(Me.PictureBox5)
-        Me.PanelMusicisti.Location = New System.Drawing.Point(3, 294)
+        Me.PanelMusicisti.Location = New System.Drawing.Point(3, 274)
         Me.PanelMusicisti.Name = "PanelMusicisti"
-        Me.PanelMusicisti.Size = New System.Drawing.Size(158, 35)
+        Me.PanelMusicisti.Size = New System.Drawing.Size(168, 32)
         Me.PanelMusicisti.TabIndex = 27
         '
         'LabMusicisti
         '
         Me.LabMusicisti.AutoSize = True
-        Me.LabMusicisti.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabMusicisti.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabMusicisti.Location = New System.Drawing.Point(37, 0)
+        Me.LabMusicisti.Margin = New System.Windows.Forms.Padding(0)
         Me.LabMusicisti.MinimumSize = New System.Drawing.Size(0, 32)
         Me.LabMusicisti.Name = "LabMusicisti"
-        Me.LabMusicisti.Size = New System.Drawing.Size(118, 32)
+        Me.LabMusicisti.Size = New System.Drawing.Size(131, 32)
         Me.LabMusicisti.TabIndex = 15
         Me.LabMusicisti.Text = "Ennio Morricone"
         Me.LabMusicisti.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -3480,101 +3439,101 @@ Partial Class MainForm
         Me.AlberoCategorieLibreria.Location = New System.Drawing.Point(0, 0)
         Me.AlberoCategorieLibreria.Margin = New System.Windows.Forms.Padding(3, 2, 3, 35)
         Me.AlberoCategorieLibreria.Name = "AlberoCategorieLibreria"
-        TreeNode1.ImageIndex = 1
-        TreeNode1.Name = "NodoTuttiFilm"
-        TreeNode1.SelectedImageIndex = 1
-        TreeNode1.Text = "Tutti i film"
-        TreeNode2.ImageIndex = 2
-        TreeNode2.Name = "NodoCatRegisti"
-        TreeNode2.SelectedImageIndex = 2
-        TreeNode2.Text = "Registi"
-        TreeNode3.ImageIndex = 3
-        TreeNode3.Name = "NodoCatAttori"
-        TreeNode3.SelectedImageIndex = 3
-        TreeNode3.Text = "Attori"
-        TreeNode4.Name = "Node5"
-        TreeNode4.Text = "🙂 Commedia"
-        TreeNode5.Name = "Node7"
-        TreeNode5.Text = "🤣 Comico"
-        TreeNode6.Name = "Node6"
-        TreeNode6.Text = "😭 Drammatico"
-        TreeNode7.Name = "Node12"
-        TreeNode7.Text = "🕵️ Giallo"
-        TreeNode8.Name = "Node13"
-        TreeNode8.Text = "👮 Polizesco"
-        TreeNode9.Name = "Node14"
-        TreeNode9.Text = "🏴 Noir"
-        TreeNode10.Name = "Node11"
-        TreeNode10.Text = "🤢 Splatter"
-        TreeNode11.Name = "Node8"
-        TreeNode11.Text = "😱 Horror"
-        TreeNode12.Name = "Node9"
-        TreeNode12.Text = "😲 Thriller"
-        TreeNode13.Name = "Node17"
-        TreeNode13.Text = "🔫 Gangster"
-        TreeNode14.Name = "Node10"
-        TreeNode14.Text = "🤖 Fantascienza"
-        TreeNode15.Name = "Node16"
-        TreeNode15.Text = "⚔️ Guerra"
-        TreeNode16.Name = "Node15"
-        TreeNode16.Text = "🎅 Natalizio"
-        TreeNode17.ImageIndex = 4
-        TreeNode17.Name = "NodoCatGeneri"
-        TreeNode17.SelectedImageIndex = 4
-        TreeNode17.Text = "Generi"
-        TreeNode18.ImageIndex = 5
-        TreeNode18.Name = "NodoCatDecenni"
-        TreeNode18.SelectedImageIndex = 5
-        TreeNode18.Text = "Anni"
-        TreeNode19.ImageIndex = 6
-        TreeNode19.Name = "NodoCatNazioni"
-        TreeNode19.SelectedImageIndex = 6
-        TreeNode19.Text = "Nazioni"
-        TreeNode20.ImageIndex = 85
-        TreeNode20.Name = "NodoCatSaghe"
-        TreeNode20.SelectedImageIndex = 85
-        TreeNode20.Text = "Saghe"
-        TreeNode21.ImageIndex = 7
-        TreeNode21.Name = "NodoCatAutori"
-        TreeNode21.SelectedImageIndex = 7
-        TreeNode21.Text = "Autori"
-        TreeNode22.ImageIndex = 8
-        TreeNode22.Name = "NodoCatMusicisti"
-        TreeNode22.SelectedImageIndex = 8
-        TreeNode22.Text = "Musicisti"
-        TreeNode23.ImageIndex = 9
-        TreeNode23.Name = "NodoCatTemi"
-        TreeNode23.SelectedImageIndex = 9
-        TreeNode23.Text = "Temi"
-        TreeNode24.Name = "Node19"
-        TreeNode24.Text = "Antica Grecia"
-        TreeNode25.Name = "Node20"
-        TreeNode25.Text = "Antica Roma"
-        TreeNode26.Name = "Node21"
-        TreeNode26.Text = "Medioevo"
-        TreeNode27.Name = "Node22"
-        TreeNode27.Text = "Cinquecento"
-        TreeNode28.Name = "Node23"
-        TreeNode28.Text = "Seicento"
-        TreeNode29.Name = "Node24"
-        TreeNode29.Text = "Settecento"
-        TreeNode30.Name = "Node25"
-        TreeNode30.Text = "Ottocento"
-        TreeNode31.Name = "Node41"
-        TreeNode31.Text = "Prima guerra mondiale"
-        TreeNode32.Name = "Node42"
-        TreeNode32.Text = "Seconda guerra mondiale"
-        TreeNode33.Name = "Node27"
-        TreeNode33.Text = "Vietnam"
-        TreeNode34.Name = "Node43"
-        TreeNode34.Text = "Anni di piombo"
-        TreeNode35.Name = "Node26"
-        TreeNode35.Text = "Novecento"
-        TreeNode36.ImageIndex = 10
-        TreeNode36.Name = "NodoCatAmbientazione"
-        TreeNode36.SelectedImageIndex = 10
-        TreeNode36.Text = "Ambientazione"
-        Me.AlberoCategorieLibreria.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3, TreeNode17, TreeNode18, TreeNode19, TreeNode20, TreeNode21, TreeNode22, TreeNode23, TreeNode36})
+        TreeNode37.ImageIndex = 1
+        TreeNode37.Name = "NodoTuttiFilm"
+        TreeNode37.SelectedImageIndex = 1
+        TreeNode37.Text = "Tutti i film"
+        TreeNode38.ImageIndex = 2
+        TreeNode38.Name = "NodoCatRegisti"
+        TreeNode38.SelectedImageIndex = 2
+        TreeNode38.Text = "Registi"
+        TreeNode39.ImageIndex = 3
+        TreeNode39.Name = "NodoCatAttori"
+        TreeNode39.SelectedImageIndex = 3
+        TreeNode39.Text = "Attori"
+        TreeNode40.Name = "Node5"
+        TreeNode40.Text = "🙂 Commedia"
+        TreeNode41.Name = "Node7"
+        TreeNode41.Text = "🤣 Comico"
+        TreeNode42.Name = "Node6"
+        TreeNode42.Text = "😭 Drammatico"
+        TreeNode43.Name = "Node12"
+        TreeNode43.Text = "🕵️ Giallo"
+        TreeNode44.Name = "Node13"
+        TreeNode44.Text = "👮 Polizesco"
+        TreeNode45.Name = "Node14"
+        TreeNode45.Text = "🏴 Noir"
+        TreeNode46.Name = "Node11"
+        TreeNode46.Text = "🤢 Splatter"
+        TreeNode47.Name = "Node8"
+        TreeNode47.Text = "😱 Horror"
+        TreeNode48.Name = "Node9"
+        TreeNode48.Text = "😲 Thriller"
+        TreeNode49.Name = "Node17"
+        TreeNode49.Text = "🔫 Gangster"
+        TreeNode50.Name = "Node10"
+        TreeNode50.Text = "🤖 Fantascienza"
+        TreeNode51.Name = "Node16"
+        TreeNode51.Text = "⚔️ Guerra"
+        TreeNode52.Name = "Node15"
+        TreeNode52.Text = "🎅 Natalizio"
+        TreeNode53.ImageIndex = 4
+        TreeNode53.Name = "NodoCatGeneri"
+        TreeNode53.SelectedImageIndex = 4
+        TreeNode53.Text = "Generi"
+        TreeNode54.ImageIndex = 5
+        TreeNode54.Name = "NodoCatDecenni"
+        TreeNode54.SelectedImageIndex = 5
+        TreeNode54.Text = "Anni"
+        TreeNode55.ImageIndex = 6
+        TreeNode55.Name = "NodoCatNazioni"
+        TreeNode55.SelectedImageIndex = 6
+        TreeNode55.Text = "Nazioni"
+        TreeNode56.ImageIndex = 85
+        TreeNode56.Name = "NodoCatSaghe"
+        TreeNode56.SelectedImageIndex = 85
+        TreeNode56.Text = "Saghe"
+        TreeNode57.ImageIndex = 7
+        TreeNode57.Name = "NodoCatAutori"
+        TreeNode57.SelectedImageIndex = 7
+        TreeNode57.Text = "Autori"
+        TreeNode58.ImageIndex = 8
+        TreeNode58.Name = "NodoCatMusicisti"
+        TreeNode58.SelectedImageIndex = 8
+        TreeNode58.Text = "Musicisti"
+        TreeNode59.ImageIndex = 9
+        TreeNode59.Name = "NodoCatTemi"
+        TreeNode59.SelectedImageIndex = 9
+        TreeNode59.Text = "Temi"
+        TreeNode60.Name = "Node19"
+        TreeNode60.Text = "Antica Grecia"
+        TreeNode61.Name = "Node20"
+        TreeNode61.Text = "Antica Roma"
+        TreeNode62.Name = "Node21"
+        TreeNode62.Text = "Medioevo"
+        TreeNode63.Name = "Node22"
+        TreeNode63.Text = "Cinquecento"
+        TreeNode64.Name = "Node23"
+        TreeNode64.Text = "Seicento"
+        TreeNode65.Name = "Node24"
+        TreeNode65.Text = "Settecento"
+        TreeNode66.Name = "Node25"
+        TreeNode66.Text = "Ottocento"
+        TreeNode67.Name = "Node41"
+        TreeNode67.Text = "Prima guerra mondiale"
+        TreeNode68.Name = "Node42"
+        TreeNode68.Text = "Seconda guerra mondiale"
+        TreeNode69.Name = "Node27"
+        TreeNode69.Text = "Vietnam"
+        TreeNode70.Name = "Node43"
+        TreeNode70.Text = "Anni di piombo"
+        TreeNode71.Name = "Node26"
+        TreeNode71.Text = "Novecento"
+        TreeNode72.ImageIndex = 10
+        TreeNode72.Name = "NodoCatAmbientazione"
+        TreeNode72.SelectedImageIndex = 10
+        TreeNode72.Text = "Ambientazione"
+        Me.AlberoCategorieLibreria.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode37, TreeNode38, TreeNode39, TreeNode53, TreeNode54, TreeNode55, TreeNode56, TreeNode57, TreeNode58, TreeNode59, TreeNode72})
         Me.AlberoCategorieLibreria.SelectedImageIndex = 0
         Me.AlberoCategorieLibreria.ShowNodeToolTips = True
         Me.AlberoCategorieLibreria.ShowRootLines = False
@@ -3649,9 +3608,9 @@ Partial Class MainForm
         '
         'SplitContainerCSX_DX.Panel2
         '
-        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliCategoria)
-        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliFilm)
         Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.BarraStrumentiFilm)
+        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliFilm)
+        Me.SplitContainerCSX_DX.Panel2.Controls.Add(Me.PanelDettagliCategoria)
         Me.SplitContainerCSX_DX.Size = New System.Drawing.Size(1214, 743)
         Me.SplitContainerCSX_DX.SplitterDistance = 559
         Me.SplitContainerCSX_DX.SplitterIncrement = 10
@@ -3690,1126 +3649,8 @@ Partial Class MainForm
         Me.PanelDettagliCategoria.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDettagliCategoria.Location = New System.Drawing.Point(0, 0)
         Me.PanelDettagliCategoria.Name = "PanelDettagliCategoria"
-        Me.PanelDettagliCategoria.Size = New System.Drawing.Size(651, 696)
+        Me.PanelDettagliCategoria.Size = New System.Drawing.Size(651, 743)
         Me.PanelDettagliCategoria.TabIndex = 93
-        '
-        'FlowLayoutPanel3
-        '
-        Me.FlowLayoutPanel3.AutoSize = True
-        Me.FlowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.FlowLayoutPanel3.Controls.Add(Me.ButtRicercaPersonaIMDB)
-        Me.FlowLayoutPanel3.Controls.Add(Me.Button1)
-        Me.FlowLayoutPanel3.Controls.Add(Me.Button2)
-        Me.FlowLayoutPanel3.Controls.Add(Me.ButCambiaImgPersona)
-        Me.FlowLayoutPanel3.Controls.Add(Me.PanNumeroFilm)
-        Me.FlowLayoutPanel3.Controls.Add(Me.PanDurataTotale)
-        Me.FlowLayoutPanel3.Controls.Add(Me.PanPeriodoAttività)
-        Me.FlowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(0, 520)
-        Me.FlowLayoutPanel3.Name = "FlowLayoutPanel3"
-        Me.FlowLayoutPanel3.Size = New System.Drawing.Size(630, 122)
-        Me.FlowLayoutPanel3.TabIndex = 30
-        '
-        'ButtRicercaPersonaIMDB
-        '
-        Me.ButtRicercaPersonaIMDB.Location = New System.Drawing.Point(3, 3)
-        Me.ButtRicercaPersonaIMDB.Name = "ButtRicercaPersonaIMDB"
-        Me.ButtRicercaPersonaIMDB.Size = New System.Drawing.Size(80, 26)
-        Me.ButtRicercaPersonaIMDB.TabIndex = 9
-        Me.ButtRicercaPersonaIMDB.Text = "IMDB"
-        Me.ButtRicercaPersonaIMDB.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Enabled = False
-        Me.Button1.Location = New System.Drawing.Point(89, 3)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(115, 26)
-        Me.Button1.TabIndex = 13
-        Me.Button1.Text = "Wikipedia IT"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(210, 3)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(115, 26)
-        Me.Button2.TabIndex = 14
-        Me.Button2.Text = "Wikipedia EN"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'ButCambiaImgPersona
-        '
-        Me.ButCambiaImgPersona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FlowLayoutPanel3.SetFlowBreak(Me.ButCambiaImgPersona, True)
-        Me.ButCambiaImgPersona.Location = New System.Drawing.Point(331, 3)
-        Me.ButCambiaImgPersona.Name = "ButCambiaImgPersona"
-        Me.ButCambiaImgPersona.Size = New System.Drawing.Size(147, 26)
-        Me.ButCambiaImgPersona.TabIndex = 4
-        Me.ButCambiaImgPersona.Text = "Cambia immagine"
-        Me.ButCambiaImgPersona.UseVisualStyleBackColor = True
-        '
-        'PanNumeroFilm
-        '
-        Me.PanNumeroFilm.AutoSize = True
-        Me.PanNumeroFilm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PanNumeroFilm.Controls.Add(Me.Label18)
-        Me.PanNumeroFilm.Controls.Add(Me.LabConteggioCategoriaScelta)
-        Me.FlowLayoutPanel3.SetFlowBreak(Me.PanNumeroFilm, True)
-        Me.PanNumeroFilm.Location = New System.Drawing.Point(20, 35)
-        Me.PanNumeroFilm.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
-        Me.PanNumeroFilm.Name = "PanNumeroFilm"
-        Me.PanNumeroFilm.Size = New System.Drawing.Size(155, 24)
-        Me.PanNumeroFilm.TabIndex = 11
-        '
-        'Label18
-        '
-        Me.Label18.AutoEllipsis = True
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(3, 0)
-        Me.Label18.MinimumSize = New System.Drawing.Size(0, 24)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(105, 24)
-        Me.Label18.TabIndex = 9
-        Me.Label18.Text = "Numero film:"
-        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'LabConteggioCategoriaScelta
-        '
-        Me.LabConteggioCategoriaScelta.AutoSize = True
-        Me.LabConteggioCategoriaScelta.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabConteggioCategoriaScelta.Location = New System.Drawing.Point(114, 0)
-        Me.LabConteggioCategoriaScelta.Name = "LabConteggioCategoriaScelta"
-        Me.LabConteggioCategoriaScelta.Size = New System.Drawing.Size(38, 24)
-        Me.LabConteggioCategoriaScelta.TabIndex = 4
-        Me.LabConteggioCategoriaScelta.Text = "XX"
-        Me.LabConteggioCategoriaScelta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'PanDurataTotale
-        '
-        Me.PanDurataTotale.AutoSize = True
-        Me.PanDurataTotale.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PanDurataTotale.Controls.Add(Me.Label50)
-        Me.PanDurataTotale.Controls.Add(Me.LabDurataCat)
-        Me.FlowLayoutPanel3.SetFlowBreak(Me.PanDurataTotale, True)
-        Me.PanDurataTotale.Location = New System.Drawing.Point(20, 65)
-        Me.PanDurataTotale.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
-        Me.PanDurataTotale.Name = "PanDurataTotale"
-        Me.PanDurataTotale.Size = New System.Drawing.Size(196, 24)
-        Me.PanDurataTotale.TabIndex = 12
-        '
-        'Label50
-        '
-        Me.Label50.AutoEllipsis = True
-        Me.Label50.AutoSize = True
-        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.Location = New System.Drawing.Point(3, 0)
-        Me.Label50.MinimumSize = New System.Drawing.Size(0, 24)
-        Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(111, 24)
-        Me.Label50.TabIndex = 7
-        Me.Label50.Text = "Durata totale:"
-        Me.Label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'LabDurataCat
-        '
-        Me.LabDurataCat.AutoSize = True
-        Me.LabDurataCat.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabDurataCat.Location = New System.Drawing.Point(120, 0)
-        Me.LabDurataCat.Name = "LabDurataCat"
-        Me.LabDurataCat.Size = New System.Drawing.Size(73, 24)
-        Me.LabDurataCat.TabIndex = 6
-        Me.LabDurataCat.Text = "123 ore"
-        Me.LabDurataCat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'PanPeriodoAttività
-        '
-        Me.PanPeriodoAttività.AutoSize = True
-        Me.PanPeriodoAttività.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PanPeriodoAttività.Controls.Add(Me.Label12)
-        Me.PanPeriodoAttività.Controls.Add(Me.Label13)
-        Me.PanPeriodoAttività.Location = New System.Drawing.Point(20, 95)
-        Me.PanPeriodoAttività.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
-        Me.PanPeriodoAttività.Name = "PanPeriodoAttività"
-        Me.PanPeriodoAttività.Size = New System.Drawing.Size(314, 24)
-        Me.PanPeriodoAttività.TabIndex = 10
-        '
-        'Label12
-        '
-        Me.Label12.AutoEllipsis = True
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(3, 0)
-        Me.Label12.MinimumSize = New System.Drawing.Size(0, 24)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(196, 24)
-        Me.Label12.TabIndex = 7
-        Me.Label12.Text = "Periodo di pubblicazione:"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(205, 0)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(106, 24)
-        Me.Label13.TabIndex = 6
-        Me.Label13.Text = "1348 - 1815"
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'LabValoreCategoriaScelta
-        '
-        Me.LabValoreCategoriaScelta.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LabValoreCategoriaScelta.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabValoreCategoriaScelta.Location = New System.Drawing.Point(0, 140)
-        Me.LabValoreCategoriaScelta.Name = "LabValoreCategoriaScelta"
-        Me.LabValoreCategoriaScelta.Size = New System.Drawing.Size(630, 80)
-        Me.LabValoreCategoriaScelta.TabIndex = 27
-        Me.LabValoreCategoriaScelta.Text = "Nome cat"
-        Me.LabValoreCategoriaScelta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'LabCategoriaScelta
-        '
-        Me.LabCategoriaScelta.AutoEllipsis = True
-        Me.LabCategoriaScelta.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LabCategoriaScelta.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabCategoriaScelta.Location = New System.Drawing.Point(0, 100)
-        Me.LabCategoriaScelta.Margin = New System.Windows.Forms.Padding(0)
-        Me.LabCategoriaScelta.MinimumSize = New System.Drawing.Size(0, 40)
-        Me.LabCategoriaScelta.Name = "LabCategoriaScelta"
-        Me.LabCategoriaScelta.Size = New System.Drawing.Size(630, 40)
-        Me.LabCategoriaScelta.TabIndex = 26
-        Me.LabCategoriaScelta.Text = "Film del regista"
-        Me.LabCategoriaScelta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'ButtTogglePannelloSx
-        '
-        Me.ButtTogglePannelloSx.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtTogglePannelloSx.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sidebar_left
-        Me.ButtTogglePannelloSx.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtTogglePannelloSx.Name = "ButtTogglePannelloSx"
-        Me.ButtTogglePannelloSx.Size = New System.Drawing.Size(36, 64)
-        Me.ButtTogglePannelloSx.Text = "<"
-        Me.ButtTogglePannelloSx.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ButtTogglePannelloSx.ToolTipText = "Nascondi/Visualizza pannello Categorie Libreria"
-        '
-        'ButtTogglePannelloDx
-        '
-        Me.ButtTogglePannelloDx.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ButtTogglePannelloDx.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtTogglePannelloDx.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sidebar_right
-        Me.ButtTogglePannelloDx.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtTogglePannelloDx.Name = "ButtTogglePannelloDx"
-        Me.ButtTogglePannelloDx.Size = New System.Drawing.Size(36, 64)
-        Me.ButtTogglePannelloDx.Text = ">"
-        Me.ButtTogglePannelloDx.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ButtTogglePannelloDx.ToolTipText = "Nascondi/Visualizza pannello Dettagli"
-        '
-        'ButtCronoIndietro
-        '
-        Me.ButtCronoIndietro.Enabled = False
-        Me.ButtCronoIndietro.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.indietro
-        Me.ButtCronoIndietro.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtCronoIndietro.Name = "ButtCronoIndietro"
-        Me.ButtCronoIndietro.Size = New System.Drawing.Size(65, 64)
-        Me.ButtCronoIndietro.Text = "Indietro"
-        Me.ButtCronoIndietro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ButtCronoIndietro.ToolTipText = "Torna alla categoria visualizzata in precedenza"
-        '
-        'ButtCronoAvanti
-        '
-        Me.ButtCronoAvanti.Enabled = False
-        Me.ButtCronoAvanti.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.avanti
-        Me.ButtCronoAvanti.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtCronoAvanti.Name = "ButtCronoAvanti"
-        Me.ButtCronoAvanti.Size = New System.Drawing.Size(55, 64)
-        Me.ButtCronoAvanti.Text = "Avanti"
-        Me.ButtCronoAvanti.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ButtCronoAvanti.ToolTipText = "Torna alla categoria visualizzata successivamente"
-        '
-        'SottoMenuVisualizzazioneIcone
-        '
-        Me.SottoMenuVisualizzazioneIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListaToolStripMenuItem, Me.DescrizioneToolStripMenuItem, Me.ColonneToolStripMenuItem, Me.TilesToolStripMenuItem, Me.IconePiccoleToolStripMenuItem, Me.IconeGrandiToolStripMenuItem})
-        Me.SottoMenuVisualizzazioneIcone.Image = CType(resources.GetObject("SottoMenuVisualizzazioneIcone.Image"), System.Drawing.Image)
-        Me.SottoMenuVisualizzazioneIcone.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SottoMenuVisualizzazioneIcone.Name = "SottoMenuVisualizzazioneIcone"
-        Me.SottoMenuVisualizzazioneIcone.Size = New System.Drawing.Size(88, 64)
-        Me.SottoMenuVisualizzazioneIcone.Text = "Visualizza"
-        Me.SottoMenuVisualizzazioneIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.SottoMenuVisualizzazioneIcone.ToolTipText = "Scegli il tipo di icone da visualizzare"
-        '
-        'ListaToolStripMenuItem
-        '
-        Me.ListaToolStripMenuItem.CheckOnClick = True
-        Me.ListaToolStripMenuItem.Name = "ListaToolStripMenuItem"
-        Me.ListaToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
-        Me.ListaToolStripMenuItem.Text = "Lista"
-        '
-        'DescrizioneToolStripMenuItem
-        '
-        Me.DescrizioneToolStripMenuItem.Enabled = False
-        Me.DescrizioneToolStripMenuItem.Name = "DescrizioneToolStripMenuItem"
-        Me.DescrizioneToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
-        Me.DescrizioneToolStripMenuItem.Text = "descrizione"
-        '
-        'ColonneToolStripMenuItem
-        '
-        Me.ColonneToolStripMenuItem.CheckOnClick = True
-        Me.ColonneToolStripMenuItem.Name = "ColonneToolStripMenuItem"
-        Me.ColonneToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
-        Me.ColonneToolStripMenuItem.Text = "Colonne/Dettagli"
-        '
-        'TilesToolStripMenuItem
-        '
-        Me.TilesToolStripMenuItem.CheckOnClick = True
-        Me.TilesToolStripMenuItem.Enabled = False
-        Me.TilesToolStripMenuItem.Name = "TilesToolStripMenuItem"
-        Me.TilesToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
-        Me.TilesToolStripMenuItem.Text = "Tiles"
-        '
-        'IconePiccoleToolStripMenuItem
-        '
-        Me.IconePiccoleToolStripMenuItem.CheckOnClick = True
-        Me.IconePiccoleToolStripMenuItem.Name = "IconePiccoleToolStripMenuItem"
-        Me.IconePiccoleToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
-        Me.IconePiccoleToolStripMenuItem.Text = "Icone piccole"
-        '
-        'IconeGrandiToolStripMenuItem
-        '
-        Me.IconeGrandiToolStripMenuItem.CheckOnClick = True
-        Me.IconeGrandiToolStripMenuItem.Name = "IconeGrandiToolStripMenuItem"
-        Me.IconeGrandiToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
-        Me.IconeGrandiToolStripMenuItem.Text = "Icone grandi"
-        '
-        'SottoMenuImmaginiIcone
-        '
-        Me.SottoMenuImmaginiIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SchermataToolStripMenuItem, Me.PosterToolStripMenuItem})
-        Me.SottoMenuImmaginiIcone.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.quadro
-        Me.SottoMenuImmaginiIcone.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SottoMenuImmaginiIcone.Name = "SottoMenuImmaginiIcone"
-        Me.SottoMenuImmaginiIcone.Size = New System.Drawing.Size(59, 64)
-        Me.SottoMenuImmaginiIcone.Text = "Icone"
-        Me.SottoMenuImmaginiIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.SottoMenuImmaginiIcone.ToolTipText = "Scegli quale immagine visualizzare nelle icone"
-        '
-        'SchermataToolStripMenuItem
-        '
-        Me.SchermataToolStripMenuItem.CheckOnClick = True
-        Me.SchermataToolStripMenuItem.Name = "SchermataToolStripMenuItem"
-        Me.SchermataToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
-        Me.SchermataToolStripMenuItem.Text = "Preferisci schermate"
-        '
-        'PosterToolStripMenuItem
-        '
-        Me.PosterToolStripMenuItem.CheckOnClick = True
-        Me.PosterToolStripMenuItem.Name = "PosterToolStripMenuItem"
-        Me.PosterToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
-        Me.PosterToolStripMenuItem.Text = "Preferisci poster"
-        '
-        'SottoMenuCampiIcone
-        '
-        Me.SottoMenuCampiIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrimaRigaToolStripMenuItem, Me.SecondaRigaToolStripMenuItem, Me.TerzaRigaToolStripMenuItem})
-        Me.SottoMenuCampiIcone.Enabled = False
-        Me.SottoMenuCampiIcone.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.fields2
-        Me.SottoMenuCampiIcone.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SottoMenuCampiIcone.Name = "SottoMenuCampiIcone"
-        Me.SottoMenuCampiIcone.Size = New System.Drawing.Size(66, 64)
-        Me.SottoMenuCampiIcone.Text = "Campi"
-        Me.SottoMenuCampiIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.SottoMenuCampiIcone.ToolTipText = "Scegli quali informazioni visualizzare a fianco delle icone"
-        '
-        'PrimaRigaToolStripMenuItem
-        '
-        Me.PrimaRigaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TitoloITAToolStripMenuItem, Me.TitoloOriginaleToolStripMenuItem})
-        Me.PrimaRigaToolStripMenuItem.Name = "PrimaRigaToolStripMenuItem"
-        Me.PrimaRigaToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
-        Me.PrimaRigaToolStripMenuItem.Text = "Prima riga"
-        '
-        'TitoloITAToolStripMenuItem
-        '
-        Me.TitoloITAToolStripMenuItem.Name = "TitoloITAToolStripMenuItem"
-        Me.TitoloITAToolStripMenuItem.Size = New System.Drawing.Size(186, 26)
-        Me.TitoloITAToolStripMenuItem.Text = "Titolo italiano"
-        '
-        'TitoloOriginaleToolStripMenuItem
-        '
-        Me.TitoloOriginaleToolStripMenuItem.Name = "TitoloOriginaleToolStripMenuItem"
-        Me.TitoloOriginaleToolStripMenuItem.Size = New System.Drawing.Size(186, 26)
-        Me.TitoloOriginaleToolStripMenuItem.Text = "Titolo originale"
-        '
-        'SecondaRigaToolStripMenuItem
-        '
-        Me.SecondaRigaToolStripMenuItem.Name = "SecondaRigaToolStripMenuItem"
-        Me.SecondaRigaToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
-        Me.SecondaRigaToolStripMenuItem.Text = "Seconda riga"
-        '
-        'TerzaRigaToolStripMenuItem
-        '
-        Me.TerzaRigaToolStripMenuItem.Name = "TerzaRigaToolStripMenuItem"
-        Me.TerzaRigaToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
-        Me.TerzaRigaToolStripMenuItem.Text = "Terza riga"
-        '
-        'SottoMenuOrdineIcone
-        '
-        Me.SottoMenuOrdineIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.TitoloItalianoToolStripMenuItem, Me.AnnoToolStripMenuItem, Me.NazioneToolStripMenuItem, Me.DurataToolStripMenuItem, Me.DefinizioneToolStripMenuItem, Me.BitrateToolStripMenuItem1, Me.ToolStripSeparator1, Me.DiscendenteToolStripMenuItem, Me.TitoloItalianoToolStripMenuItem1, Me.AnnoToolStripMenuItem1, Me.NazioneToolStripMenuItem1, Me.DurataToolStripMenuItem1, Me.DefinizioneToolStripMenuItem1, Me.BitrateToolStripMenuItem, Me.PerValutazioneIMDBToolStripMenuItem, Me.PerNumeroVotiIMDBToolStripMenuItem, Me.PerValutazioneMetacriticToolStripMenuItem, Me.PerValutazioneRottenTomatoesToolStripMenuItem, Me.PerIncassiToolStripMenuItem, Me.PerOscarVintiToolStripMenuItem, Me.PerOscarvintiNominatiToolStripMenuItem, Me.PerPremiVintiToolStripMenuItem, Me.PerPremiNominatiToolStripMenuItem})
-        Me.SottoMenuOrdineIcone.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.ordinamento
-        Me.SottoMenuOrdineIcone.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SottoMenuOrdineIcone.Name = "SottoMenuOrdineIcone"
-        Me.SottoMenuOrdineIcone.Size = New System.Drawing.Size(68, 64)
-        Me.SottoMenuOrdineIcone.Text = "Ordina"
-        Me.SottoMenuOrdineIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.SottoMenuOrdineIcone.ToolTipText = "Scegli come ordinare le icone dei film"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Enabled = False
-        Me.ToolStripMenuItem1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripMenuItem1.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sort_asc_lett_num
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(316, 38)
-        Me.ToolStripMenuItem1.Text = "Dal minore al maggiore"
-        '
-        'TitoloItalianoToolStripMenuItem
-        '
-        Me.TitoloItalianoToolStripMenuItem.Name = "TitoloItalianoToolStripMenuItem"
-        Me.TitoloItalianoToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.TitoloItalianoToolStripMenuItem.Text = "per Titolo italiano"
-        '
-        'AnnoToolStripMenuItem
-        '
-        Me.AnnoToolStripMenuItem.Checked = True
-        Me.AnnoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.AnnoToolStripMenuItem.Name = "AnnoToolStripMenuItem"
-        Me.AnnoToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.AnnoToolStripMenuItem.Text = "per Anno"
-        '
-        'NazioneToolStripMenuItem
-        '
-        Me.NazioneToolStripMenuItem.Name = "NazioneToolStripMenuItem"
-        Me.NazioneToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.NazioneToolStripMenuItem.Text = "per Nazione"
-        '
-        'DurataToolStripMenuItem
-        '
-        Me.DurataToolStripMenuItem.Name = "DurataToolStripMenuItem"
-        Me.DurataToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.DurataToolStripMenuItem.Text = "per Durata"
-        '
-        'DefinizioneToolStripMenuItem
-        '
-        Me.DefinizioneToolStripMenuItem.Name = "DefinizioneToolStripMenuItem"
-        Me.DefinizioneToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.DefinizioneToolStripMenuItem.Text = "per Definizione"
-        '
-        'BitrateToolStripMenuItem1
-        '
-        Me.BitrateToolStripMenuItem1.Name = "BitrateToolStripMenuItem1"
-        Me.BitrateToolStripMenuItem1.Size = New System.Drawing.Size(316, 38)
-        Me.BitrateToolStripMenuItem1.Text = "per Bitrate"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(313, 6)
-        '
-        'DiscendenteToolStripMenuItem
-        '
-        Me.DiscendenteToolStripMenuItem.Enabled = False
-        Me.DiscendenteToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DiscendenteToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sort_desc_lett_num
-        Me.DiscendenteToolStripMenuItem.Name = "DiscendenteToolStripMenuItem"
-        Me.DiscendenteToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.DiscendenteToolStripMenuItem.Text = "Dal maggiore al minore"
-        '
-        'TitoloItalianoToolStripMenuItem1
-        '
-        Me.TitoloItalianoToolStripMenuItem1.Name = "TitoloItalianoToolStripMenuItem1"
-        Me.TitoloItalianoToolStripMenuItem1.Size = New System.Drawing.Size(316, 38)
-        Me.TitoloItalianoToolStripMenuItem1.Text = "per Titolo italiano"
-        '
-        'AnnoToolStripMenuItem1
-        '
-        Me.AnnoToolStripMenuItem1.Name = "AnnoToolStripMenuItem1"
-        Me.AnnoToolStripMenuItem1.Size = New System.Drawing.Size(316, 38)
-        Me.AnnoToolStripMenuItem1.Text = "per Anno"
-        '
-        'NazioneToolStripMenuItem1
-        '
-        Me.NazioneToolStripMenuItem1.Name = "NazioneToolStripMenuItem1"
-        Me.NazioneToolStripMenuItem1.Size = New System.Drawing.Size(316, 38)
-        Me.NazioneToolStripMenuItem1.Text = "per Nazione"
-        '
-        'DurataToolStripMenuItem1
-        '
-        Me.DurataToolStripMenuItem1.Name = "DurataToolStripMenuItem1"
-        Me.DurataToolStripMenuItem1.Size = New System.Drawing.Size(316, 38)
-        Me.DurataToolStripMenuItem1.Text = "per Durata"
-        '
-        'DefinizioneToolStripMenuItem1
-        '
-        Me.DefinizioneToolStripMenuItem1.Name = "DefinizioneToolStripMenuItem1"
-        Me.DefinizioneToolStripMenuItem1.Size = New System.Drawing.Size(316, 38)
-        Me.DefinizioneToolStripMenuItem1.Text = "per Definizione"
-        '
-        'BitrateToolStripMenuItem
-        '
-        Me.BitrateToolStripMenuItem.Name = "BitrateToolStripMenuItem"
-        Me.BitrateToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.BitrateToolStripMenuItem.Text = "per Bitrate"
-        '
-        'PerValutazioneIMDBToolStripMenuItem
-        '
-        Me.PerValutazioneIMDBToolStripMenuItem.Name = "PerValutazioneIMDBToolStripMenuItem"
-        Me.PerValutazioneIMDBToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerValutazioneIMDBToolStripMenuItem.Text = "per Valutazione IMDB"
-        '
-        'PerNumeroVotiIMDBToolStripMenuItem
-        '
-        Me.PerNumeroVotiIMDBToolStripMenuItem.Name = "PerNumeroVotiIMDBToolStripMenuItem"
-        Me.PerNumeroVotiIMDBToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerNumeroVotiIMDBToolStripMenuItem.Text = "per Numero voti IMDB"
-        '
-        'PerValutazioneMetacriticToolStripMenuItem
-        '
-        Me.PerValutazioneMetacriticToolStripMenuItem.Name = "PerValutazioneMetacriticToolStripMenuItem"
-        Me.PerValutazioneMetacriticToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerValutazioneMetacriticToolStripMenuItem.Text = "per Valutazione Metacritic"
-        '
-        'PerValutazioneRottenTomatoesToolStripMenuItem
-        '
-        Me.PerValutazioneRottenTomatoesToolStripMenuItem.Name = "PerValutazioneRottenTomatoesToolStripMenuItem"
-        Me.PerValutazioneRottenTomatoesToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerValutazioneRottenTomatoesToolStripMenuItem.Text = "per Valutazione Rotten Tomatoes"
-        '
-        'PerIncassiToolStripMenuItem
-        '
-        Me.PerIncassiToolStripMenuItem.Name = "PerIncassiToolStripMenuItem"
-        Me.PerIncassiToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerIncassiToolStripMenuItem.Text = "per Incassi"
-        '
-        'PerOscarVintiToolStripMenuItem
-        '
-        Me.PerOscarVintiToolStripMenuItem.Name = "PerOscarVintiToolStripMenuItem"
-        Me.PerOscarVintiToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerOscarVintiToolStripMenuItem.Text = "per Oscar vinti"
-        '
-        'PerOscarvintiNominatiToolStripMenuItem
-        '
-        Me.PerOscarvintiNominatiToolStripMenuItem.Name = "PerOscarvintiNominatiToolStripMenuItem"
-        Me.PerOscarvintiNominatiToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerOscarvintiNominatiToolStripMenuItem.Text = "per Oscar (vinti + nominati)"
-        '
-        'PerPremiVintiToolStripMenuItem
-        '
-        Me.PerPremiVintiToolStripMenuItem.Name = "PerPremiVintiToolStripMenuItem"
-        Me.PerPremiVintiToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerPremiVintiToolStripMenuItem.Text = "per Premi vinti"
-        '
-        'PerPremiNominatiToolStripMenuItem
-        '
-        Me.PerPremiNominatiToolStripMenuItem.Name = "PerPremiNominatiToolStripMenuItem"
-        Me.PerPremiNominatiToolStripMenuItem.Size = New System.Drawing.Size(316, 38)
-        Me.PerPremiNominatiToolStripMenuItem.Text = "per Premi (vinti + nominati)"
-        '
-        'ButtFilmCasuale
-        '
-        Me.ButtFilmCasuale.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.dado
-        Me.ButtFilmCasuale.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtFilmCasuale.Name = "ButtFilmCasuale"
-        Me.ButtFilmCasuale.Size = New System.Drawing.Size(81, 56)
-        Me.ButtFilmCasuale.Text = "Suggerisci"
-        Me.ButtFilmCasuale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ButtFilmCasuale.ToolTipText = "Suggerisci un film a caso tra quelli visualizzati nella schermata attuale"
-        '
-        'SottoMenuImpostazioni
-        '
-        Me.SottoMenuImpostazioni.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ScegliLibreriaToolStripMenuItem, Me.AggiornaLibreriaToolStripMenuItem, Me.ToolStripSeparator3, Me.TemaColoriToolStripMenuItem, Me.ImpostazioniToolStripMenuItem, Me.ToolStripSeparator2, Me.ControllaAggiornamentiToolStripMenuItem, Me.CreditiToolStripMenuItem})
-        Me.SottoMenuImpostazioni.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.impostazioni
-        Me.SottoMenuImpostazioni.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SottoMenuImpostazioni.Name = "SottoMenuImpostazioni"
-        Me.SottoMenuImpostazioni.Size = New System.Drawing.Size(109, 56)
-        Me.SottoMenuImpostazioni.Text = "Impostazioni"
-        Me.SottoMenuImpostazioni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.SottoMenuImpostazioni.ToolTipText = "Impostazioni del Gestore Libreria Film"
-        '
-        'ScegliLibreriaToolStripMenuItem
-        '
-        Me.ScegliLibreriaToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.videocassetta
-        Me.ScegliLibreriaToolStripMenuItem.Name = "ScegliLibreriaToolStripMenuItem"
-        Me.ScegliLibreriaToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
-        Me.ScegliLibreriaToolStripMenuItem.Text = "Scegli posizione della libreria"
-        '
-        'AggiornaLibreriaToolStripMenuItem
-        '
-        Me.AggiornaLibreriaToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.aggiorna
-        Me.AggiornaLibreriaToolStripMenuItem.Name = "AggiornaLibreriaToolStripMenuItem"
-        Me.AggiornaLibreriaToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
-        Me.AggiornaLibreriaToolStripMenuItem.Text = "Aggiorna libreria"
-        Me.AggiornaLibreriaToolStripMenuItem.ToolTipText = "Aggiorna l'elenco dei film dal disco"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(277, 6)
-        '
-        'TemaColoriToolStripMenuItem
-        '
-        Me.TemaColoriToolStripMenuItem.AutoSize = False
-        Me.TemaColoriToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TemaWindowsToolStripMenuItem, Me.TemaChiaroToolStripMenuItem, Me.TemaScuroToolStripMenuItem})
-        Me.TemaColoriToolStripMenuItem.Name = "TemaColoriToolStripMenuItem"
-        Me.TemaColoriToolStripMenuItem.Size = New System.Drawing.Size(292, 30)
-        Me.TemaColoriToolStripMenuItem.Text = "Tema colori"
-        '
-        'TemaWindowsToolStripMenuItem
-        '
-        Me.TemaWindowsToolStripMenuItem.Name = "TemaWindowsToolStripMenuItem"
-        Me.TemaWindowsToolStripMenuItem.Size = New System.Drawing.Size(185, 26)
-        Me.TemaWindowsToolStripMenuItem.Text = "Automatico"
-        Me.TemaWindowsToolStripMenuItem.ToolTipText = "Alterna automaticamente tema chiaro/scuro per corrispondere al tema impostato in " & _
-    "Windows (solo versioni 8/10/11)"
-        '
-        'TemaChiaroToolStripMenuItem
-        '
-        Me.TemaChiaroToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sole
-        Me.TemaChiaroToolStripMenuItem.Name = "TemaChiaroToolStripMenuItem"
-        Me.TemaChiaroToolStripMenuItem.Size = New System.Drawing.Size(185, 26)
-        Me.TemaChiaroToolStripMenuItem.Text = "Chiaro (giorno)"
-        '
-        'TemaScuroToolStripMenuItem
-        '
-        Me.TemaScuroToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.luna
-        Me.TemaScuroToolStripMenuItem.Name = "TemaScuroToolStripMenuItem"
-        Me.TemaScuroToolStripMenuItem.Size = New System.Drawing.Size(185, 26)
-        Me.TemaScuroToolStripMenuItem.Text = "Scuro (notte)"
-        '
-        'ImpostazioniToolStripMenuItem
-        '
-        Me.ImpostazioniToolStripMenuItem.Enabled = False
-        Me.ImpostazioniToolStripMenuItem.Name = "ImpostazioniToolStripMenuItem"
-        Me.ImpostazioniToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
-        Me.ImpostazioniToolStripMenuItem.Text = "Altre impostazioni"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(277, 6)
-        '
-        'ControllaAggiornamentiToolStripMenuItem
-        '
-        Me.ControllaAggiornamentiToolStripMenuItem.Enabled = False
-        Me.ControllaAggiornamentiToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.download
-        Me.ControllaAggiornamentiToolStripMenuItem.Name = "ControllaAggiornamentiToolStripMenuItem"
-        Me.ControllaAggiornamentiToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
-        Me.ControllaAggiornamentiToolStripMenuItem.Text = "Controlla aggiornamenti"
-        '
-        'CreditiToolStripMenuItem
-        '
-        Me.CreditiToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.info
-        Me.CreditiToolStripMenuItem.Name = "CreditiToolStripMenuItem"
-        Me.CreditiToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
-        Me.CreditiToolStripMenuItem.Text = "Crediti"
-        '
-        'DropDownOrdinamentoCategorie
-        '
-        Me.DropDownOrdinamentoCategorie.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.DropDownOrdinamentoCategorie.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem, Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem, Me.AlfabeticoToolStripMenuItem, Me.DurataFilmToolStripMenuItem, Me.NumeroFilmToolStripMenuItem})
-        Me.DropDownOrdinamentoCategorie.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.ordinamento
-        Me.DropDownOrdinamentoCategorie.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.DropDownOrdinamentoCategorie.Name = "DropDownOrdinamentoCategorie"
-        Me.DropDownOrdinamentoCategorie.Size = New System.Drawing.Size(46, 36)
-        Me.DropDownOrdinamentoCategorie.Text = "Ordina valori categoria per"
-        '
-        'EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem
-        '
-        Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Name = "EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem"
-        Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
-        Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Text = "Periodo di attività ascendente (ultima uscita più remota)"
-        '
-        'EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem
-        '
-        Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Name = "EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem"
-        Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
-        Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Text = "Periodo di attività discendente (ultima uscita più recente)"
-        '
-        'AlfabeticoToolStripMenuItem
-        '
-        Me.AlfabeticoToolStripMenuItem.Name = "AlfabeticoToolStripMenuItem"
-        Me.AlfabeticoToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
-        Me.AlfabeticoToolStripMenuItem.Text = "Nome (ordine alfabetico ascendente A-Z)"
-        '
-        'DurataFilmToolStripMenuItem
-        '
-        Me.DurataFilmToolStripMenuItem.Name = "DurataFilmToolStripMenuItem"
-        Me.DurataFilmToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
-        Me.DurataFilmToolStripMenuItem.Text = "Durata film"
-        '
-        'NumeroFilmToolStripMenuItem
-        '
-        Me.NumeroFilmToolStripMenuItem.Name = "NumeroFilmToolStripMenuItem"
-        Me.NumeroFilmToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
-        Me.NumeroFilmToolStripMenuItem.Text = "Numero film"
-        '
-        'DropDownInfoCategoria
-        '
-        Me.DropDownInfoCategoria.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.DropDownInfoCategoria.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NessunaInformazioneToolStripMenuItem, Me.PeriodoDiAttivitàToolStripMenuItem, Me.DurataFilmToolStripMenuItem1, Me.ConteggioFilmToolStripMenuItem})
-        Me.DropDownInfoCategoria.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.fields2
-        Me.DropDownInfoCategoria.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.DropDownInfoCategoria.Name = "DropDownInfoCategoria"
-        Me.DropDownInfoCategoria.Size = New System.Drawing.Size(46, 36)
-        Me.DropDownInfoCategoria.Text = "Informazioni da visualizzare"
-        '
-        'NessunaInformazioneToolStripMenuItem
-        '
-        Me.NessunaInformazioneToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.NessunaInformazioneToolStripMenuItem.Name = "NessunaInformazioneToolStripMenuItem"
-        Me.NessunaInformazioneToolStripMenuItem.Size = New System.Drawing.Size(231, 26)
-        Me.NessunaInformazioneToolStripMenuItem.Text = "Nessuna informazione"
-        '
-        'PeriodoDiAttivitàToolStripMenuItem
-        '
-        Me.PeriodoDiAttivitàToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.PeriodoDiAttivitàToolStripMenuItem.Name = "PeriodoDiAttivitàToolStripMenuItem"
-        Me.PeriodoDiAttivitàToolStripMenuItem.Size = New System.Drawing.Size(231, 26)
-        Me.PeriodoDiAttivitàToolStripMenuItem.Text = "Periodo di attività"
-        '
-        'DurataFilmToolStripMenuItem1
-        '
-        Me.DurataFilmToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.DurataFilmToolStripMenuItem1.Name = "DurataFilmToolStripMenuItem1"
-        Me.DurataFilmToolStripMenuItem1.Size = New System.Drawing.Size(231, 26)
-        Me.DurataFilmToolStripMenuItem1.Text = "Durata film"
-        '
-        'ConteggioFilmToolStripMenuItem
-        '
-        Me.ConteggioFilmToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ConteggioFilmToolStripMenuItem.Name = "ConteggioFilmToolStripMenuItem"
-        Me.ConteggioFilmToolStripMenuItem.Size = New System.Drawing.Size(231, 26)
-        Me.ConteggioFilmToolStripMenuItem.Text = "Conteggio film"
-        '
-        'ToolStripDropDownButton5
-        '
-        Me.ToolStripDropDownButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripDropDownButton5.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NomeCognomeToolStripMenuItem, Me.CognomeNomeToolStripMenuItem, Me.CognomeToolStripMenuItem, Me.InizialeCognomeToolStripMenuItem})
-        Me.ToolStripDropDownButton5.Enabled = False
-        Me.ToolStripDropDownButton5.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.persona
-        Me.ToolStripDropDownButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton5.Name = "ToolStripDropDownButton5"
-        Me.ToolStripDropDownButton5.Size = New System.Drawing.Size(46, 36)
-        Me.ToolStripDropDownButton5.Text = "Formato dei nomi di persona"
-        '
-        'NomeCognomeToolStripMenuItem
-        '
-        Me.NomeCognomeToolStripMenuItem.Name = "NomeCognomeToolStripMenuItem"
-        Me.NomeCognomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
-        Me.NomeCognomeToolStripMenuItem.Text = "Nome + Cognome"
-        '
-        'CognomeNomeToolStripMenuItem
-        '
-        Me.CognomeNomeToolStripMenuItem.Name = "CognomeNomeToolStripMenuItem"
-        Me.CognomeNomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
-        Me.CognomeNomeToolStripMenuItem.Text = "Cognome, Nome"
-        '
-        'CognomeToolStripMenuItem
-        '
-        Me.CognomeToolStripMenuItem.Name = "CognomeToolStripMenuItem"
-        Me.CognomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
-        Me.CognomeToolStripMenuItem.Text = "Cognome"
-        '
-        'InizialeCognomeToolStripMenuItem
-        '
-        Me.InizialeCognomeToolStripMenuItem.Name = "InizialeCognomeToolStripMenuItem"
-        Me.InizialeCognomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
-        Me.InizialeCognomeToolStripMenuItem.Text = "Iniziale Nome + Cognome"
-        '
-        'BottFiltra
-        '
-        Me.BottFiltra.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.BottFiltra.AutoSize = True
-        Me.BottFiltra.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.BottFiltra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.BottFiltra.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BottFiltra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BottFiltra.ImageIndex = 63
-        Me.BottFiltra.ImageList = Me.IconeCategorieLibreria
-        Me.BottFiltra.Location = New System.Drawing.Point(129, 0)
-        Me.BottFiltra.Name = "BottFiltra"
-        Me.BottFiltra.Size = New System.Drawing.Size(151, 38)
-        Me.BottFiltra.TabIndex = 5
-        Me.BottFiltra.Text = "Filtra l'elenco"
-        Me.BottFiltra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.BottFiltra.UseVisualStyleBackColor = True
-        '
-        'BottCerca
-        '
-        Me.BottCerca.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BottCerca.BackgroundImage = Global.GestoreLibreriaFilm.My.Resources.Resources.cerca
-        Me.BottCerca.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.BottCerca.Location = New System.Drawing.Point(193, 1)
-        Me.BottCerca.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
-        Me.BottCerca.Name = "BottCerca"
-        Me.BottCerca.Size = New System.Drawing.Size(32, 32)
-        Me.BottCerca.TabIndex = 3
-        Me.BottCerca.UseVisualStyleBackColor = True
-        '
-        'PlayButton
-        '
-        Me.PlayButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PlayButton.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PlayButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.play
-        Me.PlayButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PlayButton.Name = "PlayButton"
-        Me.PlayButton.Size = New System.Drawing.Size(44, 44)
-        Me.PlayButton.Text = "Riproduci il film"
-        '
-        'EsploraRisorseButton
-        '
-        Me.EsploraRisorseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.EsploraRisorseButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.cartella
-        Me.EsploraRisorseButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.EsploraRisorseButton.Name = "EsploraRisorseButton"
-        Me.EsploraRisorseButton.Size = New System.Drawing.Size(44, 44)
-        Me.EsploraRisorseButton.Text = "Visualizza file in Esplora risorse"
-        '
-        'RinominaButton
-        '
-        Me.RinominaButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.RinominaButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.modifica
-        Me.RinominaButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.RinominaButton.Name = "RinominaButton"
-        Me.RinominaButton.Size = New System.Drawing.Size(44, 44)
-        Me.RinominaButton.Text = "Rinomina"
-        '
-        'DownloadButton
-        '
-        Me.DownloadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.DownloadButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.download
-        Me.DownloadButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.DownloadButton.Name = "DownloadButton"
-        Me.DownloadButton.Size = New System.Drawing.Size(44, 44)
-        Me.DownloadButton.Text = "Acquisisci informazioni da Internet"
-        '
-        'CercaInternetButton
-        '
-        Me.CercaInternetButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.CercaInternetButton.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GoogleToolStripMenuItem, Me.WikiITToolStripMenuItem, Me.IMDBToolStripMenuItem})
-        Me.CercaInternetButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.CercaInternet
-        Me.CercaInternetButton.Name = "CercaInternetButton"
-        Me.CercaInternetButton.Size = New System.Drawing.Size(54, 44)
-        Me.CercaInternetButton.Text = "Apri la scheda del film su Internet"
-        '
-        'GoogleToolStripMenuItem
-        '
-        Me.GoogleToolStripMenuItem.Name = "GoogleToolStripMenuItem"
-        Me.GoogleToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
-        Me.GoogleToolStripMenuItem.Text = "Google"
-        '
-        'WikiITToolStripMenuItem
-        '
-        Me.WikiITToolStripMenuItem.Name = "WikiITToolStripMenuItem"
-        Me.WikiITToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
-        Me.WikiITToolStripMenuItem.Text = "Wikipedia IT"
-        '
-        'IMDBToolStripMenuItem
-        '
-        Me.IMDBToolStripMenuItem.Name = "IMDBToolStripMenuItem"
-        Me.IMDBToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
-        Me.IMDBToolStripMenuItem.Text = "IMDB"
-        '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton5.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.quadro
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(44, 44)
-        Me.ToolStripButton5.Text = "Cambia schermata"
-        '
-        'PictureBox20
-        '
-        Me.PictureBox20.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.audio
-        Me.PictureBox20.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox20.Name = "PictureBox20"
-        Me.PictureBox20.Size = New System.Drawing.Size(40, 40)
-        Me.PictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox20.TabIndex = 0
-        Me.PictureBox20.TabStop = False
-        '
-        'PictureBox21
-        '
-        Me.PictureBox21.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sottotitoli
-        Me.PictureBox21.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox21.Name = "PictureBox21"
-        Me.PictureBox21.Size = New System.Drawing.Size(40, 40)
-        Me.PictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox21.TabIndex = 0
-        Me.PictureBox21.TabStop = False
-        '
-        'PictureBox9
-        '
-        Me.PictureBox9.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox9.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.monitor
-        Me.PictureBox9.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(32, 36)
-        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox9.TabIndex = 47
-        Me.PictureBox9.TabStop = False
-        '
-        'PictureBox15
-        '
-        Me.PictureBox15.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox15.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.impostazioni
-        Me.PictureBox15.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox15.Name = "PictureBox15"
-        Me.PictureBox15.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox15.TabIndex = 47
-        Me.PictureBox15.TabStop = False
-        '
-        'PictureBox14
-        '
-        Me.PictureBox14.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox14.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.peso
-        Me.PictureBox14.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox14.Name = "PictureBox14"
-        Me.PictureBox14.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox14.TabIndex = 47
-        Me.PictureBox14.TabStop = False
-        '
-        'PictureBox12
-        '
-        Me.PictureBox12.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox12.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.squadra
-        Me.PictureBox12.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox12.Name = "PictureBox12"
-        Me.PictureBox12.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox12.TabIndex = 47
-        Me.PictureBox12.TabStop = False
-        '
-        'PictureBox13
-        '
-        Me.PictureBox13.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox13.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.FPS
-        Me.PictureBox13.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox13.Name = "PictureBox13"
-        Me.PictureBox13.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox13.TabIndex = 47
-        Me.PictureBox13.TabStop = False
-        '
-        'PictureBox19
-        '
-        Me.PictureBox19.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.pellicola
-        Me.PictureBox19.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox19.Name = "PictureBox19"
-        Me.PictureBox19.Size = New System.Drawing.Size(40, 40)
-        Me.PictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox19.TabIndex = 0
-        Me.PictureBox19.TabStop = False
-        '
-        'PictureBox18
-        '
-        Me.PictureBox18.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.floppy
-        Me.PictureBox18.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox18.Name = "PictureBox18"
-        Me.PictureBox18.Size = New System.Drawing.Size(40, 40)
-        Me.PictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox18.TabIndex = 0
-        Me.PictureBox18.TabStop = False
-        '
-        'PictureBox10
-        '
-        Me.PictureBox10.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox10.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.premio_oro2
-        Me.PictureBox10.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox10.Name = "PictureBox10"
-        Me.PictureBox10.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox10.TabIndex = 0
-        Me.PictureBox10.TabStop = False
-        '
-        'PictureBox8
-        '
-        Me.PictureBox8.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox8.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.bafta
-        Me.PictureBox8.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox8.TabIndex = 0
-        Me.PictureBox8.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox2.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.oscar2
-        Me.PictureBox2.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox2.TabIndex = 0
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox11
-        '
-        Me.PictureBox11.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox11.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.premio_argento
-        Me.PictureBox11.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox11.Name = "PictureBox11"
-        Me.PictureBox11.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox11.TabIndex = 0
-        Me.PictureBox11.TabStop = False
-        '
-        'PictureBox16
-        '
-        Me.PictureBox16.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox16.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.bafta_argento
-        Me.PictureBox16.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox16.Name = "PictureBox16"
-        Me.PictureBox16.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox16.TabIndex = 0
-        Me.PictureBox16.TabStop = False
-        '
-        'PictureBox17
-        '
-        Me.PictureBox17.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox17.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.oscar_argento
-        Me.PictureBox17.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox17.Name = "PictureBox17"
-        Me.PictureBox17.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox17.TabIndex = 0
-        Me.PictureBox17.TabStop = False
-        '
-        'PicPoster
-        '
-        Me.PicPoster.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PicPoster.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PicPoster.Location = New System.Drawing.Point(0, 0)
-        Me.PicPoster.Name = "PicPoster"
-        Me.PicPoster.Size = New System.Drawing.Size(250, 360)
-        Me.PicPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PicPoster.TabIndex = 1
-        Me.PicPoster.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PicPoster, "Poster del film")
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.note
-        Me.PictureBox7.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(32, 34)
-        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox7.TabIndex = 1
-        Me.PictureBox7.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.data
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.MaximumSize = New System.Drawing.Size(0, 32)
-        Me.PictureBox1.MinimumSize = New System.Drawing.Size(32, 32)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
-        'NazionePic
-        '
-        Me.NazionePic.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.NazionePic.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.USA
-        Me.NazionePic.Location = New System.Drawing.Point(0, 0)
-        Me.NazionePic.Name = "NazionePic"
-        Me.NazionePic.Size = New System.Drawing.Size(32, 32)
-        Me.NazionePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.NazionePic.TabIndex = 2
-        Me.NazionePic.TabStop = False
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.cronometro
-        Me.PictureBox3.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox3.MaximumSize = New System.Drawing.Size(0, 32)
-        Me.PictureBox3.MinimumSize = New System.Drawing.Size(32, 32)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox3.TabIndex = 3
-        Me.PictureBox3.TabStop = False
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.camera
-        Me.PictureBox4.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox4.TabIndex = 5
-        Me.PictureBox4.TabStop = False
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.autore
-        Me.PictureBox6.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox6.TabIndex = 11
-        Me.PictureBox6.TabStop = False
-        '
-        'PictureBox5
-        '
-        Me.PictureBox5.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.musica
-        Me.PictureBox5.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox5.TabIndex = 13
-        Me.PictureBox5.TabStop = False
-        '
-        'PicSchermata
-        '
-        Me.PicSchermata.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PicSchermata.Location = New System.Drawing.Point(3, 335)
-        Me.PicSchermata.Name = "PicSchermata"
-        Me.PicSchermata.Size = New System.Drawing.Size(258, 113)
-        Me.PicSchermata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PicSchermata.TabIndex = 2
-        Me.PicSchermata.TabStop = False
-        Me.ToolTip.SetToolTip(Me.PicSchermata, "Schermata del film")
-        '
-        'PicImgPersona
-        '
-        Me.PicImgPersona.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PicImgPersona.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PicImgPersona.Location = New System.Drawing.Point(0, 220)
-        Me.PicImgPersona.MaximumSize = New System.Drawing.Size(0, 300)
-        Me.PicImgPersona.Name = "PicImgPersona"
-        Me.PicImgPersona.Size = New System.Drawing.Size(630, 300)
-        Me.PicImgPersona.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PicImgPersona.TabIndex = 29
-        Me.PicImgPersona.TabStop = False
-        '
-        'IconaCategoriaScelta
-        '
-        Me.IconaCategoriaScelta.Dock = System.Windows.Forms.DockStyle.Top
-        Me.IconaCategoriaScelta.Location = New System.Drawing.Point(0, 0)
-        Me.IconaCategoriaScelta.Margin = New System.Windows.Forms.Padding(0)
-        Me.IconaCategoriaScelta.Name = "IconaCategoriaScelta"
-        Me.IconaCategoriaScelta.Size = New System.Drawing.Size(630, 100)
-        Me.IconaCategoriaScelta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.IconaCategoriaScelta.TabIndex = 19
-        Me.IconaCategoriaScelta.TabStop = False
         '
         'ValutazioniCat
         '
@@ -5113,6 +3954,1217 @@ Partial Class MainForm
         Me.Label88.Text = "Media valutazioni"
         Me.Label88.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'FlowLayoutPanel3
+        '
+        Me.FlowLayoutPanel3.AutoSize = True
+        Me.FlowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.FlowLayoutPanel3.Controls.Add(Me.ButtRicercaPersonaIMDB)
+        Me.FlowLayoutPanel3.Controls.Add(Me.Button1)
+        Me.FlowLayoutPanel3.Controls.Add(Me.Button2)
+        Me.FlowLayoutPanel3.Controls.Add(Me.ButCambiaImgPersona)
+        Me.FlowLayoutPanel3.Controls.Add(Me.PanNumeroFilm)
+        Me.FlowLayoutPanel3.Controls.Add(Me.PanDurataTotale)
+        Me.FlowLayoutPanel3.Controls.Add(Me.PanPeriodoAttività)
+        Me.FlowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(0, 520)
+        Me.FlowLayoutPanel3.Name = "FlowLayoutPanel3"
+        Me.FlowLayoutPanel3.Size = New System.Drawing.Size(630, 122)
+        Me.FlowLayoutPanel3.TabIndex = 30
+        '
+        'ButtRicercaPersonaIMDB
+        '
+        Me.ButtRicercaPersonaIMDB.Location = New System.Drawing.Point(3, 3)
+        Me.ButtRicercaPersonaIMDB.Name = "ButtRicercaPersonaIMDB"
+        Me.ButtRicercaPersonaIMDB.Size = New System.Drawing.Size(80, 26)
+        Me.ButtRicercaPersonaIMDB.TabIndex = 9
+        Me.ButtRicercaPersonaIMDB.Text = "IMDB"
+        Me.ButtRicercaPersonaIMDB.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Enabled = False
+        Me.Button1.Location = New System.Drawing.Point(89, 3)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(115, 26)
+        Me.Button1.TabIndex = 13
+        Me.Button1.Text = "Wikipedia IT"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Enabled = False
+        Me.Button2.Location = New System.Drawing.Point(210, 3)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(115, 26)
+        Me.Button2.TabIndex = 14
+        Me.Button2.Text = "Wikipedia EN"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'ButCambiaImgPersona
+        '
+        Me.ButCambiaImgPersona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FlowLayoutPanel3.SetFlowBreak(Me.ButCambiaImgPersona, True)
+        Me.ButCambiaImgPersona.Location = New System.Drawing.Point(331, 3)
+        Me.ButCambiaImgPersona.Name = "ButCambiaImgPersona"
+        Me.ButCambiaImgPersona.Size = New System.Drawing.Size(147, 26)
+        Me.ButCambiaImgPersona.TabIndex = 4
+        Me.ButCambiaImgPersona.Text = "Cambia immagine"
+        Me.ButCambiaImgPersona.UseVisualStyleBackColor = True
+        '
+        'PanNumeroFilm
+        '
+        Me.PanNumeroFilm.AutoSize = True
+        Me.PanNumeroFilm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanNumeroFilm.Controls.Add(Me.Label18)
+        Me.PanNumeroFilm.Controls.Add(Me.LabConteggioCategoriaScelta)
+        Me.FlowLayoutPanel3.SetFlowBreak(Me.PanNumeroFilm, True)
+        Me.PanNumeroFilm.Location = New System.Drawing.Point(20, 35)
+        Me.PanNumeroFilm.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
+        Me.PanNumeroFilm.Name = "PanNumeroFilm"
+        Me.PanNumeroFilm.Size = New System.Drawing.Size(155, 24)
+        Me.PanNumeroFilm.TabIndex = 11
+        '
+        'Label18
+        '
+        Me.Label18.AutoEllipsis = True
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(3, 0)
+        Me.Label18.MinimumSize = New System.Drawing.Size(0, 24)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(105, 24)
+        Me.Label18.TabIndex = 9
+        Me.Label18.Text = "Numero film:"
+        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabConteggioCategoriaScelta
+        '
+        Me.LabConteggioCategoriaScelta.AutoSize = True
+        Me.LabConteggioCategoriaScelta.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabConteggioCategoriaScelta.Location = New System.Drawing.Point(114, 0)
+        Me.LabConteggioCategoriaScelta.Name = "LabConteggioCategoriaScelta"
+        Me.LabConteggioCategoriaScelta.Size = New System.Drawing.Size(38, 24)
+        Me.LabConteggioCategoriaScelta.TabIndex = 4
+        Me.LabConteggioCategoriaScelta.Text = "XX"
+        Me.LabConteggioCategoriaScelta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PanDurataTotale
+        '
+        Me.PanDurataTotale.AutoSize = True
+        Me.PanDurataTotale.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanDurataTotale.Controls.Add(Me.Label50)
+        Me.PanDurataTotale.Controls.Add(Me.LabDurataCat)
+        Me.FlowLayoutPanel3.SetFlowBreak(Me.PanDurataTotale, True)
+        Me.PanDurataTotale.Location = New System.Drawing.Point(20, 65)
+        Me.PanDurataTotale.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
+        Me.PanDurataTotale.Name = "PanDurataTotale"
+        Me.PanDurataTotale.Size = New System.Drawing.Size(196, 24)
+        Me.PanDurataTotale.TabIndex = 12
+        '
+        'Label50
+        '
+        Me.Label50.AutoEllipsis = True
+        Me.Label50.AutoSize = True
+        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label50.Location = New System.Drawing.Point(3, 0)
+        Me.Label50.MinimumSize = New System.Drawing.Size(0, 24)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(111, 24)
+        Me.Label50.TabIndex = 7
+        Me.Label50.Text = "Durata totale:"
+        Me.Label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabDurataCat
+        '
+        Me.LabDurataCat.AutoSize = True
+        Me.LabDurataCat.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabDurataCat.Location = New System.Drawing.Point(120, 0)
+        Me.LabDurataCat.Name = "LabDurataCat"
+        Me.LabDurataCat.Size = New System.Drawing.Size(73, 24)
+        Me.LabDurataCat.TabIndex = 6
+        Me.LabDurataCat.Text = "123 ore"
+        Me.LabDurataCat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PanPeriodoAttività
+        '
+        Me.PanPeriodoAttività.AutoSize = True
+        Me.PanPeriodoAttività.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanPeriodoAttività.Controls.Add(Me.Label12)
+        Me.PanPeriodoAttività.Controls.Add(Me.Label13)
+        Me.PanPeriodoAttività.Location = New System.Drawing.Point(20, 95)
+        Me.PanPeriodoAttività.Margin = New System.Windows.Forms.Padding(20, 3, 3, 3)
+        Me.PanPeriodoAttività.Name = "PanPeriodoAttività"
+        Me.PanPeriodoAttività.Size = New System.Drawing.Size(314, 24)
+        Me.PanPeriodoAttività.TabIndex = 10
+        '
+        'Label12
+        '
+        Me.Label12.AutoEllipsis = True
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(3, 0)
+        Me.Label12.MinimumSize = New System.Drawing.Size(0, 24)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(196, 24)
+        Me.Label12.TabIndex = 7
+        Me.Label12.Text = "Periodo di pubblicazione:"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(205, 0)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(106, 24)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "1348 - 1815"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabValoreCategoriaScelta
+        '
+        Me.LabValoreCategoriaScelta.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabValoreCategoriaScelta.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabValoreCategoriaScelta.Location = New System.Drawing.Point(0, 140)
+        Me.LabValoreCategoriaScelta.Name = "LabValoreCategoriaScelta"
+        Me.LabValoreCategoriaScelta.Size = New System.Drawing.Size(630, 80)
+        Me.LabValoreCategoriaScelta.TabIndex = 27
+        Me.LabValoreCategoriaScelta.Text = "Nome cat"
+        Me.LabValoreCategoriaScelta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabCategoriaScelta
+        '
+        Me.LabCategoriaScelta.AutoEllipsis = True
+        Me.LabCategoriaScelta.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LabCategoriaScelta.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabCategoriaScelta.Location = New System.Drawing.Point(0, 100)
+        Me.LabCategoriaScelta.Margin = New System.Windows.Forms.Padding(0)
+        Me.LabCategoriaScelta.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.LabCategoriaScelta.Name = "LabCategoriaScelta"
+        Me.LabCategoriaScelta.Size = New System.Drawing.Size(630, 40)
+        Me.LabCategoriaScelta.TabIndex = 26
+        Me.LabCategoriaScelta.Text = "Film del regista"
+        Me.LabCategoriaScelta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'ButtTogglePannelloSx
+        '
+        Me.ButtTogglePannelloSx.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtTogglePannelloSx.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sidebar_left_grey
+        Me.ButtTogglePannelloSx.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtTogglePannelloSx.Name = "ButtTogglePannelloSx"
+        Me.ButtTogglePannelloSx.Size = New System.Drawing.Size(36, 64)
+        Me.ButtTogglePannelloSx.Text = "<"
+        Me.ButtTogglePannelloSx.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.ButtTogglePannelloSx.ToolTipText = "Nascondi/Visualizza pannello Categorie Libreria"
+        '
+        'ButtTogglePannelloDx
+        '
+        Me.ButtTogglePannelloDx.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ButtTogglePannelloDx.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtTogglePannelloDx.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sidebar_right_grey
+        Me.ButtTogglePannelloDx.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtTogglePannelloDx.Name = "ButtTogglePannelloDx"
+        Me.ButtTogglePannelloDx.Size = New System.Drawing.Size(36, 64)
+        Me.ButtTogglePannelloDx.Text = ">"
+        Me.ButtTogglePannelloDx.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.ButtTogglePannelloDx.ToolTipText = "Nascondi/Visualizza pannello Dettagli"
+        '
+        'ButtCronoIndietro
+        '
+        Me.ButtCronoIndietro.Enabled = False
+        Me.ButtCronoIndietro.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.indietro
+        Me.ButtCronoIndietro.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtCronoIndietro.Name = "ButtCronoIndietro"
+        Me.ButtCronoIndietro.Size = New System.Drawing.Size(65, 64)
+        Me.ButtCronoIndietro.Text = "Indietro"
+        Me.ButtCronoIndietro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.ButtCronoIndietro.ToolTipText = "Torna alla categoria visualizzata in precedenza"
+        '
+        'ButtCronoAvanti
+        '
+        Me.ButtCronoAvanti.Enabled = False
+        Me.ButtCronoAvanti.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.avanti
+        Me.ButtCronoAvanti.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtCronoAvanti.Name = "ButtCronoAvanti"
+        Me.ButtCronoAvanti.Size = New System.Drawing.Size(55, 64)
+        Me.ButtCronoAvanti.Text = "Avanti"
+        Me.ButtCronoAvanti.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.ButtCronoAvanti.ToolTipText = "Torna alla categoria visualizzata successivamente"
+        '
+        'SottoMenuVisualizzazioneIcone
+        '
+        Me.SottoMenuVisualizzazioneIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListaToolStripMenuItem, Me.DescrizioneToolStripMenuItem, Me.ColonneToolStripMenuItem, Me.TilesToolStripMenuItem, Me.IconePiccoleToolStripMenuItem, Me.IconeGrandiToolStripMenuItem})
+        Me.SottoMenuVisualizzazioneIcone.Image = CType(resources.GetObject("SottoMenuVisualizzazioneIcone.Image"), System.Drawing.Image)
+        Me.SottoMenuVisualizzazioneIcone.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SottoMenuVisualizzazioneIcone.Name = "SottoMenuVisualizzazioneIcone"
+        Me.SottoMenuVisualizzazioneIcone.Size = New System.Drawing.Size(88, 64)
+        Me.SottoMenuVisualizzazioneIcone.Text = "Visualizza"
+        Me.SottoMenuVisualizzazioneIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.SottoMenuVisualizzazioneIcone.ToolTipText = "Scegli il tipo di icone da visualizzare"
+        '
+        'ListaToolStripMenuItem
+        '
+        Me.ListaToolStripMenuItem.CheckOnClick = True
+        Me.ListaToolStripMenuItem.Name = "ListaToolStripMenuItem"
+        Me.ListaToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.ListaToolStripMenuItem.Text = "Lista"
+        '
+        'DescrizioneToolStripMenuItem
+        '
+        Me.DescrizioneToolStripMenuItem.Enabled = False
+        Me.DescrizioneToolStripMenuItem.Name = "DescrizioneToolStripMenuItem"
+        Me.DescrizioneToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.DescrizioneToolStripMenuItem.Text = "descrizione"
+        '
+        'ColonneToolStripMenuItem
+        '
+        Me.ColonneToolStripMenuItem.CheckOnClick = True
+        Me.ColonneToolStripMenuItem.Name = "ColonneToolStripMenuItem"
+        Me.ColonneToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.ColonneToolStripMenuItem.Text = "Colonne/Dettagli"
+        '
+        'TilesToolStripMenuItem
+        '
+        Me.TilesToolStripMenuItem.CheckOnClick = True
+        Me.TilesToolStripMenuItem.Enabled = False
+        Me.TilesToolStripMenuItem.Name = "TilesToolStripMenuItem"
+        Me.TilesToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.TilesToolStripMenuItem.Text = "Tiles"
+        '
+        'IconePiccoleToolStripMenuItem
+        '
+        Me.IconePiccoleToolStripMenuItem.CheckOnClick = True
+        Me.IconePiccoleToolStripMenuItem.Name = "IconePiccoleToolStripMenuItem"
+        Me.IconePiccoleToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.IconePiccoleToolStripMenuItem.Text = "Icone piccole"
+        '
+        'IconeGrandiToolStripMenuItem
+        '
+        Me.IconeGrandiToolStripMenuItem.CheckOnClick = True
+        Me.IconeGrandiToolStripMenuItem.Name = "IconeGrandiToolStripMenuItem"
+        Me.IconeGrandiToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
+        Me.IconeGrandiToolStripMenuItem.Text = "Icone grandi"
+        '
+        'SottoMenuImmaginiIcone
+        '
+        Me.SottoMenuImmaginiIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SchermataToolStripMenuItem, Me.PosterToolStripMenuItem})
+        Me.SottoMenuImmaginiIcone.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.quadro
+        Me.SottoMenuImmaginiIcone.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SottoMenuImmaginiIcone.Name = "SottoMenuImmaginiIcone"
+        Me.SottoMenuImmaginiIcone.Size = New System.Drawing.Size(59, 64)
+        Me.SottoMenuImmaginiIcone.Text = "Icone"
+        Me.SottoMenuImmaginiIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.SottoMenuImmaginiIcone.ToolTipText = "Scegli quale immagine visualizzare nelle icone"
+        '
+        'SchermataToolStripMenuItem
+        '
+        Me.SchermataToolStripMenuItem.CheckOnClick = True
+        Me.SchermataToolStripMenuItem.Name = "SchermataToolStripMenuItem"
+        Me.SchermataToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
+        Me.SchermataToolStripMenuItem.Text = "Preferisci schermate"
+        '
+        'PosterToolStripMenuItem
+        '
+        Me.PosterToolStripMenuItem.CheckOnClick = True
+        Me.PosterToolStripMenuItem.Name = "PosterToolStripMenuItem"
+        Me.PosterToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
+        Me.PosterToolStripMenuItem.Text = "Preferisci poster"
+        '
+        'SottoMenuCampiIcone
+        '
+        Me.SottoMenuCampiIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrimaRigaToolStripMenuItem, Me.SecondaRigaToolStripMenuItem, Me.TerzaRigaToolStripMenuItem})
+        Me.SottoMenuCampiIcone.Enabled = False
+        Me.SottoMenuCampiIcone.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.fields2
+        Me.SottoMenuCampiIcone.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SottoMenuCampiIcone.Name = "SottoMenuCampiIcone"
+        Me.SottoMenuCampiIcone.Size = New System.Drawing.Size(66, 64)
+        Me.SottoMenuCampiIcone.Text = "Campi"
+        Me.SottoMenuCampiIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.SottoMenuCampiIcone.ToolTipText = "Scegli quali informazioni visualizzare a fianco delle icone"
+        '
+        'PrimaRigaToolStripMenuItem
+        '
+        Me.PrimaRigaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TitoloITAToolStripMenuItem, Me.TitoloOriginaleToolStripMenuItem})
+        Me.PrimaRigaToolStripMenuItem.Name = "PrimaRigaToolStripMenuItem"
+        Me.PrimaRigaToolStripMenuItem.Size = New System.Drawing.Size(171, 26)
+        Me.PrimaRigaToolStripMenuItem.Text = "Prima riga"
+        '
+        'TitoloITAToolStripMenuItem
+        '
+        Me.TitoloITAToolStripMenuItem.Name = "TitoloITAToolStripMenuItem"
+        Me.TitoloITAToolStripMenuItem.Size = New System.Drawing.Size(186, 26)
+        Me.TitoloITAToolStripMenuItem.Text = "Titolo italiano"
+        '
+        'TitoloOriginaleToolStripMenuItem
+        '
+        Me.TitoloOriginaleToolStripMenuItem.Name = "TitoloOriginaleToolStripMenuItem"
+        Me.TitoloOriginaleToolStripMenuItem.Size = New System.Drawing.Size(186, 26)
+        Me.TitoloOriginaleToolStripMenuItem.Text = "Titolo originale"
+        '
+        'SecondaRigaToolStripMenuItem
+        '
+        Me.SecondaRigaToolStripMenuItem.Name = "SecondaRigaToolStripMenuItem"
+        Me.SecondaRigaToolStripMenuItem.Size = New System.Drawing.Size(171, 26)
+        Me.SecondaRigaToolStripMenuItem.Text = "Seconda riga"
+        '
+        'TerzaRigaToolStripMenuItem
+        '
+        Me.TerzaRigaToolStripMenuItem.Name = "TerzaRigaToolStripMenuItem"
+        Me.TerzaRigaToolStripMenuItem.Size = New System.Drawing.Size(171, 26)
+        Me.TerzaRigaToolStripMenuItem.Text = "Terza riga"
+        '
+        'SottoMenuOrdineIcone
+        '
+        Me.SottoMenuOrdineIcone.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.TitoloItalianoToolStripMenuItem, Me.AnnoToolStripMenuItem, Me.NazioneToolStripMenuItem, Me.DurataToolStripMenuItem, Me.DefinizioneToolStripMenuItem, Me.BitrateToolStripMenuItem1, Me.ToolStripSeparator1, Me.DiscendenteToolStripMenuItem, Me.TitoloItalianoToolStripMenuItem1, Me.AnnoToolStripMenuItem1, Me.NazioneToolStripMenuItem1, Me.DurataToolStripMenuItem1, Me.DefinizioneToolStripMenuItem1, Me.BitrateToolStripMenuItem, Me.PerValutazioneIMDBToolStripMenuItem, Me.PerNumeroVotiIMDBToolStripMenuItem, Me.PerValutazioneMetacriticToolStripMenuItem, Me.PerValutazioneRottenTomatoesToolStripMenuItem, Me.PerIncassiToolStripMenuItem, Me.PerOscarVintiToolStripMenuItem, Me.PerOscarvintiNominatiToolStripMenuItem, Me.PerPremiVintiToolStripMenuItem, Me.PerPremiNominatiToolStripMenuItem})
+        Me.SottoMenuOrdineIcone.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.ordinamento
+        Me.SottoMenuOrdineIcone.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SottoMenuOrdineIcone.Name = "SottoMenuOrdineIcone"
+        Me.SottoMenuOrdineIcone.Size = New System.Drawing.Size(68, 64)
+        Me.SottoMenuOrdineIcone.Text = "Ordina"
+        Me.SottoMenuOrdineIcone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.SottoMenuOrdineIcone.ToolTipText = "Scegli come ordinare le icone dei film"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Enabled = False
+        Me.ToolStripMenuItem1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripMenuItem1.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sort_asc_lett_num
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(304, 26)
+        Me.ToolStripMenuItem1.Text = "Dal minore al maggiore"
+        '
+        'TitoloItalianoToolStripMenuItem
+        '
+        Me.TitoloItalianoToolStripMenuItem.Name = "TitoloItalianoToolStripMenuItem"
+        Me.TitoloItalianoToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.TitoloItalianoToolStripMenuItem.Text = "per Titolo italiano"
+        '
+        'AnnoToolStripMenuItem
+        '
+        Me.AnnoToolStripMenuItem.Checked = True
+        Me.AnnoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.AnnoToolStripMenuItem.Name = "AnnoToolStripMenuItem"
+        Me.AnnoToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.AnnoToolStripMenuItem.Text = "per Anno"
+        '
+        'NazioneToolStripMenuItem
+        '
+        Me.NazioneToolStripMenuItem.Name = "NazioneToolStripMenuItem"
+        Me.NazioneToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.NazioneToolStripMenuItem.Text = "per Nazione"
+        '
+        'DurataToolStripMenuItem
+        '
+        Me.DurataToolStripMenuItem.Name = "DurataToolStripMenuItem"
+        Me.DurataToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.DurataToolStripMenuItem.Text = "per Durata"
+        '
+        'DefinizioneToolStripMenuItem
+        '
+        Me.DefinizioneToolStripMenuItem.Name = "DefinizioneToolStripMenuItem"
+        Me.DefinizioneToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.DefinizioneToolStripMenuItem.Text = "per Definizione"
+        '
+        'BitrateToolStripMenuItem1
+        '
+        Me.BitrateToolStripMenuItem1.Name = "BitrateToolStripMenuItem1"
+        Me.BitrateToolStripMenuItem1.Size = New System.Drawing.Size(304, 26)
+        Me.BitrateToolStripMenuItem1.Text = "per Bitrate"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(301, 6)
+        '
+        'DiscendenteToolStripMenuItem
+        '
+        Me.DiscendenteToolStripMenuItem.Enabled = False
+        Me.DiscendenteToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DiscendenteToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sort_desc_lett_num
+        Me.DiscendenteToolStripMenuItem.Name = "DiscendenteToolStripMenuItem"
+        Me.DiscendenteToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.DiscendenteToolStripMenuItem.Text = "Dal maggiore al minore"
+        '
+        'TitoloItalianoToolStripMenuItem1
+        '
+        Me.TitoloItalianoToolStripMenuItem1.Name = "TitoloItalianoToolStripMenuItem1"
+        Me.TitoloItalianoToolStripMenuItem1.Size = New System.Drawing.Size(304, 26)
+        Me.TitoloItalianoToolStripMenuItem1.Text = "per Titolo italiano"
+        '
+        'AnnoToolStripMenuItem1
+        '
+        Me.AnnoToolStripMenuItem1.Name = "AnnoToolStripMenuItem1"
+        Me.AnnoToolStripMenuItem1.Size = New System.Drawing.Size(304, 26)
+        Me.AnnoToolStripMenuItem1.Text = "per Anno"
+        '
+        'NazioneToolStripMenuItem1
+        '
+        Me.NazioneToolStripMenuItem1.Name = "NazioneToolStripMenuItem1"
+        Me.NazioneToolStripMenuItem1.Size = New System.Drawing.Size(304, 26)
+        Me.NazioneToolStripMenuItem1.Text = "per Nazione"
+        '
+        'DurataToolStripMenuItem1
+        '
+        Me.DurataToolStripMenuItem1.Name = "DurataToolStripMenuItem1"
+        Me.DurataToolStripMenuItem1.Size = New System.Drawing.Size(304, 26)
+        Me.DurataToolStripMenuItem1.Text = "per Durata"
+        '
+        'DefinizioneToolStripMenuItem1
+        '
+        Me.DefinizioneToolStripMenuItem1.Name = "DefinizioneToolStripMenuItem1"
+        Me.DefinizioneToolStripMenuItem1.Size = New System.Drawing.Size(304, 26)
+        Me.DefinizioneToolStripMenuItem1.Text = "per Definizione"
+        '
+        'BitrateToolStripMenuItem
+        '
+        Me.BitrateToolStripMenuItem.Name = "BitrateToolStripMenuItem"
+        Me.BitrateToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.BitrateToolStripMenuItem.Text = "per Bitrate"
+        '
+        'PerValutazioneIMDBToolStripMenuItem
+        '
+        Me.PerValutazioneIMDBToolStripMenuItem.Name = "PerValutazioneIMDBToolStripMenuItem"
+        Me.PerValutazioneIMDBToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerValutazioneIMDBToolStripMenuItem.Text = "per Valutazione IMDB"
+        '
+        'PerNumeroVotiIMDBToolStripMenuItem
+        '
+        Me.PerNumeroVotiIMDBToolStripMenuItem.Name = "PerNumeroVotiIMDBToolStripMenuItem"
+        Me.PerNumeroVotiIMDBToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerNumeroVotiIMDBToolStripMenuItem.Text = "per Numero voti IMDB"
+        '
+        'PerValutazioneMetacriticToolStripMenuItem
+        '
+        Me.PerValutazioneMetacriticToolStripMenuItem.Name = "PerValutazioneMetacriticToolStripMenuItem"
+        Me.PerValutazioneMetacriticToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerValutazioneMetacriticToolStripMenuItem.Text = "per Valutazione Metacritic"
+        '
+        'PerValutazioneRottenTomatoesToolStripMenuItem
+        '
+        Me.PerValutazioneRottenTomatoesToolStripMenuItem.Name = "PerValutazioneRottenTomatoesToolStripMenuItem"
+        Me.PerValutazioneRottenTomatoesToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerValutazioneRottenTomatoesToolStripMenuItem.Text = "per Valutazione Rotten Tomatoes"
+        '
+        'PerIncassiToolStripMenuItem
+        '
+        Me.PerIncassiToolStripMenuItem.Name = "PerIncassiToolStripMenuItem"
+        Me.PerIncassiToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerIncassiToolStripMenuItem.Text = "per Incassi"
+        '
+        'PerOscarVintiToolStripMenuItem
+        '
+        Me.PerOscarVintiToolStripMenuItem.Name = "PerOscarVintiToolStripMenuItem"
+        Me.PerOscarVintiToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerOscarVintiToolStripMenuItem.Text = "per Oscar vinti"
+        '
+        'PerOscarvintiNominatiToolStripMenuItem
+        '
+        Me.PerOscarvintiNominatiToolStripMenuItem.Name = "PerOscarvintiNominatiToolStripMenuItem"
+        Me.PerOscarvintiNominatiToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerOscarvintiNominatiToolStripMenuItem.Text = "per Oscar (vinti + nominati)"
+        '
+        'PerPremiVintiToolStripMenuItem
+        '
+        Me.PerPremiVintiToolStripMenuItem.Name = "PerPremiVintiToolStripMenuItem"
+        Me.PerPremiVintiToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerPremiVintiToolStripMenuItem.Text = "per Premi vinti"
+        '
+        'PerPremiNominatiToolStripMenuItem
+        '
+        Me.PerPremiNominatiToolStripMenuItem.Name = "PerPremiNominatiToolStripMenuItem"
+        Me.PerPremiNominatiToolStripMenuItem.Size = New System.Drawing.Size(304, 26)
+        Me.PerPremiNominatiToolStripMenuItem.Text = "per Premi (vinti + nominati)"
+        '
+        'ButtFilmCasuale
+        '
+        Me.ButtFilmCasuale.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.dado
+        Me.ButtFilmCasuale.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtFilmCasuale.Name = "ButtFilmCasuale"
+        Me.ButtFilmCasuale.Size = New System.Drawing.Size(81, 56)
+        Me.ButtFilmCasuale.Text = "Suggerisci"
+        Me.ButtFilmCasuale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.ButtFilmCasuale.ToolTipText = "Suggerisci un film a caso tra quelli visualizzati nella schermata attuale"
+        '
+        'SottoMenuImpostazioni
+        '
+        Me.SottoMenuImpostazioni.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ScegliLibreriaToolStripMenuItem, Me.AggiornaLibreriaToolStripMenuItem, Me.ToolStripSeparator3, Me.TemaColoriToolStripMenuItem, Me.ImpostazioniToolStripMenuItem, Me.ToolStripSeparator2, Me.ControllaAggiornamentiToolStripMenuItem, Me.CreditiToolStripMenuItem})
+        Me.SottoMenuImpostazioni.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.impostazioni
+        Me.SottoMenuImpostazioni.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SottoMenuImpostazioni.Name = "SottoMenuImpostazioni"
+        Me.SottoMenuImpostazioni.Size = New System.Drawing.Size(109, 56)
+        Me.SottoMenuImpostazioni.Text = "Impostazioni"
+        Me.SottoMenuImpostazioni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.SottoMenuImpostazioni.ToolTipText = "Impostazioni del Gestore Libreria Film"
+        '
+        'ScegliLibreriaToolStripMenuItem
+        '
+        Me.ScegliLibreriaToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.videocassetta
+        Me.ScegliLibreriaToolStripMenuItem.Name = "ScegliLibreriaToolStripMenuItem"
+        Me.ScegliLibreriaToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
+        Me.ScegliLibreriaToolStripMenuItem.Text = "Scegli posizione della libreria"
+        '
+        'AggiornaLibreriaToolStripMenuItem
+        '
+        Me.AggiornaLibreriaToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.aggiorna
+        Me.AggiornaLibreriaToolStripMenuItem.Name = "AggiornaLibreriaToolStripMenuItem"
+        Me.AggiornaLibreriaToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
+        Me.AggiornaLibreriaToolStripMenuItem.Text = "Aggiorna libreria"
+        Me.AggiornaLibreriaToolStripMenuItem.ToolTipText = "Aggiorna l'elenco dei film dal disco"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(277, 6)
+        '
+        'TemaColoriToolStripMenuItem
+        '
+        Me.TemaColoriToolStripMenuItem.AutoSize = False
+        Me.TemaColoriToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TemaWindowsToolStripMenuItem, Me.TemaChiaroToolStripMenuItem, Me.TemaScuroToolStripMenuItem})
+        Me.TemaColoriToolStripMenuItem.Name = "TemaColoriToolStripMenuItem"
+        Me.TemaColoriToolStripMenuItem.Size = New System.Drawing.Size(292, 30)
+        Me.TemaColoriToolStripMenuItem.Text = "Tema colori"
+        '
+        'TemaWindowsToolStripMenuItem
+        '
+        Me.TemaWindowsToolStripMenuItem.Name = "TemaWindowsToolStripMenuItem"
+        Me.TemaWindowsToolStripMenuItem.Size = New System.Drawing.Size(185, 26)
+        Me.TemaWindowsToolStripMenuItem.Text = "Automatico"
+        Me.TemaWindowsToolStripMenuItem.ToolTipText = "Alterna automaticamente tema chiaro/scuro per corrispondere al tema impostato in " & _
+    "Windows (solo versioni 8/10/11)"
+        '
+        'TemaChiaroToolStripMenuItem
+        '
+        Me.TemaChiaroToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sole
+        Me.TemaChiaroToolStripMenuItem.Name = "TemaChiaroToolStripMenuItem"
+        Me.TemaChiaroToolStripMenuItem.Size = New System.Drawing.Size(185, 26)
+        Me.TemaChiaroToolStripMenuItem.Text = "Chiaro (giorno)"
+        '
+        'TemaScuroToolStripMenuItem
+        '
+        Me.TemaScuroToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.luna
+        Me.TemaScuroToolStripMenuItem.Name = "TemaScuroToolStripMenuItem"
+        Me.TemaScuroToolStripMenuItem.Size = New System.Drawing.Size(185, 26)
+        Me.TemaScuroToolStripMenuItem.Text = "Scuro (notte)"
+        '
+        'ImpostazioniToolStripMenuItem
+        '
+        Me.ImpostazioniToolStripMenuItem.Enabled = False
+        Me.ImpostazioniToolStripMenuItem.Name = "ImpostazioniToolStripMenuItem"
+        Me.ImpostazioniToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
+        Me.ImpostazioniToolStripMenuItem.Text = "Altre impostazioni"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(277, 6)
+        '
+        'ControllaAggiornamentiToolStripMenuItem
+        '
+        Me.ControllaAggiornamentiToolStripMenuItem.Enabled = False
+        Me.ControllaAggiornamentiToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.download
+        Me.ControllaAggiornamentiToolStripMenuItem.Name = "ControllaAggiornamentiToolStripMenuItem"
+        Me.ControllaAggiornamentiToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
+        Me.ControllaAggiornamentiToolStripMenuItem.Text = "Controlla aggiornamenti"
+        '
+        'CreditiToolStripMenuItem
+        '
+        Me.CreditiToolStripMenuItem.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.info
+        Me.CreditiToolStripMenuItem.Name = "CreditiToolStripMenuItem"
+        Me.CreditiToolStripMenuItem.Size = New System.Drawing.Size(280, 26)
+        Me.CreditiToolStripMenuItem.Text = "Crediti"
+        '
+        'DropDownOrdinamentoCategorie
+        '
+        Me.DropDownOrdinamentoCategorie.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.DropDownOrdinamentoCategorie.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem, Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem, Me.AlfabeticoToolStripMenuItem, Me.DurataFilmToolStripMenuItem, Me.NumeroFilmToolStripMenuItem})
+        Me.DropDownOrdinamentoCategorie.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.ordinamento
+        Me.DropDownOrdinamentoCategorie.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.DropDownOrdinamentoCategorie.Name = "DropDownOrdinamentoCategorie"
+        Me.DropDownOrdinamentoCategorie.Size = New System.Drawing.Size(46, 36)
+        Me.DropDownOrdinamentoCategorie.Text = "Ordina valori categoria per"
+        '
+        'EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem
+        '
+        Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Name = "EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem"
+        Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
+        Me.EpocaDiAttivitàultimaUscitaPiùRemotaToolStripMenuItem.Text = "Periodo di attività ascendente (ultima uscita più remota)"
+        '
+        'EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem
+        '
+        Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Name = "EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem"
+        Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
+        Me.EpocaDiAttivitàultimaUscitaPiùRecenteToolStripMenuItem.Text = "Periodo di attività discendente (ultima uscita più recente)"
+        '
+        'AlfabeticoToolStripMenuItem
+        '
+        Me.AlfabeticoToolStripMenuItem.Name = "AlfabeticoToolStripMenuItem"
+        Me.AlfabeticoToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
+        Me.AlfabeticoToolStripMenuItem.Text = "Nome (ordine alfabetico ascendente A-Z)"
+        '
+        'DurataFilmToolStripMenuItem
+        '
+        Me.DurataFilmToolStripMenuItem.Name = "DurataFilmToolStripMenuItem"
+        Me.DurataFilmToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
+        Me.DurataFilmToolStripMenuItem.Text = "Durata film"
+        '
+        'NumeroFilmToolStripMenuItem
+        '
+        Me.NumeroFilmToolStripMenuItem.Name = "NumeroFilmToolStripMenuItem"
+        Me.NumeroFilmToolStripMenuItem.Size = New System.Drawing.Size(462, 26)
+        Me.NumeroFilmToolStripMenuItem.Text = "Numero film"
+        '
+        'DropDownInfoCategoria
+        '
+        Me.DropDownInfoCategoria.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.DropDownInfoCategoria.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NessunaInformazioneToolStripMenuItem, Me.PeriodoDiAttivitàToolStripMenuItem, Me.DurataFilmToolStripMenuItem1, Me.ConteggioFilmToolStripMenuItem})
+        Me.DropDownInfoCategoria.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.fields2
+        Me.DropDownInfoCategoria.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.DropDownInfoCategoria.Name = "DropDownInfoCategoria"
+        Me.DropDownInfoCategoria.Size = New System.Drawing.Size(46, 36)
+        Me.DropDownInfoCategoria.Text = "Informazioni da visualizzare"
+        '
+        'NessunaInformazioneToolStripMenuItem
+        '
+        Me.NessunaInformazioneToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.NessunaInformazioneToolStripMenuItem.Name = "NessunaInformazioneToolStripMenuItem"
+        Me.NessunaInformazioneToolStripMenuItem.Size = New System.Drawing.Size(231, 26)
+        Me.NessunaInformazioneToolStripMenuItem.Text = "Nessuna informazione"
+        '
+        'PeriodoDiAttivitàToolStripMenuItem
+        '
+        Me.PeriodoDiAttivitàToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.PeriodoDiAttivitàToolStripMenuItem.Name = "PeriodoDiAttivitàToolStripMenuItem"
+        Me.PeriodoDiAttivitàToolStripMenuItem.Size = New System.Drawing.Size(231, 26)
+        Me.PeriodoDiAttivitàToolStripMenuItem.Text = "Periodo di attività"
+        '
+        'DurataFilmToolStripMenuItem1
+        '
+        Me.DurataFilmToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.DurataFilmToolStripMenuItem1.Name = "DurataFilmToolStripMenuItem1"
+        Me.DurataFilmToolStripMenuItem1.Size = New System.Drawing.Size(231, 26)
+        Me.DurataFilmToolStripMenuItem1.Text = "Durata film"
+        '
+        'ConteggioFilmToolStripMenuItem
+        '
+        Me.ConteggioFilmToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ConteggioFilmToolStripMenuItem.Name = "ConteggioFilmToolStripMenuItem"
+        Me.ConteggioFilmToolStripMenuItem.Size = New System.Drawing.Size(231, 26)
+        Me.ConteggioFilmToolStripMenuItem.Text = "Conteggio film"
+        '
+        'ToolStripDropDownButton5
+        '
+        Me.ToolStripDropDownButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripDropDownButton5.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NomeCognomeToolStripMenuItem, Me.CognomeNomeToolStripMenuItem, Me.CognomeToolStripMenuItem, Me.InizialeCognomeToolStripMenuItem})
+        Me.ToolStripDropDownButton5.Enabled = False
+        Me.ToolStripDropDownButton5.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.persona
+        Me.ToolStripDropDownButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton5.Name = "ToolStripDropDownButton5"
+        Me.ToolStripDropDownButton5.Size = New System.Drawing.Size(46, 36)
+        Me.ToolStripDropDownButton5.Text = "Formato dei nomi di persona"
+        '
+        'NomeCognomeToolStripMenuItem
+        '
+        Me.NomeCognomeToolStripMenuItem.Name = "NomeCognomeToolStripMenuItem"
+        Me.NomeCognomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
+        Me.NomeCognomeToolStripMenuItem.Text = "Nome + Cognome"
+        '
+        'CognomeNomeToolStripMenuItem
+        '
+        Me.CognomeNomeToolStripMenuItem.Name = "CognomeNomeToolStripMenuItem"
+        Me.CognomeNomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
+        Me.CognomeNomeToolStripMenuItem.Text = "Cognome, Nome"
+        '
+        'CognomeToolStripMenuItem
+        '
+        Me.CognomeToolStripMenuItem.Name = "CognomeToolStripMenuItem"
+        Me.CognomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
+        Me.CognomeToolStripMenuItem.Text = "Cognome"
+        '
+        'InizialeCognomeToolStripMenuItem
+        '
+        Me.InizialeCognomeToolStripMenuItem.Name = "InizialeCognomeToolStripMenuItem"
+        Me.InizialeCognomeToolStripMenuItem.Size = New System.Drawing.Size(259, 26)
+        Me.InizialeCognomeToolStripMenuItem.Text = "Iniziale Nome + Cognome"
+        '
+        'BottFiltra
+        '
+        Me.BottFiltra.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.BottFiltra.AutoSize = True
+        Me.BottFiltra.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BottFiltra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.BottFiltra.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BottFiltra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BottFiltra.ImageIndex = 63
+        Me.BottFiltra.ImageList = Me.IconeCategorieLibreria
+        Me.BottFiltra.Location = New System.Drawing.Point(129, 0)
+        Me.BottFiltra.Name = "BottFiltra"
+        Me.BottFiltra.Size = New System.Drawing.Size(151, 38)
+        Me.BottFiltra.TabIndex = 5
+        Me.BottFiltra.Text = "Filtra l'elenco"
+        Me.BottFiltra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.BottFiltra.UseVisualStyleBackColor = True
+        '
+        'BottCerca
+        '
+        Me.BottCerca.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BottCerca.BackgroundImage = Global.GestoreLibreriaFilm.My.Resources.Resources.cerca
+        Me.BottCerca.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.BottCerca.Location = New System.Drawing.Point(193, 1)
+        Me.BottCerca.Margin = New System.Windows.Forms.Padding(3, 3, 16, 3)
+        Me.BottCerca.Name = "BottCerca"
+        Me.BottCerca.Size = New System.Drawing.Size(32, 32)
+        Me.BottCerca.TabIndex = 3
+        Me.BottCerca.UseVisualStyleBackColor = True
+        '
+        'PictureBox20
+        '
+        Me.PictureBox20.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.audio
+        Me.PictureBox20.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox20.Name = "PictureBox20"
+        Me.PictureBox20.Size = New System.Drawing.Size(40, 40)
+        Me.PictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox20.TabIndex = 0
+        Me.PictureBox20.TabStop = False
+        '
+        'PictureBox21
+        '
+        Me.PictureBox21.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.sottotitoli
+        Me.PictureBox21.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox21.Name = "PictureBox21"
+        Me.PictureBox21.Size = New System.Drawing.Size(40, 40)
+        Me.PictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox21.TabIndex = 0
+        Me.PictureBox21.TabStop = False
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox9.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.monitor
+        Me.PictureBox9.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(32, 36)
+        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox9.TabIndex = 47
+        Me.PictureBox9.TabStop = False
+        '
+        'PictureBox15
+        '
+        Me.PictureBox15.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox15.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.impostazioni
+        Me.PictureBox15.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox15.Name = "PictureBox15"
+        Me.PictureBox15.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox15.TabIndex = 47
+        Me.PictureBox15.TabStop = False
+        '
+        'PictureBox14
+        '
+        Me.PictureBox14.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox14.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.peso_grey
+        Me.PictureBox14.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox14.Name = "PictureBox14"
+        Me.PictureBox14.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox14.TabIndex = 47
+        Me.PictureBox14.TabStop = False
+        '
+        'PictureBox12
+        '
+        Me.PictureBox12.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox12.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.squadra
+        Me.PictureBox12.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox12.Name = "PictureBox12"
+        Me.PictureBox12.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox12.TabIndex = 47
+        Me.PictureBox12.TabStop = False
+        '
+        'PictureBox13
+        '
+        Me.PictureBox13.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox13.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.FPS_grey
+        Me.PictureBox13.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox13.Name = "PictureBox13"
+        Me.PictureBox13.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox13.TabIndex = 47
+        Me.PictureBox13.TabStop = False
+        '
+        'PictureBox19
+        '
+        Me.PictureBox19.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.pellicola
+        Me.PictureBox19.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox19.Name = "PictureBox19"
+        Me.PictureBox19.Size = New System.Drawing.Size(40, 40)
+        Me.PictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox19.TabIndex = 0
+        Me.PictureBox19.TabStop = False
+        '
+        'PictureBox18
+        '
+        Me.PictureBox18.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.floppy
+        Me.PictureBox18.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox18.Name = "PictureBox18"
+        Me.PictureBox18.Size = New System.Drawing.Size(40, 40)
+        Me.PictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox18.TabIndex = 0
+        Me.PictureBox18.TabStop = False
+        '
+        'PictureBox10
+        '
+        Me.PictureBox10.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox10.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.premio_oro2
+        Me.PictureBox10.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox10.Name = "PictureBox10"
+        Me.PictureBox10.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox10.TabIndex = 0
+        Me.PictureBox10.TabStop = False
+        '
+        'PictureBox8
+        '
+        Me.PictureBox8.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox8.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.bafta
+        Me.PictureBox8.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox8.Name = "PictureBox8"
+        Me.PictureBox8.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox8.TabIndex = 0
+        Me.PictureBox8.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox2.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.oscar2
+        Me.PictureBox2.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox2.TabIndex = 0
+        Me.PictureBox2.TabStop = False
+        '
+        'PictureBox11
+        '
+        Me.PictureBox11.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox11.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.premio_argento
+        Me.PictureBox11.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox11.Name = "PictureBox11"
+        Me.PictureBox11.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox11.TabIndex = 0
+        Me.PictureBox11.TabStop = False
+        '
+        'PictureBox16
+        '
+        Me.PictureBox16.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox16.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.bafta_argento
+        Me.PictureBox16.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox16.Name = "PictureBox16"
+        Me.PictureBox16.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox16.TabIndex = 0
+        Me.PictureBox16.TabStop = False
+        '
+        'PictureBox17
+        '
+        Me.PictureBox17.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox17.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.oscar_argento
+        Me.PictureBox17.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox17.Name = "PictureBox17"
+        Me.PictureBox17.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox17.TabIndex = 0
+        Me.PictureBox17.TabStop = False
+        '
+        'PicPoster
+        '
+        Me.PicPoster.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PicPoster.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PicPoster.Location = New System.Drawing.Point(0, 0)
+        Me.PicPoster.Name = "PicPoster"
+        Me.PicPoster.Size = New System.Drawing.Size(250, 432)
+        Me.PicPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicPoster.TabIndex = 1
+        Me.PicPoster.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PicPoster, "Poster del film")
+        '
+        'PictureBox7
+        '
+        Me.PictureBox7.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.note
+        Me.PictureBox7.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox7.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(32, 34)
+        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox7.TabIndex = 1
+        Me.PictureBox7.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.data
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox1.MaximumSize = New System.Drawing.Size(0, 32)
+        Me.PictureBox1.MinimumSize = New System.Drawing.Size(32, 32)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
+        'NazionePic
+        '
+        Me.NazionePic.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NazionePic.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.USA
+        Me.NazionePic.Location = New System.Drawing.Point(0, 0)
+        Me.NazionePic.Margin = New System.Windows.Forms.Padding(0)
+        Me.NazionePic.Name = "NazionePic"
+        Me.NazionePic.Size = New System.Drawing.Size(32, 32)
+        Me.NazionePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.NazionePic.TabIndex = 2
+        Me.NazionePic.TabStop = False
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.cronometro
+        Me.PictureBox3.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox3.MaximumSize = New System.Drawing.Size(0, 32)
+        Me.PictureBox3.MinimumSize = New System.Drawing.Size(32, 32)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox3.TabIndex = 3
+        Me.PictureBox3.TabStop = False
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.camera
+        Me.PictureBox4.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox4.TabIndex = 5
+        Me.PictureBox4.TabStop = False
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.autore
+        Me.PictureBox6.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox6.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox6.TabIndex = 11
+        Me.PictureBox6.TabStop = False
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.musica
+        Me.PictureBox5.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox5.TabIndex = 13
+        Me.PictureBox5.TabStop = False
+        '
+        'PicSchermata
+        '
+        Me.PicSchermata.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PicSchermata.Location = New System.Drawing.Point(3, 312)
+        Me.PicSchermata.Name = "PicSchermata"
+        Me.PicSchermata.Size = New System.Drawing.Size(258, 113)
+        Me.PicSchermata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicSchermata.TabIndex = 2
+        Me.PicSchermata.TabStop = False
+        Me.ToolTip.SetToolTip(Me.PicSchermata, "Schermata del film")
+        '
+        'PlayButton
+        '
+        Me.PlayButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.PlayButton.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PlayButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.play
+        Me.PlayButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.PlayButton.Name = "PlayButton"
+        Me.PlayButton.Size = New System.Drawing.Size(44, 44)
+        Me.PlayButton.Text = "Riproduci il film"
+        '
+        'EsploraRisorseButton
+        '
+        Me.EsploraRisorseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.EsploraRisorseButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.cartella
+        Me.EsploraRisorseButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.EsploraRisorseButton.Name = "EsploraRisorseButton"
+        Me.EsploraRisorseButton.Size = New System.Drawing.Size(44, 44)
+        Me.EsploraRisorseButton.Text = "Visualizza file in Esplora risorse"
+        '
+        'RinominaButton
+        '
+        Me.RinominaButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.RinominaButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.modifica
+        Me.RinominaButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.RinominaButton.Name = "RinominaButton"
+        Me.RinominaButton.Size = New System.Drawing.Size(44, 44)
+        Me.RinominaButton.Text = "Rinomina"
+        '
+        'DownloadButton
+        '
+        Me.DownloadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.DownloadButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.download
+        Me.DownloadButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.DownloadButton.Name = "DownloadButton"
+        Me.DownloadButton.Size = New System.Drawing.Size(44, 44)
+        Me.DownloadButton.Text = "Acquisisci informazioni da Internet"
+        '
+        'CercaInternetButton
+        '
+        Me.CercaInternetButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.CercaInternetButton.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GoogleToolStripMenuItem, Me.WikiITToolStripMenuItem, Me.IMDBToolStripMenuItem})
+        Me.CercaInternetButton.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.CercaInternet
+        Me.CercaInternetButton.Name = "CercaInternetButton"
+        Me.CercaInternetButton.Size = New System.Drawing.Size(54, 44)
+        Me.CercaInternetButton.Text = "Apri la scheda del film su Internet"
+        '
+        'GoogleToolStripMenuItem
+        '
+        Me.GoogleToolStripMenuItem.Name = "GoogleToolStripMenuItem"
+        Me.GoogleToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
+        Me.GoogleToolStripMenuItem.Text = "Google"
+        '
+        'WikiITToolStripMenuItem
+        '
+        Me.WikiITToolStripMenuItem.Name = "WikiITToolStripMenuItem"
+        Me.WikiITToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
+        Me.WikiITToolStripMenuItem.Text = "Wikipedia IT"
+        '
+        'IMDBToolStripMenuItem
+        '
+        Me.IMDBToolStripMenuItem.Name = "IMDBToolStripMenuItem"
+        Me.IMDBToolStripMenuItem.Size = New System.Drawing.Size(167, 26)
+        Me.IMDBToolStripMenuItem.Text = "IMDB"
+        '
+        'ToolStripButton5
+        '
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton5.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.quadro
+        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        Me.ToolStripButton5.Size = New System.Drawing.Size(44, 44)
+        Me.ToolStripButton5.Text = "Cambia schermata"
+        '
+        'PicImgPersona
+        '
+        Me.PicImgPersona.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PicImgPersona.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PicImgPersona.Location = New System.Drawing.Point(0, 220)
+        Me.PicImgPersona.MaximumSize = New System.Drawing.Size(0, 300)
+        Me.PicImgPersona.Name = "PicImgPersona"
+        Me.PicImgPersona.Size = New System.Drawing.Size(630, 300)
+        Me.PicImgPersona.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicImgPersona.TabIndex = 29
+        Me.PicImgPersona.TabStop = False
+        '
+        'IconaCategoriaScelta
+        '
+        Me.IconaCategoriaScelta.Dock = System.Windows.Forms.DockStyle.Top
+        Me.IconaCategoriaScelta.Location = New System.Drawing.Point(0, 0)
+        Me.IconaCategoriaScelta.Margin = New System.Windows.Forms.Padding(0)
+        Me.IconaCategoriaScelta.Name = "IconaCategoriaScelta"
+        Me.IconaCategoriaScelta.Size = New System.Drawing.Size(630, 100)
+        Me.IconaCategoriaScelta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.IconaCategoriaScelta.TabIndex = 19
+        Me.IconaCategoriaScelta.TabStop = False
+        '
+        'FiltroAudio
+        '
+        Me.FiltroAudio.CheckOnClick = True
+        Me.FiltroAudio.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.FiltroAudio.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FiltroAudio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FiltroAudio.FormattingEnabled = True
+        Me.FiltroAudio.Location = New System.Drawing.Point(0, 40)
+        Me.FiltroAudio.Name = "FiltroAudio"
+        Me.FiltroAudio.Size = New System.Drawing.Size(150, 174)
+        Me.FiltroAudio.Sorted = True
+        Me.FiltroAudio.TabIndex = 15
+        Me.FiltroAudio.ThreeDCheckBoxes = True
+        '
+        'FiltroSottotitoli
+        '
+        Me.FiltroSottotitoli.CheckOnClick = True
+        Me.FiltroSottotitoli.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.FiltroSottotitoli.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FiltroSottotitoli.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FiltroSottotitoli.FormattingEnabled = True
+        Me.FiltroSottotitoli.Location = New System.Drawing.Point(0, 40)
+        Me.FiltroSottotitoli.Name = "FiltroSottotitoli"
+        Me.FiltroSottotitoli.Size = New System.Drawing.Size(170, 177)
+        Me.FiltroSottotitoli.Sorted = True
+        Me.FiltroSottotitoli.TabIndex = 15
+        Me.FiltroSottotitoli.ThreeDCheckBoxes = True
+        '
+        'FlowLayoutPanel9
+        '
+        Me.FlowLayoutPanel9.AutoSize = True
+        Me.FlowLayoutPanel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.FlowLayoutPanel9.Controls.Add(Me.Panel5)
+        Me.FlowLayoutPanel9.Controls.Add(Me.Panel20)
+        Me.FlowLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.FlowLayoutPanel9.Location = New System.Drawing.Point(3, 178)
+        Me.FlowLayoutPanel9.Name = "FlowLayoutPanel9"
+        Me.FlowLayoutPanel9.Size = New System.Drawing.Size(373, 226)
+        Me.FlowLayoutPanel9.TabIndex = 89
+        '
+        'Panel5
+        '
+        Me.Panel5.Controls.Add(Me.FiltroNazioni)
+        Me.Panel5.Controls.Add(Me.Label6)
+        Me.Panel5.Location = New System.Drawing.Point(3, 3)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(100, 220)
+        Me.Panel5.TabIndex = 90
+        '
+        'Panel20
+        '
+        Me.Panel20.Controls.Add(Me.FiltroGeneri)
+        Me.Panel20.Controls.Add(Me.Label10)
+        Me.Panel20.Location = New System.Drawing.Point(109, 3)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(200, 220)
+        Me.Panel20.TabIndex = 91
+        '
+        'FiltroNazioni
+        '
+        Me.FiltroNazioni.CheckOnClick = True
+        Me.FiltroNazioni.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.FiltroNazioni.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FiltroNazioni.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FiltroNazioni.FormattingEnabled = True
+        Me.FiltroNazioni.Location = New System.Drawing.Point(0, 18)
+        Me.FiltroNazioni.Name = "FiltroNazioni"
+        Me.FiltroNazioni.Size = New System.Drawing.Size(100, 202)
+        Me.FiltroNazioni.Sorted = True
+        Me.FiltroNazioni.TabIndex = 13
+        Me.FiltroNazioni.ThreeDCheckBoxes = True
+        '
+        'FiltroGeneri
+        '
+        Me.FiltroGeneri.CheckOnClick = True
+        Me.FiltroGeneri.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.FiltroGeneri.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FiltroGeneri.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FiltroGeneri.FormattingEnabled = True
+        Me.FiltroGeneri.Location = New System.Drawing.Point(0, 18)
+        Me.FiltroGeneri.Name = "FiltroGeneri"
+        Me.FiltroGeneri.Size = New System.Drawing.Size(200, 202)
+        Me.FiltroGeneri.Sorted = True
+        Me.FiltroGeneri.TabIndex = 15
+        Me.FiltroGeneri.ThreeDCheckBoxes = True
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -5143,11 +5195,8 @@ Partial Class MainForm
         Me.TabPage2.PerformLayout()
         Me.FlowLayoutPanel8.ResumeLayout(False)
         Me.Panel13.ResumeLayout(False)
-        Me.Panel13.PerformLayout()
         Me.Panel14.ResumeLayout(False)
-        Me.Panel14.PerformLayout()
         Me.Panel11.ResumeLayout(False)
-        Me.Panel11.PerformLayout()
         CType(Me.FiltroBitrateMin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel10.ResumeLayout(False)
         Me.Panel10.PerformLayout()
@@ -5290,6 +5339,14 @@ Partial Class MainForm
         Me.SplitContainerBarreStrumenti_CSX.ResumeLayout(False)
         Me.PanelDettagliCategoria.ResumeLayout(False)
         Me.PanelDettagliCategoria.PerformLayout()
+        Me.ValutazioniCat.ResumeLayout(False)
+        Me.ValutazioniCat.PerformLayout()
+        Me.FlowLayoutPanel5.ResumeLayout(False)
+        Me.Panel15.ResumeLayout(False)
+        Me.Panel16.ResumeLayout(False)
+        Me.Panel17.ResumeLayout(False)
+        Me.Panel18.ResumeLayout(False)
+        Me.Panel19.ResumeLayout(False)
         Me.FlowLayoutPanel3.ResumeLayout(False)
         Me.FlowLayoutPanel3.PerformLayout()
         Me.PanNumeroFilm.ResumeLayout(False)
@@ -5324,14 +5381,9 @@ Partial Class MainForm
         CType(Me.PicSchermata, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicImgPersona, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IconaCategoriaScelta, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ValutazioniCat.ResumeLayout(False)
-        Me.ValutazioniCat.PerformLayout()
-        Me.FlowLayoutPanel5.ResumeLayout(False)
-        Me.Panel15.ResumeLayout(False)
-        Me.Panel16.ResumeLayout(False)
-        Me.Panel17.ResumeLayout(False)
-        Me.Panel18.ResumeLayout(False)
-        Me.Panel19.ResumeLayout(False)
+        Me.FlowLayoutPanel9.ResumeLayout(False)
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel20.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -5390,9 +5442,7 @@ Partial Class MainForm
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents FiltroDurataMax As System.Windows.Forms.TrackBar
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents FiltroGeneri As System.Windows.Forms.CheckedListBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents FiltroNazioni As System.Windows.Forms.CheckedListBox
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TitoloItalianoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AnnoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
@@ -5510,10 +5560,8 @@ Partial Class MainForm
     Friend WithEvents FlowLayoutPanel8 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents Panel13 As System.Windows.Forms.Panel
     Friend WithEvents Label61 As System.Windows.Forms.Label
-    Friend WithEvents FiltroAudio As System.Windows.Forms.CheckedListBox
     Friend WithEvents Panel14 As System.Windows.Forms.Panel
     Friend WithEvents Label62 As System.Windows.Forms.Label
-    Friend WithEvents FiltroSottotitoli As System.Windows.Forms.CheckedListBox
     Friend WithEvents PannelloExtra As System.Windows.Forms.Panel
     Friend WithEvents ButtAddExtra As System.Windows.Forms.Button
     Friend WithEvents ListaExtra As System.Windows.Forms.ListBox
@@ -5720,5 +5768,12 @@ Partial Class MainForm
     Friend WithEvents RottenCat As System.Windows.Forms.Label
     Friend WithEvents Label73 As System.Windows.Forms.Label
     Friend WithEvents Label88 As System.Windows.Forms.Label
+    Friend WithEvents FlowLayoutPanel9 As System.Windows.Forms.FlowLayoutPanel
+    Friend WithEvents Panel5 As System.Windows.Forms.Panel
+    Friend WithEvents FiltroNazioni As System.Windows.Forms.CheckedListBox
+    Friend WithEvents Panel20 As System.Windows.Forms.Panel
+    Friend WithEvents FiltroGeneri As System.Windows.Forms.CheckedListBox
+    Friend WithEvents FiltroAudio As System.Windows.Forms.CheckedListBox
+    Friend WithEvents FiltroSottotitoli As System.Windows.Forms.CheckedListBox
 
 End Class
