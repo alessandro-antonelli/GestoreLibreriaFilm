@@ -217,6 +217,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ModificaInfo.resx">
       <DependentUpon>ModificaInfo.vb</DependentUpon>
