@@ -11,8 +11,9 @@
     <AssemblyName>Gestore Libreria Film</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -37,6 +38,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>Gestore Libreria Film.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +49,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>Gestore Libreria Film.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -65,18 +68,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net20\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework">
       <HintPath>C:\Windows\WinSxS\msil_presentationframework_31bf3856ad364e35_10.0.19200.250_none_4619f35603eafcb8\PresentationFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TagLibSharp, Version=2.2.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\TagLibSharp.2.2.0\lib\net45\TagLibSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -102,6 +109,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Film.vb" />
+    <Compile Include="GestioneTagFile.vb" />
+    <Compile Include="ImportaFilm.Designer.vb">
+      <DependentUpon>ImportaFilm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImportaFilm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IndividuaIMDB.Designer.vb">
       <DependentUpon>IndividuaIMDB.vb</DependentUpon>
     </Compile>
@@ -145,10 +159,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ProvaQuery.Designer.vb">
+      <DependentUpon>ProvaQuery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProvaQuery.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ScansioneLibreria.Designer.vb">
       <DependentUpon>ScansioneLibreria.vb</DependentUpon>
     </Compile>
     <Compile Include="ScansioneLibreria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScegliFormatoCampi.Designer.vb">
+      <DependentUpon>ScegliFormatoCampi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ScegliFormatoCampi.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ScegliImmaginePersona.Designer.vb">
@@ -180,6 +206,9 @@
     <EmbeddedResource Include="AggiungiGenere.resx">
       <DependentUpon>AggiungiGenere.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImportaFilm.resx">
+      <DependentUpon>ImportaFilm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IndividuaIMDB.resx">
       <DependentUpon>IndividuaIMDB.vb</DependentUpon>
     </EmbeddedResource>
@@ -198,8 +227,14 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProvaQuery.resx">
+      <DependentUpon>ProvaQuery.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScansioneLibreria.resx">
       <DependentUpon>ScansioneLibreria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScegliFormatoCampi.resx">
+      <DependentUpon>ScegliFormatoCampi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScegliImmaginePersona.resx">
       <DependentUpon>ScegliImmaginePersona.vb</DependentUpon>
@@ -464,6 +499,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\peso-grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aggiungi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MovieLibrary.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MovieLibrary_log.ldf">
+      <DependentUpon>MovieLibrary.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

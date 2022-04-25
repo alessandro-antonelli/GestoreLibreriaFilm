@@ -154,3 +154,11 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/Eseguibile GLF pre-DB
+/packages
+/taglib-1.12
+/taglib-1.12_b1-mingw-32-7.3.0
+/taglib-1.12_b1-mingw-w64-8.1.0
+/.vs/Gestore Libreria Film
+/Calcolare qualità soggettiva della codifica video.url
+/Locazione database.txt

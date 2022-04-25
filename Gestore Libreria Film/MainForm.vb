@@ -19,6 +19,8 @@ Public Class MainForm
     Public FilmPerAutore As New List(Of ListaEtichettata)
     Public FilmPerMusicista As New List(Of ListaEtichettata)
 
+    Dim ListaIconeCasuali As New Queue(Of UShort)
+
     'Cronologia di navigazione
     Dim CatNavigazioneAttuale As Byte = 0, ValoreNavigazioneAttuale As Short = -1
 
@@ -34,6 +36,7 @@ Public Class MainForm
     Const ColoriTestoRTFGiorno As String = "\deff0 {\colortbl;\red0\green0\blue0;\red255\green0\blue0;\red64\green200\blue64;\red0\green128\blue255;}"
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'ProvaQuery.Show()
         SplitContainerFiltriAvanzati_Icone.Panel1Collapsed = True
         'Visualizzo la categoria "tutti i film"
         NavigaAllaCategoria(0, 0)
@@ -62,6 +65,36 @@ Public Class MainForm
 
         GeneraListaFilmCategoria(IndiceCategoria, ValoreCategoria)
         AggiornaIconeDaLista()
+    End Sub
+
+    Sub GeneraSequenzaIconeCasuali()
+        Dim ArrayTempIconeCasuali(ListaIndiciFilmFiltrati.Count) As UShort
+        For i As UShort = 0 To ListaIndiciFilmFiltrati.Count - 1 Step 1
+            ArrayTempIconeCasuali(i) = i
+        Next
+        MescolaArray(ArrayTempIconeCasuali)
+
+        ListaIconeCasuali.Clear()
+        For i As UShort = 0 To ListaIndiciFilmFiltrati.Count - 1
+            ListaIconeCasuali.Enqueue(ArrayTempIconeCasuali(i))
+        Next
+    End Sub
+
+    Sub MescolaArray(ByRef Array() As UShort)
+        'Fisher-Yates shuffle algorithm
+        Dim myRand As New Random()
+
+        Dim tmp As UShort
+        Dim j As UShort
+
+        For n As Short = Array.Length - 1 To 0 Step -1
+            j = myRand.Next(0, n + 1)
+            tmp = Array(j)
+
+            ' swap item(j) and item(n) 
+            Array(j) = Array(n)
+            Array(n) = tmp
+        Next
     End Sub
 
     Private Sub ButtCronoIndietro_Click(sender As Object, e As EventArgs) Handles ButtCronoIndietro.Click
@@ -316,7 +349,7 @@ Public Class MainForm
             Else
                 Return Math.Round(DurataMinuti / 60, 1).ToString + "h"
             End If
-        ElseIf (DurataMinuti > MinutiInUnGiorno) Then
+        Else 'siamo nel caso: DurataMinuti > MinutiInUnGiorno
             If (Not Sintetico) Then
                 Dim OreArrotondate As UShort = Math.Round(DurataMinuti / 60) Mod 24
                 Dim GiorniArrotondati As UShort = Math.Round((DurataMinuti - OreArrotondate * 60) / MinutiInUnGiorno)
@@ -336,7 +369,7 @@ Public Class MainForm
         FiltroSottotitoli.Items.Clear()
         PannelloFiltri.Visible = True
 
-        Dim ListaCategoria As ListaEtichettata
+        Dim ListaCategoria As ListaEtichettata = Nothing
 
         Select Case IndiceCategoria
             Case 0 'Tutti i film
@@ -586,7 +619,8 @@ Public Class MainForm
             End If
 
             ' Durata
-            If (FiltriSuperati And FiltroDurataMin.Value > 0) Then
+            If (FiltriSuperati AndAlso (FiltroDurataMin.Value > FiltroDurataMin.Minimum Or
+                                        FiltroDurataMax.Value < FiltroDurataMax.Maximum)) Then
                 If (IsNothing(Film.DurataMinuti) Or Film.DurataMinuti = 0) Then
                     FiltriSuperati = False
                 Else
@@ -739,6 +773,9 @@ Public Class MainForm
         Else
             PannelloEsitoFiltri.Visible = False
         End If
+
+        'resetto il generatore di scelte casuali
+        ListaIconeCasuali.Clear()
     End Sub
 
     Sub AggiornaIconeDaLista()
@@ -1048,9 +1085,116 @@ Public Class MainForm
         My.Settings.Save()
     End Sub
 
+    Function FormattaInfoFilm(Film As Film, Formato As String) As String
+        If (Formato.Equals("-")) Then
+            Return ""
+        End If
+
+        Formato = Formato.ToLower
+        While (Formato.Contains("<local-title>"))
+            Formato = Formato.Replace("<local-title>", Film.TitoloITA)
+        End While
+        While (Formato.Contains("<original-title>"))
+            Formato = Formato.Replace("<original-title>", Film.TitoloORIG)
+        End While
+        While (Formato.Contains("<year>"))
+            Formato = Formato.Replace("<year>", Film.Anno.ToString)
+        End While
+        While (Formato.Contains("<country>"))
+            Formato = Formato.Replace("<country>", Film.Nazione)
+        End While
+        While (Formato.Contains("<directors>"))
+            Formato = Formato.Replace("<directors>", DaListaAStringa(Film.Registi, True))
+        End While
+        While (Formato.Contains("<actors>"))
+            Formato = Formato.Replace("<actors>", DaListaAStringa(Film.Attori, True))
+        End While
+        While (Formato.Contains("<authors>"))
+            Formato = Formato.Replace("<authors>", DaListaAStringa(Film.Autori, True))
+        End While
+        While (Formato.Contains("<musicians>"))
+            Formato = Formato.Replace("<musicians>", DaListaAStringa(Film.Musicisti, True))
+        End While
+        While (Formato.Contains("<genres>"))
+            Formato = Formato.Replace("<genres>", DaListaAStringa(Film.Generi))
+        End While
+        While (Formato.Contains("<length>"))
+            Formato = Formato.Replace("<length>", FormattaDurata(Film.DurataMinuti, True))
+        End While
+        While (Formato.Contains("<notes>"))
+            Formato = Formato.Replace("<notes>", Film.Note)
+        End While
+        While (Formato.Contains("<bitrate>"))
+            Formato = Formato.Replace("<bitrate>", Math.Round(Film.BitrateComplessivoKBpS / 1000).ToString + "MB/s")
+        End While
+        While (Formato.Contains("<resolution>"))
+            Formato = Formato.Replace("<resolution>", ClassificaRisoluzione(Film.Risoluzione.Height)(0).ToString)
+        End While
+        While (Formato.Contains("<file-container>"))
+            Formato = Formato.Replace("<file-container>", Film.Contenitore)
+        End While
+        While (Formato.Contains("<audio-languages>"))
+            Dim ListaLingue As String = ""
+            For Each audio As Sonoro In Film.Sonori
+                ListaLingue += audio.Lingua + " "
+            Next
+            Formato = Formato.Replace("<audio-languages>", ListaLingue.Substring(0, ListaLingue.Length - 1))
+        End While
+        While (Formato.Contains("<sub-languages>"))
+            Dim ListaLingue As String = ""
+            For Each sottotitolo As Sottotitolo In Film.Sottotitoli
+                ListaLingue += sottotitolo.Lingua + " "
+            Next
+            Formato = Formato.Replace("<sub-languages>", ListaLingue.Substring(0, ListaLingue.Length - 1))
+        End While
+        While (Formato.Contains("<rating-imdb>"))
+            Formato = Formato.Replace("<rating-imdb>", Math.Round(Film.VotoIMDB, 1).ToString)
+        End While
+        While (Formato.Contains("<rating-rotten>"))
+            Formato = Formato.Replace("<rating-rotten>", Film.VotoRottenTomatoes.ToString + "%")
+        End While
+        While (Formato.Contains("<rating-metacritic>"))
+            Formato = Formato.Replace("<rating-metacritic>", Film.VotoMetacritic.ToString)
+        End While
+        While (Formato.Contains("<voters-imdb>"))
+            If (Film.NumVotiIMDB < 1000000) Then
+                Formato = Formato.Replace("<voters-imdb>", Math.Round(Film.NumVotiIMDB / 1000).ToString + "k")
+            Else
+                Formato = Formato.Replace("<voters-imdb>", Math.Round(Film.NumVotiIMDB / 1000000, 1).ToString + "M")
+            End If
+        End While
+        While (Formato.Contains("<grossing>"))
+            If (Film.IncassoDollari < 10000000) Then
+                Formato = Formato.Replace("<grossing>", Math.Round(Film.IncassoDollari / 1000000, 1).ToString + "M $")
+            Else
+                Formato = Formato.Replace("<grossing>", Math.Round(Film.IncassoDollari / 1000000).ToString + "M $")
+            End If
+        End While
+        While (Formato.Contains("<oscars-won>"))
+            Formato = Formato.Replace("<oscars-won>", Film.OscarVinti.ToString)
+        End While
+        While (Formato.Contains("<oscars-nominated>"))
+            Formato = Formato.Replace("<oscars-nominated>", Film.OscarNominati.ToString)
+        End While
+        While (Formato.Contains("<bafta-won>"))
+            Formato = Formato.Replace("<bafta-won>", Film.BAFTAVinti.ToString)
+        End While
+        While (Formato.Contains("<bafta-nominated>"))
+            Formato = Formato.Replace("<bafta-nominated>", Film.BAFTANominati.ToString)
+        End While
+        While (Formato.Contains("<other-prizes-won>"))
+            Formato = Formato.Replace("<other-prizes-won>", Film.AltriPremiVinti.ToString)
+        End While
+        While (Formato.Contains("<other-prizes-nominated>"))
+            Formato = Formato.Replace("<other-prizes-nominated>", Film.AltriPremiNominati.ToString)
+        End While
+
+        Return Formato
+    End Function
+
     Function GeneraIcona(Film As Film) As ListViewItem
         Dim elemento As New ListViewItem()
-        elemento.Text = Film.TitoloITA
+        elemento.Text = FormattaInfoFilm(Film, My.Settings.CampiListaFilm)
 
         elemento.SubItems.Add(If(IsNothing(Film.Anno), "?", Film.Anno.ToString))
         elemento.SubItems.Item(elemento.SubItems.Count - 1).Name = "ColAnno"
@@ -2017,11 +2161,13 @@ Public Class MainForm
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ButtFilmCasuale.Click
-        Dim NumElem As Integer = ElencoFilm.Items.Count
+        Dim NumElem As UShort = ElencoFilm.VirtualListSize
         If (NumElem = 0) Then Exit Sub
 
-        Dim random As New Random
-        Dim sorteggiato As Integer = random.Next(0, NumElem - 1)
+        If (ListaIconeCasuali.Count <= 0) Then
+            GeneraSequenzaIconeCasuali()
+        End If
+        Dim sorteggiato As UShort = ListaIconeCasuali.Dequeue()
 
         ElencoFilm.Focus()
         ElencoFilm.Items.Item(sorteggiato).EnsureVisible()
@@ -2029,57 +2175,60 @@ Public Class MainForm
     End Sub
 
     Private Sub ColonneToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ColonneToolStripMenuItem.Click
-        ElencoFilm.View = View.Details
-        AggiornaColonneInElencoFilm()
-        'ElencoFilm.Columns.Item(0).Width = 240
-        'ElencoFilm.Columns.Item(1).Width = 60
-        'ElencoFilm.Columns.Item(2).Width = 140
-        'ElencoFilm.Columns.Item(3).Width = 140
-        ElencoFilm.ArrangeIcons()
-        IconePiccoleToolStripMenuItem.Checked = False
-        IconeGrandiToolStripMenuItem.Checked = False
-        TilesToolStripMenuItem.Checked = False
-        ListaToolStripMenuItem.Checked = False
+        ImpostaVistaIcone(View.Details)
     End Sub
 
     Private Sub IconePiccoleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IconePiccoleToolStripMenuItem.Click
-        ElencoFilm.View = View.SmallIcon
-        AggiornaColonneInElencoFilm()
-        ElencoFilm.ArrangeIcons()
-        ColonneToolStripMenuItem.Checked = False
-        IconeGrandiToolStripMenuItem.Checked = False
-        TilesToolStripMenuItem.Checked = False
-        ListaToolStripMenuItem.Checked = False
+        ImpostaVistaIcone(View.SmallIcon)
     End Sub
 
     Private Sub IconeGrandiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IconeGrandiToolStripMenuItem.Click
-        ElencoFilm.View = View.LargeIcon
-        AggiornaColonneInElencoFilm()
-        ElencoFilm.ArrangeIcons()
-        IconePiccoleToolStripMenuItem.Checked = False
-        ColonneToolStripMenuItem.Checked = False
-        TilesToolStripMenuItem.Checked = False
-        ListaToolStripMenuItem.Checked = False
-    End Sub
-
-    Private Sub TilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TilesToolStripMenuItem.Click
-        ElencoFilm.View = View.Tile
-        AggiornaColonneInElencoFilm()
-        ElencoFilm.ArrangeIcons()
-        IconePiccoleToolStripMenuItem.Checked = False
-        IconeGrandiToolStripMenuItem.Checked = False
-        ColonneToolStripMenuItem.Checked = False
-        ListaToolStripMenuItem.Checked = False
+        ImpostaVistaIcone(View.LargeIcon)
     End Sub
 
     Private Sub ListaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListaToolStripMenuItem.Click
-        ElencoFilm.View = View.List
+        ImpostaVistaIcone(View.List)
+    End Sub
+
+    Sub ImpostaVistaIcone(VistaSelezionata As System.Windows.Forms.View)
+        ElencoFilm.View = VistaSelezionata
         AggiornaColonneInElencoFilm()
         ElencoFilm.ArrangeIcons()
-        IconePiccoleToolStripMenuItem.Checked = False
-        IconeGrandiToolStripMenuItem.Checked = False
-        TilesToolStripMenuItem.Checked = False
-        ColonneToolStripMenuItem.Checked = False
+
+        My.Settings.VistaIcone = VistaSelezionata
+        My.Settings.Save()
+
+        Select Case VistaSelezionata
+            Case View.Details
+                ColonneToolStripMenuItem.Checked = True
+
+                IconePiccoleToolStripMenuItem.Checked = False
+                IconeGrandiToolStripMenuItem.Checked = False
+                ListaToolStripMenuItem.Checked = False
+
+                'ElencoFilm.Columns.Item(0).Width = 240
+                'ElencoFilm.Columns.Item(1).Width = 60
+                'ElencoFilm.Columns.Item(2).Width = 140
+                'ElencoFilm.Columns.Item(3).Width = 140
+            Case View.LargeIcon
+                IconeGrandiToolStripMenuItem.Checked = True
+
+                IconePiccoleToolStripMenuItem.Checked = False
+                ListaToolStripMenuItem.Checked = False
+                ColonneToolStripMenuItem.Checked = False
+            Case View.List
+                ListaToolStripMenuItem.Checked = True
+
+                IconePiccoleToolStripMenuItem.Checked = False
+                IconeGrandiToolStripMenuItem.Checked = False
+                ColonneToolStripMenuItem.Checked = False
+            Case View.SmallIcon
+                IconePiccoleToolStripMenuItem.Checked = True
+
+                IconeGrandiToolStripMenuItem.Checked = False
+                ListaToolStripMenuItem.Checked = False
+                ColonneToolStripMenuItem.Checked = False
+        End Select
     End Sub
 
     Private Sub ListView1_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles ElencoFilm.ColumnClick
@@ -2948,7 +3097,7 @@ Public Class MainForm
         If (FiltroMinVotoMetacritic.Value = FiltroMinVotoMetacritic.Minimum) Then
             LabMinVotoMetacritic.Text = "Qualsiasi"
             LabMinVotoMetacritic.BackColor = Color.Transparent
-            LabMinVotoIMDB.ForeColor = Nothing 'default
+            LabMinVotoMetacritic.ForeColor = Nothing 'default
         Else
             LabMinVotoMetacritic.Text = FiltroMinVotoMetacritic.Value.ToString + " /100"
             LabMinVotoMetacritic.BackColor = GradazioneNeroRossoGialloVerde(FiltroMinVotoMetacritic.Value / 100)
@@ -2960,7 +3109,7 @@ Public Class MainForm
         If (FiltroMinVotoRotten.Value = FiltroMinVotoRotten.Minimum) Then
             LabMinVotoRotten.Text = "Qualsiasi"
             LabMinVotoRotten.BackColor = Color.Transparent
-            LabMinVotoIMDB.ForeColor = Nothing 'default
+            LabMinVotoRotten.ForeColor = Nothing 'default
         Else
             LabMinVotoRotten.Text = FiltroMinVotoRotten.Value.ToString + "%"
             LabMinVotoRotten.BackColor = GradazioneNeroRossoGialloVerde(FiltroMinVotoRotten.Value / 100)
@@ -3017,6 +3166,8 @@ Public Class MainForm
                 Return 1500000000
             Case 16
                 Return 2000000000
+            Case Else
+                Throw New Exception
         End Select
     End Function
 
@@ -3054,6 +3205,8 @@ Public Class MainForm
                 Return 1500000
             Case 15
                 Return 2000000
+            Case Else
+                Throw New Exception
         End Select
     End Function
 
@@ -3152,6 +3305,39 @@ Public Class MainForm
             FiltroNazioni.SetItemChecked(IndiceDaDeselezionare, False)
             'FiltroNazioni.SetItemChecked(e.Index, False)
             'e.NewValue = False
+        End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        OpenFileDialog1.InitialDirectory = My.Settings.LibreriaPercorso
+        If (OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+            ImportaFilm.PathFile = OpenFileDialog1.FileName
+            ImportaFilm.ShowDialog()
+            'usare ImportaFilm.Anno e ImportaFilm.Titolo per interrogare IMDB
+            'generare nuovo nome file
+            'spostare il file nella cartella libreria
+        End If
+    End Sub
+
+    Private Sub ScegliCampiTestualeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScegliCampiTestualeToolStripMenuItem.Click
+        Dim FormatoRiga As String = InputBox("Inserisci i campi che vuoi vedere come didascalia nella lista dei film. Legenda:" + Chr(10) + Chr(10) +
+                 "<local-title>" + Chr(10) + "<original-title>" + Chr(10) + "<year>" + Chr(10) + "<country>" + Chr(10) + "<directors>" + Chr(10) + "<actors>" + Chr(10) + "<authors>" + Chr(10) +
+                 "<musicians>" + Chr(10) + "<genres>" + Chr(10) + "<length>" + Chr(10) + "<notes>" + Chr(10) + "<bitrate>" + Chr(10) + "<resolution>" + Chr(10) + "<audio-languages>" + Chr(10) +
+                  "<file-container>" + Chr(10) + "<sub-languages>" + Chr(10) + "<rating-imdb>" + Chr(10) + "<rating-rotten>" + Chr(10) + "<rating-metacritic>" + Chr(10) + "<voters-imdb>" + Chr(10) +
+                  "<grossing>" + Chr(10) + "<oscars-won>" + Chr(10) + "<oscars-nominated>" + Chr(10) + "<bafta-won>" + Chr(10) + "<bafta-nominated>" + Chr(10) +
+                  "<other-prizes-won>" + Chr(10) + "<other-prizes-nominated>",
+                 "Contenuto didascalia film", My.Settings.CampiListaFilm)
+
+        If (Not IsNothing(FormatoRiga) AndAlso FormatoRiga.Length > 0) Then
+            My.Settings.CampiListaFilm = FormatoRiga
+            ForzaAggiornamentoIcone()
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub ScegliCampiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScegliCampiToolStripMenuItem.Click
+        If (ScegliFormatoCampi.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+            ForzaAggiornamentoIcone()
         End If
     End Sub
 End Class

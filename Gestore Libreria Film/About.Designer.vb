@@ -23,7 +23,6 @@ Partial Class About
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(About))
-        Me.PicIconaApp = New System.Windows.Forms.PictureBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
@@ -39,23 +38,14 @@ Partial Class About
         Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextTerzeParti = New System.Windows.Forms.TextBox()
-        CType(Me.PicIconaApp, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PicIconaApp = New System.Windows.Forms.PictureBox()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
+        CType(Me.PicIconaApp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'PicIconaApp
-        '
-        Me.PicIconaApp.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PicIconaApp.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.pellicola
-        Me.PicIconaApp.Location = New System.Drawing.Point(0, 0)
-        Me.PicIconaApp.Name = "PicIconaApp"
-        Me.PicIconaApp.Size = New System.Drawing.Size(241, 106)
-        Me.PicIconaApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PicIconaApp.TabIndex = 0
-        Me.PicIconaApp.TabStop = False
         '
         'Label8
         '
@@ -256,6 +246,17 @@ Partial Class About
         Me.TextTerzeParti.Text = resources.GetString("TextTerzeParti.Text")
         Me.TextTerzeParti.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'PicIconaApp
+        '
+        Me.PicIconaApp.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PicIconaApp.Image = Global.GestoreLibreriaFilm.My.Resources.Resources.pellicola
+        Me.PicIconaApp.Location = New System.Drawing.Point(0, 0)
+        Me.PicIconaApp.Name = "PicIconaApp"
+        Me.PicIconaApp.Size = New System.Drawing.Size(241, 106)
+        Me.PicIconaApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicIconaApp.TabIndex = 0
+        Me.PicIconaApp.TabStop = False
+        '
         'About
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -270,13 +271,14 @@ Partial Class About
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Riconoscimenti"
-        CType(Me.PicIconaApp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.Panel2.PerformLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.FlowLayoutPanel2.ResumeLayout(False)
         Me.FlowLayoutPanel2.PerformLayout()
+        CType(Me.PicIconaApp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

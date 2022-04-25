@@ -54,24 +54,7 @@ Public Module MainModule
             MainForm.SchermataToolStripMenuItem.Checked = True
         End If
 
-        MainForm.ElencoFilm.View = My.Settings.VistaIcone
-        Select Case My.Settings.VistaIcone
-            Case View.Details
-                MainForm.ColonneToolStripMenuItem.Checked = True
-                'Me.ElencoFilm.Columns.Item(0).Width = 240
-                'Me.ElencoFilm.Columns.Item(1).Width = 60
-                'Me.ElencoFilm.Columns.Item(2).Width = 140
-                'Me.ElencoFilm.Columns.Item(3).Width = 140
-            Case View.LargeIcon
-                MainForm.IconeGrandiToolStripMenuItem.Checked = True
-            Case View.List
-                MainForm.ListaToolStripMenuItem.Checked = True
-            Case View.SmallIcon
-                MainForm.IconePiccoleToolStripMenuItem.Checked = True
-            Case View.Tile
-                MainForm.TilesToolStripMenuItem.Checked = True
-        End Select
-        MainForm.ElencoFilm.ArrangeIcons()
+        MainForm.ImpostaVistaIcone(My.Settings.VistaIcone)
 
         'Me.ElencoFilm.Columns.Add(MainForm.ColTitolo)
         'Me.ElencoFilm.Columns.Add(MainForm.ColAnno)
@@ -115,7 +98,7 @@ Public Module MainModule
         MainForm.AggiornaIconeDaLista()
     End Sub
 
-    Function AggiornaTemaColoriDaImpostazioni()
+    Sub AggiornaTemaColoriDaImpostazioni()
         Select Case My.Settings.TemaColori
             Case SceltaTema.Giorno
                 ModalitaNotte = False
@@ -136,7 +119,7 @@ Public Module MainModule
                 AggiornaModalitaNotte()
                 MainForm.ImpostaColori(ModalitaNotte)
         End Select
-    End Function
+    End Sub
 
     Public Function AggiornaModalitaNotte() As Boolean
         Dim ValorePrecedente As Boolean = ModalitaNotte
