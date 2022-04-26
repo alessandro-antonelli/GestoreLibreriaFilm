@@ -2,6 +2,7 @@
 
 Public Module MainModule
     Public ModalitaNotte As Boolean
+    Private Library As Libreria
 
     Sub Main(args As String())
         Application.EnableVisualStyles()
@@ -70,27 +71,37 @@ Public Module MainModule
                 Return
             End If
         End If
+        'Era:
         'While (Not My.Computer.FileSystem.DirectoryExists(My.Settings.LibraryPath))
         '    ScegliLibreria.ShowDialog()
         'End While
 
-        Dim CartellaDatiLibreria As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\"
-        If (Not My.Computer.FileSystem.DirectoryExists(CartellaDatiLibreria)) Then
-            My.Computer.FileSystem.CreateDirectory(CartellaDatiLibreria)
-            My.Computer.FileSystem.GetDirectoryInfo(CartellaDatiLibreria).Attributes = IO.FileAttributes.Hidden
-        End If
+        'RIMOZIONE POST-DB
+        'Dim CartellaDatiLibreria As String = My.Settings.LibreriaPercorso + "\GestoreLibreriaFilm\"
+        'If (Not My.Computer.FileSystem.DirectoryExists(CartellaDatiLibreria)) Then
+        '    My.Computer.FileSystem.CreateDirectory(CartellaDatiLibreria)
+        '    My.Computer.FileSystem.GetDirectoryInfo(CartellaDatiLibreria).Attributes = IO.FileAttributes.Hidden
+        'End If
 
+        'RIMOZIONE POST-DB
         'Eseguo scansione (visualizzando la relativa finestra)
-        ScansioneLibreria.PercorsiFile = My.Computer.FileSystem.GetFiles(My.Settings.LibreriaPercorso)
-        ScansioneLibreria.ShowDialog()
+        'ScansioneLibreria.PercorsiFile = My.Computer.FileSystem.GetFiles(My.Settings.LibreriaPercorso)
+        'ScansioneLibreria.ShowDialog()
+
+        Library = New Libreria()
+
+        'Avvio scansione cartella per aggiornare il DB (in background)
+        'TODO
+        'MainForm.BackgroundWorker.RunWorkerAsync()
+        Library.ScanFilesAndUpdateDB(My.Computer.FileSystem.GetFiles(My.Settings.LibreriaPercorso))
 
         'Avvio monitoraggio dei cambiamenti ai file dopo la scansione
         MainForm.FileSystemWatcher.Path = My.Settings.LibreriaPercorso
+
+        'Mostro la finestra principale
         MainForm.FiltroAnnoMin.Maximum = My.Computer.Clock.LocalTime.Year
         MainForm.FiltroAnnoMax.Maximum = My.Computer.Clock.LocalTime.Year + 1
         MainForm.FiltroAnnoMax.Value = My.Computer.Clock.LocalTime.Year + 1
-
-        'Mostro la finestra principale
         Application.Run(MainForm)
 
         'Visualizzo il contenuto della categoria "Tutti i film"
